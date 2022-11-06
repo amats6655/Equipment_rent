@@ -1,0 +1,64 @@
+﻿<Window x:Class="Equipment_rent.View.AddOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
+        Title="AddOrder" 
+        Height="800" 
+        Width="400" 
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent">
+    <Grid>
+        <Border Background="#eff2f7"
+                CornerRadius="30"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                MouseDown="Border_MouseDown">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.ColumnSpan="3" 
+                           Text="Новый заказ"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource titleText_Style}"/>
+                <StackPanel Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center">
+
+                    <ComboBox Style="{StaticResource comboBoxAdd}"/>    <!--Модель-->
+                    <TextBox Style="{StaticResource textBoxAdd}"    
+                             Text="Количество"/>                        <!--Количество-->
+                    <DatePicker Text="Дата выдачи" />
+                    <CheckBox Content="Новый сотрундник?"/>
+                    <ComboBox Text="Сотрудник"/>
+                    <TextBox Style="{StaticResource textBoxAdd}"    
+                             Text="Фамилия"
+                             Visibility="Collapsed"/>
+                    <TextBox Style="{StaticResource textBoxAdd}"    
+                             Text="Имя"
+                             Visibility="Collapsed"/>
+                    <TextBox Style="{StaticResource textBoxAdd}"    
+                             Text="Телефон"
+                             Visibility="Collapsed"/>
+                    <DatePicker Text="Дата Возврата" />
+                    <Button Style="{StaticResource addFormButton}"/>
+                    <Button IsCancel="True"
+                            Style="{StaticResource cancelFormButton}"/>
+                </StackPanel>
+            </Grid>
+
+        </Border>
+    </Grid>
+</Window>
