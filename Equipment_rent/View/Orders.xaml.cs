@@ -25,9 +25,6 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class Orders : UserControl
     {
-        string connectionString;
-        //SqlDataAdapter adapter;
-        String getOrder;
 
         public Orders()
         {

@@ -14,6 +14,7 @@ namespace Equipment_rent.Model
         public virtual User User { get; set; }
         public Equipment Equipment { get; set; }
         public int EquipmentId { get; set; }
+        public int Amount { get; set; }
         public DateTime DateIssue { get; set; }
         public DateTime? DateReturn { get; set; }
         public bool IsReturned { get; set; }

@@ -44,13 +44,13 @@
                         <TextBlock Grid.Row="0" Grid.Column="2" Margin="40 0 0 0" Text="Пользователь: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="40 0 0 0" Text="Телефон: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="2" Grid.Column="2" Margin="40 0 0 0" Text="Дата возврата: " FontWeight="SemiBold" FontSize="13" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="13" Text="{Binding type}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="13" Text="{Binding model}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="13" Text="{Binding date_issue}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="13" FontWeight="SemiBold" Text="{Binding amount}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="0" Grid.Column="3" FontSize="13" Text="{Binding name}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="SemiBold" Foreground="red" Text="{Binding phone}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="13" Text="{Binding date_return}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="13" Text="{Binding Type.Name}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="13" Text="{Binding Model.Model}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="13" Text="{Binding DateIssue}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="13" FontWeight="SemiBold" Text="{Binding Amount}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="0" Grid.Column="3" FontSize="13" Text="{Binding User.Name}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="SemiBold" Foreground="red" Text="{Binding User.Phone}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="13" Text="{Binding DateReturn}" HorizontalAlignment="Right" />
                     </Grid>
                 </StackPanel>
             </DataTemplate>
@@ -143,7 +143,8 @@
                   x:Name="OrdersDataGrid"
                   RowDetailsTemplate="{StaticResource RowDetailsTemplate}"
                   RowDetailsVisibilityMode="VisibleWhenSelected"
-                  SelectionMode="Extended">
+                  SelectionMode="Extended"
+                  ItemsSource="{Binding AllOrders}">
 
             <DataGrid.Columns>
 
@@ -161,7 +162,7 @@
                                         Background="{Binding BgColor}">
                                 </Border>
 
-                                <TextBlock Text="{Binding Status}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding IsReturned}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -170,17 +171,17 @@
                 <DataGridTextColumn Header="Модель"
                                     IsReadOnly="True"
                                     Width="*"
-                                    Binding="{Binding model}"/>
+                                    Binding="{Binding EquipmentId}"/>
                 
                 <DataGridTextColumn Header="Дата выдачи"
                                     IsReadOnly="True"
                                     Width="*"
-                                    Binding="{Binding date_issue}"/>
+                                    Binding="{Binding DateIssue}"/>
                 
                 <DataGridTextColumn Header="Количество"
                                     IsReadOnly="True"
                                     Width="*"
-                                    Binding="{Binding amount}"/>
+                                    Binding="{Binding Amount}"/>
 
 
                 <DataGridTemplateColumn Header="Операции"
