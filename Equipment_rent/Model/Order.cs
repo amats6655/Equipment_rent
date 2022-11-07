@@ -18,5 +18,6 @@ namespace Equipment_rent.Model
         public DateTime DateIssue { get; set; }
         public DateTime? DateReturn { get; set; }
         public bool IsReturned { get; set; }
+        public int Amount { get; set; }
     }
 }

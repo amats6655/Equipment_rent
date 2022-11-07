@@ -38,6 +38,70 @@ namespace Equipment_rent.ViewModel
             }
         }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        
+        public string UserPhone { get; set; }
+        #region Commands to add
+        private RelayCommand addNewUser;
+        public RelayCommand AddNewUser
+        {
+            get
+            {
+                return addNewUser ?? new RelayCommand(obj =>
+                {
+                    Window window = obj as Window;
+                    string resultStr = "";
+                    if (FirstName == null || FirstName.Replace(" ", "").Length == 0)
+                    {
+                        SetRedBlockControl.RedBlockControl(window, "tb_lastname");
+                        SetRedBlockControl.RedBlockControl(window, "tb_firstname");
+                    }
+                    else if (UserPhone == null)
+                    {
+                        SetRedBlockControl.RedBlockControl(window, "tb_phone");
+                    }
+                    else
+                    {
+                        resultStr = DataWorker.CreateUser(FirstName+" "+LastName, UserPhone);
+
+                    }
+                });
+            }
+        }
+        #endregion
+
+
+        private void UpdateAllUsersView()
+        {
+            Users.AllUsers.ItemsSource = null;
+            Users.AllUsers.Items.Clear();
+            Users.AllUsers.ItemsSource = AllUsers;
+            Users.AllUsers.Items.Refresh();
+        }
+
+
+
+        #region Open Add new user wingow
+        private RelayCommand addUser;
+        public RelayCommand AddUser
+        {
+            get
+            {
+                return addUser ?? new RelayCommand(obj =>
+                {
+                    Add_Button_Click();
+                }
+                    );
+            }
+        }
+
+        private void Add_Button_Click()
+        {
+            AddUser addUser = new AddUser();
+            addUser.ShowDialog();
+        }
+        #endregion
 
 
         public event PropertyChangedEventHandler PropertyChanged;

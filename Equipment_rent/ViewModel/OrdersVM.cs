@@ -1,5 +1,6 @@
 ﻿using Equipment_rent.Model;
 using Equipment_rent.Utilites;
+using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,27 @@ namespace Equipment_rent.ViewModel
                 NotifyPropertyChaged("AllOrders");
             }
         }
+
+        #region Open Window Add New Order
+        private RelayCommand addOrder;
+        public RelayCommand AddOrder
+        {
+            get
+            {
+                return addOrder ?? new RelayCommand(obj =>
+                {
+                    Add_Button_Click();
+                }
+                    );
+            }
+        }
+
+        private void Add_Button_Click()
+        {
+            AddOrder addOrder = new AddOrder();
+            addOrder.ShowDialog();
+        }
+        #endregion
 
 
 

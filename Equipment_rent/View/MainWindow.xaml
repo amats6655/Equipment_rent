@@ -61,8 +61,7 @@
                                 Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="V:\visual_projects\Equipment_rent\Equipment_rent\Images\enot.png"/>
-
+                                    <SolidColorBrush Color="Aqua"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>

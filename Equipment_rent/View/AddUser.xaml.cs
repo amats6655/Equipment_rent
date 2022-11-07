@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Equipment_rent.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Equipment_rent.View
         public AddUser()
         {
             InitializeComponent();
+            DataContext = new UsersVM();
         }
 
 

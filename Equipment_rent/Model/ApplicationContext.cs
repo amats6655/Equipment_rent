@@ -17,7 +17,7 @@ namespace Equipment_rent.Model
 
         public ApplicationContext()
         {
-            Database.EnsureCreated();
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

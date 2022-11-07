@@ -25,17 +25,13 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class Orders : UserControl
     {
-
+        public static DataGrid AllOrders;
         public Orders()
         {
             InitializeComponent();
             DataContext = new OrdersVM();
+            AllOrders = OrdersDataGrid;
         }
 
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddOrder addOrder = new AddOrder();
-            addOrder.ShowDialog();
-        }
     }
 }

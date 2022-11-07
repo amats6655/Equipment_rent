@@ -25,17 +25,12 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class Equipments : UserControl
     {
+        public static DataGrid AllEquipments;
         public Equipments()
         {
             InitializeComponent();
             DataContext = new EquipmentsVM();
-        }
-
-
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddEquipment addEquipment = new AddEquipment();
-            addEquipment.ShowDialog();
+            AllEquipments = EquipmentsDataGrid;
         }
     }
 }

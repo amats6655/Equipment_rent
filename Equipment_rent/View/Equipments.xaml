@@ -33,7 +33,10 @@
 
         <!--Add Button-->
 
-        <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource addButton}" Click="Add_Button_Click">
+        <Button Grid.Column="2" 
+                Grid.Row="0" 
+                Style="{StaticResource addButton}" 
+                Command="{Binding AddEquipment}">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" 
                                        VerticalAlignment="Center" 
@@ -99,7 +102,8 @@
                   Grid.ColumnSpan="3" 
                   Grid.Row="3"
                   ItemsSource="{Binding AllEquipments}"
-                  x:Name="EquipmentsDataGrid" AutoGenerateColumns="False">
+                  x:Name="EquipmentsDataGrid"
+                  AutoGenerateColumns="False">
 
             <DataGrid.Columns>
 

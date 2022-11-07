@@ -9,17 +9,12 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class Users : UserControl
     {
+        public static DataGrid AllUsers;
         public Users()
         {
             InitializeComponent();
             DataContext = new UsersVM();
-            
-        }
-
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddUser addUser = new AddUser();
-            addUser.ShowDialog();
+            AllUsers = UsersDataGrid;
         }
     }
 }
