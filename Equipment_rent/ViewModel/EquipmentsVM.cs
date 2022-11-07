@@ -1,5 +1,6 @@
 ﻿using Equipment_rent.Model;
 using Equipment_rent.Utilites;
+using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,27 @@ namespace Equipment_rent.ViewModel
                 NotifyPropertyChaged("AllEquipments");
             }
         }
+
+        #region Open Window Add New Equipnent
+        private RelayCommand addEquipment;
+        public RelayCommand AddEquipment
+        {
+            get
+            {
+                return addEquipment ?? new RelayCommand(obj =>
+                {
+                    Add_Button_Click();
+                }
+                    );
+            }
+        }
+
+        private void Add_Button_Click()
+        {
+            AddEquipment addEquipment = new AddEquipment();
+            addEquipment.ShowDialog();
+        }
+        #endregion
 
 
 

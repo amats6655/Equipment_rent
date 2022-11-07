@@ -15,11 +15,5 @@ namespace Equipment_rent.View
             DataContext = new UsersVM();
             
         }
-
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddUser addUser = new AddUser();
-            addUser.ShowDialog();
-        }
     }
 }

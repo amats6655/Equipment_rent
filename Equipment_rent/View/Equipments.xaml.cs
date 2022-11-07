@@ -30,12 +30,5 @@ namespace Equipment_rent.View
             InitializeComponent();
             DataContext = new EquipmentsVM();
         }
-
-
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddEquipment addEquipment = new AddEquipment();
-            addEquipment.ShowDialog();
-        }
     }
 }

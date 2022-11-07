@@ -25,20 +25,11 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class Orders : UserControl
     {
-        string connectionString;
-        //SqlDataAdapter adapter;
-        String getOrder;
-
         public Orders()
         {
             InitializeComponent();
             DataContext = new OrdersVM();
         }
 
-        private void Add_Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddOrder addOrder = new AddOrder();
-            addOrder.ShowDialog();
-        }
     }
 }

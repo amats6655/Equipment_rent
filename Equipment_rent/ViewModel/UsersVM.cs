@@ -39,6 +39,27 @@ namespace Equipment_rent.ViewModel
         }
 
 
+        private RelayCommand addUser;
+        public RelayCommand AddUser
+        {
+            get
+            {
+                return addUser ?? new RelayCommand(obj =>
+                {
+                    Add_Button_Click();
+                }
+                    );
+            }
+        }
+
+        private void Add_Button_Click()
+        {
+            AddUser addUser = new AddUser();
+            addUser.ShowDialog();
+        }
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         
