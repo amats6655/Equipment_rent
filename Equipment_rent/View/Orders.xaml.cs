@@ -25,10 +25,12 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class Orders : UserControl
     {
+        public static DataGrid AllOrders;
         public Orders()
         {
             InitializeComponent();
             DataContext = new OrdersVM();
+            AllOrders = OrdersDataGrid;
         }
 
     }
