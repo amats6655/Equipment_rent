@@ -4,7 +4,6 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
         Title="AddEquipment" 
         Height="800" 
         Width="400" 
@@ -12,6 +11,11 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
     <Grid>
         <Border Background="#eff2f7"
                 CornerRadius="30"
@@ -34,16 +38,49 @@
                            Text="Новое оборудование"
                            HorizontalAlignment="Center"
                            Style="{StaticResource titleText_Style}"/>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="20 20 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Тип" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=cb_type}"/>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="20 80 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Модель" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_model}"/>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="20 140 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Количество" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_amount}"/>
                 <StackPanel Grid.Column="1"
                             Grid.Row="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 
-                    <ComboBox Style="{StaticResource comboBoxAdd}"/>
+                    <ComboBox Style="{StaticResource comboBoxAdd}"
+                              Name="cb_type"/>
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="Модель"/>
+                             Text="{Binding Model}"
+                             Name="tb_model"/>
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="Количество"/>
+                             Text="{Binding Amount}"
+                             Name="tb_amount"/>
                     <Button Style="{StaticResource addFormButton}"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>

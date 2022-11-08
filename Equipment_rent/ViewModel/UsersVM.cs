@@ -64,7 +64,7 @@ namespace Equipment_rent.ViewModel
                     else
                     {
                         resultStr = DataWorker.CreateUser(FirstName+" "+LastName, UserPhone);
-
+                        UpdateAllUsersView();
                     }
                 });
             }
