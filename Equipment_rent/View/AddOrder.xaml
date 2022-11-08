@@ -11,6 +11,11 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
     <Grid>
         <Border Background="#eff2f7"
                 CornerRadius="30"

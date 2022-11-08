@@ -121,8 +121,8 @@
                                         Height="25"
                                         CornerRadius="50"
                                         Margin="0 0 10 0"
-                                        Background="{Binding BgColor}">
-                                    <TextBlock Text="{Binding Character}"
+                                        Background="#c2c2">
+                                    <TextBlock Text="А"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Center"
                                                Foreground="White"
