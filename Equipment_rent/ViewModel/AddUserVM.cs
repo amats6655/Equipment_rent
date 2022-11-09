@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Equipment_rent.ViewModel
 {
-    internal class AddUserVM : ViewModelBase
+    internal class AddUserVM : UsersVM
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -38,7 +38,8 @@ namespace Equipment_rent.ViewModel
                     }
                     else
                     {
-                        
+                        DataWorker.CreateUser(FirstName + " " + LastName, UserPhone);
+                        UpdateAllUsersView();
                         window.Close();
                     }
                 });
