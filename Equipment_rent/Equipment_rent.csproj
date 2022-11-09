@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Images\enot.png">
+    <None Update="..\Images\enot.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

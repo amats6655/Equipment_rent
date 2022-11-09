@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Equipment_rent.ViewModel
 {
@@ -16,7 +17,20 @@ namespace Equipment_rent.ViewModel
 
         public List<Order> AllOrders
         {
-            get { return allOrders; }
+            get 
+            { 
+                List<Order> orders = new List<Order>();
+                foreach (Order order in allOrders)
+                {
+                    char Character;
+                    if (order.IsReturned == true) Character = 'R';
+                    else Character = 'D';
+                    Brush BgColor = GetBrush.getBrush(Character);
+                    order.BgColor = BgColor.ToString();
+                    orders.Add(order);
+                }
+                return orders; 
+            }
             set
             {
                 allOrders = value;
