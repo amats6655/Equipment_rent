@@ -23,13 +23,16 @@ namespace Equipment_rent.ViewModel
         {
             get 
             { 
-                List<User> asdf = new List<User>();
+                List<User> users = new List<User>();
                 foreach (User user in allUsers)
                 {
-                    // добавить BgColor и Character
-                    // Возможно создать ещё один конструктор с доп полями
+                    char Character = user.Name[0];
+                    Brush BgColor = GetBrush.getBrush(Character);
+                    user.BgColor = BgColor.ToString();
+                    user.Character = Character;
+                    users.Add(user);
                 }
-                return allUsers;
+                return users;
             }
             set 
             { 
