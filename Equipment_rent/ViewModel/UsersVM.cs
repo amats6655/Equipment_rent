@@ -19,6 +19,7 @@ namespace Equipment_rent.ViewModel
     {
         private List<User> allUsers = DataWorker.GetAllUsers();
 
+        #region Add Brush and Character for user
         public List<User> AllUsers
         {
             get 
@@ -40,10 +41,10 @@ namespace Equipment_rent.ViewModel
                 NotifyPropertyChaged("AllUsers");
             }
         }
+        #endregion
 
         public string FirstName { get; set; }
-        public string LastName { get; set; }
-        
+        public string LastName { get; set; }        
         public string UserPhone { get; set; }
         #region Commands to add
         private RelayCommand addNewUser;
@@ -68,6 +69,7 @@ namespace Equipment_rent.ViewModel
                     {
                         resultStr = DataWorker.CreateUser(FirstName+" "+LastName, UserPhone);
                         UpdateAllUsersView();
+                        window.Close();
                     }
                 });
             }
@@ -77,6 +79,7 @@ namespace Equipment_rent.ViewModel
 
         private void UpdateAllUsersView()
         {
+            allUsers = DataWorker.GetAllUsers();
             Users.AllUsers.ItemsSource = null;
             Users.AllUsers.Items.Clear();
             Users.AllUsers.ItemsSource = AllUsers;
@@ -116,39 +119,5 @@ namespace Equipment_rent.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
-        //string connectionString;
-        //SqlDataAdapter adapter;
-        //public string getUsers;
-
-
-        //public UsersVM()
-        //{
-        //    connectionString = ConfigurationManager.ConnectionStrings["equipmentDbConnect"].ConnectionString;
-        //    getUsers = "SELECT * " +
-        //               "FROM users " +
-        //               "ORDER BY id " +
-        //               "OFFSET 0 ROWS " +
-        //               "FETCH NEXT 999 ROWS ONLY;";
-
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        adapter = new SqlDataAdapter(getUsers, connection);
-        //        DataTable usersDataTable = new DataTable("users");
-        //        adapter.Fill(usersDataTable);
-        //        usersDataTable.Columns.Add("BgColor", typeof(Brush));
-        //        usersDataTable.Columns.Add("Character", typeof(string));
-
-        //        foreach (DataRowView dt in usersDataTable.DefaultView)
-        //        {
-        //            string name = dt.Row[1].ToString().ToUpper();
-        //            char character = name[0];
-        //            Brush BgColor = GetBrush.getBrush(character);
-        //            dt.Row[5] = character;
-        //            dt.Row[4] = BgColor;
-        //        }
-        //        UsersDataGrid.ItemsSource = usersDataTable.DefaultView;
-        //    }
-        //}
     }
 }

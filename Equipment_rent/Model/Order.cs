@@ -18,5 +18,7 @@ namespace Equipment_rent.Model
         public DateTime? DateReturn { get; set; }
         public bool IsReturned { get; set; }
         public int Amount { get; set; }
+        public string? BgColor { get; set; }
+
     }
 }
