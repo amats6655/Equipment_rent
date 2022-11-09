@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Equipment_rent.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221109150446_3")]
-    partial class _3
+    [Migration("20221109183934_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,7 +64,6 @@ namespace Equipment_rent.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("BgColor")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateIssue")

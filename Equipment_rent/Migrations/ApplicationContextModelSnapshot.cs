@@ -62,7 +62,6 @@ namespace Equipment_rent.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("BgColor")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateIssue")

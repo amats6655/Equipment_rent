@@ -30,7 +30,9 @@ namespace Equipment_rent.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Debt = table.Column<bool>(type: "bit", nullable: false)
+                    Debt = table.Column<bool>(type: "bit", nullable: false),
+                    BgColor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Character = table.Column<string>(type: "nvarchar(1)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -69,7 +71,9 @@ namespace Equipment_rent.Migrations
                     EquipmentId = table.Column<int>(type: "int", nullable: false),
                     DateIssue = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateReturn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsReturned = table.Column<bool>(type: "bit", nullable: false)
+                    IsReturned = table.Column<bool>(type: "bit", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    BgColor = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
