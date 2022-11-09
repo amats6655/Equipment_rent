@@ -23,7 +23,7 @@ namespace Equipment_rent.View
         public AddUser()
         {
             InitializeComponent();
-            DataContext = new UsersVM();
+            DataContext = new AddUserVM();
         }
 
 

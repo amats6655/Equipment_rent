@@ -43,41 +43,8 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }        
-        public string UserPhone { get; set; }
-        #region Commands to add
-        private RelayCommand addNewUser;
-        public RelayCommand AddNewUser
-        {
-            get
-            {
-                return addNewUser ?? new RelayCommand(obj =>
-                {
-                    Window window = obj as Window;
-                    string resultStr = "";
-                    if (FirstName == null || FirstName.Replace(" ", "").Length == 0)
-                    {
-                        SetRedBlockControl.RedBlockControl(window, "tb_lastname");
-                        SetRedBlockControl.RedBlockControl(window, "tb_firstname");
-                    }
-                    else if (UserPhone == null)
-                    {
-                        SetRedBlockControl.RedBlockControl(window, "tb_phone");
-                    }
-                    else
-                    {
-                        resultStr = DataWorker.CreateUser(FirstName+" "+LastName, UserPhone);
-                        UpdateAllUsersView();
-                        window.Close();
-                    }
-                });
-            }
-        }
-        #endregion
 
-
-        private void UpdateAllUsersView()
+        public void UpdateAllUsersView()
         {
             allUsers = DataWorker.GetAllUsers();
             Users.AllUsers.ItemsSource = null;
@@ -88,7 +55,7 @@ namespace Equipment_rent.ViewModel
 
 
 
-        #region Open Add new user wingow
+        #region Open Add new user window
         private RelayCommand addUser;
         public RelayCommand AddUser
         {

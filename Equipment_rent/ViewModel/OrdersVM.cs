@@ -28,7 +28,6 @@ namespace Equipment_rent.ViewModel
                     Brush BgColor = GetBrush.getBrush(Character);
                     order.BgColor = BgColor.ToString();
                     orders.Add(order);
-
                 }
                 return orders; 
             }
