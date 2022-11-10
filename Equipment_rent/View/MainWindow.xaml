@@ -15,7 +15,75 @@
     <Window.DataContext>
         <vm:NavigationVM/>
     </Window.DataContext>
-    
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Button.Click">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <EasingThicknessKeyFrame KeyTime="00:00:00.8000000" Value="-120,0,0,0"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)">
+                            <EasingColorKeyFrame KeyTime="00:00:00.8000000" Value="#FFEFF2F7"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="50"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="(FrameworkElement.Height)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="50"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static HorizontalAlignment.Right}"/>
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00.8000000" Value="{x:Static HorizontalAlignment.Right}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="textBlock" Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="textBlock1" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <EasingThicknessKeyFrame KeyTime="00:00:00.8000000" Value="120,0,0,0"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="textBlock2" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="packIconMaterial" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <EasingThicknessKeyFrame KeyTime="00:00:00.8000000" Value="140,2,20,0"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="packIconMaterial1" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <EasingThicknessKeyFrame KeyTime="00:00:00.8000000" Value="140,2,20,0"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="textBlock3" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="textBlock4" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="packIconMaterial2" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <EasingThicknessKeyFrame KeyTime="00:00:00.8000000" Value="138,2,20,0"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="textBlock5" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="packIconMaterial3" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <EasingThicknessKeyFrame KeyTime="00:00:00.8000000" Value="140,2,20,0"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="packIconMaterial4" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <EasingThicknessKeyFrame KeyTime="00:00:00.8000000" Value="140,2,20,0"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="textBlock6" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                            <EasingThicknessKeyFrame KeyTime="00:00:00.8000000" Value="140,28,0,35"/>
+                        </ThicknessAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+
+
+    </Window.Triggers>
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
@@ -23,35 +91,44 @@
     <Border Background="#eff2f7"
             CornerRadius="30" 
             MouseDown="Border_MouseDown">
-        
+
 
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition  Width="auto"/>
+                <ColumnDefinition Name="GridMenu" Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            
+
+
             <!--LeftMenu-->
-            <Grid>
+            <Grid x:Name="grid" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
 
-                <Button Margin="20, 28, 0, 35" 
-                        Style="{StaticResource topButton}">
+                <Button x:Name="button" Margin="20, 28, 0, 35" 
+                        Style="{StaticResource topButton}"
+                        Click="Button_Click">
                     <Icon:PackIconMaterial Kind="Menu" 
                                            Width="15" 
                                            Height="15"/>
                 </Button>
 
-                <Border Grid.Row="1" 
+                <Border x:Name="border" Grid.Row="1" 
                         Background="#623ed0" 
-                        CornerRadius="0 50 0 30">
+                        CornerRadius="0 50 0 30" Margin="0,0,0,0" Padding="0,0,0,0">
                     <DockPanel>
-                        <Border Width="80" 
+                        <Border x:Name="border1" Width="80" 
                                 Height="80"
                                 Padding="3"
                                 Background="White"
@@ -66,10 +143,10 @@
                             </Ellipse>
                         </Border>
 
-                        <TextBlock Text="Аренда оборудования" 
+                        <TextBlock x:Name="textBlock" Text="Аренда оборудования" 
                                    Style="{StaticResource Text_Style}"
                                    DockPanel.Dock="Top"/>
-                        <TextBlock Text="Кампус" 
+                        <TextBlock x:Name="textBlock1" Text="Кампус" 
                                    Style="{StaticResource Text_Style}"
                                    DockPanel.Dock="Top"
                                    Foreground="#d0bfff"
@@ -87,9 +164,9 @@
                                     Command="{Binding HomeCommand}"
                                     IsChecked ="True">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="Home" 
-                                                           Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Домашняя"/>
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial" Kind="Home" 
+                                                           Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock2" Text="Домашняя"/>
                                 </StackPanel>
                             </menu:Btn>
 
@@ -97,9 +174,9 @@
                                     HorizontalAlignment="Stretch"
                                     Command="{Binding UsersCommand}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="HumanFemaleDance" 
-                                                           Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Пользователи"/>
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial1" Kind="HumanFemaleDance" 
+                                                           Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock3" Text="Пользователи"/>
                                 </StackPanel>
                             </menu:Btn>
 
@@ -107,9 +184,9 @@
                                       HorizontalAlignment="Stretch"
                                       Command="{Binding EquipmentsCommand}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="Ethernet"
-                                                           Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Оборудование"/>
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial2" Kind="Ethernet"
+                                                           Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock4" Text="Оборудование"/>
                                 </StackPanel>
                             </menu:Btn>
 
@@ -117,9 +194,9 @@
                                       HorizontalAlignment="Stretch"
                                       Command="{Binding OrdersCommand}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="FileDocumentEdit"
-                                                           Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Заказы"/>
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial3" Kind="FileDocumentEdit"
+                                                           Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock5" Text="Заказы"/>
                                 </StackPanel>
                             </menu:Btn>
                         </StackPanel>
@@ -131,9 +208,9 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Bottom">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="ExitToApp" 
-                                                       Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Выход"/>
+                                <Icon:PackIconMaterial x:Name="packIconMaterial4" Kind="ExitToApp" 
+                                                       Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
+                                <TextBlock x:Name="textBlock6" Text="Выход"/>
                             </StackPanel>
                         </menu:Btn>
                     </DockPanel>
@@ -173,33 +250,33 @@
                                            Foreground="#b0b9c6" 
                                            HorizontalAlignment="Right"/>
                 </Grid>
-                
+
                 <!--Top Buttons-->
                 <Button Style="{StaticResource topButton}"
                         Margin="0 0 20 0"
                         Background="#dcdcdc"
                         HorizontalAlignment="Right">
                     <Icon:PackIconMaterial Kind="Cog"/>
-                </Button>                
-                
+                </Button>
+
                 <Button Style="{StaticResource topButton}"
                         Margin="0 0 55 0"
                         HorizontalAlignment="Right">
                     <Icon:PackIconMaterial Kind="Bell"/>
                 </Button>
-                
+
                 <!--PageTitle-->
 
-                
-                
+
+
                 <ContentControl Grid.Row="1" x:Name="Pages"
                                 Content="{Binding CurrentView}"/>
 
             </Grid>
 
         </Grid>
-        
-        
+
+
     </Border>
 
 

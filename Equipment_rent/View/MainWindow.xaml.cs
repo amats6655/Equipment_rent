@@ -35,5 +35,9 @@ namespace Equipment_rent.View
                 this.DragMove();
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
