@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Equipment_rent.View;
 using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace Equipment_rent.Model
 {
@@ -55,9 +56,9 @@ namespace Equipment_rent.Model
             }
         }
         // Add User
-        public static string CreateUser(string name, string phone)
+        public static User CreateUser(string name, string phone)
         {
-            string result = "Уже существует";
+            User user = new User();
             using (ApplicationContext db = new ApplicationContext())
             {
                 // Проверяем на наличие такого пользователя
@@ -67,9 +68,9 @@ namespace Equipment_rent.Model
                     User newUser = new User { Name = name, Phone = phone };
                     db.Users.Add(newUser);
                     db.SaveChanges();
-                    result = "Сделано!";
+                    user = newUser;
                 }
-                return result;
+                return user;
             }
         }
 
@@ -99,7 +100,7 @@ namespace Equipment_rent.Model
         }
 
         // Add Order
-        public static string CreateOrder(User user, Equipment equipment, DateTime dateIssue, DateTime dateReturn)
+        public static string CreateOrder(User user, Equipment equipment, int amount DateTime dateIssue, DateTime dateReturn)
         {
             string result = "Сделано!";
             using (ApplicationContext db = new ApplicationContext())
@@ -108,6 +109,7 @@ namespace Equipment_rent.Model
                 {
                     UserId = user.UserId,
                     EquipmentId = equipment.EquipmentId,
+                    Amount = amount,
                     DateIssue = dateIssue,
                     DateReturn = dateReturn,
                     IsReturned = false

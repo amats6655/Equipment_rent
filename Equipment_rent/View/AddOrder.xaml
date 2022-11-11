@@ -2,15 +2,19 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="AddOrder" 
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:AddOrderVM}"
+        Title="AddUser" 
         Height="800" 
         Width="400" 
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Background="Transparent">
+        Background="Transparent"
+        Name="AddNewOrderWindow">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
@@ -43,23 +47,36 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 
-                    <ComboBox Style="{StaticResource comboBoxAdd}"/>    <!--Модель-->
+                    <ComboBox ItemsSource="{Binding AllEquipments}"
+                              DisplayMemberPath="Model"
+                              SelectedItem="{Binding Equipment}"
+                              x:Name="cb_models"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
-                             Text="Количество"/>                        <!--Количество-->
-                    <DatePicker Text="Дата выдачи" />
-                    <CheckBox Content="Новый сотрундник?"/>
-                    <ComboBox Text="Сотрудник"/>
+                             Text="{Binding Amount}"/>                        <!--Количество-->
+                    <DatePicker/>
+                    <CheckBox Content="Новый сотрундник?"
+                              x:Name="cb_newUser"
+                              IsChecked="{Binding IsNewUser}" Click="cb_newUser_click"/>
+                    <ComboBox ItemsSource="{Binding AllUsers}" 
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding User}"
+                              x:Name="cb_users"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
-                             Text="Фамилия"
-                             Visibility="Collapsed"/>
+                             Text="{Binding UserLastName}"
+                             Visibility="Collapsed"
+                             x:Name="tb_lastname"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
-                             Text="Имя"
-                             Visibility="Collapsed"/>
+                             Text="{Binding UserFirstName}"
+                             Visibility="Collapsed"
+                             x:Name="tb_firstname"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
-                             Text="Телефон"
-                             Visibility="Collapsed"/>
+                             Text="{Binding UserPhone}"
+                             Visibility="Collapsed"
+                             x:Name="tb_phone"/>
                     <DatePicker Text="Дата Возврата" />
-                    <Button Style="{StaticResource addFormButton}"/>
+                    <Button Style="{StaticResource addFormButton}"
+                            Command="{Binding AddNewOrder}"
+                            CommandParameter="{Binding ElementName=AddNewOrderWindow}"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>
                 </StackPanel>

@@ -23,7 +23,7 @@ namespace Equipment_rent.View
         public AddOrder()
         {
             InitializeComponent();
-            DataContext = new OrdersVM();
+            DataContext = new AddOrderVM();
         }
 
 
@@ -32,6 +32,24 @@ namespace Equipment_rent.View
             if (e.ChangedButton == MouseButton.Left)
             {
                 this.DragMove();
+            }
+        }
+
+        private void cb_newUser_click(object sender, RoutedEventArgs e)
+        {
+            if (cb_newUser.IsChecked == true)
+            {
+                cb_users.Visibility = Visibility.Collapsed;
+                tb_firstname.Visibility = Visibility.Visible;
+                tb_lastname.Visibility = Visibility.Visible;
+                tb_phone.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                cb_users.Visibility = Visibility.Visible;
+                tb_firstname.Visibility = Visibility.Collapsed;
+                tb_lastname.Visibility = Visibility.Collapsed;
+                tb_phone.Visibility = Visibility.Collapsed;
             }
         }
     }

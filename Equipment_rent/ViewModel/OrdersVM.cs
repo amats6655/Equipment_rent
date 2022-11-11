@@ -59,7 +59,14 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-
+        public void UpdateAllOrdersView()
+        {
+            allOrders = DataWorker.GetAllOrders();
+            Orders.AllOrders.ItemsSource = null;
+            Orders.AllOrders.Items.Clear();
+            Orders.AllOrders.ItemsSource = AllOrders;
+            Orders.AllOrders.Items.Refresh();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

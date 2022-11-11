@@ -22,9 +22,12 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
+        #region Объявление переменных
         public Type EquipType { get; set; }
         public string EquipModel { get; set; }
         public int EquipAmount { get; set; }
+        #endregion
+
 
         #region Commands to add
         private RelayCommand addNewEquip;
@@ -38,17 +41,16 @@ namespace Equipment_rent.ViewModel
 
                     if (EquipModel == null || EquipModel.Replace(" ", "").Length == 0)
                     {
-                        //SetRedBlockControl.RedBlockControl(window, "tb_model");
+                        SetRedBlockControl.RedBlockControl(window, "tb_model");
                     }
                     else if (EquipAmount == 0)
                     {
-                        //SetRedBlockControl.RedBlockControl(window, "tb_amount");
+                        SetRedBlockControl.RedBlockControl(window, "tb_amount");
                     }
                     else
                     {
                         DataWorker.CreateEquip(EquipType, EquipModel, EquipAmount);
                         UpdateAllEquipmentsView();
-
                         window.Close();
                     }
                 });
