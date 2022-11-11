@@ -1,12 +1,5 @@
 ﻿using Equipment_rent.Model;
 using Equipment_rent.Utilites;
-using Equipment_rent.View;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Equipment_rent.ViewModel

@@ -6,8 +6,9 @@ using System.ComponentModel;
 
 namespace Equipment_rent.ViewModel
 {
-    internal class AddEquipmentVM : OrdersVM
+    internal class AddEquipmentVM : EquipmentsVM
     {
+        #region Вывод списка типов
         private List<Type> allTypes = DataWorker.GetAllTypes();
 
         public List<Type> AllTypes
@@ -19,9 +20,9 @@ namespace Equipment_rent.ViewModel
                 NotifyPropertyChaged("AllTypes");
             }
         }
+        #endregion
 
-
-        public Model.Type EquipType { get; set; }
+        public Type EquipType { get; set; }
         public string EquipModel { get; set; }
         public int EquipAmount { get; set; }
 
@@ -37,15 +38,16 @@ namespace Equipment_rent.ViewModel
 
                     if (EquipModel == null || EquipModel.Replace(" ", "").Length == 0)
                     {
-                        SetRedBlockControl.RedBlockControl(window, "tb_model");
+                        //SetRedBlockControl.RedBlockControl(window, "tb_model");
                     }
-                    else if (EquipAmount == null)
+                    else if (EquipAmount == 0)
                     {
-                        SetRedBlockControl.RedBlockControl(window, "tb_amount");
+                        //SetRedBlockControl.RedBlockControl(window, "tb_amount");
                     }
                     else
                     {
-                        //DataWorker.CreateEquip(,EquipModel, EquipAmount)
+                        DataWorker.CreateEquip(EquipType, EquipModel, EquipAmount);
+                        UpdateAllEquipmentsView();
 
                         window.Close();
                     }

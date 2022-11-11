@@ -78,18 +78,19 @@
                             VerticalAlignment="Center">
 
                     <ComboBox 
-                              Name="cb_type"
+                              x:Name="cb_type"
                               ItemsSource="{Binding AllTypes}"
                               DisplayMemberPath="Name"
-                              SelectedItem="Name"
-                              SelectedValue="TypeId"/>
+                              SelectedItem="{Binding EquipType}"/>
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding Model}"
-                             Name="tb_model"/>
+                             Text="{Binding EquipModel}"
+                             x:Name="tb_model"/>
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding Amount}"
-                             Name="tb_amount"/>
-                    <Button Style="{StaticResource addFormButton}"/>
+                             Text="{Binding EquipAmount}"
+                             x:Name="tb_amount"/>
+                    <Button Style="{StaticResource addFormButton}"
+                            Command="{Binding AddNewEquip}"
+                            CommandParameter="{Binding ElementName=AddNewEquipmentWindow}"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>
                 </StackPanel>

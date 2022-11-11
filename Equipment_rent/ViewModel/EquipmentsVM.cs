@@ -46,6 +46,15 @@ namespace Equipment_rent.ViewModel
         #endregion
 
 
+        public void UpdateAllEquipmentsView()
+        {
+            allEquipments = DataWorker.GetAllEquipments();
+            Equipments.AllEquipments.ItemsSource = null;
+            Equipments.AllEquipments.Items.Clear();
+            Equipments.AllEquipments.ItemsSource = AllEquipments;
+            Equipments.AllEquipments.Items.Refresh();
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
