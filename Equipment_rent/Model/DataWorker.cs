@@ -100,7 +100,7 @@ namespace Equipment_rent.Model
         }
 
         // Add Order
-        public static string CreateOrder(User user, Equipment equipment, int amount DateTime dateIssue, DateTime dateReturn)
+        public static string CreateOrder(User user, Equipment equipment, int amount, DateTime dateIssue, DateTime dateReturn)
         {
             string result = "Сделано!";
             using (ApplicationContext db = new ApplicationContext())
