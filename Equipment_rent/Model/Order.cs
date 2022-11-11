@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,22 @@ namespace Equipment_rent.Model
         public DateTime DateIssue { get; set; }
         public DateTime? DateReturn { get; set; }
         public bool IsReturned { get; set; }
-        public string? BgColor { get; set; }
+
+        [NotMapped]public string? BgColor { get; set; }
+        [NotMapped]public User OrdersUser
+        {
+            get
+            {
+                return DataWorker.GetUserById(UserId);
+            }
+        }
+        [NotMapped]public Equipment OrdersEquipment
+        {
+            get
+            {
+                return DataWorker.GetEquipmentById(EquipmentId);
+            }
+        }
 
     }
 }

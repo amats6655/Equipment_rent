@@ -37,19 +37,17 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Text="Тип: " FontWeight="SemiBold" FontSize="13" />
-                        <TextBlock Grid.Row="1" Text="Модель: " FontWeight="SemiBold" FontSize="13" />
-                        <TextBlock Grid.Row="2" Text="Дата выдачи: " FontWeight="SemiBold" FontSize="13" />
-                        <TextBlock Grid.Row="3" Text="Количество: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="0" Text="Модель: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="1" Text="Дата выдачи: " FontWeight="SemiBold" FontSize="13" />
+                        <TextBlock Grid.Row="2" Text="Количество: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="0" Grid.Column="2" Margin="40 0 0 0" Text="Пользователь: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="40 0 0 0" Text="Телефон: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="2" Grid.Column="2" Margin="40 0 0 0" Text="Дата возврата: " FontWeight="SemiBold" FontSize="13" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="13" Text="{Binding Type.Name}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="13" Text="{Binding Equipment.Model}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="13" Text="{Binding DateIssue}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="13" FontWeight="SemiBold" Text="{Binding Amount}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="0" Grid.Column="3" FontSize="13" Text="{Binding User.Name}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="SemiBold" Foreground="red" Text="{Binding User.Phone}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="13" Text="{Binding OrdersEquipment.Model}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="13" Text="{Binding DateIssue}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="13" FontWeight="SemiBold" Text="{Binding Amount}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="0" Grid.Column="3" FontSize="13" Text="{Binding OrdersUser.Name}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="SemiBold" Foreground="red" Text="{Binding OrdersUser.Phone}" HorizontalAlignment="Right" />
                         <TextBlock Grid.Row="2" Grid.Column="3" FontSize="13" Text="{Binding DateReturn}" HorizontalAlignment="Right" />
                     </Grid>
                 </StackPanel>
@@ -173,7 +171,7 @@
                 <DataGridTextColumn Header="Модель"
                                     IsReadOnly="True"
                                     Width="*"
-                                    Binding="{Binding Equipment.Model}"/>
+                                    Binding="{Binding OrdersEquipment.Model}"/>
                 
                 <DataGridTextColumn Header="Дата выдачи"
                                     IsReadOnly="True"

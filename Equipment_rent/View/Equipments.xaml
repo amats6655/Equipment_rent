@@ -110,7 +110,7 @@
                 <DataGridTextColumn Header="Тип"
                                     IsReadOnly="True"
                                     Width="*"
-                                    Binding="{Binding Type.Name}"/>
+                                    Binding="{Binding EquipType.Name}"/>
 
 
                 <DataGridTextColumn Header="Модель"

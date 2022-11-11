@@ -52,6 +52,7 @@ namespace Equipment_rent.ViewModel
                     if(IsNewUser == false)
                     {
                         DataWorker.CreateOrder(User, Equipment, Amount, DateIssue, DateReturne);
+                        DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
                         UpdateAllOrdersView();
                         window.Close();
                     }
@@ -67,7 +68,8 @@ namespace Equipment_rent.ViewModel
                         }
                         else
                         {
-                            DataWorker.CreateOrder(DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone), Equipment, Amount, DateIssue, DateReturne);
+                            DataWorker.CreateOrder(DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, DateIssue, DateReturne);
+                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
                             UpdateAllOrdersView();
                             window.Close();
                         }

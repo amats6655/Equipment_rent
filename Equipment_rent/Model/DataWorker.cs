@@ -7,6 +7,8 @@ using System.Linq;
 using Equipment_rent.View;
 using System.Data;
 using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Equipment_rent.Model
 {
@@ -55,8 +57,9 @@ namespace Equipment_rent.Model
                 return result;
             }
         }
+
         // Add User
-        public static User CreateUser(string name, string phone)
+        public static User CreateUser(string name, string phone, bool debt)
         {
             User user = new User();
             using (ApplicationContext db = new ApplicationContext())
@@ -65,7 +68,7 @@ namespace Equipment_rent.Model
                 bool checkIsExist = db.Users.Any(el => el.Phone == phone && el.Name == name);
                 if (!checkIsExist)
                 {
-                    User newUser = new User { Name = name, Phone = phone };
+                    User newUser = new User { Name = name, Phone = phone, Debt = debt };
                     db.Users.Add(newUser);
                     db.SaveChanges();
                     user = newUser;
@@ -84,11 +87,11 @@ namespace Equipment_rent.Model
                 bool checkIsExist = db.Equipments.Any(el => el.Model == model && el.Type == type);
                 if (!checkIsExist)
                 {
-                    Equipment newEquipment = new Equipment 
-                    { 
+                    Equipment newEquipment = new Equipment
+                    {
                         TypeId = type.TypeId,
-                        Model = model, 
-                        Amount = amount, 
+                        Model = model,
+                        Amount = amount,
                         Balance = amount
                     };
                     db.Equipments.Add(newEquipment);
@@ -118,7 +121,7 @@ namespace Equipment_rent.Model
                 db.SaveChanges();
 
             }
-                return result;
+            return result;
         }
 
         // Edit User
@@ -208,6 +211,36 @@ namespace Equipment_rent.Model
                 result = $"Сделано! Заказ #{order.OrderId} удален";
             }
             return result;
+        }
+
+        // Get Type by Id
+        public static Type GetTypeById(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Type type = db.Types.FirstOrDefault(p => p.TypeId == id);
+                return type;
+            }
+        }
+
+        // Get Equipment by Id
+        public static Equipment GetEquipmentById(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Equipment equip = db.Equipments.FirstOrDefault(p => p.EquipmentId == id);
+                return equip;
+            }
+        }
+
+        // Get User by Id
+        public static User GetUserById(int id)
+        {
+            using(ApplicationContext db = new ApplicationContext())
+            {
+                User user = db.Users.FirstOrDefault(p => p.UserId == id);
+                return user;
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Equipment_rent.ViewModel
                     }
                     else
                     {
-                        DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone);
+                        DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, false);
                         UpdateAllUsersView();
                         window.Close();
                     }
