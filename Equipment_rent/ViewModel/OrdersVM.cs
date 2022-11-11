@@ -25,6 +25,7 @@ namespace Equipment_rent.ViewModel
                     char Character;
                     if (order.IsReturned == true) Character = 'R';
                     else Character = 'D';
+                          
                     Brush BgColor = GetBrush.getBrush(Character);
                     order.BgColor = BgColor.ToString();
                     orders.Add(order);
@@ -56,6 +57,24 @@ namespace Equipment_rent.ViewModel
         {
             AddOrder addOrder = new AddOrder();
             addOrder.ShowDialog();
+        }
+        #endregion
+
+        #region Delete order
+        private RelayCommand removeOrder;
+        public RelayCommand RemoveOrder
+        {
+            get
+            {
+                return removeOrder ?? new RelayCommand(obj =>
+                {
+                    Del_Button_Click();
+                });
+            }
+        }
+        private void Del_Button_Click()
+        {
+            
         }
         #endregion
 

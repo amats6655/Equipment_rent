@@ -19,6 +19,13 @@ namespace Equipment_rent.Model
 
         [NotMapped]public string? BgColor { get; set; }
         [NotMapped]public char? Character { get; set; }
+        [NotMapped]public List<Order> UserOrders
+        {
+            get
+            {
+                return DataWorker.GetAllOrdersByUserId(UserId);
+            }
+        }
     }
 }
 

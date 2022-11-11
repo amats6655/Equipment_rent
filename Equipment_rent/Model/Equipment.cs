@@ -25,5 +25,12 @@ namespace Equipment_rent.Model
                 return DataWorker.GetTypeById(TypeId);
             }
         }
+        [NotMapped] public List<Order> EquipmentOrders
+        {
+            get
+            {
+                return DataWorker.GetAllOrdersByEquipmetnId(EquipmentId);
+            }
+        }
     }
 }

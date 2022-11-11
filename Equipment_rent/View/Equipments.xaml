@@ -127,6 +127,11 @@
                                     IsReadOnly="True"
                                     Width="auto"
                                     Binding="{Binding Balance}"/>
+                <DataGridTextColumn Header="Активные заказы"
+                                    IsReadOnly="True"
+                                    Width="auto"
+                                    FontWeight="SemiBold"
+                                    Binding="{Binding EquipmentOrders.Count}"/>
 
 
                 <DataGridTemplateColumn Header="Операции"

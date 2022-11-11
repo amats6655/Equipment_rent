@@ -151,7 +151,7 @@
                 <DataGridTemplateColumn Header="Статус"
                                         IsReadOnly="True"
                                         CanUserResize="False"
-                                        Width="*">
+                                        Width="70">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -162,7 +162,6 @@
                                         Background="{Binding BgColor}">
                                 </Border>
 
-                                <TextBlock Text="{Binding IsReturned}" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -195,7 +194,8 @@
                                                            Kind="PencilOutline"/>
                                 </Button>
                                 <Button Style="{StaticResource gridRemoveButton}"
-                                        Margin="5 0 0 0">
+                                        Margin="5 0 0 0"
+                                        >
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="DeleteOutline"/>
                                 </Button>

@@ -236,10 +236,30 @@ namespace Equipment_rent.Model
         // Get User by Id
         public static User GetUserById(int id)
         {
-            using(ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = new ApplicationContext())
             {
                 User user = db.Users.FirstOrDefault(p => p.UserId == id);
                 return user;
+            }
+        }
+
+        // Get All Orders by Id User
+        public static List<Order> GetAllOrdersByUserId(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                List<Order> orders = (from order in GetAllOrders() where order.UserId == id && order.IsReturned == false select order).ToList();
+                return orders;
+            }
+        }
+
+        // Get All Orders by Id Equipment
+        public static List<Order> GetAllOrdersByEquipmetnId(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                List<Order> orders = (from order in GetAllOrders() where order.EquipmentId == id && order.IsReturned == false select order).ToList();
+                return orders;
             }
         }
     }
