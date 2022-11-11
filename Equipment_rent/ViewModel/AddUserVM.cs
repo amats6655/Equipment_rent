@@ -13,8 +13,8 @@ namespace Equipment_rent.ViewModel
 {
     internal class AddUserVM : UsersVM
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
         public string UserPhone { get; set; }
 
         #region Commands to add
@@ -27,7 +27,7 @@ namespace Equipment_rent.ViewModel
                 {
                     Window window = obj as Window;
 
-                    if (FirstName == null || FirstName.Replace(" ", "").Length == 0)
+                    if (UserFirstName == null || UserFirstName.Replace(" ", "").Length == 0)
                     {
                         SetRedBlockControl.RedBlockControl(window, "tb_lastname");
                         SetRedBlockControl.RedBlockControl(window, "tb_firstname");
@@ -38,7 +38,7 @@ namespace Equipment_rent.ViewModel
                     }
                     else
                     {
-                        DataWorker.CreateUser(FirstName + " " + LastName, UserPhone);
+                        DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone);
                         UpdateAllUsersView();
                         window.Close();
                     }

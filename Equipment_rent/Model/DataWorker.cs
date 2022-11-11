@@ -44,6 +44,16 @@ namespace Equipment_rent.Model
             }
         }
 
+        //Get All Types
+        public static List<Type> GetAllTypes()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Types.ToList();
+
+                return result;
+            }
+        }
         // Add User
         public static string CreateUser(string name, string phone)
         {

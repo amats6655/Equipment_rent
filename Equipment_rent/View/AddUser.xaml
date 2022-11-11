@@ -6,8 +6,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance Type=vm:UsersVM}"
-        Title="MainWindow" 
+        d:DataContext="{d:DesignInstance Type=vm:AddUserVM}"
+        Title="AddUser" 
         Height="800" 
         Width="400" 
         WindowStyle="None"
@@ -81,11 +81,11 @@
                             VerticalAlignment="Center">
 <!--#region TextBoxes--> 
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding LastName}"
+                             Text="{Binding UserLastName}"
                              x:Name="tb_lastname"
                              />
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding FirstName}"
+                             Text="{Binding UserFirstName}"
                              x:Name="tb_firstname"
                              />
                     <TextBox Style="{StaticResource textBoxAdd}"
