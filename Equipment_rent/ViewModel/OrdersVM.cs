@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Equipment_rent.ViewModel
@@ -74,7 +75,8 @@ namespace Equipment_rent.ViewModel
         }
         private void Del_Button_Click()
         {
-            
+            MessageBox.Show(Orders.AllOrders.SelectedItem.ToString());
+            //DataWorker.DeleteOrder
         }
         #endregion
 

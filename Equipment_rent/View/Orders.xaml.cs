@@ -32,6 +32,5 @@ namespace Equipment_rent.View
             DataContext = new OrdersVM();
             AllOrders = OrdersDataGrid;
         }
-
     }
 }

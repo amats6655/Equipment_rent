@@ -7,8 +7,10 @@
              xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
+
              d:DesignHeight="615" d:DesignWidth="830"
-             Background="Transparent">
+             Background="Transparent"
+             x:Name="DataOrders">
 
     <UserControl.DataContext>
         <vm:OrdersVM/>
@@ -195,7 +197,7 @@
                                 </Button>
                                 <Button Style="{StaticResource gridRemoveButton}"
                                         Margin="5 0 0 0"
-                                        >
+                                        Command="{Binding ElementName=DataOrders, Path=DataContext.RemoveOrder}">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="DeleteOutline"/>
                                 </Button>
@@ -222,6 +224,7 @@
                     Background="#7950f2"
                     Foreground="White"/>
                 <Button Style="{StaticResource pagingButton}"
+                        Command="{Binding RemoveOrder}"
                     Content="2"/>
                 <Button Style="{StaticResource pagingButton}"
                     Content="3"/>
