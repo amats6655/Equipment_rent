@@ -142,7 +142,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Style="{StaticResource gridEditButton}"
-                                        >
+                                        Command="{Binding ElementName=DataEquipments, Path=DataContext.OpenEditEquipment}">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="PencilOutline"/>
                                 </Button>

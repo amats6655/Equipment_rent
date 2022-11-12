@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Equipment_rent.Model;
 
 namespace Equipment_rent.View
 {
@@ -20,10 +21,15 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class EditEquipment : Window
     {
-        public EditEquipment()
+        public EditEquipment(Equipment EquipmentToEdit)
         {
             InitializeComponent();
             DataContext = new EditEquipmentVM();
+            EditEquipmentVM.SelectedEquipment = EquipmentToEdit;
+            EditEquipmentVM.EquipType = EquipmentToEdit.Type;
+            EditEquipmentVM.EquipModel = EquipmentToEdit.Model;
+            EditEquipmentVM.EquipAmount = EquipmentToEdit.Amount;
+            EditEquipmentVM.EquipBalance = EquipmentToEdit.Balance;
         }
 
 

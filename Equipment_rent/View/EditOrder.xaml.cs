@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Equipment_rent.Model;
 
 namespace Equipment_rent.View
 {
@@ -20,10 +21,17 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class EditOrder : Window
     {
-        public EditOrder()
+        public EditOrder(Order orderToEdit)
         {
             InitializeComponent();
             DataContext = new EditOrderVM();
+            EditOrderVM.SelectedOrder = orderToEdit;
+            EditOrderVM.Equipment = orderToEdit.Equipment;
+            EditOrderVM.User = orderToEdit.User;
+            EditOrderVM.DateIssue = orderToEdit.DateIssue;
+            EditOrderVM.DateReturn = orderToEdit.DateReturn;
+            EditOrderVM.IsReturned = orderToEdit.IsReturned;
+
         }
 
 

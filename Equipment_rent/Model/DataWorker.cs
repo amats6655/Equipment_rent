@@ -157,7 +157,7 @@ namespace Equipment_rent.Model
         }
 
         // Edit Order
-        public static string EditOrder(Order oldOrder, User newUser, Equipment newEquipment, DateTime newDateIssue, DateTime newDateReturn, bool newIsReturned)
+        public static string EditOrder(Order oldOrder, User newUser, Equipment newEquipment, int newAmount, DateTime newDateIssue, DateTime newDateReturn, bool newIsReturned)
         {
             string result;
             using (ApplicationContext db = new ApplicationContext())
@@ -165,6 +165,7 @@ namespace Equipment_rent.Model
                 Order order = db.Orders.FirstOrDefault(o => o.OrderId == oldOrder.OrderId);
                 order.UserId = newUser.UserId;
                 order.EquipmentId = newEquipment.EquipmentId;
+                order.Amount = newAmount;
                 order.DateIssue = newDateIssue;
                 order.DateReturn = newDateReturn;
                 order.IsReturned = newIsReturned;

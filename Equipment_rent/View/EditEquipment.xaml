@@ -50,9 +50,14 @@
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding EquipModel}"
                              x:Name="tb_model"/>
+                    <Label Content="Количество"/>
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding EquipAmount}"
                              x:Name="tb_amount"/>
+                    <Label Content="Остаток"/>
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding EquipBalance}"
+                             x:Name="tb_balance"/>
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding EditEquip}"
                             CommandParameter="{Binding ElementName=EditEquipmentWindow}"/>

@@ -23,19 +23,21 @@ namespace Equipment_rent.ViewModel
         #endregion
 
         #region Объявление переменных
-        public Type EquipType { get; set; }
-        public string EquipModel { get; set; }
-        public int EquipAmount { get; set; }
+        public static Type EquipType { get; set; }
+        public static string EquipModel { get; set; }
+        public static int EquipAmount { get; set; }
+        public static Equipment SelectedEquipment { get; set; }
+        public static int EquipBalance { get; set; }
         #endregion
 
 
         #region Commands to add
-        private RelayCommand addNewEquip;
-        public RelayCommand AddNewEquip
+        private RelayCommand editEquip;
+        public RelayCommand EditEquip
         {
             get
             {
-                return addNewEquip ?? new RelayCommand(obj =>
+                return editEquip ?? new RelayCommand(obj =>
                 {
                     Window window = obj as Window;
 
@@ -49,7 +51,7 @@ namespace Equipment_rent.ViewModel
                     }
                     else
                     {
-                        DataWorker.CreateEquip(EquipType, EquipModel, EquipAmount);
+                        DataWorker.EditEquipment(SelectedEquipment, EquipType, EquipModel, EquipAmount, EquipBalance);
                         UpdateAllEquipmentsView();
                         window.Close();
                     }

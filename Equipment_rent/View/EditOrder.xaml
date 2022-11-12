@@ -20,8 +20,7 @@
         <Border Background="#eff2f7"
                 CornerRadius="30"
                 BorderBrush="Gray"
-                BorderThickness="1"
-                MouseDown="Border_MouseDown">
+                BorderThickness="1">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -30,16 +29,28 @@
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <Border Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        MouseDown="Border_MouseDown"/>
+                <Button Grid.Column="3"
+                        IsCancel="True"
+                        Background="Red"
+                        Style="{StaticResource gridRemoveButton}">                    
+                    <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
+                                           Kind="Close"/>
+                </Button>
                 <TextBlock Grid.ColumnSpan="3" 
+                           Grid.Row="1"
                            Text="Новый заказ"
                            HorizontalAlignment="Center"
                            Style="{StaticResource titleText_Style}"/>
                 <StackPanel Grid.Column="1"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 
@@ -48,7 +59,10 @@
                               SelectedItem="{Binding Equipment}"
                               x:Name="cb_models"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
-                             Text="{Binding Amount}"/>                        <!--Количество-->
+                             Text="{Binding Amount}"/>
+                    <CheckBox Content="Вернули оборудование"
+                              x:Name="cb_returned"
+                              IsChecked="{Binding IsReturned}"/>
                     <DatePicker/>
                     <CheckBox Content="Новый сотрундник?"
                               x:Name="cb_newUser"
@@ -71,6 +85,7 @@
                              x:Name="tb_phone"/>
                     <DatePicker Text="Дата Возврата" />
                     <Button Style="{StaticResource addFormButton}"
+                            Content="Сохранить"
                             Command="{Binding EditOrder}"
                             CommandParameter="{Binding ElementName=EditOrderWindow}"/>
                     <Button IsCancel="True"

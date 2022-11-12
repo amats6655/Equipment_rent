@@ -191,7 +191,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}">
+                                <Button Style="{StaticResource gridEditButton}"
+                                        Command="{Binding ElementName=DataOrders, Path=DataContext.OpenEditOrder}">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="PencilOutline"/>
                                 </Button>

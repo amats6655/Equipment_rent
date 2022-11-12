@@ -6,14 +6,14 @@ namespace Equipment_rent.ViewModel
 {
     internal class EditUserVM : UsersVM
     {
-        public string UserFirstName { get; set; }
-        public string UserLastName { get; set; }
-        public string UserPhone { get; set; }
-        public User user { get; set; }
+        public static string UserFirstName { get; set; }
+        public static string? UserLastName { get; set; }
+        public static string UserPhone { get; set; }
+        public static User SelectedUser { get; set; }
 
-        #region Commands to add
+        #region Commands to Edit
         private RelayCommand editUser;
-        public RelayCommand EditUser(User user)
+        public RelayCommand EditUser
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Equipment_rent.ViewModel
                     }
                     else
                     {
-                        DataWorker.EditUser(user, UserFirstName + " " + UserLastName, UserPhone);
+                        DataWorker.EditUser(SelectedUser, UserFirstName + " " + UserLastName, UserPhone);
                         UpdateAllUsersView();
                         window.Close();
                     }

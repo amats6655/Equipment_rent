@@ -76,23 +76,23 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-        #region Open Edit new user window
-        private RelayCommand editUser;
-        public RelayCommand EditUser
+        #region Open Edit user window
+        private RelayCommand openEditUser;
+        public RelayCommand OpenEditUser
         {
             get
             {
-                return addUser ?? new RelayCommand(obj =>
+                return openEditUser ?? new RelayCommand(obj =>
                 {
-                    Edit_Button_Click();
+                    Edit_Button_Click((User)Users.AllUsers.SelectedItem);
                 }
                     );
             }
         }
 
-        private void Edit_Button_Click()
+        private void Edit_Button_Click(User user)
         {
-            EditUser editUser = new EditUser((User)Users.AllUsers.SelectedItem);
+            EditUser editUser = new EditUser(user);
             editUser.ShowDialog();
         }
         #endregion

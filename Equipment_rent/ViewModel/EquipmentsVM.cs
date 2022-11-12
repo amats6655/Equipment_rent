@@ -45,7 +45,7 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-        #region Delete user
+        #region Delete Equipment
         private RelayCommand removeEquipment;
         public RelayCommand RemoveEquipment
         {
@@ -68,6 +68,27 @@ namespace Equipment_rent.ViewModel
 
         }
         #endregion
+
+        #region Open Edit Equipment window
+        private RelayCommand openEditEquipment;
+        public RelayCommand OpenEditEquipment
+        {
+            get
+            {
+                return openEditEquipment ?? new RelayCommand(obj =>
+                {
+                    Edit_Button_Click((Equipment)Equipments.AllEquipments.SelectedItem);
+                }
+                    );
+            }
+        }
+        #endregion
+
+        private void Edit_Button_Click(Equipment equipment)
+        {
+            EditEquipment editEquipment = new EditEquipment(equipment);
+            editEquipment.ShowDialog();
+        }
         public void UpdateAllEquipmentsView()
         {
             allEquipments = DataWorker.GetAllEquipments();

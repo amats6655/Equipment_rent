@@ -200,7 +200,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Style="{StaticResource gridEditButton}"
-                                        Command="{Binding ElementName=DataUsers, Path=DataContext.EditUser}">
+                                        Command="{Binding ElementName=DataUsers, Path=DataContext.OpenEditUser}">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="PencilOutline"/>
                                 </Button>

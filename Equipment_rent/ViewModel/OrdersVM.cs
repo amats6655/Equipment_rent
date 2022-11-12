@@ -84,6 +84,27 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
+        #region Open Edit order window
+        private RelayCommand openEditOrder;
+        public RelayCommand OpenEditOrder
+        {
+            get
+            {
+                return openEditOrder ?? new RelayCommand(obj =>
+                {
+                    Edit_Button_Click((Order)Orders.AllOrders.SelectedItem);
+                }
+                    );
+            }
+        }
+
+        private void Edit_Button_Click(Order order)
+        {
+            EditOrder editOrder = new EditOrder(order);
+            editOrder.ShowDialog();
+        }
+        #endregion
+
         public void UpdateAllOrdersView()
         {
             allOrders = DataWorker.GetAllOrders();
