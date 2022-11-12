@@ -90,8 +90,13 @@ namespace Equipment_rent.ViewModel
         }
         private void Del_Button_Click()
         {
-            DataWorker.DeleteUser((User)Users.AllUsers.SelectedItem);
-            UpdateAllUsersView();
+            ConfirmWindow confirmWindow = new ConfirmWindow();
+            if(confirmWindow.ShowDialog() == true)
+            {
+                DataWorker.DeleteUser((User)Users.AllUsers.SelectedItem);
+                UpdateAllUsersView();
+            }
+
         }
         #endregion
 

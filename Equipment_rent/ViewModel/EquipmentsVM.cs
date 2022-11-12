@@ -59,8 +59,13 @@ namespace Equipment_rent.ViewModel
         }
         private void Del_Button_Click()
         {
-            DataWorker.DeleteEquipment((Equipment)Equipments.AllEquipments.SelectedItem);
-            UpdateAllEquipmentsView();
+            ConfirmWindow confirmWindow = new ConfirmWindow();
+            if(confirmWindow.ShowDialog() == true)
+            {
+                DataWorker.DeleteEquipment((Equipment)Equipments.AllEquipments.SelectedItem);
+                UpdateAllEquipmentsView();
+            }
+
         }
         #endregion
         public void UpdateAllEquipmentsView()

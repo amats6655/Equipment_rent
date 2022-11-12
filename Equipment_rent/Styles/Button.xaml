@@ -150,4 +150,34 @@
         </Style.Triggers>
     </Style>
 
+
+    <Style x:Key="ConfirmButton" TargetType="Button">
+        <Setter Property="Background" Value="#d81e00"/>
+        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Margin" Value="5 10 0 5"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Content" Value="Отменить"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="7">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border> 
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#ab1500"/>
+                <Setter Property="Foreground" Value="white"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

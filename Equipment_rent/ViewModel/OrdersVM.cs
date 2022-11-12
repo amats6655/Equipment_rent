@@ -75,8 +75,12 @@ namespace Equipment_rent.ViewModel
         }
         private void Del_Button_Click()
         {
-            DataWorker.DeleteOrder((Order)Orders.AllOrders.SelectedItem);
-            UpdateAllOrdersView();
+            ConfirmWindow confirmWindow = new ConfirmWindow();
+            if (confirmWindow.ShowDialog() == true)
+            {
+                DataWorker.DeleteOrder((Order)Orders.AllOrders.SelectedItem);
+                UpdateAllOrdersView();
+            }    
         }
         #endregion
 
