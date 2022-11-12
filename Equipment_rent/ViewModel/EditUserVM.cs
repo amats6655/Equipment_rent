@@ -13,7 +13,7 @@ namespace Equipment_rent.ViewModel
 
         #region Commands to add
         private RelayCommand editUser;
-        public RelayCommand EditUser
+        public RelayCommand EditUser(User user)
         {
             get
             {

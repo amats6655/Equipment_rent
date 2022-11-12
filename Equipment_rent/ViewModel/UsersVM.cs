@@ -92,7 +92,7 @@ namespace Equipment_rent.ViewModel
 
         private void Edit_Button_Click()
         {
-            EditUser editUser = new EditUser();
+            EditUser editUser = new EditUser((User)Users.AllUsers.SelectedItem);
             editUser.ShowDialog();
         }
         #endregion
