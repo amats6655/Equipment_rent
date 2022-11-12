@@ -76,6 +76,24 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
+        #region Delete user
+        private RelayCommand removeUser;
+        public RelayCommand RemoveUser
+        {
+            get
+            {
+                return removeUser ?? new RelayCommand(obj =>
+                {
+                    Del_Button_Click();
+                });
+            }
+        }
+        private void Del_Button_Click()
+        {
+            DataWorker.DeleteUser((User)Users.AllUsers.SelectedItem);
+            UpdateAllUsersView();
+        }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
         

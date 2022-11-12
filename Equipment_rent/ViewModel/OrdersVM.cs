@@ -75,8 +75,8 @@ namespace Equipment_rent.ViewModel
         }
         private void Del_Button_Click()
         {
-            MessageBox.Show(Orders.AllOrders.SelectedItem.ToString());
-            //DataWorker.DeleteOrder
+            DataWorker.DeleteOrder((Order)Orders.AllOrders.SelectedItem);
+            UpdateAllOrdersView();
         }
         #endregion
 

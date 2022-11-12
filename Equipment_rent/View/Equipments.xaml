@@ -7,7 +7,8 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="615" d:DesignWidth="830">
+             d:DesignHeight="615" d:DesignWidth="830"
+             x:Name="DataEquipments">
     <UserControl.DataContext>
         <vm:EquipmentsVM/>
     </UserControl.DataContext>
@@ -140,12 +141,14 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}">
+                                <Button Style="{StaticResource gridEditButton}"
+                                        >
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="PencilOutline"/>
                                 </Button>
                                 <Button Style="{StaticResource gridRemoveButton}"
-                                        Margin="5 0 0 0">
+                                        Margin="5 0 0 0"
+                                        Command="{Binding ElementName=DataEquipments, Path=DataContext.RemoveEquipment}">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="DeleteOutline"/>
                                 </Button>
