@@ -20,7 +20,7 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class EditUser : Window
     {
-        public EditUser()
+        public EditUser(Model.User selectedItem)
         {
             InitializeComponent();
             DataContext = new EditUserVM();

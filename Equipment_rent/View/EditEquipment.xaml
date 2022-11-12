@@ -16,10 +16,6 @@
         Background="Transparent"
         Name="EditEquipmentWindow">
 
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
-    </Window.Resources>
-
     <Grid>
         <Border Background="#eff2f7"
                 CornerRadius="30"
@@ -42,41 +38,10 @@
                            Text="Новое оборудование"
                            HorizontalAlignment="Center"
                            Style="{StaticResource titleText_Style}"/>
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="20 20 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Тип" 
-                           Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=cb_type}"/>
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="20 80 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Модель" 
-                           Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_model}"/>
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="20 140 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Количество" 
-                           Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_amount}"/>
                 <StackPanel Grid.Column="1"
                             Grid.Row="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
-
                     <ComboBox 
                               x:Name="cb_type"
                               ItemsSource="{Binding AllTypes}"
@@ -89,8 +54,8 @@
                              Text="{Binding EquipAmount}"
                              x:Name="tb_amount"/>
                     <Button Style="{StaticResource addFormButton}"
-                            Command="{Binding AddNewEquip}"
-                            CommandParameter="{Binding ElementName=AddNewEquipmentWindow}"/>
+                            Command="{Binding EditEquip}"
+                            CommandParameter="{Binding ElementName=EditEquipmentWindow}"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>
                 </StackPanel>

@@ -16,10 +16,6 @@
         Background="Transparent"
         Name="EditOrderWindow">
 
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
-    </Window.Resources>
-
     <Grid>
         <Border Background="#eff2f7"
                 CornerRadius="30"
@@ -75,8 +71,8 @@
                              x:Name="tb_phone"/>
                     <DatePicker Text="Дата Возврата" />
                     <Button Style="{StaticResource addFormButton}"
-                            Command="{Binding AddNewOrder}"
-                            CommandParameter="{Binding ElementName=AddNewOrderWindow}"/>
+                            Command="{Binding EditOrder}"
+                            CommandParameter="{Binding ElementName=EditOrderWindow}"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>
                 </StackPanel>

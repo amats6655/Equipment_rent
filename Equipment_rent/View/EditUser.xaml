@@ -42,38 +42,7 @@
                            Text="Новый пользователь"
                            Style="{StaticResource titleText_Style}"
                            HorizontalAlignment="Center" FontFamily="Lab Grotesque Black"/>
-<!--#region Исчезающий текст-->
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="20 20 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Фамилия" 
-                           Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_lastname}"/>
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="20 80 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Имя" 
-                           Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_firstname}"/>
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="20 140 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Телефон" 
-                           Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_phone}"/>
-<!--#endregion-->
+
                 <StackPanel Grid.Column="1"
                             Grid.Row="1"
                             HorizontalAlignment="Stretch"
@@ -92,8 +61,9 @@
                              x:Name="tb_phone"/>
 <!--#endregion-->
                     <Button Style="{StaticResource addFormButton}"
-                            Command="{Binding AddNewUser}"
-                            CommandParameter="{Binding ElementName=AddNewUserWindow}"/>
+                            Content="Сохранить"
+                            Command="{Binding EditUser}"
+                            CommandParameter="{Binding ElementName=EditUserWindow}"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>
                 </StackPanel>

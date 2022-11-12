@@ -9,14 +9,15 @@ namespace Equipment_rent.ViewModel
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
         public string UserPhone { get; set; }
+        public User user { get; set; }
 
         #region Commands to add
-        private RelayCommand addNewUser;
-        public RelayCommand AddNewUser
+        private RelayCommand editUser;
+        public RelayCommand EditUser
         {
             get
             {
-                return addNewUser ?? new RelayCommand(obj =>
+                return editUser ?? new RelayCommand(obj =>
                 {
                     Window window = obj as Window;
 
@@ -31,7 +32,7 @@ namespace Equipment_rent.ViewModel
                     }
                     else
                     {
-                        DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, false);
+                        DataWorker.EditUser(user, UserFirstName + " " + UserLastName, UserPhone);
                         UpdateAllUsersView();
                         window.Close();
                     }
