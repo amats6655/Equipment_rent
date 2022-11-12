@@ -1,0 +1,103 @@
+﻿<Window x:Class="Equipment_rent.View.EditUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:EditUserVM}"
+        Title="EditUser" 
+        Height="800" 
+        Width="400" 
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        Name="EditUserWindow">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
+    <Grid>
+        <Border Background="#eff2f7"
+                CornerRadius="30"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                MouseDown="Border_MouseDown">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.ColumnSpan="3"
+                           Text="Новый пользователь"
+                           Style="{StaticResource titleText_Style}"
+                           HorizontalAlignment="Center" FontFamily="Lab Grotesque Black"/>
+<!--#region Исчезающий текст-->
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="20 20 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Фамилия" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_lastname}"/>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="20 80 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Имя" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_firstname}"/>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="20 140 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Телефон" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_phone}"/>
+<!--#endregion-->
+                <StackPanel Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center">
+<!--#region TextBoxes--> 
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding UserLastName}"
+                             x:Name="tb_lastname"
+                             />
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding UserFirstName}"
+                             x:Name="tb_firstname"
+                             />
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding UserPhone}"
+                             x:Name="tb_phone"/>
+<!--#endregion-->
+                    <Button Style="{StaticResource addFormButton}"
+                            Command="{Binding AddNewUser}"
+                            CommandParameter="{Binding ElementName=AddNewUserWindow}"/>
+                    <Button IsCancel="True"
+                            Style="{StaticResource cancelFormButton}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
