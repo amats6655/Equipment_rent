@@ -15,7 +15,7 @@ namespace Equipment_rent.View
             InitializeComponent();
             DataContext = new EditEquipmentVM();
             EditEquipmentVM.SelectedEquipment = EquipmentToEdit;
-            EditEquipmentVM.EquipType = EquipmentToEdit.Type;
+            EditEquipmentVM.EquipType = EquipmentToEdit.EquipType;
             EditEquipmentVM.EquipModel = EquipmentToEdit.Model;
             cb_type.Text = EquipmentToEdit.EquipType.Name;
             cb_type.SelectedValue = EquipmentToEdit.EquipType;
