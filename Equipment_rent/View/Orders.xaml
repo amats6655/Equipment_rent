@@ -46,11 +46,11 @@
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="40 0 0 0" Text="Телефон: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="2" Grid.Column="2" Margin="40 0 0 0" Text="Дата возврата: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="13" Text="{Binding OrdersEquipment.Model}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="13" Text="{Binding DateIssue}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="13" Text="{Binding FormattedDateIssue}" HorizontalAlignment="Right" />
                         <TextBlock Grid.Row="2" Grid.Column="1" FontSize="13" FontWeight="SemiBold" Text="{Binding Amount}" HorizontalAlignment="Right" />
                         <TextBlock Grid.Row="0" Grid.Column="3" FontSize="13" Text="{Binding OrdersUser.Name}" HorizontalAlignment="Right" />
                         <TextBlock Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="SemiBold" Foreground="red" Text="{Binding OrdersUser.Phone}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="13" Text="{Binding DateReturn}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="13" Text="{Binding FormattedDateReturn}" HorizontalAlignment="Right" />
                     </Grid>
                 </StackPanel>
             </DataTemplate>
@@ -177,7 +177,7 @@
                 <DataGridTextColumn Header="Дата выдачи"
                                     IsReadOnly="True"
                                     Width="*"
-                                    Binding="{Binding DateIssue}"/>
+                                    Binding="{Binding FormattedDateIssue}"/>
                 
                 <DataGridTextColumn Header="Количество"
                                     IsReadOnly="True"

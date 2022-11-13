@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Equipment_rent.Utilites;
-using Equipment_rent.ViewModel;
 
 namespace Equipment_rent.ViewModel
 {

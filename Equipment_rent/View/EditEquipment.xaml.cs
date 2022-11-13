@@ -1,17 +1,6 @@
 ﻿using Equipment_rent.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Equipment_rent.Model;
 
 namespace Equipment_rent.View
@@ -28,6 +17,9 @@ namespace Equipment_rent.View
             EditEquipmentVM.SelectedEquipment = EquipmentToEdit;
             EditEquipmentVM.EquipType = EquipmentToEdit.Type;
             EditEquipmentVM.EquipModel = EquipmentToEdit.Model;
+            cb_type.Text = EquipmentToEdit.EquipType.Name;
+            cb_type.SelectedValue = EquipmentToEdit.EquipType;
+            cb_type.SelectedValuePath = EquipmentToEdit.EquipType.Name;
             EditEquipmentVM.EquipAmount = EquipmentToEdit.Amount;
             EditEquipmentVM.EquipBalance = EquipmentToEdit.Balance;
         }

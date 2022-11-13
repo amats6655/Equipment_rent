@@ -1,17 +1,6 @@
 ﻿using Equipment_rent.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Equipment_rent.Model;
 
 namespace Equipment_rent.View
@@ -26,8 +15,17 @@ namespace Equipment_rent.View
             InitializeComponent();
             DataContext = new EditOrderVM();
             EditOrderVM.SelectedOrder = orderToEdit;
-            EditOrderVM.Equipment = orderToEdit.Equipment;
-            EditOrderVM.User = orderToEdit.User;
+            EditOrderVM.Equipment = orderToEdit.OrdersEquipment;
+            cb_models.SelectedValue = orderToEdit.OrdersEquipment;
+            cb_models.SelectedValuePath = orderToEdit.OrdersEquipment.Model;
+            cb_models.Text = orderToEdit.OrdersEquipment.Model;
+            
+
+            cb_users.SelectedValue = orderToEdit.OrdersUser;
+            cb_users.SelectedValuePath = orderToEdit.OrdersUser.Name;
+            cb_users.Text = orderToEdit.OrdersUser.Name;
+
+            EditOrderVM.User = orderToEdit.OrdersUser;
             EditOrderVM.DateIssue = orderToEdit.DateIssue;
             EditOrderVM.DateReturn = orderToEdit.DateReturn;
             EditOrderVM.IsReturned = orderToEdit.IsReturned;

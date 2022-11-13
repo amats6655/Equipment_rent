@@ -35,18 +35,20 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.ColumnSpan="3"
-                           Text="Новое оборудование"
+                           Text="Редактировать&#x0a;оборудование"
                            HorizontalAlignment="Center"
                            Style="{StaticResource titleText_Style}"/>
                 <StackPanel Grid.Column="1"
                             Grid.Row="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
-                    <ComboBox 
-                              x:Name="cb_type"
+                    <ComboBox x:Name="cb_type"
                               ItemsSource="{Binding AllTypes}"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding EquipType}"/>
+                              SelectedItem="{Binding EquipType}"
+                              IsEditable="True"
+                              IsReadOnly="True"
+                              Focusable="False"/>
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding EquipModel}"
                              x:Name="tb_model"/>

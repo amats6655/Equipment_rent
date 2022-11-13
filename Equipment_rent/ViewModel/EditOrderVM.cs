@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using Equipment_rent.Model;
 using Equipment_rent.Utilites;
+using Equipment_rent.View;
 
 namespace Equipment_rent.ViewModel
 {

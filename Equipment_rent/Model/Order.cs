@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Equipment_rent.Model
 {
@@ -33,6 +30,20 @@ namespace Equipment_rent.Model
             get
             {
                 return DataWorker.GetEquipmentById(EquipmentId);
+            }
+        }
+        [NotMapped]public string FormattedDateIssue
+        {
+            get
+            {
+                return DateIssue.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"));
+            }
+        }
+        [NotMapped]public string FormattedDateReturn
+        {
+            get
+            {
+                return DateReturn.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"));
             }
         }
 
