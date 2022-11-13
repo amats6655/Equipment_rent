@@ -18,10 +18,9 @@
 
     <Grid>
         <Border Background="#eff2f7"
-                CornerRadius="30"
+                CornerRadius="10"
                 BorderBrush="Gray"
-                BorderThickness="1"
-                MouseDown="Border_MouseDown">
+                BorderThickness="1">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -30,16 +29,33 @@
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <Border Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        MouseDown="Border_MouseDown"
+                        BorderBrush="Transparent"
+                        BorderThickness="20"/>
+                <Button Grid.Column="3"
+                        IsCancel="True"
+                        Style="{StaticResource CloseWindowButton}">
+                    <Icon:PackIconMaterial Kind="Close"
+                                           Width="10"/>
+                </Button>
+                <Separator Grid.Column="1"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Opacity="0.3"/>
                 <TextBlock Grid.ColumnSpan="3"
+                           Grid.Row="1"
                            Text="Редактировать&#x0a;оборудование"
                            HorizontalAlignment="Center"
                            Style="{StaticResource titleText_Style}"/>
                 <StackPanel Grid.Column="1"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
                     <ComboBox x:Name="cb_type"

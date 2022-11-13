@@ -18,7 +18,7 @@
 
     <Grid>
         <Border Background="#eff2f7"
-                CornerRadius="30"
+                CornerRadius="10"
                 BorderBrush="Gray"
                 BorderThickness="1">
 
@@ -36,14 +36,19 @@
                 </Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
-                        MouseDown="Border_MouseDown"/>
+                        MouseDown="Border_MouseDown"
+                        BorderBrush="Transparent"
+                        BorderThickness="20"/>
                 <Button Grid.Column="3"
                         IsCancel="True"
-                        Background="Red"
-                        Style="{StaticResource gridRemoveButton}">                    
-                    <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
-                                           Kind="Close"/>
+                        Style="{StaticResource CloseWindowButton}">                    
+                    <Icon:PackIconMaterial Kind="Close"
+                                           Width="10"/>
                 </Button>
+                <Separator Grid.Column="1"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Opacity="0.3"/>
                 <TextBlock Grid.ColumnSpan="3" 
                            Grid.Row="1"
                            Text="Редактировать заказ"

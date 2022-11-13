@@ -101,8 +101,6 @@ namespace Equipment_rent.ViewModel
 
 
 
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChaged(string propertyName)
         {

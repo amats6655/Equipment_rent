@@ -22,10 +22,9 @@
 
     <Grid>
         <Border Background="#eff2f7"
-                CornerRadius="30"
+                CornerRadius="10"
                 BorderBrush="Gray"
-                BorderThickness="1"
-                MouseDown="Border_MouseDown">
+                BorderThickness="1">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -34,16 +33,34 @@
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.ColumnSpan="3"
+                           Grid.Row="1"
                            Text="Новый пользователь"
                            Style="{StaticResource titleText_Style}"
                            HorizontalAlignment="Center" FontFamily="Lab Grotesque Black"/>
-<!--#region Исчезающий текст-->
-                <TextBlock Grid.Row="1"
+                <Border Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        MouseDown="Border_MouseDown"
+                        BorderBrush="Transparent"
+                        BorderThickness="20"/>
+                <Button Grid.Column="3"
+                        IsCancel="True"
+                        Style="{StaticResource CloseWindowButton}">
+                    <Icon:PackIconMaterial Kind="Close"
+                                           Width="10"/>
+                </Button>
+                <Separator Grid.Column="1"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Opacity="0.3"
+                           />
+                <!--#region Исчезающий текст-->
+                <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 20 0 0"
                            IsHitTestVisible="False"
@@ -53,7 +70,7 @@
                            Text="Фамилия" 
                            Foreground="LightSteelBlue"
                            Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_lastname}"/>
-                <TextBlock Grid.Row="1"
+                <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 80 0 0"
                            IsHitTestVisible="False"
@@ -63,7 +80,7 @@
                            Text="Имя" 
                            Foreground="LightSteelBlue"
                            Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_firstname}"/>
-                <TextBlock Grid.Row="1"
+                <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 140 0 0"
                            IsHitTestVisible="False"
@@ -75,7 +92,7 @@
                            Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_phone}"/>
 <!--#endregion-->
                 <StackPanel Grid.Column="1"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 <!--#region TextBoxes--> 

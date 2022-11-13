@@ -21,19 +21,21 @@
     </Window.Resources>
 
     <Border Background="#eff2f7"
-            CornerRadius="30" 
-            MouseDown="Border_MouseDown">
+            CornerRadius="20">
 
 
         <Grid>
             <Grid.ColumnDefinitions >
-                <ColumnDefinition  Width="auto"/>
-                <ColumnDefinition Name="GridMenu" Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Name="GridMenu" 
+                                  Width="*"/>
             </Grid.ColumnDefinitions>
 
 
             <!--LeftMenu-->
-            <Grid x:Name="grid" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+            <Grid x:Name="grid" 
+                  Margin="0,0,0,0" 
+                  RenderTransformOrigin="0.5,0.5">
                 <Grid.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -48,7 +50,8 @@
                 </Grid.RowDefinitions>
 
 
-                <Button x:Name="button" Margin="20, 28, 0, 35" 
+                <Button x:Name="button" 
+                        Margin="20, 28, 0, 35" 
                         Style="{StaticResource topButton}"
                         Click="HideMenu_Button_Click">
                     <Icon:PackIconMaterial Kind="Menu" 
@@ -56,11 +59,15 @@
                                            Height="15"/>
                 </Button>
 
-                <Border x:Name="border" Grid.Row="1" 
+                <Border x:Name="border" 
+                        Grid.Row="1" 
                         Background="#623ed0" 
-                        CornerRadius="0 50 0 30" Margin="0,0,0,0" Padding="0,0,0,0">
+                        CornerRadius="0 50 0 20" 
+                        Margin="0,0,0,0" 
+                        Padding="0,0,0,0">
                     <DockPanel>
-                        <Border x:Name="border1" Width="80" 
+                        <Border x:Name="border1" 
+                                Width="80" 
                                 Height="80"
                                 Padding="3"
                                 Background="White"
@@ -75,10 +82,12 @@
                             </Ellipse>
                         </Border>
 
-                        <TextBlock x:Name="textBlock" Text="Аренда оборудования" 
+                        <TextBlock x:Name="textBlock"
+                                   Text="Аренда оборудования" 
                                    Style="{StaticResource Text_Style}"
                                    DockPanel.Dock="Top"/>
-                        <TextBlock x:Name="textBlock1" Text="Кампус" 
+                        <TextBlock x:Name="textBlock1"
+                                   Text="Кампус" 
                                    Style="{StaticResource Text_Style}"
                                    DockPanel.Dock="Top"
                                    Foreground="#d0bfff"
@@ -97,8 +106,10 @@
                                     IsChecked ="True">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial x:Name="packIconMaterial" Kind="Home" 
-                                                           Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock2" Text="Домашняя"/>
+                                                           Style="{StaticResource menuButtonIcon}" 
+                                                           Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock2" 
+                                               Text="Домашняя"/>
                                 </StackPanel>
                             </menu:Btn>
 
@@ -106,9 +117,12 @@
                                     HorizontalAlignment="Stretch"
                                     Command="{Binding UsersCommand}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial1" Kind="HumanFemaleDance" 
-                                                           Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock3" Text="Пользователи"/>
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial1"
+                                                           Kind="HumanFemaleDance" 
+                                                           Style="{StaticResource menuButtonIcon}" 
+                                                           Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock3"
+                                               Text="Пользователи"/>
                                 </StackPanel>
                             </menu:Btn>
 
@@ -116,9 +130,12 @@
                                       HorizontalAlignment="Stretch"
                                       Command="{Binding EquipmentsCommand}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial2" Kind="Ethernet"
-                                                           Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock4" Text="Оборудование"/>
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial2"
+                                                           Kind="Ethernet"
+                                                           Style="{StaticResource menuButtonIcon}"
+                                                           Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock4" 
+                                               Text="Оборудование"/>
                                 </StackPanel>
                             </menu:Btn>
 
@@ -126,9 +143,12 @@
                                       HorizontalAlignment="Stretch"
                                       Command="{Binding OrdersCommand}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial3" Kind="FileDocumentEdit"
-                                                           Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock5" Text="Заказы"/>
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial3"
+                                                           Kind="FileDocumentEdit"
+                                                           Style="{StaticResource menuButtonIcon}" 
+                                                           Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock5"
+                                               Text="Заказы"/>
                                 </StackPanel>
                             </menu:Btn>
                         </StackPanel>
@@ -138,11 +158,15 @@
                                 DockPanel.Dock="Bottom" 
                                 Margin="15 0 15 20" 
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Bottom" Click="Exit_Button_Click">
+                                VerticalAlignment="Bottom"
+                                Click="Exit_Button_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial x:Name="packIconMaterial4" Kind="ExitToApp" 
-                                                       Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>
-                                <TextBlock x:Name="textBlock6" Text="Выход"/>
+                                <Icon:PackIconMaterial x:Name="packIconMaterial4"
+                                                       Kind="ExitToApp" 
+                                                       Style="{StaticResource menuButtonIcon}"
+                                                       Margin="20,2,20,0"/>
+                                <TextBlock x:Name="textBlock6" 
+                                           Text="Выход"/>
                             </StackPanel>
                         </menu:Btn>
                     </DockPanel>
@@ -150,8 +174,9 @@
             </Grid>
 
             <Grid Grid.Column="1" 
-                  Margin="30 20 20 20">
+                  Margin="30 0 20 20">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="100*"/>
                     <RowDefinition Height="auto"/>
@@ -160,8 +185,23 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-
+                <Border Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        MouseDown="Border_MouseDown"
+                        BorderBrush="Transparent"
+                        BorderThickness="20"/>
+                <Button IsCancel="True"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource CloseWindowButton}"
+                        Click="Exit_Button_Click">
+                    <Icon:PackIconMaterial Kind="Close"
+                                           Width="10"/>
+                </Button>
+                <Separator Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Opacity="0.3"/>
                 <Grid Width="300" 
+                      Grid.Row="1"
                       HorizontalAlignment="Left">
                     <TextBlock Margin="20 0" 
                                VerticalAlignment="Center" 
@@ -185,6 +225,7 @@
 
                 <!--Top Buttons-->
                 <Button Style="{StaticResource topButton}"
+                        Grid.Row="1"
                         Margin="0 0 20 0"
                         Background="#dcdcdc"
                         HorizontalAlignment="Right">
@@ -192,6 +233,7 @@
                 </Button>
 
                 <Button Style="{StaticResource topButton}"
+                        Grid.Row="1"
                         Margin="0 0 55 0"
                         HorizontalAlignment="Right">
                     <Icon:PackIconMaterial Kind="Bell"/>
@@ -199,17 +241,11 @@
 
                 <!--PageTitle-->
 
-
-
-                <ContentControl Grid.Row="1" x:Name="Pages"
+                <ContentControl Grid.Row="2" 
+                                x:Name="Pages"
                                 Content="{Binding CurrentView}"/>
 
             </Grid>
-
         </Grid>
-
-
     </Border>
-
-
 </Window>
