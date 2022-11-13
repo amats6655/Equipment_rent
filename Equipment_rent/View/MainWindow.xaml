@@ -50,7 +50,7 @@
 
                 <Button x:Name="button" Margin="20, 28, 0, 35" 
                         Style="{StaticResource topButton}"
-                        Click="Button_Click">
+                        Click="HideMenu_Button_Click">
                     <Icon:PackIconMaterial Kind="Menu" 
                                            Width="15" 
                                            Height="15"/>
@@ -138,7 +138,7 @@
                                 DockPanel.Dock="Bottom" 
                                 Margin="15 0 15 20" 
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Bottom">
+                                VerticalAlignment="Bottom" Click="Exit_Button_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial x:Name="packIconMaterial4" Kind="ExitToApp" 
                                                        Style="{StaticResource menuButtonIcon}" Margin="20,2,20,0"/>

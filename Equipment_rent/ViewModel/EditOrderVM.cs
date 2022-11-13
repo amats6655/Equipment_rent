@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using Equipment_rent.Model;
 using Equipment_rent.Utilites;
@@ -40,6 +41,8 @@ namespace Equipment_rent.ViewModel
         public string UserPhone { get; set; }
         public User newUser { get; set; }
         public static Order SelectedOrder { get; set; }
+
+        public bool newIsReturned { get; set; }
         #endregion
 
         #region Добавление заказа и пользователя
@@ -53,28 +56,40 @@ namespace Equipment_rent.ViewModel
                     Window window = obj as Window;
                     if(IsNewUser == false)
                     {
-                        DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, IsReturned);
-                        DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
-                        UpdateAllOrdersView();
-                        window.Close();
-                    }
-                    else if(IsNewUser == true)
-                    {
-                        if (UserFirstName == null)
+                        if(IsReturned == newIsReturned)
                         {
-                            SetRedBlockControl.RedBlockControl(window, "tb_firstname");
-                        }
-                        if (UserPhone == null)
-                        {
-                            SetRedBlockControl.RedBlockControl(window, "tb_phone");
-                        }
-                        else
-                        {
-                            DataWorker.EditOrder(SelectedOrder, DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, DateIssue, DateReturn, IsReturned);
-                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
+                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned);
+                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance);
                             UpdateAllOrdersView();
                             window.Close();
                         }
+                        else if(IsReturned != newIsReturned && newIsReturned == true)
+                        {
+                            if (User.UserOrders.Count == 1)
+                            {
+                                DataWorker.EditUser(User, User.Name, User.Phone, false);
+                            }
+                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned);
+                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance + Amount);
+                            UpdateAllOrdersView();
+                            window.Close();
+                        }
+                        else if(IsReturned != newIsReturned && newIsReturned == false)
+                        {
+                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned);
+                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
+                            DataWorker.EditUser(User, User.Name, User.Phone, true);
+                            UpdateAllOrdersView();
+                            window.Close();
+                        }
+
+                    }
+                    else if(IsNewUser == true)
+                    {
+                        DataWorker.EditOrder(SelectedOrder, DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, DateIssue, DateReturn, newIsReturned);
+                        DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
+                        UpdateAllOrdersView();
+                        window.Close();
                     }
                 });
             }

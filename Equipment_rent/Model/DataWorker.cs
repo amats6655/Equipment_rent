@@ -117,7 +117,7 @@ namespace Equipment_rent.Model
         }
 
         // Edit User
-        public static string EditUser(User oldUser, string newName, string newPhone)
+        public static string EditUser(User oldUser, string newName, string newPhone, bool isDebt)
         {
             string result;
             using (ApplicationContext db = new ApplicationContext())
@@ -125,6 +125,7 @@ namespace Equipment_rent.Model
                 User user = db.Users.FirstOrDefault(u => u.UserId == oldUser.UserId);
                 user.Name = newName;
                 user.Phone = newPhone;
+                user.Debt = isDebt;
                 db.SaveChanges();
                 result = "Сделано!";
                 return result;

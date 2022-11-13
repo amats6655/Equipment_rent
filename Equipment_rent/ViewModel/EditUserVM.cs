@@ -32,7 +32,7 @@ namespace Equipment_rent.ViewModel
                     }
                     else
                     {
-                        DataWorker.EditUser(SelectedUser, UserFirstName + " " + UserLastName, UserPhone);
+                        DataWorker.EditUser(SelectedUser, UserFirstName + " " + UserLastName, UserPhone, SelectedUser.Debt);
                         UpdateAllUsersView();
                         window.Close();
                     }

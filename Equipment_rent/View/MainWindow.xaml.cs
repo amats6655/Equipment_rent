@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Equipment_rent.View
@@ -22,8 +23,19 @@ namespace Equipment_rent.View
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            Environment.Exit(0);
+        }
+
+        private void HideMenu_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

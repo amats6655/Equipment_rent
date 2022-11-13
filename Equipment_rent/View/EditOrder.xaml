@@ -65,7 +65,7 @@
                              Text="{Binding Amount}"/>
                     <CheckBox Content="Вернули оборудование"
                               x:Name="cb_returned"
-                              IsChecked="{Binding IsReturned}"/>
+                              IsChecked="{Binding newIsReturned}"/>
                     <DatePicker IsTodayHighlighted="True"
                                 SelectedDate="{Binding DateIssue}"
                                 x:Name="dp_issueDate"
