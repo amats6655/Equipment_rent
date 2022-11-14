@@ -58,7 +58,8 @@
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
-                    <ComboBox x:Name="cb_type"
+                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                              x:Name="cb_type"
                               ItemsSource="{Binding AllTypes}"
                               DisplayMemberPath="Name"
                               SelectedItem="{Binding EquipType}"

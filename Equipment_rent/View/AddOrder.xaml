@@ -63,7 +63,8 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 
-                    <ComboBox ItemsSource="{Binding AllEquipments}"
+                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                              ItemsSource="{Binding AllEquipments}"
                               DisplayMemberPath="Model"
                               SelectedItem="{Binding Equipment}"
                               x:Name="cb_models"/>
@@ -78,7 +79,8 @@
                               x:Name="cb_newUser"
                               IsChecked="{Binding IsNewUser}" 
                               Click="cb_newUser_click"/>
-                    <ComboBox ItemsSource="{Binding AllUsers}"
+                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                              ItemsSource="{Binding AllUsers}"
                               DisplayMemberPath="Name"
                               SelectedItem="{Binding User}"
                               x:Name="cb_users"/>
