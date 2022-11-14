@@ -11,12 +11,13 @@ namespace Equipment_rent.Model
 
         public ApplicationContext()
         {
+
             
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=85.175.4.135,49172\\SQLEXPRESS;DataBase=equipment_rent_work;User ID=mrkotik;Password=ciscO15=!; MultipleActiveResultSets=True");
+            optionsBuilder.UseSqlServer("Server=85.175.4.135,49172\\SQLEXPRESS;DataBase=equipment_rent_work;User ID=mrkotik;Password=ciscO15=!");
         }
     } 
 

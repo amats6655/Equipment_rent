@@ -9,8 +9,6 @@ namespace Equipment_rent.Model
     {
         [Key] public int OrderId { get; set; }
         public int UserId { get; set; }
-        public virtual User User { get; set; }
-        public Equipment Equipment { get; set; }
         public int EquipmentId { get; set; }
         public int Amount { get; set; }
         public DateTime DateIssue { get; set; }

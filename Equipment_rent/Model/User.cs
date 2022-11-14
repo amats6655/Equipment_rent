@@ -10,7 +10,6 @@ namespace Equipment_rent.Model
         public string Name { get; set; }
         public string Phone { get; set; }
         public bool Debt { get; set; }
-        public List<Order>? Orders { get; set; }
 
         [NotMapped]public string? BgColor { get; set; }
         [NotMapped]public char? Character { get; set; }

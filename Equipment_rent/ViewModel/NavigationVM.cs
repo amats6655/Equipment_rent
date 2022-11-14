@@ -18,6 +18,7 @@ namespace Equipment_rent.ViewModel
         public ICommand OrdersCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
 
+        //!! 1 раз создаем объект
         private void Home(object obj) => CurrentView = new HomeVM();
         private void Users(object obj) => CurrentView = new UsersVM();
         private void Equipments(object obj) => CurrentView = new EquipmentsVM();

@@ -11,8 +11,7 @@ namespace Equipment_rent.View
         public static DataGrid AllOrders;
         public Orders()
         {
-            InitializeComponent();
-            DataContext = new OrdersVM();
+            InitializeComponent(); // Второй раз пошли получать данные
             AllOrders = OrdersDataGrid;
         }
     }

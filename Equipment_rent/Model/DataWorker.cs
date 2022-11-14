@@ -76,7 +76,7 @@ namespace Equipment_rent.Model
             using (ApplicationContext db = new ApplicationContext())
             {
                 // Проверяем на наличие такого оборудование
-                bool checkIsExist = db.Equipments.Any(el => el.Model == model && el.Type == type);
+                bool checkIsExist = db.Equipments.Any(el => el.Model == model);
                 if (!checkIsExist)
                 {
                     Equipment newEquipment = new Equipment

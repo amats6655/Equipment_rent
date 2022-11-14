@@ -12,7 +12,7 @@ namespace Equipment_rent.View
         public Users()
         {
             InitializeComponent();
-            DataContext = new UsersVM();
+
             AllUsers = UsersDataGrid;
         }
     }

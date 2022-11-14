@@ -8,11 +8,9 @@ namespace Equipment_rent.Model
     {
         [Key] public int EquipmentId { get; set; }
         public int TypeId { get; set; }
-        public virtual Type Type { get; set; }
         public string Model { get; set; }
         public int Amount { get; set; }
         public int Balance { get; set; }
-        public List<Order>? Orders { get; set; }
 
         [NotMapped] public Type EquipType
         {

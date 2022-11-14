@@ -12,7 +12,6 @@ namespace Equipment_rent.View
         public Equipments()
         {
             InitializeComponent();
-            DataContext = new EquipmentsVM();
             AllEquipments = EquipmentsDataGrid;
         }
     }
