@@ -70,11 +70,12 @@
                               x:Name="cb_models"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
                              Text="{Binding Amount}"/>                        <!--Количество-->
-                    <DatePicker IsTodayHighlighted="True"
+                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
+                                Style="{DynamicResource DatePickerStyle1}" 
+                                IsTodayHighlighted="True"
                                 SelectedDate="{Binding DateIssue}"
                                 x:Name="dp_issueDate"
-                                FirstDayOfWeek="Monday"
-                                DisplayDate="{Binding nowDate}"/>
+                                FirstDayOfWeek="Monday"/>
                     <CheckBox Content="Новый сотрундник?"
                               x:Name="cb_newUser"
                               IsChecked="{Binding IsNewUser}" 
@@ -96,11 +97,16 @@
                              Text="{Binding UserPhone}"
                              Visibility="Collapsed"
                              x:Name="tb_phone"/>
-                    <DatePicker IsTodayHighlighted="True"
+                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
+                                Style="{DynamicResource DatePickerStyle1}"
+                                IsTodayHighlighted="True"
                                 SelectedDate="{Binding DateReturn}"
                                 x:Name="dp_returnDate" 
                                 FirstDayOfWeek="Monday"
-                                DisplayDate="{Binding nowDate}"/>
+                                />
+                    <!--<Calendar CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" Style="{DynamicResource CalendarStyle1}" VerticalAlignment="Stretch"
+                              HorizontalAlignment="Stretch" FontFamily="Trebuchet MS"
+                              />-->
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding AddNewOrder}"
                             CommandParameter="{Binding ElementName=AddNewOrderWindow}"/>
