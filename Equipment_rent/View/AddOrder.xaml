@@ -5,6 +5,7 @@
         xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system = "clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:AddOrderVM}"
         Title="AddUser" 
@@ -63,7 +64,8 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 
-                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                              Style="{StaticResource ComboBoxFlatStyle}"
                               ItemsSource="{Binding AllEquipments}"
                               DisplayMemberPath="Model"
                               SelectedItem="{Binding Equipment}"
@@ -72,14 +74,18 @@
                              Text="{Binding Amount}"/>                        <!--Количество-->
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
                                 Style="{DynamicResource DatePickerStyle1}" 
-                                SelectedDate="{Binding DateIssue}"
+                                SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"
                                 x:Name="dp_issueDate"
                                 FirstDayOfWeek="Monday"/>
                     <CheckBox Content="Новый сотрундник?"
+                              Height="40"
+                              VerticalContentAlignment="Center"
                               x:Name="cb_newUser"
                               IsChecked="{Binding IsNewUser}" 
-                              Click="cb_newUser_click"/>
-                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                              Click="cb_newUser_click"
+                              Style="{DynamicResource CheckBoxStyle1}"/>
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                              Style="{StaticResource ComboBoxFlatStyle}"
                               ItemsSource="{Binding AllUsers}"
                               DisplayMemberPath="Name"
                               SelectedItem="{Binding User}"
@@ -98,7 +104,7 @@
                              x:Name="tb_phone"/>
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
                                 Style="{DynamicResource DatePickerStyle1}"
-                                SelectedDate="{Binding DateReturn}"
+                                SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"
                                 x:Name="dp_returnDate" 
                                 FirstDayOfWeek="Monday"
                                 />

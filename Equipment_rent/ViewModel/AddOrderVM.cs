@@ -30,10 +30,10 @@ namespace Equipment_rent.ViewModel
         public User User { get; set; }
         public Equipment Equipment { get; set; }
         public int Amount { get; set; }
-        public DateTime DateIssue { get; set; }
-        public DateTime DateReturn { get; set; }
+        public DateTime? DateIssue { get; set; }
+        public DateTime? DateReturn { get; set; }
         public bool IsNewUser { get; set; }
-
+        
         public string UserLastName { get; set; }
         public string UserFirstName { get; set; }
         public string UserPhone { get; set; }
@@ -58,7 +58,7 @@ namespace Equipment_rent.ViewModel
                     Window window = obj as Window;
                     if(IsNewUser == false)
                     {
-                        DataWorker.CreateOrder(User, Equipment, Amount, DateIssue, DateReturn);
+                        DataWorker.CreateOrder(User, Equipment, Amount, (DateTime)DateIssue, (DateTime)DateReturn);
                         DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
                         UpdateAllOrdersView();
                         window.Close();
@@ -75,7 +75,7 @@ namespace Equipment_rent.ViewModel
                         }
                         else
                         {
-                            DataWorker.CreateOrder(DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, DateIssue, DateReturn);
+                            DataWorker.CreateOrder(DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, (DateTime)DateIssue, (DateTime)DateReturn);
                             DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
                             UpdateAllOrdersView();
                             window.Close();

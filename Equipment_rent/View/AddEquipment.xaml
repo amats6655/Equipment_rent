@@ -93,7 +93,8 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 
-                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                              Style="{StaticResource ComboBoxFlatStyle}"
                               x:Name="cb_type"
                               ItemsSource="{Binding AllTypes}"
                               DisplayMemberPath="Name"
