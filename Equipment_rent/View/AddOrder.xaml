@@ -72,7 +72,6 @@
                              Text="{Binding Amount}"/>                        <!--Количество-->
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
                                 Style="{DynamicResource DatePickerStyle1}" 
-                                IsTodayHighlighted="True"
                                 SelectedDate="{Binding DateIssue}"
                                 x:Name="dp_issueDate"
                                 FirstDayOfWeek="Monday"/>
@@ -97,9 +96,8 @@
                              Text="{Binding UserPhone}"
                              Visibility="Collapsed"
                              x:Name="tb_phone"/>
-                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
+                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
                                 Style="{DynamicResource DatePickerStyle1}"
-                                IsTodayHighlighted="True"
                                 SelectedDate="{Binding DateReturn}"
                                 x:Name="dp_returnDate" 
                                 FirstDayOfWeek="Monday"
