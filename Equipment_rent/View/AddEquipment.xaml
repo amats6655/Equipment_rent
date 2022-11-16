@@ -60,7 +60,7 @@
                            Style="{StaticResource titleText_Style}"/>
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
-                           Margin="20 0 0 0"
+                           Margin="20 20 0 0"
                            IsHitTestVisible="False"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
@@ -70,7 +70,7 @@
                            Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=cb_type}"/>
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
-                           Margin="20 40 0 0"
+                           Margin="20 80 0 0"
                            IsHitTestVisible="False"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
@@ -80,7 +80,7 @@
                            Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_model}"/>
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
-                           Margin="20 100 0 0"
+                           Margin="20 140 0 0"
                            IsHitTestVisible="False"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
