@@ -6,6 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system = "clr-namespace:System;assembly=mscorlib"
+        xmlns:mask="http://schemas.xceed.com/wpf/xaml/toolkit"        
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:EditOrderVM}"
         Title="EditOrder" 
@@ -106,10 +107,11 @@
                              Text="{Binding UserFirstName}"
                              Visibility="Collapsed"
                              x:Name="tb_firstname"/>
-                    <TextBox Style="{StaticResource textBoxAdd}"    
+                    <mask:MaskedTextBox Style="{StaticResource MasktextBoxAdd}"    
                              Text="{Binding UserPhone}"
                              Visibility="Collapsed"
-                             x:Name="tb_phone"/>
+                             x:Name="tb_phone"
+                             Mask="+7(000)000-00-00"/>
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
                                 Style="{DynamicResource DatePickerStyle1}" 
                                 SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"
