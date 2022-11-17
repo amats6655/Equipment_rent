@@ -15,8 +15,11 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         Name="EditEquipmentWindow">
-    
-    
+
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
 
     <Grid>
         <Border Background="#eff2f7"
