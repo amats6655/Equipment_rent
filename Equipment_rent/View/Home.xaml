@@ -13,45 +13,29 @@
              x:Name="DataUsers">
 
     <UserControl.DataContext>
-        <vm:UsersVM/>
+        <vm:OrdersVM/>
     </UserControl.DataContext>
-
-    <FrameworkElement.Resources>
-    </FrameworkElement.Resources>
-    <Grid Background="#FFFBB0B0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="290*"/>
-            <RowDefinition Height="51*"/>
-        </Grid.RowDefinitions>
-        <Image x:Name="logo" HorizontalAlignment="Left" Height="70" Margin="10,3,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Список услуг" HorizontalAlignment="Left" Margin="78,26,0,0" VerticalAlignment="Top" Width="120" FontFamily="Tw Cen MT" Height="35" FontSize="18"/>
-        <Button x:Name="do_Exit" Content="Выйти из аккаунта" HorizontalAlignment="Left" Margin="13,0,0,5" Grid.Row="2" VerticalAlignment="Bottom" Width="184" Height="40" Background="#FFFF9C22" FontFamily="Tw Cen MT" FontSize="18" FontWeight="Bold"/>
-
+    <Grid>
         <ListBox Margin="10" HorizontalContentAlignment="Center" Grid.Row="1"
-                 ItemsSource="{Binding AllUsers}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="3"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border Width="165" Height="180" BorderBrush="#FF444242" OpacityMask="#FF939393" BorderThickness="1,1,1,1">
-                        <StackPanel Background="{x:Null}">
-                            <Border Height="90">
+                 ItemsSource="{Binding AllOrders}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <UniformGrid Columns="3"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Border Width="165" Height="180" BorderBrush="#FF444242" OpacityMask="#FF939393" CornerRadius="50" BorderThickness="1,1,1,1">
+                    <StackPanel Background="{x:Null}">
+                        <Border Height="90">
                                 <Image Source="{Binding MainImagePath}" Height="65" Margin="10,12"/>
-
-                            </Border>
-                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" FontSize="16" Margin="10,0"/>
-                            <TextBlock TextAlignment="Center" Text="{Binding Cost}" FontSize="16" Margin="10,0" />
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ListBox>
+                        </Border>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding OrdersUser.Name}" FontSize="16" Margin="10,0"/>
+                        <TextBlock TextAlignment="Center" Text="{Binding OrdersEquipment.Model}" FontSize="16" Margin="10,0" />
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ListBox>
     </Grid>
 </UserControl>

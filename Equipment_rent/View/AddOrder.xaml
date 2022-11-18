@@ -104,7 +104,7 @@
                              x:Name="tb_phone"/>
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
                                 Style="{DynamicResource DatePickerStyle1}"
-                                SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"
+                                SelectedDate="{Binding DateReturn, TargetNullValue={x:Static system:DateTime.Now}}"
                                 x:Name="dp_returnDate" 
                                 FirstDayOfWeek="Monday"
                                 />

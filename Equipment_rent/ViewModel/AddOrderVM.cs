@@ -38,13 +38,6 @@ namespace Equipment_rent.ViewModel
         public string UserFirstName { get; set; }
         public string UserPhone { get; set; }
         public User newUser { get; set; }
-        public DateTime nowDate 
-        {
-            get
-            { 
-                return DateTime.Now;
-            } 
-            set { } }
         #endregion
 
         #region Добавление заказа и пользователя
