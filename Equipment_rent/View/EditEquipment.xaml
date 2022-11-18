@@ -16,6 +16,11 @@
         Background="Transparent"
         Name="EditEquipmentWindow">
 
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
     <Grid>
         <Border Background="#eff2f7"
                 CornerRadius="10"
@@ -54,6 +59,16 @@
                            Text="Редактировать&#x0a;оборудование"
                            HorizontalAlignment="Center"
                            Style="{StaticResource titleText_Style}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 20 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Тип" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=cb_type}"/>
                 <StackPanel Grid.Column="1"
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
