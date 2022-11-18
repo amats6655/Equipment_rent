@@ -256,5 +256,15 @@ namespace Equipment_rent.Model
                 return orders;
             }
         }
+
+        // Get all orders by status
+        public static List<Order> GetAllOrdersByStatus()
+        {
+            using(ApplicationContext db = new ApplicationContext())
+            {
+                List<Order> orders = (from order in GetAllOrders() where order.IsReturned == false select order).ToList();
+                return orders;
+            }
+        }
     }
 }

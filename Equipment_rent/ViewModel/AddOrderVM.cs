@@ -49,6 +49,9 @@ namespace Equipment_rent.ViewModel
                 return addNewOrder ?? new RelayCommand(obj =>
                 {
                     Window window = obj as Window;
+                    if(DateIssue == null) DateIssue = DateTime.Now;
+                    if(DateReturn == null) DateReturn = DateTime.Now;
+
                     if(IsNewUser == false)
                     {
                         DataWorker.CreateOrder(User, Equipment, Amount, (DateTime)DateIssue, (DateTime)DateReturn);

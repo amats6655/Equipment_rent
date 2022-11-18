@@ -77,6 +77,7 @@
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
                                 Style="{DynamicResource DatePickerStyle1}" 
                                 SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"
+                                
                                 x:Name="dp_issueDate"
                                 FirstDayOfWeek="Monday"/>
                     <CheckBox Content="Новый сотрундник?"

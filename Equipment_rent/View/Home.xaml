@@ -13,11 +13,11 @@
              x:Name="DataUsers">
 
     <UserControl.DataContext>
-        <vm:OrdersVM/>
+        <vm:HomeVM/>
     </UserControl.DataContext>
     <Grid>
         <ListBox Margin="10" HorizontalContentAlignment="Center" Grid.Row="1"
-                 ItemsSource="{Binding AllOrders}">
+                 ItemsSource="{Binding AllActiveOrders}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <UniformGrid Columns="3"/>
