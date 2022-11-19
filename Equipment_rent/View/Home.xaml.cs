@@ -7,9 +7,11 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class Home : UserControl
     {
+        public static ListBox AllOrdersByID;
         public Home()
         {
             InitializeComponent();
+            AllOrdersByID = lv_orders;
         }
     }
 }

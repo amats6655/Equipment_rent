@@ -5,14 +5,14 @@ namespace Equipment_rent.View
     /// <summary>
     /// Логика взаимодействия для DeleteWindow.xaml
     /// </summary>
-    public partial class ConfirmWindow
+    public partial class DeleteWindow
     {
-        public ConfirmWindow()
+        public DeleteWindow()
         {
             InitializeComponent();
         }
 
-        private void Confirm_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true; 
             this.Close();

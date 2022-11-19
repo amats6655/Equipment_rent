@@ -71,8 +71,8 @@ namespace Equipment_rent.ViewModel
         }
         private void Del_Button_Click()
         {
-            ConfirmWindow confirmWindow = new ConfirmWindow();
-            if (confirmWindow.ShowDialog() == true)
+            DeleteWindow deleteWindow = new DeleteWindow();
+            if (deleteWindow.ShowDialog() == true)
             {
                 DataWorker.DeleteOrder((Order)Orders.AllOrders.SelectedItem);
                 UpdateAllOrdersView();
