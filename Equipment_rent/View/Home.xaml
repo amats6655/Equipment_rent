@@ -16,7 +16,7 @@
         <vm:HomeVM/>
     </UserControl.DataContext>
     <Grid>
-        <ListBox Margin="10" HorizontalContentAlignment="Center" Grid.Row="1"
+        <ListBox ItemContainerStyle="{DynamicResource ListBoxItemContainerStyle1}" Style="{DynamicResource ListBoxStyle1}" Margin="10" BorderThickness="0" HorizontalContentAlignment="Center" Grid.Row="1" Background="Transparent"
                  ItemsSource="{Binding AllActiveOrders}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -25,13 +25,18 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <Border Width="165" Height="180" BorderBrush="#FF444242" OpacityMask="#FF939393" CornerRadius="50" BorderThickness="1,1,1,1">
+                    <Border Width="220" Height="180" BorderBrush="#6741d9" OpacityMask="#FF939393" CornerRadius="50" BorderThickness="0,0,0,1">
                     <StackPanel Background="{x:Null}">
-                        <Border Height="90">
+                        <Border Height="40">
                                 <Image Source="{Binding MainImagePath}" Height="65" Margin="10,12"/>
                         </Border>
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding OrdersUser.Name}" FontSize="16" Margin="10,0"/>
-                        <TextBlock TextAlignment="Center" Text="{Binding OrdersEquipment.Model}" FontSize="16" Margin="10,0" />
+                        <TextBlock TextAlignment="left" TextWrapping="Wrap" Text="{Binding OrdersUser.Name}" FontSize="16" Margin="15,0"/>
+                        <TextBlock TextAlignment="left" Text="{Binding OrdersEquipment.Model}" FontSize="16" Margin="15,0" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="left" Margin="10, 0">
+                                <TextBlock TextAlignment="Left" Text="{Binding Amount}" FontSize="16" Margin="5,0"/>
+                                <TextBlock TextAlignment="Left" Text="шт." FontSize="16"/>
+                            </StackPanel>
+                        <TextBlock TextAlignment="left" Text="{Binding OrdersUser.Phone}" FontSize="16" Margin="15,10" FontWeight="SemiBold"  />
                     </StackPanel>
                 </Border>
             </DataTemplate>
