@@ -49,13 +49,14 @@
                             BorderBrush="#6741d9" 
                             OpacityMask="#FF939393" 
                             CornerRadius="20" 
-                            BorderThickness="0,0,0,1">
+                            BorderThickness="0,0,0,1"
+                            x:Name="Card_Border">
                         <StackPanel Background="{x:Null}">
                             <TextBlock TextAlignment="left" 
                                    TextWrapping="Wrap" 
                                    Text="{Binding OrdersUser.Name}"
                                    FontSize="16"
-                                   Margin="15,0"/>
+                                   Margin="15 15 0 0"/>
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="left" 
                                         Margin="15, 5">
@@ -92,7 +93,7 @@
                                    FontWeight="SemiBold"/>
                             <Button Style="{StaticResource addFormButton}"
                                     VerticalAlignment="Bottom"
-                                    Margin="40 25"
+                                    Margin="40 10"
                                     Content="Вернуть"
                                     Command="{Binding ElementName=DebtOrders, Path=DataContext.ReturnOrder}"/>
                         </StackPanel>
