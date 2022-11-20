@@ -38,6 +38,29 @@ namespace Equipment_rent.ViewModel
         public string UserFirstName { get; set; }
         public string UserPhone { get; set; }
         public User newUser { get; set; }
+
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = string.Empty;
+                switch(columnName)
+                {
+                    case "Amount":
+                        if((Amount > cb_model))
+                        {
+                            error = "Превышает остаток";
+                        }
+                        break;
+                }
+                return error;
+            }
+        }
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
         #endregion
 
         #region Добавление заказа и пользователя
@@ -96,6 +119,12 @@ namespace Equipment_rent.ViewModel
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public interface IDataErrorInfo
+        {
+            string Error { get; }
+            string this[string colunnName] { get; }
         }
     }
 }
