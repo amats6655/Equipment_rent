@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using Equipment_rent.Model;
 using Equipment_rent.Utilites;
+using Equipment_rent.View;
 
 namespace Equipment_rent.ViewModel
 {
-    internal class AddOrderVM : OrdersVM
+    internal class AddOrderVM : OrdersVM, Utilites.IDataErrorInfo
     {
         #region Вывод списка пользователей и моделей
         private List<User> allUsers = DataWorker.GetAllUsers();
@@ -28,7 +28,7 @@ namespace Equipment_rent.ViewModel
 
         #region Объявление переменных
         public User User { get; set; }
-        public Equipment Equipment { get; set; }
+        public Equipment? Equipment { get; set; }
         public int Amount { get; set; }
         public DateTime? DateIssue { get; set; }
         public DateTime? DateReturn { get; set; }
@@ -48,7 +48,7 @@ namespace Equipment_rent.ViewModel
                 switch(columnName)
                 {
                     case "Amount":
-                        if((Amount > cb_model))
+                        if(Amount > Equipment?.Balance)
                         {
                             error = "Превышает остаток";
                         }
@@ -121,10 +121,5 @@ namespace Equipment_rent.ViewModel
             }
         }
 
-        public interface IDataErrorInfo
-        {
-            string Error { get; }
-            string this[string colunnName] { get; }
-        }
     }
 }

@@ -22,6 +22,10 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
 
+    <Window.DataContext>
+        <vm:AddOrderVM/>
+    </Window.DataContext>
+
     <Grid>
         <Border Background="#eff2f7"
                 CornerRadius="10"
@@ -73,15 +77,19 @@
                               SelectedItem="{Binding Equipment}"
                               x:Name="cb_models"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
-                             Name="tb_orderAmount">
+                             Margin="0 10 0 0"
+                             Name="tb_orderAmount"
+                             Validation.Error="TextBox_Error">
                         <TextBox.Text>
-                            <Binding Path="Amount">
+                            <Binding Path="Amount" NotifyOnValidationError="True">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
-                    </TextBox>                        <!--Количество-->
+                    </TextBox>       
+                    
+                    <TextBlock Text="{Binding Error}"/><!--Количество-->
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
                                 Style="{DynamicResource DatePickerStyle1}" 
                                 SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"                  

@@ -1,5 +1,6 @@
 ﻿using Equipment_rent.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 namespace Equipment_rent.View
 {
@@ -12,6 +13,7 @@ namespace Equipment_rent.View
         {
             InitializeComponent();
             DataContext = new AddOrderVM();
+            cb_models.SelectedIndex = 0;
         }
 
 
@@ -39,6 +41,10 @@ namespace Equipment_rent.View
                 tb_lastname.Visibility = Visibility.Collapsed;
                 tb_phone.Visibility = Visibility.Collapsed;
             }
+        }
+        private void TextBox_Error(object sender, ValidationErrorEventArgs e)
+        {
+            MessageBox.Show(e.Error.ErrorContent.ToString());
         }
     }
 }
