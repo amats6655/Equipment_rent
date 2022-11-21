@@ -8,7 +8,7 @@ using Equipment_rent.View;
 
 namespace Equipment_rent.ViewModel
 {
-    internal class AddOrderVM : OrdersVM, Utilites.IDataErrorInfo
+    internal class AddOrderVM : OrdersVM
     {
         #region Вывод списка пользователей и моделей
         private List<User> allUsers = DataWorker.GetAllUsers();
@@ -29,7 +29,22 @@ namespace Equipment_rent.ViewModel
         #region Объявление переменных
         public User User { get; set; }
         public Equipment? Equipment { get; set; }
-        public int Amount { get; set; }
+        private int _amount;
+        public int Amount
+        {
+            get
+            {
+                return _amount;
+            }
+            set
+            {
+                if (value > Equipment.Balance)
+                {
+                    throw new ArgumentException("Такого количества нет в наличии");
+                }
+                _amount = value;
+            }
+        }
         public DateTime? DateIssue { get; set; }
         public DateTime? DateReturn { get; set; }
         public bool IsNewUser { get; set; }
@@ -40,28 +55,31 @@ namespace Equipment_rent.ViewModel
         public User newUser { get; set; }
 
 
-        public string this[string columnName]
-        {
-            get
-            {
-                string error = string.Empty;
-                switch(columnName)
-                {
-                    case "Amount":
-                        if(Amount > Equipment?.Balance)
-                        {
-                            error = "Превышает остаток";
-                        }
-                        break;
-                }
-                return error;
-            }
-        }
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
+        //public string this[string columnName]
+        //{
+        //    get
+        //    {
+        //        string error = string.Empty;
+        //        switch(columnName)
+        //        {
+        //            case "Amount":
+        //                if(Amount > Equipment?.Balance)
+        //                {
+        //                    error = "Превышает остаток";
+        //                }
+        //                break;
+        //        }
+        //        return error;
+        //    }
+        //}
+        //public string Error
+        //{
+        //    get { throw new NotImplementedException(); }
+        //}
         #endregion
+
+
+
 
         #region Добавление заказа и пользователя
         private RelayCommand addNewOrder;

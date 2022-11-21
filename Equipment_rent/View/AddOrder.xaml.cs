@@ -14,6 +14,7 @@ namespace Equipment_rent.View
             InitializeComponent();
             DataContext = new AddOrderVM();
             cb_models.SelectedIndex = 0;
+            cb_users.SelectedIndex = 0;
         }
 
 
@@ -42,9 +43,6 @@ namespace Equipment_rent.View
                 tb_phone.Visibility = Visibility.Collapsed;
             }
         }
-        private void TextBox_Error(object sender, ValidationErrorEventArgs e)
-        {
-            MessageBox.Show(e.Error.ErrorContent.ToString());
-        }
+
     }
 }
