@@ -42,11 +42,30 @@ namespace Equipment_rent.ViewModel
                 {
                     throw new ArgumentException("Такого количества нет в наличии");
                 }
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Количество должно быть больше нуля");
+                }
                 _amount = value;
             }
         }
-        public DateTime? DateIssue { get; set; }
-        public DateTime? DateReturn { get; set; }
+        public DateTime DateIssue { get; set; }
+        private DateTime _dateReturn;
+        public DateTime DateReturn
+        {
+            get
+            {
+                return _dateReturn;
+            }
+            set
+            {
+                if (value < DateIssue)
+                {
+                    throw new ArgumentException("Дата возарата не может быть раньше даты выдачи");
+                }
+                _dateReturn = value;
+            }
+        }
         public bool IsNewUser { get; set; }
         
         public string UserLastName { get; set; }
