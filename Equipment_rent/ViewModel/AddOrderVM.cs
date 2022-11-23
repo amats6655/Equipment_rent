@@ -49,9 +49,9 @@ namespace Equipment_rent.ViewModel
                 _amount = value;
             }
         }
-        public DateTime DateIssue { get; set; }
-        private DateTime _dateReturn;
-        public DateTime DateReturn
+        public DateTime? DateIssue { get; set; }
+        private DateTime? _dateReturn;
+        public DateTime? DateReturn
         {
             get
             {
