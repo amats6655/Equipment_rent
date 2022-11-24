@@ -146,7 +146,8 @@
                   RowDetailsTemplate="{StaticResource RowDetailsTemplate}"
                   RowDetailsVisibilityMode="VisibleWhenSelected"
                   SelectionMode="Extended"
-                  ItemsSource="{Binding AllOrders}">
+                  ItemsSource="{Binding AllOrders}"
+                  VerticalScrollBarVisibility="Hidden">
 
             <DataGrid.Columns>
 

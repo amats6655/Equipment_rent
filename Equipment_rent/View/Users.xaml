@@ -145,7 +145,8 @@
                   Grid.Row="3"
                   x:Name="UsersDataGrid"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding AllUsers}">
+                  ItemsSource="{Binding AllUsers}"
+                  VerticalScrollBarVisibility="Hidden">
 
         <DataGrid.Columns>
 
