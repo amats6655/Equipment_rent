@@ -30,7 +30,11 @@ namespace Equipment_rent.View
 
         private void HideMenu_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (border_menu.Visibility == Visibility.Visible)
+            {
+                border_menu.Visibility = Visibility.Collapsed;
+            }
+            else border_menu.Visibility = Visibility.Visible;
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)

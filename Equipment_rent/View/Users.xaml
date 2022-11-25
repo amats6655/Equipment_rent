@@ -146,7 +146,8 @@
                   x:Name="UsersDataGrid"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding AllUsers}"
-                  VerticalScrollBarVisibility="Hidden">
+                  VerticalScrollBarVisibility="Hidden"
+                  >
 
         <DataGrid.Columns>
 
@@ -238,7 +239,8 @@
                 <Button Style="{StaticResource pagingButton}"
                     Content="3"/>
             <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-                <Button Style="{StaticResource pagingButton}">
+                <Button Style="{StaticResource pagingButton}"
+                        >
                 <Icon:PackIconMaterial Kind="ChevronRight"
                                        Style="{StaticResource pagingButtonIcon}"/>
              </Button>
