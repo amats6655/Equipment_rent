@@ -59,12 +59,13 @@
                                            Height="15"/>
                 </Button>
 
-                <Border x:Name="border" 
+                <Border x:Name="border_menu" 
                         Grid.Row="1" 
                         Background="#623ed0" 
                         CornerRadius="0 50 0 20" 
                         Margin="0,0,0,0" 
-                        Padding="0,0,0,0">
+                        Padding="0,0,0,0"
+                        Visibility="Visible">
                     <DockPanel>
                         <Border x:Name="border1" 
                                 Width="80" 

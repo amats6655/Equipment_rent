@@ -146,7 +146,7 @@
                   RowDetailsTemplate="{StaticResource RowDetailsTemplate}"
                   RowDetailsVisibilityMode="VisibleWhenSelected"
                   SelectionMode="Extended"
-                  ItemsSource="{Binding FirstOrders}">
+                  ItemsSource="{Binding AllOrders}">
 
             <DataGrid.Columns>
 

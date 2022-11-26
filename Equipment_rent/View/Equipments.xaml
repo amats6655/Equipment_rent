@@ -104,7 +104,8 @@
                   Grid.Row="3"
                   ItemsSource="{Binding AllEquipments}"
                   x:Name="EquipmentsDataGrid"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  VerticalScrollBarVisibility="Hidden">
 
             <DataGrid.Columns>
 
