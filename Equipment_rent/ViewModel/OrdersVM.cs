@@ -4,20 +4,45 @@ using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Equipment_rent.ViewModel
 {
     internal class OrdersVM : INotifyPropertyChanged
     {
-        private List<Order> allOrders = DataWorker.GetAllOrders();
+        public static int pageIndex = 1;
+        private static int numberOfRecPerPage = 10;
+        public enum PagingMode
+        { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5 }
 
-        public List<Order> AllOrders
+        public static int count;
+
+        private string pageInformation = numberOfRecPerPage + " из " + allOrders.Count;
+        public string PageInformation
+        {
+            get
+            {
+                return pageInformation;
+            }
+            set
+            { 
+                pageInformation = value;
+                NotifyPropertyChaged("PageInformation");
+            }
+        }
+
+        private static List<Order> allOrders = DataWorker.GetAllOrders();
+
+
+        private List<Order> firstOrders = DataWorker.GetFirstOrders(numberOfRecPerPage);
+
+        public List<Order> FirstOrders
         {
             get 
             { 
                 List<Order> orders = new List<Order>();
-                foreach (Order order in allOrders)
+                foreach (Order order in firstOrders)
                 {
                     char Character;
                     if (order.IsReturned == true) Character = 'R';
@@ -31,10 +56,69 @@ namespace Equipment_rent.ViewModel
             }
             set
             {
-                allOrders = value;
+                firstOrders = value;
                 NotifyPropertyChaged("AllOrders");
             }
         }
+
+
+
+        public void Navigate(int mode)
+        {
+            count = 0;
+            switch (mode)
+            {
+                case (int)PagingMode.Previous:
+                    firstOrders = DataWorker.GetPreviousPageOrders(pageIndex, numberOfRecPerPage);
+                    
+                    Orders.AllOrders.ItemsSource = null;
+                    Orders.AllOrders.Items.Clear();
+                    Orders.AllOrders.ItemsSource = FirstOrders;
+                    Orders.AllOrders.Items.Refresh();
+                    PageInformation = count + " из " + allOrders.Count;
+                    break;
+
+                case(int)PagingMode.Next:
+                    firstOrders = DataWorker.GetNextPageOrders(pageIndex, numberOfRecPerPage);
+                    Orders.AllOrders.ItemsSource = null;
+                    Orders.AllOrders.Items.Clear();
+                    Orders.AllOrders.ItemsSource = FirstOrders;
+                    Orders.AllOrders.Items.Refresh();
+                    PageInformation = count + " из " + allOrders.Count;
+                    break;
+            }
+        }
+        private RelayCommand nextPage;
+        public RelayCommand NextPage
+        {
+            get
+            {
+                return nextPage ?? new RelayCommand(obj =>
+                {
+                    BtnNext_Click();
+                });
+            }
+        }
+        private void BtnNext_Click()
+        {
+            Navigate((int)PagingMode.Next);
+        }
+        private RelayCommand previewPage;
+        public RelayCommand PreviewPage
+        {
+            get
+            {
+                return previewPage ?? new RelayCommand(obj =>
+                {
+                    BtnPreview_Click();
+                });
+            }
+        }
+        private void BtnPreview_Click()
+        {
+            Navigate((int)PagingMode.Previous);
+        }
+
 
         #region Open Window Add New Order
         private RelayCommand addOrder;
@@ -103,10 +187,10 @@ namespace Equipment_rent.ViewModel
 
         public void UpdateAllOrdersView()
         {
-            allOrders = DataWorker.GetAllOrders();
+            firstOrders = DataWorker.GetFirstOrders(numberOfRecPerPage);
             Orders.AllOrders.ItemsSource = null;
             Orders.AllOrders.Items.Clear();
-            Orders.AllOrders.ItemsSource = AllOrders;
+            Orders.AllOrders.ItemsSource = FirstOrders;
             Orders.AllOrders.Items.Refresh();
         }
 

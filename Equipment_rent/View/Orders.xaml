@@ -146,7 +146,7 @@
                   RowDetailsTemplate="{StaticResource RowDetailsTemplate}"
                   RowDetailsVisibilityMode="VisibleWhenSelected"
                   SelectionMode="Extended"
-                  ItemsSource="{Binding AllOrders}">
+                  ItemsSource="{Binding FirstOrders}">
 
             <DataGrid.Columns>
 
@@ -215,22 +215,25 @@
                 HorizontalAlignment="Right" 
                 Style="{StaticResource paginationBorder}">
             <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource pagingButton}">
+                <Button Style="{StaticResource pagingButton}"
+                        Command="{Binding PreviewPage}"
+                        Name="Btn_Preview"
+                        Width="50">
                     <Icon:PackIconMaterial Kind="ChevronLeft"
                                        Style="{StaticResource pagingButtonIcon}"/>
                 </Button>
+                
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+                <Label Name="lblPageInformation"
+                       Width="70"
+                       Content="{Binding PageInformation}"
+                       Foreground="Black"
+                       FontSize="13"
+                       HorizontalAlignment="Center"/>
                 <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
                 <Button Style="{StaticResource pagingButton}"
-                    Content="1"
-                    Background="#7950f2"
-                    Foreground="White"/>
-                <Button Style="{StaticResource pagingButton}"
-                        Command="{Binding RemoveOrder}"
-                    Content="2"/>
-                <Button Style="{StaticResource pagingButton}"
-                    Content="3"/>
-                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-                <Button Style="{StaticResource pagingButton}">
+                        Command="{Binding NextPage}"
+                        Width="50">
                     <Icon:PackIconMaterial Kind="ChevronRight"
                                        Style="{StaticResource pagingButtonIcon}"/>
                 </Button>

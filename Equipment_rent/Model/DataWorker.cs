@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Equipment_rent.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Documents;
 
 namespace Equipment_rent.Model
 {
@@ -266,5 +268,163 @@ namespace Equipment_rent.Model
                 return orders;
             }
         }
+
+
+
+        // Get 5 Users
+        public static List<User> GetPreviousPageUsers(int pageIndex, int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                
+                if(pageIndex == 1)
+                {
+                    var result = db.Users.Take(count).ToList();
+                    return result;
+                }
+                else
+                {
+                    var result = db.Users.Skip(pageIndex * count).Take(count).ToList();
+                    return result;
+                }
+                
+            }
+        }        
+        // Get 5 Equipments
+        public static List<Equipment> GetPreviousPageEquipments(int pageIndex, int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                
+                if (pageIndex == 1)
+                {
+                    var result = db.Equipments.Take(count).ToList();
+
+                    return result;
+                }
+                else
+                {
+                    var result = db.Equipments.Skip(pageIndex * count).Take(count).ToList();
+                    return result;
+                }
+                
+            }
+        }        
+        // Get 5 Orders
+        public static List<Order> GetPreviousPageOrders(int pageIndex,int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                if (pageIndex > 1)
+                {
+                    pageIndex -= 1;
+                    OrdersVM.pageIndex = pageIndex;
+                    if (pageIndex == 1)
+                    {
+                        var result = db.Orders.Take(count).ToList();
+                        OrdersVM.count = result.Count();
+                        return result;
+                    }
+                    else
+                    {
+                        var result = db.Orders.Skip((pageIndex * count)-count).Take(count).ToList();
+                        OrdersVM.count = Math.Min(pageIndex * count, GetAllOrders().Count);
+                        return result;
+                    }
+                }
+                else
+                {
+                    return db.Orders.Take(count).ToList();
+                }
+                
+            }
+        }        
+        
+        
+        
+        
+        // Get 5 Users
+        public static List<User> GetNextPageUsers(int pageIndex, int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                
+                if(db.Users.Skip(pageIndex * count).Take(count).Count() == 0)
+                {
+                    var result = db.Users.Skip((pageIndex * count) - count).Take(count).ToList();
+                    return result;
+                }
+                else
+                {
+                    var result = db.Users.Skip(pageIndex * count).Take(count).ToList();
+                    return result;
+                }
+                
+            }
+        }        
+        // Get 5 Equipments
+        public static List<Equipment> GetNextPageEquipments(int pageIndex, int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                
+                if (pageIndex == 1)
+                {
+                    var result = db.Equipments.Take(count).ToList();
+                    return result;
+                }
+                else
+                {
+                    var result = db.Equipments.Skip(pageIndex * count).Take(count).ToList();
+                    return result;
+                }
+                
+            }
+        }        
+        // Get next 5 Orders
+        public static List<Order> GetNextPageOrders(int pageIndex,int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                if (db.Orders.Skip(pageIndex * count).Take(count).Count() == 0)
+                {
+                    var result = db.Orders.Skip((pageIndex * count) - count).Take(count).ToList();
+                    OrdersVM.count = (pageIndex * count) + db.Orders.Skip(pageIndex * count).Take(count).Count();
+                    return result;
+                }
+                else
+                {
+                    var result = db.Orders.Skip(pageIndex * count).Take(count).ToList();
+                    OrdersVM.count = (pageIndex * count) + (db.Orders.Skip(pageIndex * count).Take(count).Count());
+                    OrdersVM.pageIndex = pageIndex + 1;
+                    return result;
+                }
+                
+            }
+        }
+
+
+
+        //Get First Orders
+        public static List<Order> GetFirstOrders(int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Orders.Take(count).ToList();
+
+                return result;
+            }
+        }
+
+
+        //get order count pages
+        public static int GetCountPagesOrders(int count)
+        {
+            using(ApplicationContext db = new ApplicationContext())
+            {
+                return db.Orders.Take(count).Count();
+            }
+        }
+
     }
 }
