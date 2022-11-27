@@ -14,7 +14,7 @@
     
     <UserControl.DataContext>
         <vm:UsersVM/>
-    </UserControl.DataContext>
+   </UserControl.DataContext>
 
     <Grid>
 <!-- #TODO: Добавить вывод информации об активных заказах
@@ -145,7 +145,7 @@
                   Grid.Row="3"
                   x:Name="UsersDataGrid"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding AllUsers}"
+                  ItemsSource="{Binding FirstUsers}"
                   VerticalScrollBarVisibility="Hidden"
                   >
 
@@ -225,22 +225,21 @@
                 HorizontalAlignment="Right" 
                 Style="{StaticResource paginationBorder}">
         <StackPanel Orientation="Horizontal">
-            <Button Style="{StaticResource pagingButton}">
+            <Button Style="{StaticResource pagingButton}"
+                    Width="50"
+                    Command="{Binding PreviewPage}">
                 <Icon:PackIconMaterial Kind="ChevronLeft"
                                        Style="{StaticResource pagingButtonIcon}"/>
             </Button>
-            <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-            <Button Style="{StaticResource pagingButton}"
-                    Content="1"
-                    Background="#7950f2"
-                    Foreground="White"/>
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+                <Label Width="70"
+                   Content="{Binding PageInformation}"
+                   Foreground="Black"
+                   FontSize="13"
+                   HorizontalAlignment="Center"/>
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
                 <Button Style="{StaticResource pagingButton}"
-                    Content="2"/>
-                <Button Style="{StaticResource pagingButton}"
-                    Content="3"/>
-            <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-                <Button Style="{StaticResource pagingButton}"
-                        >
+                        Command="{Binding NextPage}">
                 <Icon:PackIconMaterial Kind="ChevronRight"
                                        Style="{StaticResource pagingButtonIcon}"/>
              </Button>

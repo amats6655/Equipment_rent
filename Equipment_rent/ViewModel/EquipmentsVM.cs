@@ -4,21 +4,96 @@ using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Security.RightsManagement;
 
 namespace Equipment_rent.ViewModel
 {
     internal class EquipmentsVM : INotifyPropertyChanged
     {
-        private List<Equipment> allEquipments = DataWorker.GetAllEquipments();
-
-        public List<Equipment> AllEquipments
+        public static int pageIndex = 1;
+        private static int numberOfRecPerPage = 10;
+        public enum PagingMode
+        { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5}
+        public static int count;
+        private string pageInformation = numberOfRecPerPage + " из " + allEquipments.Count;
+        public string PageInformation
         {
-            get { return allEquipments; }
+            get
+            {
+                return pageInformation;
+            }
+            set
+            {
+                pageInformation = value;
+            }
+        }
+
+        private static List<Equipment> allEquipments = DataWorker.GetAllEquipments();
+
+        private List<Equipment> firstEquipments = DataWorker.GetFirstEquipments(numberOfRecPerPage);
+        public List<Equipment> FirstEquipments
+        {
+            get { return firstEquipments; }
             set
             {
                 allEquipments = value;
                 NotifyPropertyChaged("AllEquipments");
             }
+        }
+
+        public void Navigate(int mode)
+        {
+            count = 0;
+            switch (mode)
+            {
+                case (int)PagingMode.Previous:
+                    firstEquipments = DataWorker.GetPreviousPageEquipments(pageIndex,numberOfRecPerPage);
+                    Equipments.AllEquipments.ItemsSource = null;
+                    Equipments.AllEquipments.Items.Clear();
+                    Equipments.AllEquipments.ItemsSource = FirstEquipments;
+                    Equipments.AllEquipments.Items.Refresh();
+                    PageInformation = count + " из " + allEquipments.Count;
+                    break;
+                case(int)PagingMode.Next:
+                    firstEquipments = DataWorker.GetNextPageEquipments(pageIndex,numberOfRecPerPage);
+                    Equipments.AllEquipments.ItemsSource = null;
+                    Equipments.AllEquipments.Items.Clear();
+                    Equipments.AllEquipments.ItemsSource = FirstEquipments;
+                    Equipments.AllEquipments.Items.Refresh();
+                    PageInformation = count + " из " + allEquipments.Count;
+                    break;
+            }
+        }
+        private RelayCommand nextPage;
+        private RelayCommand prevPage;
+        public RelayCommand NextPage
+        {
+            get
+            {
+                return nextPage ?? new RelayCommand(obg =>
+                {
+                    BtnNext_Click();
+                });
+            }
+        }
+        public RelayCommand PrevPage
+        {
+            get
+            {
+                return prevPage ?? new RelayCommand(obj =>
+                {
+                    BtnPrev_Click();
+                });
+            }
+        }
+        private void BtnNext_Click()
+        {
+            Navigate((int)PagingMode.Next);
+        }
+        private void BtnPrev_Click()
+        {
+            Navigate((int)PagingMode.Previous);
         }
 
         #region Open Window Add New Equipnent
@@ -91,7 +166,7 @@ namespace Equipment_rent.ViewModel
             allEquipments = DataWorker.GetAllEquipments();
             Equipments.AllEquipments.ItemsSource = null;
             Equipments.AllEquipments.Items.Clear();
-            Equipments.AllEquipments.ItemsSource = AllEquipments;
+            Equipments.AllEquipments.ItemsSource = FirstEquipments;
             Equipments.AllEquipments.Items.Refresh();
         }
 

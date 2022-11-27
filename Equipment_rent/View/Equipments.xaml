@@ -102,7 +102,7 @@
                   RowStyle="{DynamicResource DataGridRowStyle1}" 
                   Grid.ColumnSpan="3" 
                   Grid.Row="3"
-                  ItemsSource="{Binding AllEquipments}"
+                  ItemsSource="{Binding FirstEquipments}"
                   x:Name="EquipmentsDataGrid"
                   AutoGenerateColumns="False"
                   VerticalScrollBarVisibility="Hidden">
@@ -166,21 +166,21 @@
                 HorizontalAlignment="Right" 
                 Style="{StaticResource paginationBorder}">
             <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource pagingButton}">
+                <Button Style="{StaticResource pagingButton}"
+                        Width="50"
+                        Command="{Binding PrevPage}">
                     <Icon:PackIconMaterial Kind="ChevronLeft"
                                        Style="{StaticResource pagingButtonIcon}"/>
                 </Button>
                 <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-                <Button Style="{StaticResource pagingButton}"
-                    Content="1"
-                    Background="#7950f2"
-                    Foreground="White"/>
-                <Button Style="{StaticResource pagingButton}"
-                    Content="2"/>
-                <Button Style="{StaticResource pagingButton}"
-                    Content="3"/>
+                <Label Width="70"
+                       Content="{Binding PageInformation}"
+                       Foreground="Black"
+                       FontSize="13"/>
                 <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-                <Button Style="{StaticResource pagingButton}">
+                <Button Style="{StaticResource pagingButton}"
+                        Width="50"
+                        Command="{Binding NextPage}">
                     <Icon:PackIconMaterial Kind="ChevronRight"
                                        Style="{StaticResource pagingButtonIcon}"/>
                 </Button>

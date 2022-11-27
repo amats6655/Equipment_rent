@@ -5,20 +5,31 @@ using System.Windows.Media;
 using Equipment_rent.Model;
 using Equipment_rent.Utilites;
 using Equipment_rent.View;
+using Microsoft.VisualBasic;
 
 namespace Equipment_rent.ViewModel
 {
     class UsersVM : INotifyPropertyChanged
     {
-        private List<User> allUsers = DataWorker.GetAllUsers();
+        public static int pageIndex = 1;
+        private static int numberOfRecPerPage = 10;
+        public enum PagingMode
+        { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5 }
+        public static int count;
+        private string pageInformation = numberOfRecPerPage + " из " + allUsers.Count;
+        public string PageInformation { get { return pageInformation; }
+            set { pageInformation = value; }
+        }
 
+        private static List<User> allUsers = DataWorker.GetAllUsers();
         #region Add Brush and Character for user
-        public List<User> AllUsers
+        private List<User> firstUsers = DataWorker.GetFirstUsers(numberOfRecPerPage);
+        public List<User> FirstUsers
         {
             get 
             { 
                 List<User> users = new List<User>();
-                foreach (User user in allUsers)
+                foreach (User user in firstUsers)
                 {
                     char Character = user.Name[0];
                     Brush BgColor = GetBrush.getBrush(Character);
@@ -36,38 +47,67 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-        //public int PageNumber { get; set; }
-        //public int TotalPages { get; set; }
 
-        //public PageViewModel(int count, int pageNumber, int pageSize)
-        //{
-        //    PageNumber = pageNumber;
-        //    TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-        //}
- 
-        //public bool HasPreviousPage
-        //{
-        //    get
-        //    {
-        //        return (PageNumber > 1);
-        //    }
-        //}
- 
-        //public bool HasNextPage
-        //{
-        //    get
-        //    {
-        //        return (PageNumber < TotalPages);
-        //    }
-        //}
-
+        public void Navigate(int mode)
+        {
+            count = 0;
+            switch (mode)
+            {
+                case (int)PagingMode.Previous:
+                    firstUsers = DataWorker.GetPreviousPageUsers(pageIndex, numberOfRecPerPage);
+                    Users.AllUsers.ItemsSource = null;
+                    Users.AllUsers.Items.Clear();
+                    Users.AllUsers.ItemsSource = FirstUsers;
+                    Users.AllUsers.Items.Refresh();
+                    PageInformation = count + " из " + allUsers.Count;
+                    break;
+                case (int)PagingMode.Next:
+                    firstUsers = DataWorker.GetNextPageUsers(pageIndex, numberOfRecPerPage);
+                    Users.AllUsers.ItemsSource = null;
+                    Users.AllUsers.Items.Clear();
+                    Users.AllUsers.ItemsSource = FirstUsers;
+                    Users.AllUsers.Items.Refresh();
+                    PageInformation = count + " из " + allUsers.Count;
+                    break;
+            }
+        }
+        private RelayCommand nextPage;
+        public RelayCommand NextPage
+        {
+            get
+            {
+                return nextPage ?? new RelayCommand(obj =>
+                {
+                    BtnNext_Click();
+                });
+            }
+        }
+        private RelayCommand previewPage;
+        public RelayCommand PreviewPage
+        {
+            get
+            {
+                return previewPage ?? new RelayCommand(obj =>
+                {
+                    BtnPreview_Click();
+                });
+            }
+        }
+        private void BtnNext_Click()
+        {
+            Navigate((int)PagingMode.Next);
+        }
+        private void BtnPreview_Click()
+        {
+            Navigate((int)PagingMode.Previous);
+        }
 
         public void UpdateAllUsersView()
         {
-            allUsers = DataWorker.GetAllUsers();
+            allUsers = DataWorker.GetFirstUsers(numberOfRecPerPage);
             Users.AllUsers.ItemsSource = null;
             Users.AllUsers.Items.Clear();
-            Users.AllUsers.ItemsSource = AllUsers;
+            Users.AllUsers.ItemsSource = FirstUsers;
             Users.AllUsers.Items.Refresh();
         }
 
