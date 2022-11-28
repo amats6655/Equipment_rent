@@ -17,8 +17,17 @@ namespace Equipment_rent.ViewModel
         { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5 }
         public static int count;
         private string pageInformation = numberOfRecPerPage + " из " + allUsers.Count;
-        public string PageInformation { get { return pageInformation; }
-            set { pageInformation = value; }
+        public string PageInformation
+        {
+            get
+            {
+                return pageInformation;
+            }
+            set
+            {
+                pageInformation = value;
+                NotifyPropertyChaged("PageInformation");
+            }
         }
 
         private static List<User> allUsers = DataWorker.GetAllUsers();

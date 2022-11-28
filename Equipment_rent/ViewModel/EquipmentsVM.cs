@@ -26,6 +26,7 @@ namespace Equipment_rent.ViewModel
             set
             {
                 pageInformation = value;
+                NotifyPropertyChaged("PageInformation");
             }
         }
 
