@@ -78,7 +78,7 @@
                                 Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <SolidColorBrush Color="AliceBlue"/>
+                                    <ImageBrush ImageSource="/Images/enot.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>

@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\enot.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Images\icoracoo.ico" />
   </ItemGroup>
 
@@ -22,6 +26,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\enot.png" />
   </ItemGroup>
 
   <ItemGroup>
