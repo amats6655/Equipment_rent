@@ -13,7 +13,7 @@ namespace Auth.Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=85.175.4.135,49172\\SQLEXPRESS;DataBase=equipment_rent_auth;User ID=mrkotik;Password=ciscO15=!");
+            optionsBuilder.UseSqlServer("Server=85.175.4.135,49172\\SQLEXPRESS;DataBase=equipment_rent_auth;User ID=mrkotik;Password=ciscO15=!TrustServerCertificate=true;");
         }
     }
 }

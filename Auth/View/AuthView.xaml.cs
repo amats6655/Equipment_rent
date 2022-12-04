@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Equipment_rent.View;
+
 
 namespace Auth.View
 {
@@ -22,6 +24,23 @@ namespace Auth.View
         public AuthView()
         {
             InitializeComponent();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Equipment_rent.View.MainWindow();
+            window.Show();
+
         }
     }
 }

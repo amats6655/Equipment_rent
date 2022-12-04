@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Auth"
              StartupUri="View/AuthView.xaml">
     <Application.Resources>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="logo" Source="Images/logo.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
