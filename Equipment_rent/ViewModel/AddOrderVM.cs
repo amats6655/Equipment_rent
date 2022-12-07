@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using Equipment_rent.Model;
 using Equipment_rent.Utilites;
 using Equipment_rent.View;
@@ -18,16 +19,42 @@ namespace Equipment_rent.ViewModel
             set
             {
                 allUsers = value;
-                NotifyPropertyChaged("AllUsers");
+                NotifyPropertyChaged(nameof(AllUsers));
             }
         }
-
-        private List<Equipment> allEquipments = DataWorker.GetAllEquipments();
-        public List<Equipment> AllEquipments { get { return allEquipments; } }
+        private List<Model.Type> allTypes = DataWorker.GetAllTypes();
+        public List<Model.Type> AllTypes
+        {
+            get { return allTypes; }
+            set
+            {
+                allTypes = value;
+                NotifyPropertyChaged(nameof(AllTypes));
+            }
+        }
         #endregion
 
         #region Объявление переменных
         public User User { get; set; }
+        private Model.Type _type;
+        public Model.Type Types
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+                if(_type != null )
+                {
+
+                    View.AddOrder.Models.ItemsSource = DataWorker.GetAllEquipmentsByIdType(_type.TypeId);
+                    View.AddOrder.Models.IsEnabled = true;
+                    View.AddOrder.Models.SelectedIndex = 0;
+                }
+            }
+        }
         public Equipment? Equipment { get; set; }
         private int _amount;
         public int Amount

@@ -1,4 +1,5 @@
 ﻿using Equipment_rent.ViewModel;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,12 +10,14 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class AddOrder : Window
     {
+        public static ComboBox Models;
         public AddOrder()
         {
             InitializeComponent();
             DataContext = new AddOrderVM();
             cb_models.SelectedIndex = 0;
             cb_users.SelectedIndex = 0;
+            Models = cb_models;
         }
 
 
@@ -43,6 +46,12 @@ namespace Equipment_rent.View
                 tb_phone.Visibility = Visibility.Collapsed;
             }
         }
+
+        //public void cb_models_source(List<Model.Equipment> sender, RoutedEventArgs e)
+        //{
+        //    cb_models.ItemsSource = sender;
+
+        //}
 
     }
 }

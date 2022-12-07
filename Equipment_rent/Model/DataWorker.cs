@@ -239,6 +239,17 @@ namespace Equipment_rent.Model
             }
         }
 
+
+        // Get All Equipments by Id Type
+        public static List<Equipment> GetAllEquipmentsByIdType(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                List<Equipment> equipments = (from equipment in GetAllEquipments() where equipment.TypeId == id select equipment).ToList();
+                return equipments;
+            }
+        }
+
         // Get All Orders by Id User
         public static List<Order> GetAllOrdersByUserId(int id)
         {

@@ -79,10 +79,16 @@
                     #endregion--> 
                     <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
                               Style="{StaticResource ComboBoxFlatStyle}"
-                              ItemsSource="{Binding AllEquipments}"
+                              ItemsSource="{Binding AllTypes}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding Types}"
+                              x:Name="cb_types"/> 
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
+                              Style="{StaticResource ComboBoxFlatStyle}"
                               DisplayMemberPath="Model"
                               SelectedItem="{Binding Equipment}"
-                              x:Name="cb_models"/>
+                              x:Name="cb_models"
+                              IsEnabled="False"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
                              Margin="0 10 0 0"
                              Name="tb_orderAmount"
