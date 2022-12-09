@@ -3,7 +3,7 @@ using Equipment_rent.Utilites;
 
 namespace Equipment_rent.ViewModel
 {
-    internal class NavigationVM : ViewModelBase
+    internal class NavigationVM : Utilites.ViewModelBase
     {
         private object _currentView;
         public object CurrentView

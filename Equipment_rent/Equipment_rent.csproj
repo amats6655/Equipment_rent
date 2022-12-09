@@ -11,7 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\back.jpg" />
     <None Remove="Images\enot.png" />
+    <None Remove="Images\key.png" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\logo.svg" />
+    <None Remove="Images\logo_files\image0.png" />
+    <None Remove="Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +35,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\back.jpg" />
     <Resource Include="Images\enot.png" />
+    <Resource Include="Images\key.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\logo.svg" />
+    <Resource Include="Images\logo_files\image0.png" />
+    <Resource Include="Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
