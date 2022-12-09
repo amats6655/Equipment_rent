@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Equipment_rent.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,8 +38,6 @@ namespace Equipment_rent.View
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Window window = new Equipment_rent.View.MainWindow();
-            window.Show();
 
         }
     }

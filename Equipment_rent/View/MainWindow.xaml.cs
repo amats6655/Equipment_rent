@@ -23,9 +23,14 @@ namespace Equipment_rent.View
             }
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void HideMenu_Button_Click(object sender, RoutedEventArgs e)
@@ -39,7 +44,7 @@ namespace Equipment_rent.View
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            this.Close();
         }
     }
 }

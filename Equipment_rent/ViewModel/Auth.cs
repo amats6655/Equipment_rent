@@ -12,12 +12,14 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Equipment_rent.View;
 using System.Windows;
+using System.Threading.Channels;
 
 namespace Equipment_rent.ViewModel
 {
 
     public class Auth : ViewModelBase
     {
+
         private string _username;
         private SecureString _password;
         private string _errorMessage;
@@ -97,9 +99,12 @@ namespace Equipment_rent.ViewModel
         }
         private void ExecuteLoginCommand(object obj)
         {
+            var w = Application.Current.Windows[0];
+            w.Hide();
+
             Window window = new MainWindow();
-            window.Show();
-            
+            window.ShowDialog();
+            w.Show();
         }
         private void ExecuteRecoverPassCommand(string username, string email)
         {
