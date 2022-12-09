@@ -5,7 +5,7 @@
         xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:menu="clr-namespace:Equipment_rent.Utilites"
         Title="MainWindow" 
-        Height="900" 
+        Height="850" 
         Width="1200" 
         WindowStyle="None"
         AllowsTransparency="True"

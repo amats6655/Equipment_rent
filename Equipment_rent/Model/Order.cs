@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using System.Security.Permissions;
 
 namespace Equipment_rent.Model
 {
@@ -14,6 +15,8 @@ namespace Equipment_rent.Model
         public DateTime DateIssue { get; set; }
         public DateTime DateReturn { get; set; }
         public bool IsReturned { get; set; }
+        
+        public Auth_user? Auth_user { get; set; }
 
         [NotMapped]public string? BgColor { get; set; }
         [NotMapped]public User OrdersUser

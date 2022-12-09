@@ -4,6 +4,7 @@ using Equipment_rent.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Equipment_rent.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221209125211_auth")]
+    partial class auth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +91,6 @@ namespace Equipment_rent.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Auth_userId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("DateIssue")
                         .HasColumnType("datetime2");
 
@@ -107,9 +106,12 @@ namespace Equipment_rent.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<string>("user_respId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("OrderId");
 
-                    b.HasIndex("Auth_userId");
+                    b.HasIndex("user_respId");
 
                     b.ToTable("Orders");
                 });
@@ -157,11 +159,11 @@ namespace Equipment_rent.Migrations
 
             modelBuilder.Entity("Equipment_rent.Model.Order", b =>
                 {
-                    b.HasOne("Equipment_rent.Model.Auth_user", "Auth_user")
+                    b.HasOne("Equipment_rent.Model.Auth_user", "user_resp")
                         .WithMany()
-                        .HasForeignKey("Auth_userId");
+                        .HasForeignKey("user_respId");
 
-                    b.Navigation("Auth_user");
+                    b.Navigation("user_resp");
                 });
 #pragma warning restore 612, 618
         }

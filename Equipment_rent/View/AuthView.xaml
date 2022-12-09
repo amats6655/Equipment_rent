@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="AuthView" Height="550" Width="800"
         WindowStyle="None"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Auth.Model
 {
-    public interface IUserRpository
+    public interface IUserRepository
     {
         bool AuthenticateUser(NetworkCredential credential);
         void Add(User auth);

@@ -16,7 +16,6 @@
         <vm:OrdersVM/>
     </UserControl.DataContext>
 
-
     <Grid>
 
 
