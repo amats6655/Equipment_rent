@@ -13,6 +13,8 @@ using System.Windows.Input;
 using Equipment_rent.View;
 using System.Windows;
 using System.Threading.Channels;
+using Equipment_rent.Utilites;
+
 
 namespace Equipment_rent.ViewModel
 {
@@ -21,7 +23,7 @@ namespace Equipment_rent.ViewModel
     {
 
         private string _username;
-        private SecureString _password;
+        private string _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
 
@@ -37,7 +39,7 @@ namespace Equipment_rent.ViewModel
                 OnPropertyChanged(nameof(Username));
             }
         }
-        public SecureString Password
+        public string Password
         {
             get
             {
@@ -99,12 +101,10 @@ namespace Equipment_rent.ViewModel
         }
         private void ExecuteLoginCommand(object obj)
         {
-            var w = Application.Current.Windows[0];
-            w.Hide();
+            AuthClient.AuthClient_Send(Username, Password);
 
-            Window window = new MainWindow();
-            window.ShowDialog();
-            w.Show();
+
+
         }
         private void ExecuteRecoverPassCommand(string username, string email)
         {
