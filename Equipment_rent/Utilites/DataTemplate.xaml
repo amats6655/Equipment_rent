@@ -18,6 +18,9 @@
     <DataTemplate DataType="{x:Type vm:UsersVM}">
         <view:Users/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ProfileVM}">
+        <view:Profile/>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:AddUserVM}">
         <view:AddUser/>
     </DataTemplate>

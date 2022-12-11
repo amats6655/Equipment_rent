@@ -22,10 +22,29 @@ namespace Equipment_rent.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Equipment_rent.Model.Auth_role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Auth_role", (string)null);
+                });
+
             modelBuilder.Entity("Equipment_rent.Model.Auth_user", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("Auth_roleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -39,9 +58,8 @@ namespace Equipment_rent.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("Role_Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -49,7 +67,9 @@ namespace Equipment_rent.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Auth_user");
+                    b.HasIndex("Auth_roleId");
+
+                    b.ToTable("Auth_user", (string)null);
                 });
 
             modelBuilder.Entity("Equipment_rent.Model.Equipment", b =>
@@ -75,7 +95,7 @@ namespace Equipment_rent.Migrations
 
                     b.HasKey("EquipmentId");
 
-                    b.ToTable("Equipments");
+                    b.ToTable("Equipments", (string)null);
                 });
 
             modelBuilder.Entity("Equipment_rent.Model.Order", b =>
@@ -88,9 +108,6 @@ namespace Equipment_rent.Migrations
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
-
-                    b.Property<string>("Auth_userId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateIssue")
                         .HasColumnType("datetime2");
@@ -109,9 +126,7 @@ namespace Equipment_rent.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("Auth_userId");
-
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Equipment_rent.Model.Type", b =>
@@ -128,7 +143,7 @@ namespace Equipment_rent.Migrations
 
                     b.HasKey("TypeId");
 
-                    b.ToTable("Types");
+                    b.ToTable("Types", (string)null);
                 });
 
             modelBuilder.Entity("Equipment_rent.Model.User", b =>
@@ -152,16 +167,19 @@ namespace Equipment_rent.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("Equipment_rent.Model.Order", b =>
+            modelBuilder.Entity("Equipment_rent.Model.Auth_user", b =>
                 {
-                    b.HasOne("Equipment_rent.Model.Auth_user", "Auth_user")
-                        .WithMany()
-                        .HasForeignKey("Auth_userId");
+                    b.HasOne("Equipment_rent.Model.Auth_role", null)
+                        .WithMany("auth_User")
+                        .HasForeignKey("Auth_roleId");
+                });
 
-                    b.Navigation("Auth_user");
+            modelBuilder.Entity("Equipment_rent.Model.Auth_role", b =>
+                {
+                    b.Navigation("auth_User");
                 });
 #pragma warning restore 612, 618
         }

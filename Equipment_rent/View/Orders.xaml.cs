@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Navigation;
 using Equipment_rent.ViewModel;
+using System.Windows;
 
 namespace Equipment_rent.View
 {
@@ -14,6 +15,8 @@ namespace Equipment_rent.View
         {
             InitializeComponent(); // Второй раз пошли получать данные
             AllOrders = OrdersDataGrid;
+
         }
+ 
     }
 }

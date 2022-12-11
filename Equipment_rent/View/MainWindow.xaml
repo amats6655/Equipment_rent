@@ -170,6 +170,22 @@
                                            Text="Выход"/>
                             </StackPanel>
                         </menu:Btn>
+                        
+                        <menu:Btn Style="{StaticResource menuButton}"
+                                Margin="15 0 15 20" 
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom"
+                                Command="{Binding ProfileCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial x:Name="packIconMaterial5"
+                                                       Kind="FaceAgent" 
+                                                       Style="{StaticResource menuButtonIcon}"
+                                                       Margin="20,2,20,0"/>
+                                <TextBlock x:Name="textBlock7" 
+                                           Text="Профиль"/>
+                            </StackPanel>
+                        </menu:Btn>
+
                     </DockPanel>
                 </Border>
             </Grid>

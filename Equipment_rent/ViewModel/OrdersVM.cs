@@ -4,6 +4,7 @@ using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -26,12 +27,11 @@ namespace Equipment_rent.ViewModel
                 return pageInformation;
             }
             set
-            { 
+            {
                 pageInformation = value;
                 NotifyPropertyChaged("PageInformation");
             }
         }
-
         private static List<Order> allOrders = DataWorker.GetAllOrders();
 
 
@@ -39,26 +39,34 @@ namespace Equipment_rent.ViewModel
 
         public List<Order> FirstOrders
         {
-            get 
-            { 
+            get
+            {
                 List<Order> orders = new List<Order>();
                 foreach (Order order in firstOrders)
                 {
                     char Character;
                     if (order.IsReturned == true) Character = 'R';
                     else Character = 'D';
-                          
+
                     Brush BgColor = GetBrush.getBrush(Character);
                     order.BgColor = BgColor.ToString();
                     orders.Add(order);
                 }
-                return orders; 
+                return orders;
             }
             set
             {
                 firstOrders = value;
                 NotifyPropertyChaged("AllOrders");
             }
+        }
+
+
+        public static Visibility DeleteVis()
+        {
+            if (NavigationVM.Role == 1) return Visibility.Collapsed;
+            else return Visibility.Visible;
+
         }
 
 
@@ -70,7 +78,6 @@ namespace Equipment_rent.ViewModel
             {
                 case (int)PagingMode.Previous:
                     firstOrders = DataWorker.GetPreviousPageOrders(pageIndex, numberOfRecPerPage);
-                    
                     Orders.AllOrders.ItemsSource = null;
                     Orders.AllOrders.Items.Clear();
                     Orders.AllOrders.ItemsSource = FirstOrders;
@@ -78,7 +85,7 @@ namespace Equipment_rent.ViewModel
                     PageInformation = count + " из " + allOrders.Count;
                     break;
 
-                case(int)PagingMode.Next:
+                case (int)PagingMode.Next:
                     firstOrders = DataWorker.GetNextPageOrders(pageIndex, numberOfRecPerPage);
                     Orders.AllOrders.ItemsSource = null;
                     Orders.AllOrders.Items.Clear();
@@ -153,6 +160,8 @@ namespace Equipment_rent.ViewModel
                 });
             }
         }
+
+
         private void Del_Button_Click()
         {
             DeleteWindow deleteWindow = new DeleteWindow();

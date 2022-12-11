@@ -16,7 +16,6 @@ namespace Equipment_rent.Model
         public DateTime DateReturn { get; set; }
         public bool IsReturned { get; set; }
         
-        public Auth_user? Auth_user { get; set; }
 
         [NotMapped]public string? BgColor { get; set; }
         [NotMapped]public User OrdersUser

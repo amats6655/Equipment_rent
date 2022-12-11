@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Windows.Markup;
 using System.Windows;
 using Equipment_rent.View;
+using Equipment_rent.ViewModel;
 
 namespace Equipment_rent.Utilites
 {
@@ -14,7 +15,7 @@ namespace Equipment_rent.Utilites
     {
         public static async void AuthClient_Send(string username, string password)
         {
-            int numberOfIteration = 134;
+            int numberOfIteration = 99;
             var hashFunc = new Crypt();
             byte[] salt_srv = Encoding.UTF8.GetBytes("KompASminE");
 
@@ -56,12 +57,15 @@ namespace Equipment_rent.Utilites
             {
                 MessageBox.Show("Неверный пароль");
             }
-            else if (Status == 2 && UserId != "")
+            else if (Status == 2 && UserId != null)
             {
                 MessageBox.Show($"Авторизация {username} прошла успешно");
+                NavigationVM.Role = 1;
+                NavigationVM.UserID = Guid.Parse(UserId);
                 var w = Application.Current.Windows[0];
                 w.Hide();
                 Window window = new MainWindow();
+                
                 window.ShowDialog();
                 w.Show();
             }

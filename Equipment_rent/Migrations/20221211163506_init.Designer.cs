@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Equipment_rent.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221107044832_2")]
-    partial class _2
+    [Migration("20221211163506_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,56 @@ namespace Equipment_rent.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Equipment_rent.Model.Auth_role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Auth_role");
+                });
+
+            modelBuilder.Entity("Equipment_rent.Model.Auth_user", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("Auth_roleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("Role_Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Auth_roleId");
+
+                    b.ToTable("Auth_user");
+                });
 
             modelBuilder.Entity("Equipment_rent.Model.Equipment", b =>
                 {
@@ -47,8 +97,6 @@ namespace Equipment_rent.Migrations
 
                     b.HasKey("EquipmentId");
 
-                    b.HasIndex("TypeId");
-
                     b.ToTable("Equipments");
                 });
 
@@ -66,7 +114,7 @@ namespace Equipment_rent.Migrations
                     b.Property<DateTime>("DateIssue")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateReturn")
+                    b.Property<DateTime>("DateReturn")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("EquipmentId")
@@ -79,10 +127,6 @@ namespace Equipment_rent.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("EquipmentId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -128,44 +172,16 @@ namespace Equipment_rent.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Equipment_rent.Model.Equipment", b =>
+            modelBuilder.Entity("Equipment_rent.Model.Auth_user", b =>
                 {
-                    b.HasOne("Equipment_rent.Model.Type", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Type");
+                    b.HasOne("Equipment_rent.Model.Auth_role", null)
+                        .WithMany("auth_User")
+                        .HasForeignKey("Auth_roleId");
                 });
 
-            modelBuilder.Entity("Equipment_rent.Model.Order", b =>
+            modelBuilder.Entity("Equipment_rent.Model.Auth_role", b =>
                 {
-                    b.HasOne("Equipment_rent.Model.Equipment", "Equipment")
-                        .WithMany("Orders")
-                        .HasForeignKey("EquipmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Equipment_rent.Model.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Equipment");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Equipment_rent.Model.Equipment", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("Equipment_rent.Model.User", b =>
-                {
-                    b.Navigation("Orders");
+                    b.Navigation("auth_User");
                 });
 #pragma warning restore 612, 618
         }

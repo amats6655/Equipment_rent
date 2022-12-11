@@ -101,7 +101,7 @@ namespace Equipment_rent.ViewModel
         }
         private void ExecuteLoginCommand(object obj)
         {
-            ErrorMessage = AuthClient.AuthClient_Send(Username, Password);
+            AuthClient.AuthClient_Send(Username, Password);
             
 
 

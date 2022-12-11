@@ -471,5 +471,48 @@ namespace Equipment_rent.Model
             }
         }
 
+
+
+
+        // Get All Auth_users
+        public static List<Auth_user> GetAllAuthUsers()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Auth_user.ToList();
+                return result;
+            }
+        }
+
+        // Get All Roles
+        public static List<Auth_role> GetAllAuthRoles()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Auth_role.ToList();
+                return result;
+            }
+        }
+       
+        // Get User By Id
+        public static Auth_user GetAuthUserById(Guid id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Console.WriteLine("Список пользователей:");
+                var result = db.Auth_user.FirstOrDefault(p => p.Id == id);
+                return result;
+            }
+        }
+
+        // Get Role By Id
+        public static Auth_role GetRoleById(Guid roleId)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Auth_role.FirstOrDefault(p => p.Id == roleId);
+                return result;
+            }
+        }
     }
 }
