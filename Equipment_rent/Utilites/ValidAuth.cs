@@ -12,8 +12,14 @@ namespace Equipment_rent.Utilites
 {
     class AuthClient
     {
-        public static async void AuthClient_Send(string username, string password)
+        public static async IAsyncEnumerable<string> AuthClient_Send(string username, string password)
         {
+            int numberOfIteration = 134;
+            var hashFunc = new Crypt();
+            byte[] salt_srv = Encoding.UTF8.GetBytes("KompASminE");
+
+
+            var hashedPass = hashFunc.HashDataWithRounds(Encoding.UTF8.GetBytes(password), salt_srv, numberOfIteration);
             using TcpClient tcpClient = new TcpClient();
             await tcpClient.ConnectAsync("85.175.4.135", 8888);
 
@@ -24,8 +30,7 @@ namespace Equipment_rent.Utilites
             var response = new List<byte>();
             int bytesRead = 10; // для считывания байтов из потока
 
-
-            byte[] data_log = Encoding.UTF8.GetBytes(username + '\r' + password + '\n');
+            byte[] data_log = Encoding.UTF8.GetBytes(username + '\r' + hashedPass + '\n');
             await stream.WriteAsync(data_log);
 
             int Status = 10;
@@ -45,10 +50,12 @@ namespace Equipment_rent.Utilites
 
             if(Status == 0)
             {
+                yield return "Неверный логин";
                 MessageBox.Show("Неверный логин");
             }
             else if (Status == 1)
             {
+                yield return "Неверный пароль";
                 MessageBox.Show("Неверный пароль");
             }
             else if (Status == 2 && UserId != "")
@@ -59,9 +66,11 @@ namespace Equipment_rent.Utilites
                 Window window = new MainWindow();
                 window.ShowDialog();
                 w.Show();
+                yield return "Саксес";
             }
             else
             {
+                yield return "Да ну нахуй";
                 MessageBox.Show("При авторизации что-то пошло не так");
             }
             response.Clear();
