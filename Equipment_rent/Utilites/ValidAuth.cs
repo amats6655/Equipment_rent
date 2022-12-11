@@ -12,7 +12,7 @@ namespace Equipment_rent.Utilites
 {
     class AuthClient
     {
-        public static async IAsyncEnumerable<string> AuthClient_Send(string username, string password)
+        public static async void AuthClient_Send(string username, string password)
         {
             int numberOfIteration = 134;
             var hashFunc = new Crypt();
@@ -50,12 +50,10 @@ namespace Equipment_rent.Utilites
 
             if(Status == 0)
             {
-                yield return "Неверный логин";
                 MessageBox.Show("Неверный логин");
             }
             else if (Status == 1)
             {
-                yield return "Неверный пароль";
                 MessageBox.Show("Неверный пароль");
             }
             else if (Status == 2 && UserId != "")
@@ -66,11 +64,9 @@ namespace Equipment_rent.Utilites
                 Window window = new MainWindow();
                 window.ShowDialog();
                 w.Show();
-                yield return "Саксес";
             }
             else
             {
-                yield return "Да ну нахуй";
                 MessageBox.Show("При авторизации что-то пошло не так");
             }
             response.Clear();
