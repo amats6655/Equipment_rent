@@ -101,7 +101,8 @@ namespace Equipment_rent.ViewModel
         }
         private void ExecuteLoginCommand(object obj)
         {
-            AuthClient.AuthClient_Send(Username, Password);
+            int mode = 0;
+            AuthClient.AuthClient_Send(mode, Username, Password);
             
 
 

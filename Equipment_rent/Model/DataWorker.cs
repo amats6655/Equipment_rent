@@ -500,7 +500,7 @@ namespace Equipment_rent.Model
             using (ApplicationContext db = new ApplicationContext())
             {
                 Console.WriteLine("Список пользователей:");
-                var result = db.Auth_user.FirstOrDefault(p => p.Id == id);
+                var result = db.Auth_user.FirstOrDefault(p => p.Id.Equals(id));
                 return result;
             }
         }
@@ -510,7 +510,7 @@ namespace Equipment_rent.Model
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = db.Auth_role.FirstOrDefault(p => p.Id == roleId);
+                var result = db.Auth_role.FirstOrDefault(p => p.Id.Equals(roleId));
                 return result;
             }
         }

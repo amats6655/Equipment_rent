@@ -13,7 +13,7 @@ namespace Equipment_rent.Utilites
 {
     class AuthClient
     {
-        public static async void AuthClient_Send(string username, string password)
+        public static async void AuthClient_Send(int mode, string username, string password)
         {
             int numberOfIteration = 99;
             var hashFunc = new Crypt();

@@ -24,8 +24,7 @@ namespace Equipment_rent.Model
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source = DESKTOP-Q1BU01R\\SQLEXPRESS; Initial Catalog = ER; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False");
-            optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
+            optionsBuilder.UseSqlServer("Data Source=85.175.4.135,49172;Initial Catalog=ER;User ID=mrkotik;Password=ciscO15=!;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
     } 
 
