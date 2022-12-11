@@ -27,23 +27,44 @@ namespace Equipment_rent.Utilites
 
             byte[] data_log = Encoding.UTF8.GetBytes(username + '\r' + password + '\n');
             await stream.WriteAsync(data_log);
+
+            int Status = 10;
+            string UserId;
             while ((bytesRead = stream.ReadByte()) != '\n')
             {
+
                 // добавляем в буфер
                 response.Add((byte)bytesRead);
+                if (bytesRead == '\r')
+                {
+                    Status = int.Parse(Encoding.UTF8.GetString(response.ToArray()));
+                    response.Clear();
+                }
             }
-            var UserId = Encoding.UTF8.GetString(response.ToArray());
-            MessageBox.Show($"Слово {username}: {UserId}");
-            response.Clear();
+            UserId = Encoding.UTF8.GetString(response.ToArray());
 
-            if(UserId != "")
+            if(Status == 0)
             {
+                MessageBox.Show("Неверный логин");
+            }
+            else if (Status == 1)
+            {
+                MessageBox.Show("Неверный пароль");
+            }
+            else if (Status == 2 && UserId != "")
+            {
+                MessageBox.Show($"Авторизация {username} прошла успешно");
                 var w = Application.Current.Windows[0];
                 w.Hide();
                 Window window = new MainWindow();
                 window.ShowDialog();
                 w.Show();
             }
+            else
+            {
+                MessageBox.Show("При авторизации что-то пошло не так");
+            }
+            response.Clear();
         }
     }
 }
