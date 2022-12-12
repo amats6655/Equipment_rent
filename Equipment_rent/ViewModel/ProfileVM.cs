@@ -14,6 +14,7 @@ namespace Equipment_rent.ViewModel
     internal class ProfileVM:INotifyPropertyChanged
     {
         public static Guid User_id = NavigationVM.UserID;
+
         private Auth_user _user = DataWorker.GetAuthUserById(User_id);
         public Auth_user User
         {
@@ -24,6 +25,7 @@ namespace Equipment_rent.ViewModel
             set
             {
                 _user = value;
+                NotifyPropertyChaged(nameof(User));
             }
         }
 
@@ -39,44 +41,50 @@ namespace Equipment_rent.ViewModel
         }
 
 
-
+        private Auth_role _role = User.Role;
+        private string _username = User.Username;
+        private string _firstname = User.FirstName;
+        private string _lastname = User.LastName;
+        private string _email = User.Email;
 
         public Auth_role Role
         {
             get
             {
-                return User.Role;
+                return _role;
             }
             set
             {
-                Role = value;
+                _role = value;
+                NotifyPropertyChaged(nameof(Role));
             }
         }
         public string Username
         {
             get
             {
-                return User.Username;
+                return _username;
             }
             set
             {
-                User.Username = value;
+                _username = value;
+                NotifyPropertyChaged(nameof(Username));
             }
         }
         public string Firstname
         {
-            get { return User.FirstName;}
-            set { User.FirstName = value;}
+            get { return _firstname;}
+            set { _firstname = value; NotifyPropertyChaged(nameof(Firstname)); }
         }
         public string Lastname
         {
-            get { return User.LastName;}
-            set { User.LastName = value;}
+            get { return _lastname;}
+            set { _lastname = value; NotifyPropertyChaged(nameof(Lastname)); }
         }
         public string Email
         {
-            get { return User.Email;}
-            set { User.Email = value;}
+            get { return _email;}
+            set { _email = value; NotifyPropertyChaged(nameof(Email)); }
         }
         private string _lastpass;
         private string _newpass;
