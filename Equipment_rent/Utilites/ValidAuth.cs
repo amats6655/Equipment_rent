@@ -31,7 +31,7 @@ namespace Equipment_rent.Utilites
             var response = new List<byte>();
             int bytesRead = 10; // для считывания байтов из потока
 
-            byte[] data_log = Encoding.UTF8.GetBytes(username + '\r' + hashedPass + '\n');
+            byte[] data_log = Encoding.UTF8.GetBytes(mode.ToString() + '\r' + username + '\r' + hashedPass + '\n');
             await stream.WriteAsync(data_log);
 
             int Status = 10;
