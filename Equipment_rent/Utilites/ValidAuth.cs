@@ -79,7 +79,53 @@ namespace Equipment_rent.Utilites
 
         public static async void ChangePassword(string username, string lastpassword, string password)
         {
+            int mode = 1;
+            int numberOfIteration = 99;
+            var hashFunc = new Crypt();
+            byte[] salt_srv = Encoding.UTF8.GetBytes("KompASminE");
 
+            var hashedLastPass = hashFunc.HashDataWithRounds(Encoding.UTF8.GetBytes(lastpassword), salt_srv, numberOfIteration);
+            var hashedNewPass = hashFunc.HashDataWithRounds(Encoding.UTF8.GetBytes(password), salt_srv, numberOfIteration);
+            using TcpClient tcpClient = new TcpClient();
+            await tcpClient.ConnectAsync("85.175.4.135", 8888);
+
+            var stream = tcpClient.GetStream();
+
+            var response = new List<byte>();
+            int bytesRead = 10;
+
+            byte[] data_change = Encoding.UTF8.GetBytes(mode.ToString() + '\r' + username + '\r' + hashedNewPass + '\r' + hashedLastPass + '\n');
+            await stream.WriteAsync(data_change);
+
+            int Status = 10;
+            string UserId;
+            while((bytesRead = stream.ReadByte()) != '\n')
+            {
+                response.Add((byte)bytesRead);
+                if(bytesRead == '\r')
+                {
+                    Status = int.Parse(Encoding.UTF8.GetString(response.ToArray()));
+                    response.Clear();
+                }
+            }
+            UserId = Encoding.UTF8.GetString(response.ToArray());
+            if(status == 0)
+            {
+                MessageBox.Show("Похоже тебя забанили");
+            }
+            if(Status == 1)
+            {
+                MessageBox.Show("Не верный старый пароль");
+            }
+            if(Status == 2)
+            {
+                MessageBox.Show("Пароль изменен");
+            }
+            else
+            {
+                MessageBox.Show("Кажется что-то пошло не так");
+            }
+            response.Clear();
         }
     }
 }

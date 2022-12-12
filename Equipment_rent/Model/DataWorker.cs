@@ -514,5 +514,29 @@ namespace Equipment_rent.Model
                 return result;
             }
         }
+
+        // Edit Auth_User
+        public static string EditAuthUser(
+                Auth_user oldUser,
+                Guid id,
+                string firstName,
+                string lastName,
+                string email,
+                Guid newRole)
+        {
+            string result;
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Auth_user user = db.Auth_user.FirstOrDefault(u => u.id == oldUser.Id);
+                user.Id = id;
+                user.FirstName = firstName;
+                user.LastName = lastName;
+                user.Email = email;
+                user.Role_Id = newRole;
+                db.SaveChanges();
+                result = "Сделано!";
+                return result;
+            }
+        }
     }
 }

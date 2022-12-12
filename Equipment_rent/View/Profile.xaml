@@ -80,6 +80,10 @@
                      Password="Новый пароль"/>
             <PasswordBox x:Name="tb_NewPassword2"
                      Password="Новый пароль"/>
+            <Button Style="{StaticResource addFormButton}"
+                    Command="{Binding ChangePassword}"
+                    Content="Изменить пароль"
+                    Margin="10"/>
         </StackPanel>
         
         <StackPanel Grid.Row="3"
@@ -88,6 +92,7 @@
                     Orientation="Vertical">
             
             <Button Style="{StaticResource addFormButton}"
+                    Command="{Binding EditUser}"
                     Content="Сохранить"
                     Margin="10"/>
         </StackPanel>

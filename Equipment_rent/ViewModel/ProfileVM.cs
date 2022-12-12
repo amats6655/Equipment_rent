@@ -39,7 +39,7 @@ namespace Equipment_rent.ViewModel
         }
 
 
-        
+
 
         public Auth_role Role
         {
@@ -78,13 +78,57 @@ namespace Equipment_rent.ViewModel
             get { return User.Email;}
             set { User.Email = value;}
         }
-        
-        public string LastPass { set { LastPass = value; } }
+        public string User_id
+        {
+            get {return User.Id.ToString();}
+        }
+
+        public string LastPass
+        {
+            set { LastPass = value; }
+        }
         public string NewPass { set { NewPass = value; } }
         public string ConfurmPass { set { ConfurmPass = value; } }
 
-        
 
+        #region Edit user
+        private RelayCommand _editUser;
+        public RelayCommand EditUser
+        {
+            get
+            {
+                return _editUser ?? new RelayCommand(obj =>
+                {
+                    Edit_Button_Click();
+                });
+            }
+        }
+        private void Edit_Button_Click()
+        {
+            DataWorker.EditAuthUser(User, User.Id, Firstname, Lastname, Email, Role.Id);
+        }
+        #endregion
+
+        #region Change Password
+        private RelayCommand _chagePassword;
+        public RelayCommand ChangePassword
+        {
+            get
+            {
+                return _chagePassword ?? new RelayCommand(obj =>
+                {
+                    Change_Password_Click();
+                });
+            }
+        }
+        private void Change_Password_Click(string username, string pass, string new_pass, string confurm_pass )
+        {
+            if(new_pass.Equals(confurm_pass))
+            {
+                AuthClient.ChangePassword(username, pass, new_pass);
+            }
+        }
+        #endregion
 
 
         public event PropertyChangedEventHandler PropertyChanged;

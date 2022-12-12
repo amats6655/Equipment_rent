@@ -90,6 +90,8 @@ namespace Equipment_rent.ViewModel
         }
 
 
+
+        
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
