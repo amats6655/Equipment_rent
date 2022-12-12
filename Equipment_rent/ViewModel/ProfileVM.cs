@@ -78,17 +78,24 @@ namespace Equipment_rent.ViewModel
             get { return User.Email;}
             set { User.Email = value;}
         }
-        public string User_id
-        {
-            get {return User.Id.ToString();}
-        }
-
+        private string _lastpass;
+        private string _newpass;
+        private string _confurmpass;
         public string LastPass
         {
-            set { LastPass = value; }
+            get { return _lastpass; }
+            set { LastPass = value; NotifyPropertyChaged(nameof(LastPass)); }
         }
-        public string NewPass { set { NewPass = value; } }
-        public string ConfurmPass { set { ConfurmPass = value; } }
+        public string NewPass 
+        { 
+            get { return _newpass; }
+            set { NewPass = value; NotifyPropertyChaged(nameof(NewPass)); } 
+        }
+        public string ConfurmPass
+        {
+            get { return _confurmpass; }
+            set { ConfurmPass = value; NotifyPropertyChaged(nameof(ConfurmPass)); } 
+        }
 
 
         #region Edit user
@@ -117,7 +124,7 @@ namespace Equipment_rent.ViewModel
             {
                 return _chagePassword ?? new RelayCommand(obj =>
                 {
-                    Change_Password_Click();
+                    Change_Password_Click(Username, LastPass, NewPass, ConfurmPass);
                 });
             }
         }

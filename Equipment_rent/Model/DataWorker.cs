@@ -527,7 +527,7 @@ namespace Equipment_rent.Model
             string result;
             using (ApplicationContext db = new ApplicationContext())
             {
-                Auth_user user = db.Auth_user.FirstOrDefault(u => u.id == oldUser.Id);
+                Auth_user user = db.Auth_user.FirstOrDefault(u => u.Id == oldUser.Id);
                 user.Id = id;
                 user.FirstName = firstName;
                 user.LastName = lastName;

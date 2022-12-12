@@ -109,7 +109,7 @@ namespace Equipment_rent.Utilites
                 }
             }
             UserId = Encoding.UTF8.GetString(response.ToArray());
-            if(status == 0)
+            if(Status == 0)
             {
                 MessageBox.Show("Похоже тебя забанили");
             }
