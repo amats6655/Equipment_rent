@@ -17,7 +17,7 @@
         AllowsTransparency="True">
 
     <Window.DataContext>
-        <viewModel:Auth/>
+        <viewModel:AuthVM/>
     </Window.DataContext>
 
     <Window.Resources>

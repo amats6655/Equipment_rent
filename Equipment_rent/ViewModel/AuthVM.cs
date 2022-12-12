@@ -19,7 +19,7 @@ using Equipment_rent.Utilites;
 namespace Equipment_rent.ViewModel
 {
 
-    public class Auth : ViewModelBase
+    public class AuthVM : ViewModelBase
     {
 
         private string _username;
@@ -83,7 +83,7 @@ namespace Equipment_rent.ViewModel
         public ICommand RememberPasswordCommand { get; }
 
 
-        public Auth()
+        public AuthVM()
         {
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswodCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
@@ -101,11 +101,7 @@ namespace Equipment_rent.ViewModel
         }
         private void ExecuteLoginCommand(object obj)
         {
-            int mode = 0;
-            AuthClient.AuthClient_Send(mode, Username, Password);
-            
-
-
+            AuthClient.AuthClient_Send(Username, Password);
         }
         private void ExecuteRecoverPassCommand(string username, string email)
         {

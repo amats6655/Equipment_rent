@@ -13,8 +13,9 @@ namespace Equipment_rent.Utilites
 {
     class AuthClient
     {
-        public static async void AuthClient_Send(int mode, string username, string password)
+        public static async void AuthClient_Send(string username, string password)
         {
+            int mode = 0;
             int numberOfIteration = 99;
             var hashFunc = new Crypt();
             byte[] salt_srv = Encoding.UTF8.GetBytes("KompASminE");
@@ -74,6 +75,11 @@ namespace Equipment_rent.Utilites
                 MessageBox.Show("При авторизации что-то пошло не так");
             }
             response.Clear();
+        }
+
+        public static async void ChangePassword(string username, string lastpassword, string password)
+        {
+
         }
     }
 }
