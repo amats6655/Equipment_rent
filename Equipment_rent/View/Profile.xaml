@@ -41,14 +41,14 @@
                     Orientation="Vertical">
             <TextBox x:Name="tb_Username"
                      Style="{StaticResource textBoxAdd}"
-                     Text="{Binding Username, Mode=OneWay}"
+                     Text="{Binding User.Username }"
                      IsEnabled="False"/>
             <TextBox x:Name="tb_Firstname"
                      Style="{StaticResource textBoxAdd}"
-                     Text="{Binding Firstname}"/>
+                     Text="{Binding User.FirstName}"/>
             <TextBox x:Name="tb_Lastname"
                      Style="{StaticResource textBoxAdd}"
-                     Text="{Binding Lastname}"/>
+                     Text="{Binding User.LastName}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2"
@@ -57,15 +57,13 @@
                     Orientation="Vertical">
             <TextBox x:Name="tb_Email"
                      Style="{StaticResource textBoxAdd}"
-                     Text="{Binding Email}"/>
+                     Text="{Binding User.Email}"/>
             <ComboBox x:Name="cb_role"
                       Style="{StaticResource ComboBoxFlatStyle}"
                       ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                       ItemsSource="{Binding AllRoles}"
+                      SelectedItem="{Binding User.Role}"
                       DisplayMemberPath="Role"
-                      SelectedItem="{Binding Role}"
-                      SelectedValue="{Binding Role}"
-                      SelectedValuePath="{Binding Role.Role}"
                       IsEditable="True"
                       IsReadOnly="True"
                       Focusable="False"/>

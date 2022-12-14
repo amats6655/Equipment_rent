@@ -16,6 +16,17 @@ namespace Equipment_rent.Model
         public string LastName { get; set; }
         public string Email { get; set; }
         public Guid Role_Id { get; set; }
-        [NotMapped] public Auth_role Role { get { return DataWorker.GetRoleById(Role_Id); } }
+        private Auth_role _role;
+        [NotMapped] public Auth_role Role
+        {
+            get
+            {
+                return DataWorker.GetRoleById(Role_Id);
+            }
+            set
+            {
+                _role = value;
+            }
+        }
     }
 }
