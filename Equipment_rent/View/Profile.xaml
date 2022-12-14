@@ -7,6 +7,7 @@
              xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+             xmlns:ff="clr-namespace:FunctionalFun.UI"
              mc:Ignorable="d" 
              d:DesignHeight="615" d:DesignWidth="830"
              Background="Transparent"
@@ -74,12 +75,66 @@
                     Grid.Column="2"
                     Margin="10 25"
                     Orientation="Vertical">
-            <PasswordBox x:Name="tb_Password"
-                     Password="Старый пароль"/>
-            <PasswordBox x:Name="tb_NewPassword1"
-                     Password="Новый пароль"/>
-            <PasswordBox x:Name="tb_NewPassword2"
-                     Password="Новый пароль"/>
+            <PasswordBox x:Name="tb_LastPass" 
+                                 ff:PasswordBoxAssistant.BindPassword="true" 
+                                 ff:PasswordBoxAssistant.BoundPassword="{Binding Path=LastPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 FontSize="13"
+                                 FontWeight="Medium"
+                                 Foreground="White"
+                                 CaretBrush="LightGray"
+                                 BorderBrush="DarkGray"
+                                 BorderThickness="0 0 0 2"
+                                 Height="28"
+                                 VerticalAlignment="Center"
+                                 Margin="0 5 0 0"
+                                 Padding="30 5 0 0">
+                <PasswordBox.Background>
+                    <ImageBrush ImageSource="/Images/key.png"
+                                        Stretch="Uniform"
+                                        AlignmentX="Left"/>
+                </PasswordBox.Background>
+            </PasswordBox>
+            
+            <PasswordBox x:Name="tb_NewPass" 
+                                 ff:PasswordBoxAssistant.BindPassword="true" 
+                                 ff:PasswordBoxAssistant.BoundPassword="{Binding Path=NewPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 FontSize="13"
+                                 FontWeight="Medium"
+                                 Foreground="White"
+                                 CaretBrush="LightGray"
+                                 BorderBrush="DarkGray"
+                                 BorderThickness="0 0 0 2"
+                                 Height="28"
+                                 VerticalAlignment="Center"
+                                 Margin="0 5 0 0"
+                                 Padding="30 5 0 0">
+                <PasswordBox.Background>
+                    <ImageBrush ImageSource="/Images/key.png"
+                                        Stretch="Uniform"
+                                        AlignmentX="Left"/>
+                </PasswordBox.Background>
+            </PasswordBox>
+            
+            
+            <PasswordBox x:Name="tb_ConfPass" 
+                                 ff:PasswordBoxAssistant.BindPassword="true" 
+                                 ff:PasswordBoxAssistant.BoundPassword="{Binding Path=ConfurmPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 FontSize="13"
+                                 FontWeight="Medium"
+                                 Foreground="White"
+                                 CaretBrush="LightGray"
+                                 BorderBrush="DarkGray"
+                                 BorderThickness="0 0 0 2"
+                                 Height="28"
+                                 VerticalAlignment="Center"
+                                 Margin="0 5 0 0"
+                                 Padding="30 5 0 0">
+                <PasswordBox.Background>
+                    <ImageBrush ImageSource="/Images/key.png"
+                                        Stretch="Uniform"
+                                        AlignmentX="Left"/>
+                </PasswordBox.Background>
+            </PasswordBox>
             <Button Style="{StaticResource addFormButton}"
                     Command="{Binding ChangePassword}"
                     Content="Изменить пароль"

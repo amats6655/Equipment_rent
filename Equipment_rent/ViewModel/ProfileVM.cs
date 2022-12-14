@@ -41,68 +41,25 @@ namespace Equipment_rent.ViewModel
         }
 
 
-        private Auth_role _role = User.Role;
-        private string _username = User.Username;
-        private string _firstname = User.FirstName;
-        private string _lastname = User.LastName;
-        private string _email = User.Email;
 
-        public Auth_role Role
-        {
-            get
-            {
-                return _role;
-            }
-            set
-            {
-                _role = value;
-                NotifyPropertyChaged(nameof(Role));
-            }
-        }
-        public string Username
-        {
-            get
-            {
-                return _username;
-            }
-            set
-            {
-                _username = value;
-                NotifyPropertyChaged(nameof(Username));
-            }
-        }
-        public string Firstname
-        {
-            get { return _firstname;}
-            set { _firstname = value; NotifyPropertyChaged(nameof(Firstname)); }
-        }
-        public string Lastname
-        {
-            get { return _lastname;}
-            set { _lastname = value; NotifyPropertyChaged(nameof(Lastname)); }
-        }
-        public string Email
-        {
-            get { return _email;}
-            set { _email = value; NotifyPropertyChaged(nameof(Email)); }
-        }
+
         private string _lastpass;
         private string _newpass;
         private string _confurmpass;
         public string LastPass
         {
             get { return _lastpass; }
-            set { LastPass = value; NotifyPropertyChaged(nameof(LastPass)); }
+            set { _lastpass = value; NotifyPropertyChaged(nameof(LastPass)); }
         }
         public string NewPass 
         { 
             get { return _newpass; }
-            set { NewPass = value; NotifyPropertyChaged(nameof(NewPass)); } 
+            set { _newpass = value; NotifyPropertyChaged(nameof(NewPass)); } 
         }
         public string ConfurmPass
         {
             get { return _confurmpass; }
-            set { ConfurmPass = value; NotifyPropertyChaged(nameof(ConfurmPass)); } 
+            set { _confurmpass = value; NotifyPropertyChaged(nameof(ConfurmPass)); } 
         }
 
 
@@ -120,7 +77,7 @@ namespace Equipment_rent.ViewModel
         }
         private void Edit_Button_Click()
         {
-            DataWorker.EditAuthUser(User, User.Id, Firstname, Lastname, Email, Role.Id);
+            DataWorker.EditAuthUser(User, User.Id, User.FirstName, User.LastName, User.Email, User.Role.Id);
         }
         #endregion
 
@@ -132,7 +89,7 @@ namespace Equipment_rent.ViewModel
             {
                 return _chagePassword ?? new RelayCommand(obj =>
                 {
-                    Change_Password_Click(Username, LastPass, NewPass, ConfurmPass);
+                    Change_Password_Click(User.Username, LastPass, NewPass, ConfurmPass);
                 });
             }
         }
