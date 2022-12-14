@@ -41,7 +41,7 @@
                     Orientation="Vertical">
             <TextBox x:Name="tb_Username"
                      Style="{StaticResource textBoxAdd}"
-                     Text="{Binding Username}"
+                     Text="{Binding Username, Mode=OneWay}"
                      IsEnabled="False"/>
             <TextBox x:Name="tb_Firstname"
                      Style="{StaticResource textBoxAdd}"

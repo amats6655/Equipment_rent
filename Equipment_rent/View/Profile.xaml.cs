@@ -12,8 +12,6 @@ namespace Equipment_rent.View
         public Profile()
         {
             InitializeComponent();
-
-
         }
     }
 }

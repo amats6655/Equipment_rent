@@ -40,6 +40,45 @@ namespace Equipment_rent.ViewModel
             }
         }
 
+        private static string _username;
+        private static string _firstname;
+        private static string _lastname;
+        private static string _email;
+        private static Auth_role _role;
+
+        public static string Username { get { return _username; } set { _username = value; } }
+        public static string Firstname
+        {
+            get { return _firstname; }
+            set
+            {
+                _firstname = value;
+            }
+        }
+        public static string Lastname
+        {
+            get { return _lastname; }
+            set
+            {
+                _lastname = value;
+            }
+        }
+        public static string Email
+        {
+            get { return _email; }
+            set
+            {
+                _email = value;
+            }
+        }
+        public static Auth_role Role
+        {
+            get { return _role; }
+            set
+            {
+                _role = value;
+            }
+        }
 
 
 
