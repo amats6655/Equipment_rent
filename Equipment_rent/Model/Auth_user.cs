@@ -17,5 +17,7 @@ namespace Equipment_rent.Model
         public string Email { get; set; }
         public Guid Role_Id { get; set; }
         [NotMapped] public Auth_role Role { get { return DataWorker.GetRoleById(Role_Id); } }
+        [NotMapped] public string? BgColor { get; set; }
+        [NotMapped] public char? Character { get; set; }
     }
 }

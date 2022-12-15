@@ -1,0 +1,154 @@
+﻿<Window x:Class="Equipment_rent.View.AddStaff"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mask="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:AddStaffVM}"
+        Title="AddStaff" 
+        Height="800" 
+        Width="400" 
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        Name="AddNewStaffWindow">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+
+    <Grid>
+        <Border Background="#eff2f7"
+                CornerRadius="10"
+                BorderBrush="Gray"
+                BorderThickness="1">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.ColumnSpan="3"
+                           Grid.Row="1"
+                           Text="Новый сотрудник"
+                           Style="{StaticResource titleText_Style}"
+                           HorizontalAlignment="Center" FontFamily="Lab Grotesque Black"/>
+                <Border Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        MouseDown="Border_MouseDown"
+                        BorderBrush="Transparent"
+                        BorderThickness="20"/>
+                <Button Grid.Column="3"
+                        IsCancel="True"
+                        Style="{StaticResource CloseWindowButton}">
+                    <Icon:PackIconMaterial Kind="Close"
+                                           Width="10"/>
+                </Button>
+                <Separator Grid.Column="1"
+                           Grid.Row="1"
+                           VerticalAlignment="Top"
+                           Opacity="0.3"
+                           />
+                <!--#region Исчезающий текст-->
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 20 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Фамилия" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_lastname}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 80 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Имя" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_firstname}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 140 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Логин" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_username}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 200 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Email"
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_email}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 320 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Пароль"
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_password}"/>
+                <!--#endregion-->
+                <StackPanel Grid.Column="1"
+                            Grid.Row="2"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center">
+<!--#region TextBoxes--> 
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding StaffLastName}"
+                             x:Name="tb_lastname"
+                             />
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding StaffFirstName}"
+                             x:Name="tb_firstname"
+                             />
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding StaffUsername}"
+                             x:Name="tb_username"
+                             />
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding StaffEmail}"
+                             x:Name="tb_email"/>
+                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                              ItemsSource="{Binding AllRoles}"
+                              SelectedItem="{Binding Role}"
+                              DisplayMemberPath="Role"/>
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding Password}"
+                             x:Name="tb_password"/>
+
+
+                    <!--#endregion-->
+                    <Button Style="{StaticResource addFormButton}"
+                            Command="{Binding AddNewStaff}"
+                            CommandParameter="{Binding ElementName=AddNewStaffWindow}"/>
+                    <Button IsCancel="True"
+                            Style="{StaticResource cancelFormButton}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

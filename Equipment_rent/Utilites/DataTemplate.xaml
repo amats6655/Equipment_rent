@@ -12,8 +12,14 @@
     <DataTemplate DataType="{x:Type vm:OrdersVM}">
         <view:Orders/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:SettingsVM}">
-        <view:Setings/>
+    <DataTemplate DataType="{x:Type vm:StaffVM}">
+        <view:Staff/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AddStaffVM}">
+        <view:AddStaff/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:EditStaffVM}">
+        <view:EditStaff/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:UsersVM}">
         <view:Users/>

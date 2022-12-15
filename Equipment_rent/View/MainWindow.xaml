@@ -152,6 +152,18 @@
                                                Text="Заказы"/>
                                 </StackPanel>
                             </menu:Btn>
+                            <menu:Btn Style="{StaticResource menuButton}"
+                                      HorizontalAlignment="Stretch"
+                                      Command="{Binding StaffCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial8"
+                                                           Kind="PacMan"
+                                                           Style="{StaticResource menuButtonIcon}" 
+                                                           Margin="20,2,20,0"/>
+                                    <TextBlock x:Name="textBlock8"
+                                               Text="Сотрудники"/>
+                                </StackPanel>
+                            </menu:Btn>
                         </StackPanel>
 
 

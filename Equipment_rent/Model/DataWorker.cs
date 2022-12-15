@@ -117,6 +117,24 @@ namespace Equipment_rent.Model
             }
             return result;
         }
+        // Add Staff
+        public static Auth_user CreateStaff(string username, string firstname, string lastname, string email, Guid role_id)
+        {
+            Auth_user staff = new Auth_user();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                // Проверяем на наличие такого пользователя
+                bool checkIsExist = db.Auth_user.Any(el => el.Username == username && el.Email == email);
+                if (!checkIsExist)
+                {
+                    Auth_user newStaff = new Auth_user { Username = username, FirstName = firstname, LastName = lastname, Email = email, Role_Id = role_id };
+                    db.Auth_user.Add(newStaff);
+                    db.SaveChanges();
+                    staff = newStaff;
+                }
+                return staff;
+            }
+        }
 
         // Edit User
         public static string EditUser(User oldUser, string newName, string newPhone, bool isDebt)
@@ -170,6 +188,27 @@ namespace Equipment_rent.Model
             return result;
         }
 
+
+
+
+
+        // Edit Staff
+        public static string EditStaff(Auth_user oldStaff, string firstname, string lastname, string email, Guid role_id)
+        {
+            string result;
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Auth_user staff = db.Auth_user.FirstOrDefault(s => s.Id == oldStaff.Id);
+                staff.FirstName = firstname;
+                staff.LastName = lastname;
+                staff.Email = email;
+                staff.Role_Id = role_id;
+                db.SaveChanges();
+                result = "Сделано!";
+                return result;
+            }
+        }
+
         // Delete User
         public static string DeleteUser(User user)
         {
@@ -205,6 +244,18 @@ namespace Equipment_rent.Model
                 db.Orders.Remove(order);
                 db.SaveChanges();
                 result = $"Сделано! Заказ #{order.OrderId} удален";
+            }
+            return result;
+        }
+        // Delete Staff
+        public static string DeleteStaff(Auth_user staff)
+        {
+            string result;
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                db.Auth_user.Remove(staff);
+                db.SaveChanges();
+                result = $"Сделано! Пользователь {staff.Username} уволен";
             }
             return result;
         }
@@ -368,11 +419,40 @@ namespace Equipment_rent.Model
                 }
                 
             }
-        }        
-        
-        
-        
-        
+        }
+        // Get Preview Staff
+        public static List<Auth_user> GetPreviousPageStaff(int pageIndex, int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                if (pageIndex > 1)
+                {
+                    pageIndex -= 1;
+                    StaffVM.pageIndex = pageIndex;
+                    if (pageIndex == 1)
+                    {
+                        var result = db.Auth_user.Take(count).ToList();
+                        StaffVM.count = result.Count();
+                        return result;
+                    }
+                    else
+                    {
+                        var result = db.Auth_user.Skip((pageIndex * count) - count).Take(count).ToList();
+                        StaffVM.count = Math.Min(pageIndex * count, GetAllAuthUsers().Count);
+                        return result;
+                    }
+
+                }
+                else
+                {
+                    return db.Auth_user.Take(count).ToList();
+                }
+
+            }
+        }
+
+
+
         // Get Next Users
         public static List<User> GetNextPageUsers(int pageIndex, int count)
         {
@@ -438,6 +518,28 @@ namespace Equipment_rent.Model
                 
             }
         }
+        // Get Next Staff
+        public static List<Auth_user> GetNextPageStaff(int pageIndex, int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+
+                if (db.Users.Skip(pageIndex * count).Take(count).Count() == 0)
+                {
+                    var result = db.Auth_user.Skip((pageIndex * count) - count).Take(count).ToList();
+                    StaffVM.count = (pageIndex * count) + db.Auth_user.Skip(pageIndex * count).Take(count).Count();
+                    return result;
+                }
+                else
+                {
+                    var result = db.Auth_user.Skip(pageIndex * count).Take(count).ToList();
+                    StaffVM.count = (pageIndex * count) + db.Auth_user.Skip(pageIndex * count).Take(count).Count();
+                    StaffVM.pageIndex = pageIndex + 1;
+                    return result;
+                }
+
+            }
+        }
 
 
         //Get First Users
@@ -471,6 +573,15 @@ namespace Equipment_rent.Model
             }
         }
 
+        //Get First Staff
+        public static List<Auth_user> GetFirstStaff(int count)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Auth_user.Take(count).ToList();
+                return result;
+            }
+        }
 
 
 
