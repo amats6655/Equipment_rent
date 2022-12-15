@@ -8,13 +8,15 @@ using System.Windows.Markup;
 using System.Windows;
 using Equipment_rent.View;
 using Equipment_rent.ViewModel;
+using System.Threading.Tasks;
 
 namespace Equipment_rent.Utilites
 {
     class AuthClient
     {
-        public static async void AuthClient_Send(string username, string password)
+        public static async Task<string> AuthClient_Send(string username, string password)
         {
+            List<string> ErrorMessages = new List<string>() { "Неверный логин", "Неверный пароль", "Авторизация прошла успешно", "При авторизации что-то пошло не так" };
             int mode = 0;
             int numberOfIteration = 99;
             var hashFunc = new Crypt();
@@ -49,16 +51,8 @@ namespace Equipment_rent.Utilites
                 }
             }
             UserId = Encoding.UTF8.GetString(response.ToArray());
-
-            if(Status == 0)
-            {
-                MessageBox.Show("Неверный логин");
-            }
-            else if (Status == 1)
-            {
-                MessageBox.Show("Неверный пароль");
-            }
-            else if (Status == 2 && UserId != null)
+            
+            if (Status == 2 && UserId != null)
             {
                 MessageBox.Show($"Авторизация {username} прошла успешно");
                 NavigationVM.Role = 1;
@@ -70,11 +64,8 @@ namespace Equipment_rent.Utilites
                 window.ShowDialog();
                 w.Show();
             }
-            else
-            {
-                MessageBox.Show("При авторизации что-то пошло не так");
-            }
             response.Clear();
+            return ErrorMessages[Status];
         }
 
         public static async void ChangePassword(string username, string lastpassword, string password)
