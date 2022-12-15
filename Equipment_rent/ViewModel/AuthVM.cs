@@ -103,7 +103,7 @@ namespace Equipment_rent.ViewModel
         }
         private void ExecuteLoginCommand(object obj)
         {
-            AuthClient.AuthClient_Send(Username, Password);
+            ErrorMessage = AuthClient.AuthClient_Send(Username, Password).ToString();
         }
         private void ExecuteRecoverPassCommand(string username, string email)
         {
