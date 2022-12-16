@@ -23,12 +23,13 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-
+        public static string UserId { get; set; }
         public string StaffUsername { get; set; }
         public string StaffFirstName { get; set; }
         public string StaffLastName { get; set; }
         public string StaffEmail { get; set; }
         public Auth_role Role { get; set; }
+        public string Password { get; set; }
 
         #region Commands to add
         private RelayCommand addNewStaff;
@@ -51,8 +52,13 @@ namespace Equipment_rent.ViewModel
                     }
                     else
                     {
-                        DataWorker.CreateStaff(StaffUsername, StaffFirstName, StaffLastName, StaffEmail, Role.Id);
-                        UpdateAllStaffView();
+                        AuthClient.CreateNewUser(StaffUsername, Password);
+                        if (UserId != null)
+                        {
+                            Guid guid = Guid.Parse(UserId);
+                            DataWorker.CreateStaff(guid, StaffUsername, StaffFirstName, StaffLastName, StaffEmail, Role.Id);
+                            UpdateAllStaffView();
+                        }
                         window.Close();
                     }
                 });

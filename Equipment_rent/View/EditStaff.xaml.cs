@@ -19,7 +19,10 @@ namespace Equipment_rent.View
             EditStaffVM.StaffFirstname = staffToEdit.FirstName;
             EditStaffVM.StaffLastname = staffToEdit.LastName;
             EditStaffVM.StaffEmail = staffToEdit.Email;
-            EditStaffVM.StaffRole_Id = staffToEdit.Role_Id;
+
+            cb_role.SelectedValue = staffToEdit.Role;
+            cb_role.SelectedValuePath = staffToEdit.Role.Role;
+            cb_role.Text = staffToEdit.Role.Role;
         }
 
 

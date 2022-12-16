@@ -58,27 +58,95 @@
                            Grid.Row="1"
                            VerticalAlignment="Top"
                            Opacity="0.3"/>
+                <!--#region Исчезающий текст-->
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 20 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Фамилия" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_lastname}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 80 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Имя" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_firstname}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 140 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Логин" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_username}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 200 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Email"
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_email}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="20 320 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Пароль"
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_password}"/>
+                <!--#endregion-->
                 <StackPanel Grid.Column="1"
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
-<!--#region TextBoxes--> 
+<!--#region TextBoxes-->
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding UserLastName}"
+                             Text="{Binding StaffLastname}"
                              x:Name="tb_lastname"
                              />
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding UserFirstName}"
+                             Text="{Binding StaffFirstname}"
                              x:Name="tb_firstname"
                              />
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding UserPhone}"
-                             x:Name="tb_phone"/>
-<!--#endregion-->
+                             Text="{Binding StaffUsername}"
+                             x:Name="tb_username"
+                             />
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding StaffEmail}"
+                             x:Name="tb_email"/>
+                    <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                              ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
+                              ItemsSource="{Binding AllRoles}"
+                              SelectedItem="{Binding StaffRole}"
+                              DisplayMemberPath="Role"
+                              x:Name="cb_role"
+                              IsEditable="True"
+                              IsReadOnly="True"
+                              Focusable="False"/>
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding Password}"
+                             x:Name="tb_password"/>
+                    <!--#endregion-->
                     <Button Style="{StaticResource addFormButton}"
                             Content="Сохранить"
-                            Command="{Binding EditUser}"
-                            CommandParameter="{Binding ElementName=EditUserWindow}"/>
+                            Command="{Binding EditStaff}"
+                            CommandParameter="{Binding ElementName=EditStaffWindow}"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>
                 </StackPanel>

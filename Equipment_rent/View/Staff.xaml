@@ -153,11 +153,11 @@
                                     Width="*"
                                     Binding="{Binding Email}"/>
             
-                <DataGridTextColumn Header="Активные заказы"
-                                    Width="auto"
+                <DataGridTextColumn Header="Должность"
+                                    Width="*"
                                     IsReadOnly="True"
                                     FontWeight="SemiBold"
-                                    Binding="{Binding Character}"/>
+                                    Binding="{Binding Role.Role}"/>
 
                 <DataGridTemplateColumn Header="Операции"
                                         IsReadOnly="True"

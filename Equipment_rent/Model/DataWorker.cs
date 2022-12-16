@@ -118,7 +118,7 @@ namespace Equipment_rent.Model
             return result;
         }
         // Add Staff
-        public static Auth_user CreateStaff(string username, string firstname, string lastname, string email, Guid role_id)
+        public static Auth_user CreateStaff(Guid userId, string username, string firstname, string lastname, string email, Guid role_id)
         {
             Auth_user staff = new Auth_user();
             using (ApplicationContext db = new ApplicationContext())
@@ -127,7 +127,7 @@ namespace Equipment_rent.Model
                 bool checkIsExist = db.Auth_user.Any(el => el.Username == username && el.Email == email);
                 if (!checkIsExist)
                 {
-                    Auth_user newStaff = new Auth_user { Username = username, FirstName = firstname, LastName = lastname, Email = email, Role_Id = role_id };
+                    Auth_user newStaff = new Auth_user {Id = userId, Username = username, FirstName = firstname, LastName = lastname, Email = email, Role_Id = role_id, Auth_roleId = role_id};
                     db.Auth_user.Add(newStaff);
                     db.SaveChanges();
                     staff = newStaff;
@@ -203,6 +203,7 @@ namespace Equipment_rent.Model
                 staff.LastName = lastname;
                 staff.Email = email;
                 staff.Role_Id = role_id;
+                staff.Auth_roleId = role_id;
                 db.SaveChanges();
                 result = "Сделано!";
                 return result;

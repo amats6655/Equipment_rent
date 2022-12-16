@@ -31,7 +31,7 @@ namespace Equipment_rent.ViewModel
         #endregion
 
 
-        #region Commands to add
+        #region Commands to Edit
         private RelayCommand editEquip;
         public RelayCommand EditEquip
         {
