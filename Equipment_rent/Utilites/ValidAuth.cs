@@ -9,13 +9,14 @@ using System.Windows;
 using Equipment_rent.View;
 using Equipment_rent.ViewModel;
 using System.Threading.Tasks;
+using Equipment_rent.Model;
 
 namespace Equipment_rent.Utilites
 {
     class AuthClient
     {
         private static readonly string sal = "KompASminE";
-        public static async Task<string> AuthClient_Send(string username, string password)
+        public static async void AuthClient_Send(string username, string password)
         {
             List<string> ErrorMessages = new List<string>() { "Неверный логин", "Неверный пароль", "Авторизация прошла успешно", "При авторизации что-то пошло не так" };
             int mode = 0;
@@ -26,7 +27,7 @@ namespace Equipment_rent.Utilites
 
             var hashedPass = hashFunc.HashDataWithRounds(Encoding.UTF8.GetBytes(password), salt_srv, numberOfIteration);
             using TcpClient tcpClient = new TcpClient();
-            await tcpClient.ConnectAsync("85.175.4.135", 8888);
+            tcpClient.Connect("85.175.4.135", 8888);
 
             // получаем NetworkStream для взаимодействия с сервером
             var stream = tcpClient.GetStream();
@@ -56,8 +57,7 @@ namespace Equipment_rent.Utilites
             if (Status == 2 && UserId != null)
             {
                 MessageBox.Show($"Авторизация {username} прошла успешно");
-                NavigationVM.Role = 1;
-                NavigationVM.UserID = Guid.Parse(UserId);
+                NavigationVM.AuthUser = DataWorker.GetAuthUserById(Guid.Parse(UserId));
                 var w = Application.Current.Windows[0];
                 w.Hide();
                 Window window = new MainWindow();
@@ -66,7 +66,7 @@ namespace Equipment_rent.Utilites
                 w.Show();
             }
             response.Clear();
-            return ErrorMessages[Status];
+            AuthVM.Message = ErrorMessages[Status];
         }
 
         public static async void ChangePassword(string username, string lastpassword, string password)
@@ -129,7 +129,7 @@ namespace Equipment_rent.Utilites
 
             var hashedPass = hashFunc.HashDataWithRounds(Encoding.UTF8.GetBytes(password), salt_srv, numberOfIteration);
             using TcpClient tcpClient = new TcpClient();
-            await tcpClient.ConnectAsync("85.175.4.135", 8888);
+            tcpClient.Connect("85.175.4.135", 8888);
 
             var stream = tcpClient.GetStream();
 

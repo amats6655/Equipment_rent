@@ -40,7 +40,7 @@ namespace Equipment_rent.ViewModel
                 List<Auth_user> users = new List<Auth_user>();
                 foreach (Auth_user staff in firstStaff)
                 {
-                    char Character = staff.FirstName[0];
+                    char Character = staff.LastName[0];
                     Brush BgColor = GetBrush.getBrush(Character);
                     staff.BgColor = BgColor.ToString();
                     staff.Character = Character;
@@ -113,7 +113,7 @@ namespace Equipment_rent.ViewModel
 
         public void UpdateAllStaffView()
         {
-            allStaff = DataWorker.GetFirstStaff(numberOfRecPerPage);
+            firstStaff = DataWorker.GetFirstStaff(numberOfRecPerPage);
             Staff.AllStaff.ItemsSource = null;
             Staff.AllStaff.Items.Clear();
             Staff.AllStaff.ItemsSource = FirstStaff;

@@ -12,7 +12,6 @@ namespace Equipment_rent.View
         public Staff()
         {
             InitializeComponent();
-
             AllStaff = StaffDataGrid;
         }
     }

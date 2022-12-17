@@ -27,6 +27,7 @@ namespace Equipment_rent.ViewModel
         private string _errorMessage;
         private bool _isViewVisible = true;
 
+        public static string Message = "";
         public string Username
         {
             get
@@ -101,9 +102,12 @@ namespace Equipment_rent.ViewModel
                 validData = true;
             return validData;
         }
-        private void ExecuteLoginCommand(object obj)
+        private async void ExecuteLoginCommand(object obj)
         {
-            ErrorMessage = AuthClient.AuthClient_Send(Username, Password).ToString();
+
+            AuthClient.AuthClient_Send(Username, Password);
+            ErrorMessage = Message;
+
         }
         private void ExecuteRecoverPassCommand(string username, string email)
         {

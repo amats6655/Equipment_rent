@@ -13,9 +13,7 @@ namespace Equipment_rent.ViewModel
 
     internal class ProfileVM:INotifyPropertyChanged
     {
-        public static Guid User_id = NavigationVM.UserID;
-
-        private Auth_user _user = DataWorker.GetAuthUserById(User_id);
+        private Auth_user _user = NavigationVM.AuthUser;
         public Auth_user User
         {
             get

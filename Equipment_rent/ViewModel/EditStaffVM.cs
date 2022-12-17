@@ -50,6 +50,13 @@ namespace Equipment_rent.ViewModel
                     {
                         SetRedBlockControl.RedBlockControl(window, "tb_phone");
                     }
+                    else if (Password != null)
+                    {
+                        DataWorker.EditStaff(SelectedStaff, StaffFirstname, StaffLastname, StaffEmail, StaffRole.Id);
+                        MessageBox.Show("Функция смены пароля здесь пока не доступна");
+                        UpdateAllStaffView();
+                        window.Close();
+                    }
                     else
                     {
                         DataWorker.EditStaff(SelectedStaff, StaffFirstname, StaffLastname, StaffEmail, StaffRole.Id);

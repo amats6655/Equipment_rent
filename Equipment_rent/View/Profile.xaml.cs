@@ -12,8 +12,7 @@ namespace Equipment_rent.View
     /// </summary>
     public partial class Profile : UserControl
     {
-        private static readonly Guid UserID = NavigationVM.UserID;
-        private readonly Auth_user User = DataWorker.GetAuthUserById(UserID);
+        private readonly Auth_user User = NavigationVM.AuthUser;
         public Profile()
         {
             InitializeComponent();

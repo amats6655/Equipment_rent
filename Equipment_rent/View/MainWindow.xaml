@@ -154,7 +154,9 @@
                             </menu:Btn>
                             <menu:Btn Style="{StaticResource menuButton}"
                                       HorizontalAlignment="Stretch"
-                                      Command="{Binding StaffCommand}">
+                                      Command="{Binding StaffCommand}"
+                                      x:Name="btn_staff"
+                                      Visibility="Collapsed">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial x:Name="packIconMaterial8"
                                                            Kind="PacMan"

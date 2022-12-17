@@ -29,7 +29,7 @@ namespace Equipment_rent.ViewModel
             set
             {
                 pageInformation = value;
-                NotifyPropertyChaged("PageInformation");
+                NotifyPropertyChaged(nameof(PageInformation));
             }
         }
         private static List<Order> allOrders = DataWorker.GetAllOrders();
@@ -62,12 +62,12 @@ namespace Equipment_rent.ViewModel
         }
 
 
-        public static Visibility DeleteVis()
-        {
-            if (NavigationVM.Role == 1) return Visibility.Collapsed;
-            else return Visibility.Visible;
+        //public static Visibility DeleteVis()
+        //{
+        //    if (NavigationVM.Role == 1) return Visibility.Collapsed;
+        //    else return Visibility.Visible;
 
-        }
+        //}
 
 
 

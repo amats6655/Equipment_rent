@@ -100,28 +100,6 @@ namespace Equipment_rent.ViewModel
         public string UserPhone { get; set; }
         public User newUser { get; set; }
 
-
-        //public string this[string columnName]
-        //{
-        //    get
-        //    {
-        //        string error = string.Empty;
-        //        switch(columnName)
-        //        {
-        //            case "Amount":
-        //                if(Amount > Equipment?.Balance)
-        //                {
-        //                    error = "Превышает остаток";
-        //                }
-        //                break;
-        //        }
-        //        return error;
-        //    }
-        //}
-        //public string Error
-        //{
-        //    get { throw new NotImplementedException(); }
-        //}
         #endregion
 
 

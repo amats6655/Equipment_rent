@@ -164,7 +164,7 @@ namespace Equipment_rent.ViewModel
         }
         public void UpdateAllEquipmentsView()
         {
-            allEquipments = DataWorker.GetAllEquipments();
+            firstEquipments = DataWorker.GetAllEquipments();
             Equipments.AllEquipments.ItemsSource = null;
             Equipments.AllEquipments.Items.Clear();
             Equipments.AllEquipments.ItemsSource = FirstEquipments;

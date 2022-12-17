@@ -17,8 +17,6 @@
    </UserControl.DataContext>
 
     <Grid>
-    
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>

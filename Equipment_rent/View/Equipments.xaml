@@ -9,6 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="615" d:DesignWidth="830"
              x:Name="DataEquipments">
+    
     <UserControl.DataContext>
         <vm:EquipmentsVM/>
     </UserControl.DataContext>

@@ -41,40 +41,17 @@ namespace Equipment_rent.ViewModel
             CurrentView = new HomeVM();
         }
 
-
-        private static Guid _userID;
-        public static Guid UserID
+        private static Auth_user auth_User;
+        public static Auth_user AuthUser 
         {
-            get
+            get 
             {
-                return _userID;
+                return auth_User;
             }
             set
             {
-                _userID = value;
+                auth_User = value;
             }
-        }
-        private Auth_user _user;
-        public Auth_user User
-        {
-            get
-            {
-                return _user;
-            }
-            set
-            {
-                _user = value;
-            }
-        }
-
-        private static int _role;
-        public static int Role
-        {
-            get
-            {
-                return _role;
-            }
-            set { _role = value; }
         }
     }
 }

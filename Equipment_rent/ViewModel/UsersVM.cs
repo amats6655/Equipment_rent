@@ -113,7 +113,7 @@ namespace Equipment_rent.ViewModel
 
         public void UpdateAllUsersView()
         {
-            allUsers = DataWorker.GetFirstUsers(numberOfRecPerPage);
+            firstUsers = DataWorker.GetFirstUsers(numberOfRecPerPage);
             Users.AllUsers.ItemsSource = null;
             Users.AllUsers.Items.Clear();
             Users.AllUsers.ItemsSource = FirstUsers;

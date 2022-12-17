@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Equipment_rent.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,7 +13,10 @@ namespace Equipment_rent.View
         public MainWindow()
         {
             InitializeComponent();
-
+            if (NavigationVM.AuthUser.Role.Role.Equals("Эксперт"))
+            {
+                btn_staff.Visibility = Visibility.Visible;
+            }
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
