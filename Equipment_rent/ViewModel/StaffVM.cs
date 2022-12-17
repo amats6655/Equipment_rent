@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Equipment_rent.Model;
+using Equipment_rent.Utilites;
+using Equipment_rent.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Media;
-using Equipment_rent.Model;
-using Equipment_rent.Utilites;
-using Equipment_rent.View;
-using Microsoft.VisualBasic;
 
 namespace Equipment_rent.ViewModel
 {
@@ -35,8 +34,8 @@ namespace Equipment_rent.ViewModel
         private List<Auth_user> firstStaff = DataWorker.GetFirstStaff(numberOfRecPerPage);
         public List<Auth_user> FirstStaff
         {
-            get 
-            { 
+            get
+            {
                 List<Auth_user> users = new List<Auth_user>();
                 foreach (Auth_user staff in firstStaff)
                 {
@@ -48,8 +47,8 @@ namespace Equipment_rent.ViewModel
                 }
                 return users;
             }
-            set 
-            { 
+            set
+            {
                 allStaff = value;
                 NotifyPropertyChaged("AllStaff");
             }
@@ -189,7 +188,7 @@ namespace Equipment_rent.ViewModel
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         private void NotifyPropertyChaged(String propertyName)
         {
             if (PropertyChanged != null)

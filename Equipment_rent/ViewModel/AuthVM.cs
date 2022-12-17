@@ -1,19 +1,6 @@
-﻿using Equipment_rent.ViewModel;
+﻿using Equipment_rent.Utilites;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Security.Principal;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Equipment_rent.View;
-using System.Windows;
-using System.Threading.Channels;
-using Equipment_rent.Utilites;
 
 
 namespace Equipment_rent.ViewModel
@@ -92,7 +79,7 @@ namespace Equipment_rent.ViewModel
 
 
 
-        
+
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;

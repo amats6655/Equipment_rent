@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Net.Sockets;
-using System.Text;
-using System.IO;
-using System.Net.Http;
-using System.Windows.Markup;
-using System.Windows;
+﻿using Equipment_rent.Model;
 using Equipment_rent.View;
 using Equipment_rent.ViewModel;
-using System.Threading.Tasks;
-using Equipment_rent.Model;
+using System;
+using System.Collections.Generic;
+using System.Net.Sockets;
+using System.Text;
+using System.Windows;
 
 namespace Equipment_rent.Utilites
 {
@@ -53,7 +49,7 @@ namespace Equipment_rent.Utilites
                 }
             }
             UserId = Encoding.UTF8.GetString(response.ToArray());
-            
+
             if (Status == 2 && UserId != null)
             {
                 MessageBox.Show($"Авторизация {username} прошла успешно");
@@ -61,7 +57,7 @@ namespace Equipment_rent.Utilites
                 var w = Application.Current.Windows[0];
                 w.Hide();
                 Window window = new MainWindow();
-                
+
                 window.ShowDialog();
                 w.Show();
             }
@@ -91,25 +87,25 @@ namespace Equipment_rent.Utilites
 
             int Status = 10;
             string UserId;
-            while((bytesRead = stream.ReadByte()) != '\n')
+            while ((bytesRead = stream.ReadByte()) != '\n')
             {
                 response.Add((byte)bytesRead);
-                if(bytesRead == '\r')
+                if (bytesRead == '\r')
                 {
                     Status = int.Parse(Encoding.UTF8.GetString(response.ToArray()));
                     response.Clear();
                 }
             }
             UserId = Encoding.UTF8.GetString(response.ToArray());
-            if(Status == 0)
+            if (Status == 0)
             {
                 MessageBox.Show("Похоже тебя забанили");
             }
-            if(Status == 1)
+            if (Status == 1)
             {
                 MessageBox.Show("Не верный старый пароль");
             }
-            if(Status == 2)
+            if (Status == 2)
             {
                 MessageBox.Show("Пароль изменен");
             }
@@ -139,21 +135,21 @@ namespace Equipment_rent.Utilites
             await stream.WriteAsync(data_change);
             int Status = 10;
             string UserId;
-            while((bytesRead = stream.ReadByte()) != '\n')
+            while ((bytesRead = stream.ReadByte()) != '\n')
             {
                 response.Add((byte)bytesRead);
-                if(bytesRead == '\r')
+                if (bytesRead == '\r')
                 {
                     Status = int.Parse(Encoding.UTF8.GetString(response.ToArray()));
                     response.Clear();
                 }
             }
             UserId = Encoding.UTF8.GetString(response.ToArray());
-            if(Status == 0)
+            if (Status == 0)
             {
-                MessageBox.Show("Пользователь с таким логином уже существует");   
+                MessageBox.Show("Пользователь с таким логином уже существует");
             }
-            if(Status == 1)
+            if (Status == 1)
             {
                 AddStaffVM.UserId = UserId;
                 MessageBox.Show("Пользователь успешно создан");

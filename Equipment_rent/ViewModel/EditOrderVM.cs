@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Equipment_rent.Model;
+using Equipment_rent.Utilites;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows;
-using Equipment_rent.Model;
-using Equipment_rent.Utilites;
-using Equipment_rent.View;
 
 namespace Equipment_rent.ViewModel
 {
@@ -41,7 +39,7 @@ namespace Equipment_rent.ViewModel
         public string UserPhone { get; set; }
         public User newUser { get; set; }
         public static Order SelectedOrder { get; set; }
-        
+
 
         public bool newIsReturned { get; set; }
         #endregion
@@ -55,16 +53,16 @@ namespace Equipment_rent.ViewModel
                 return editOrder ?? new RelayCommand(obj =>
                 {
                     Window window = obj as Window;
-                    if(IsNewUser == false)
+                    if (IsNewUser == false)
                     {
-                        if(IsReturned == newIsReturned)
+                        if (IsReturned == newIsReturned)
                         {
                             DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned, SelectedOrder.WhoTake);
                             DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance);
                             UpdateAllOrdersView();
                             window.Close();
                         }
-                        else if(IsReturned != newIsReturned && newIsReturned == true)
+                        else if (IsReturned != newIsReturned && newIsReturned == true)
                         {
                             if (User.UserOrders.Count == 1)
                             {
@@ -75,7 +73,7 @@ namespace Equipment_rent.ViewModel
                             UpdateAllOrdersView();
                             window.Close();
                         }
-                        else if(IsReturned != newIsReturned && newIsReturned == false)
+                        else if (IsReturned != newIsReturned && newIsReturned == false)
                         {
                             DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned, Guid.Empty);
                             DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
@@ -85,7 +83,7 @@ namespace Equipment_rent.ViewModel
                         }
 
                     }
-                    else if(IsNewUser == true)
+                    else if (IsNewUser == true)
                     {
                         if (IsReturned == newIsReturned)
                         {
@@ -119,7 +117,7 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-        
+
 
 
 

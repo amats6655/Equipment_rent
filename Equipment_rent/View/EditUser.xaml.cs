@@ -1,7 +1,7 @@
-﻿using Equipment_rent.ViewModel;
+﻿using Equipment_rent.Model;
+using Equipment_rent.ViewModel;
 using System.Windows;
 using System.Windows.Input;
-using Equipment_rent.Model;
 
 namespace Equipment_rent.View
 {

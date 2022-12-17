@@ -1,10 +1,8 @@
 ﻿using Equipment_rent.Model;
 using Equipment_rent.Utilites;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace Equipment_rent.ViewModel
 {
@@ -12,7 +10,7 @@ namespace Equipment_rent.ViewModel
     {
 
         // Вывод списка должностей
-        private List<Auth_role> _allRoles =  DataWorker.GetAllAuthRoles();
+        private List<Auth_role> _allRoles = DataWorker.GetAllAuthRoles();
         public List<Auth_role> AllRoles
         {
             get { return _allRoles; }

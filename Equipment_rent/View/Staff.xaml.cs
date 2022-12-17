@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Equipment_rent.ViewModel;
 
 namespace Equipment_rent.View
 {

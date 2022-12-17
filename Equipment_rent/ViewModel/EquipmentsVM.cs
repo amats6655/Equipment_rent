@@ -4,8 +4,6 @@ using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Security.RightsManagement;
 
 namespace Equipment_rent.ViewModel
 {
@@ -14,7 +12,7 @@ namespace Equipment_rent.ViewModel
         public static int pageIndex = 1;
         private static int numberOfRecPerPage = 10;
         public enum PagingMode
-        { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5}
+        { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5 }
         public static int count;
         private string pageInformation = numberOfRecPerPage + " из " + allEquipments.Count;
         public string PageInformation
@@ -49,15 +47,15 @@ namespace Equipment_rent.ViewModel
             switch (mode)
             {
                 case (int)PagingMode.Previous:
-                    firstEquipments = DataWorker.GetPreviousPageEquipments(pageIndex,numberOfRecPerPage);
+                    firstEquipments = DataWorker.GetPreviousPageEquipments(pageIndex, numberOfRecPerPage);
                     Equipments.AllEquipments.ItemsSource = null;
                     Equipments.AllEquipments.Items.Clear();
                     Equipments.AllEquipments.ItemsSource = FirstEquipments;
                     Equipments.AllEquipments.Items.Refresh();
                     PageInformation = count + " из " + allEquipments.Count;
                     break;
-                case(int)PagingMode.Next:
-                    firstEquipments = DataWorker.GetNextPageEquipments(pageIndex,numberOfRecPerPage);
+                case (int)PagingMode.Next:
+                    firstEquipments = DataWorker.GetNextPageEquipments(pageIndex, numberOfRecPerPage);
                     Equipments.AllEquipments.ItemsSource = null;
                     Equipments.AllEquipments.Items.Clear();
                     Equipments.AllEquipments.ItemsSource = FirstEquipments;
@@ -133,7 +131,7 @@ namespace Equipment_rent.ViewModel
         private void Del_Button_Click()
         {
             DeleteWindow deleteWindow = new DeleteWindow();
-            if(deleteWindow.ShowDialog() == true)
+            if (deleteWindow.ShowDialog() == true)
             {
                 DataWorker.DeleteEquipment((Equipment)Equipments.AllEquipments.SelectedItem);
                 UpdateAllEquipmentsView();

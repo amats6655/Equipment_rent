@@ -1,5 +1,4 @@
 ﻿using Equipment_rent.ViewModel;
-using System;
 using System.Windows;
 using System.Windows.Input;
 

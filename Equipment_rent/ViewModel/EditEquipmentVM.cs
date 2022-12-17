@@ -1,8 +1,8 @@
-﻿using Equipment_rent.Utilites;
+﻿using Equipment_rent.Model;
+using Equipment_rent.Utilites;
 using System.Collections.Generic;
-using System.Windows;
-using Equipment_rent.Model;
 using System.ComponentModel;
+using System.Windows;
 
 namespace Equipment_rent.ViewModel
 {
@@ -31,7 +31,7 @@ namespace Equipment_rent.ViewModel
         #endregion
 
 
-        #region Commands to Edit
+        #region Commands to add
         private RelayCommand editEquip;
         public RelayCommand EditEquip
         {

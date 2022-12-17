@@ -14,7 +14,7 @@ namespace Equipment_rent.View
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true; 
+            this.DialogResult = true;
             this.Close();
         }
 

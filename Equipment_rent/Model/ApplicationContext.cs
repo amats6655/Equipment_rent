@@ -1,9 +1,4 @@
-﻿using Equipment_rent.Utilites;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Diagnostics;
-using System.Windows.Markup;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Equipment_rent.Model
 {
@@ -24,7 +19,7 @@ namespace Equipment_rent.Model
         {
             optionsBuilder.UseSqlServer("Data Source=85.175.4.135,49172;Initial Catalog=ER;User ID=mrkotik;Password=ciscO15=!;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
-    } 
+    }
 
 
 }

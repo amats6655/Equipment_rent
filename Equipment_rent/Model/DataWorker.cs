@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Documents;
 
 namespace Equipment_rent.Model
 {
@@ -128,7 +127,7 @@ namespace Equipment_rent.Model
                 bool checkIsExist = db.Auth_user.Any(el => el.Username == username && el.Email == email);
                 if (!checkIsExist)
                 {
-                    Auth_user newStaff = new Auth_user {Id = userId, Username = username, FirstName = firstname, LastName = lastname, Email = email, Role_Id = role_id, Auth_roleId = role_id};
+                    Auth_user newStaff = new Auth_user { Id = userId, Username = username, FirstName = firstname, LastName = lastname, Email = email, Role_Id = role_id, Auth_roleId = role_id };
                     db.Auth_user.Add(newStaff);
                     db.SaveChanges();
                     staff = newStaff;
@@ -183,11 +182,11 @@ namespace Equipment_rent.Model
                 order.DateIssue = newDateIssue;
                 order.DateReturn = newDateReturn;
                 order.IsReturned = newIsReturned;
-                if(WhoTake != Guid.Empty)
+                if (WhoTake != Guid.Empty)
                 {
                     order.WhoTake = WhoTake;
                 }
-                
+
                 db.SaveChanges();
                 result = "Сделано!";
             }
@@ -331,7 +330,7 @@ namespace Equipment_rent.Model
         // Get all orders by status
         public static List<Order> GetAllOrdersByStatus()
         {
-            using(ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = new ApplicationContext())
             {
                 List<Order> orders = (from order in GetAllOrders() where order.IsReturned == false select order).ToList();
                 return orders;
@@ -367,9 +366,9 @@ namespace Equipment_rent.Model
                 {
                     return db.Users.Take(count).ToList();
                 }
-                
+
             }
-        }        
+        }
         // Get Preview Equipments
         public static List<Equipment> GetPreviousPageEquipments(int pageIndex, int count)
         {
@@ -379,7 +378,7 @@ namespace Equipment_rent.Model
                 {
                     pageIndex -= 1;
                     EquipmentsVM.pageIndex = pageIndex;
-                    if(pageIndex == 1)
+                    if (pageIndex == 1)
                     {
                         var result = db.Equipments.Take(count).ToList();
                         EquipmentsVM.count = result.Count();
@@ -397,9 +396,9 @@ namespace Equipment_rent.Model
                     return db.Equipments.Take(count).ToList();
                 }
             }
-        }        
+        }
         // Get Preview Orders
-        public static List<Order> GetPreviousPageOrders(int pageIndex,int count)
+        public static List<Order> GetPreviousPageOrders(int pageIndex, int count)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -415,7 +414,7 @@ namespace Equipment_rent.Model
                     }
                     else
                     {
-                        var result = db.Orders.Skip((pageIndex * count)-count).Take(count).ToList();
+                        var result = db.Orders.Skip((pageIndex * count) - count).Take(count).ToList();
                         OrdersVM.count = Math.Min(pageIndex * count, GetAllOrders().Count);
                         return result;
                     }
@@ -424,7 +423,7 @@ namespace Equipment_rent.Model
                 {
                     return db.Orders.Take(count).ToList();
                 }
-                
+
             }
         }
         // Get Preview Staff
@@ -465,8 +464,8 @@ namespace Equipment_rent.Model
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                
-                if(db.Users.Skip(pageIndex * count).Take(count).Count() == 0)
+
+                if (db.Users.Skip(pageIndex * count).Take(count).Count() == 0)
                 {
                     var result = db.Users.Skip((pageIndex * count) - count).Take(count).ToList();
                     UsersVM.count = (pageIndex * count) + db.Users.Skip(pageIndex * count).Take(count).Count();
@@ -479,15 +478,15 @@ namespace Equipment_rent.Model
                     UsersVM.pageIndex = pageIndex + 1;
                     return result;
                 }
-                
+
             }
-        }        
+        }
         // Get Next Equipments
         public static List<Equipment> GetNextPageEquipments(int pageIndex, int count)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                
+
                 if (db.Equipments.Skip(pageIndex * count).Take(count).Count() == 0)
                 {
                     var result = db.Equipments.Skip((pageIndex * count) - count).Take(count).ToList();
@@ -501,11 +500,11 @@ namespace Equipment_rent.Model
                     EquipmentsVM.pageIndex = pageIndex + 1;
                     return result;
                 }
-                
+
             }
-        }        
+        }
         // Get next Orders
-        public static List<Order> GetNextPageOrders(int pageIndex,int count)
+        public static List<Order> GetNextPageOrders(int pageIndex, int count)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -522,7 +521,7 @@ namespace Equipment_rent.Model
                     OrdersVM.pageIndex = pageIndex + 1;
                     return result;
                 }
-                
+
             }
         }
         // Get Next Staff
@@ -611,7 +610,7 @@ namespace Equipment_rent.Model
                 return result;
             }
         }
-       
+
         // Get User By Id
         public static Auth_user GetAuthUserById(Guid id)
         {

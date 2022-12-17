@@ -1,7 +1,6 @@
-﻿using System;
-using System.Windows.Input;
-using Equipment_rent.Model;
+﻿using Equipment_rent.Model;
 using Equipment_rent.Utilites;
+using System.Windows.Input;
 
 namespace Equipment_rent.ViewModel
 {
@@ -42,9 +41,9 @@ namespace Equipment_rent.ViewModel
         }
 
         private static Auth_user auth_User;
-        public static Auth_user AuthUser 
+        public static Auth_user AuthUser
         {
-            get 
+            get
             {
                 return auth_User;
             }

@@ -23,7 +23,7 @@ namespace Equipment_rent.ViewModel
                 NotifyPropertyChaged("AllActivityOrders");
             }
         }
-        public Order SelectedOrder { get; set;}
+        public Order SelectedOrder { get; set; }
 
 
         #region Return order
@@ -42,7 +42,7 @@ namespace Equipment_rent.ViewModel
         {
             Order thisSelectedOrder = SelectedOrder;
             ConfirmWindow confirmWindow = new ConfirmWindow();
-            if(confirmWindow.ShowDialog() == true)
+            if (confirmWindow.ShowDialog() == true)
             {
                 if (thisSelectedOrder.OrdersUser.UserOrders.Count <= 1) DataWorker.EditUser(thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersUser.Name, thisSelectedOrder.OrdersUser.Phone, false);
                 DataWorker.EditOrder(thisSelectedOrder, thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersEquipment, thisSelectedOrder.Amount, thisSelectedOrder.DateIssue, DateTime.Now, true, NavigationVM.AuthUser.Id);

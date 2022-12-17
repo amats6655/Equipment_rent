@@ -11,9 +11,10 @@ namespace Equipment_rent.Model
         public string Phone { get; set; }
         public bool Debt { get; set; }
 
-        [NotMapped]public string? BgColor { get; set; }
-        [NotMapped]public char? Character { get; set; }
-        [NotMapped]public List<Order> UserOrders
+        [NotMapped] public string? BgColor { get; set; }
+        [NotMapped] public char? Character { get; set; }
+        [NotMapped]
+        public List<Order> UserOrders
         {
             get
             {

@@ -1,6 +1,5 @@
-﻿using System.Windows.Controls;
-using Equipment_rent.Utilites;
-using Equipment_rent.ViewModel;
+﻿using Equipment_rent.ViewModel;
+using System.Windows.Controls;
 
 namespace Equipment_rent.View
 {

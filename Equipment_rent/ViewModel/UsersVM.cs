@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Equipment_rent.Model;
+using Equipment_rent.Utilites;
+using Equipment_rent.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Media;
-using Equipment_rent.Model;
-using Equipment_rent.Utilites;
-using Equipment_rent.View;
-using Microsoft.VisualBasic;
 
 namespace Equipment_rent.ViewModel
 {
@@ -35,8 +34,8 @@ namespace Equipment_rent.ViewModel
         private List<User> firstUsers = DataWorker.GetFirstUsers(numberOfRecPerPage);
         public List<User> FirstUsers
         {
-            get 
-            { 
+            get
+            {
                 List<User> users = new List<User>();
                 foreach (User user in firstUsers)
                 {
@@ -48,8 +47,8 @@ namespace Equipment_rent.ViewModel
                 }
                 return users;
             }
-            set 
-            { 
+            set
+            {
                 allUsers = value;
                 NotifyPropertyChaged("AllUsers");
             }
@@ -179,7 +178,7 @@ namespace Equipment_rent.ViewModel
         private void Del_Button_Click()
         {
             DeleteWindow deleteWindow = new DeleteWindow();
-            if(deleteWindow.ShowDialog() == true)
+            if (deleteWindow.ShowDialog() == true)
             {
                 DataWorker.DeleteUser((User)Users.AllUsers.SelectedItem);
                 UpdateAllUsersView();
@@ -189,7 +188,7 @@ namespace Equipment_rent.ViewModel
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         private void NotifyPropertyChaged(String propertyName)
         {
             if (PropertyChanged != null)

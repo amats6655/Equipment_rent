@@ -12,14 +12,16 @@ namespace Equipment_rent.Model
         public int Amount { get; set; }
         public int Balance { get; set; }
 
-        [NotMapped] public Type EquipType
+        [NotMapped]
+        public Type EquipType
         {
             get
             {
                 return DataWorker.GetTypeById(TypeId);
             }
         }
-        [NotMapped] public List<Order> EquipmentOrders
+        [NotMapped]
+        public List<Order> EquipmentOrders
         {
             get
             {

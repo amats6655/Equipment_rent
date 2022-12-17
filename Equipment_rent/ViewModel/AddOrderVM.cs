@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Equipment_rent.Model;
+using Equipment_rent.Utilites;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using Equipment_rent.Model;
-using Equipment_rent.Utilites;
-using Equipment_rent.View;
 
 namespace Equipment_rent.ViewModel
 {
@@ -46,7 +44,7 @@ namespace Equipment_rent.ViewModel
             set
             {
                 _type = value;
-                if(_type != null )
+                if (_type != null)
                 {
 
                     View.AddOrder.Models.ItemsSource = DataWorker.GetAllEquipmentsByIdType(_type.TypeId);
@@ -94,7 +92,7 @@ namespace Equipment_rent.ViewModel
             }
         }
         public bool IsNewUser { get; set; }
-        
+
         public string UserLastName { get; set; }
         public string UserFirstName { get; set; }
         public string UserPhone { get; set; }
@@ -114,17 +112,17 @@ namespace Equipment_rent.ViewModel
                 return addNewOrder ?? new RelayCommand(obj =>
                 {
                     Window window = obj as Window;
-                    if(DateIssue == null) DateIssue = DateTime.Now;
-                    if(DateReturn == null) DateReturn = DateTime.Now;
+                    if (DateIssue == null) DateIssue = DateTime.Now;
+                    if (DateReturn == null) DateReturn = DateTime.Now;
 
-                    if(IsNewUser == false)
+                    if (IsNewUser == false)
                     {
                         DataWorker.CreateOrder(User, Equipment, Amount, (DateTime)DateIssue, (DateTime)DateReturn, NavigationVM.AuthUser.Id);
                         DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
                         UpdateAllOrdersView();
                         window.Close();
                     }
-                    else if(IsNewUser == true)
+                    else if (IsNewUser == true)
                     {
                         if (UserFirstName == null)
                         {
@@ -147,7 +145,7 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-        
+
 
 
 

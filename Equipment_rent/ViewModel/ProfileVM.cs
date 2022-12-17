@@ -1,17 +1,13 @@
 ﻿using Equipment_rent.Model;
 using Equipment_rent.Utilites;
-using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Equipment_rent.ViewModel
 {
 
-    internal class ProfileVM:INotifyPropertyChanged
+    internal class ProfileVM : INotifyPropertyChanged
     {
         private Auth_user _user = NavigationVM.AuthUser;
         public Auth_user User
@@ -88,15 +84,15 @@ namespace Equipment_rent.ViewModel
             get { return _lastpass; }
             set { _lastpass = value; NotifyPropertyChaged(nameof(LastPass)); }
         }
-        public string NewPass 
-        { 
+        public string NewPass
+        {
             get { return _newpass; }
-            set { _newpass = value; NotifyPropertyChaged(nameof(NewPass)); } 
+            set { _newpass = value; NotifyPropertyChaged(nameof(NewPass)); }
         }
         public string ConfurmPass
         {
             get { return _confurmpass; }
-            set { _confurmpass = value; NotifyPropertyChaged(nameof(ConfurmPass)); } 
+            set { _confurmpass = value; NotifyPropertyChaged(nameof(ConfurmPass)); }
         }
 
 
@@ -130,9 +126,9 @@ namespace Equipment_rent.ViewModel
                 });
             }
         }
-        private void Change_Password_Click(string username, string pass, string new_pass, string confurm_pass )
+        private void Change_Password_Click(string username, string pass, string new_pass, string confurm_pass)
         {
-            if(new_pass.Equals(confurm_pass))
+            if (new_pass.Equals(confurm_pass))
             {
                 AuthClient.ChangePassword(username, pass, new_pass);
             }

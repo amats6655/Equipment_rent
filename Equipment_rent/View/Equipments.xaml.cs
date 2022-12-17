@@ -1,5 +1,5 @@
-﻿using System.Windows.Controls;
-using Equipment_rent.ViewModel;
+﻿using Equipment_rent.ViewModel;
+using System.Windows.Controls;
 
 namespace Equipment_rent.View
 {
@@ -13,7 +13,7 @@ namespace Equipment_rent.View
         {
             InitializeComponent();
             AllEquipments = EquipmentsDataGrid;
-            if(NavigationVM.AuthUser.Role.Role != "Эксперт")
+            if (NavigationVM.AuthUser.Role.Role != "Эксперт")
             {
                 dgColumn_delete.Visibility = System.Windows.Visibility.Collapsed;
             }

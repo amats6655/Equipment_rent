@@ -1,7 +1,7 @@
-﻿using Equipment_rent.ViewModel;
+﻿using Equipment_rent.Model;
+using Equipment_rent.ViewModel;
 using System.Windows;
 using System.Windows.Input;
-using Equipment_rent.Model;
 
 namespace Equipment_rent.View
 {
@@ -21,7 +21,7 @@ namespace Equipment_rent.View
             cb_models.SelectedValue = orderToEdit.OrdersEquipment;
             cb_models.SelectedValuePath = orderToEdit.OrdersEquipment.Model;
             cb_models.Text = orderToEdit.OrdersEquipment.Model;
-            
+
 
             cb_users.SelectedValue = orderToEdit.OrdersUser;
             cb_users.SelectedValuePath = orderToEdit.OrdersUser.Name;

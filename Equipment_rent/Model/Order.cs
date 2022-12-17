@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
-using System.Security.Permissions;
 
 namespace Equipment_rent.Model
 {
@@ -19,33 +18,37 @@ namespace Equipment_rent.Model
         public Guid WhoGive { get; set; }
         public Guid WhoTake { get; set; }
 
-        [NotMapped] public Auth_user Give {get { return DataWorker.GetAuthUserById(WhoGive); } }
+        [NotMapped] public Auth_user Give { get { return DataWorker.GetAuthUserById(WhoGive); } }
         [NotMapped] public Auth_user Take { get { return DataWorker.GetAuthUserById(WhoTake); } }
 
 
-        [NotMapped]public string? BgColor { get; set; }
-        [NotMapped]public User OrdersUser
+        [NotMapped] public string? BgColor { get; set; }
+        [NotMapped]
+        public User OrdersUser
         {
             get
             {
                 return DataWorker.GetUserById(UserId);
             }
         }
-        [NotMapped]public Equipment OrdersEquipment
+        [NotMapped]
+        public Equipment OrdersEquipment
         {
             get
             {
                 return DataWorker.GetEquipmentById(EquipmentId);
             }
         }
-        [NotMapped]public string FormattedDateIssue
+        [NotMapped]
+        public string FormattedDateIssue
         {
             get
             {
                 return DateIssue.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"));
             }
         }
-        [NotMapped]public string FormattedDateReturn
+        [NotMapped]
+        public string FormattedDateReturn
         {
             get
             {

@@ -1,7 +1,6 @@
-﻿using System.Windows.Controls;
-using System.Windows.Navigation;
-using Equipment_rent.ViewModel;
+﻿using Equipment_rent.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Equipment_rent.View
 {
@@ -15,7 +14,7 @@ namespace Equipment_rent.View
         {
             InitializeComponent(); // Второй раз пошли получать данные
             AllOrders = OrdersDataGrid;
-            if(NavigationVM.AuthUser.Role.Role != "Эксперт")
+            if (NavigationVM.AuthUser.Role.Role != "Эксперт")
             {
                 dgColumn_delete.Visibility = Visibility.Collapsed;
             }

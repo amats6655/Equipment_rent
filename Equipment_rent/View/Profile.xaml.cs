@@ -1,8 +1,5 @@
 ﻿using Equipment_rent.Model;
 using Equipment_rent.ViewModel;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Data;
 using System.Windows.Controls;
 
 namespace Equipment_rent.View

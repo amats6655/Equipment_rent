@@ -23,4 +23,3 @@ namespace Equipment_rent.Utilites
         public void Execute(object parameter) => _execute(parameter);
     }
 }
- 
