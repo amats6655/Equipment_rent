@@ -158,27 +158,42 @@
                                     FontWeight="SemiBold"
                                     Binding="{Binding UserOrders.Count}"/>
 
-                <DataGridTemplateColumn Header="Операции"
+                <DataGridTemplateColumn Header="Edit"
                                         IsReadOnly="True"
-                                        Width="auto">
+                                        Width="55"
+                                        x:Name="dgColumn_edit">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}"
-                                        Command="{Binding ElementName=DataUsers, Path=DataContext.OpenEditUser}">
+                            <Button Style="{StaticResource gridEditButton}"
+                                    Command="{Binding ElementName=DataUsers, Path=DataContext.OpenEditUser}">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="PencilOutline"/>
                                 </Button>
-                                <Button Style="{StaticResource gridRemoveButton}"
-                                        Margin="5 0 0 0"
-                                        Command="{Binding ElementName=DataUsers, Path=DataContext.RemoveUser}">
-                                    <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
-                                                           Kind="DeleteOutline"/>
-                                </Button>
-                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Del"
+                                        IsReadOnly="True"
+                                        Width="55"
+                                        x:Name="dgColumn_delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource gridRemoveButton}"
+                                    Command="{Binding ElementName=DataUsers, Path=DataContext.RemoveUser}">
+                                    <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
+                                                           Kind="DeleteOutline"/>
+                                </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+
+
+
+
+
             </DataGrid.Columns>
             
         </DataGrid>

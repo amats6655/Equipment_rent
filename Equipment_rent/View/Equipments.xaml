@@ -137,24 +137,33 @@
                                     Binding="{Binding EquipmentOrders.Count}"/>
 
 
-                <DataGridTemplateColumn Header="Операции"
+                <DataGridTemplateColumn Header="Edit"
                                         IsReadOnly="True"
-                                        Width="auto">
+                                        Width="55"
+                                        x:Name="dgColumn_edit">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}"
+                            <Button Style="{StaticResource gridEditButton}"
                                         Command="{Binding ElementName=DataEquipments, Path=DataContext.OpenEditEquipment}">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="PencilOutline"/>
                                 </Button>
-                                <Button Style="{StaticResource gridRemoveButton}"
-                                        Margin="5 0 0 0"
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Del"
+                                        IsReadOnly="True"
+                                        Width="55"
+                                        x:Name="dgColumn_delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource gridRemoveButton}"
                                         Command="{Binding ElementName=DataEquipments, Path=DataContext.RemoveEquipment}">
                                     <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
                                                            Kind="DeleteOutline"/>
                                 </Button>
-                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

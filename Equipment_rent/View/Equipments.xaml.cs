@@ -13,6 +13,10 @@ namespace Equipment_rent.View
         {
             InitializeComponent();
             AllEquipments = EquipmentsDataGrid;
+            if(NavigationVM.AuthUser.Role.Role != "Эксперт")
+            {
+                dgColumn_delete.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
     }
 }

@@ -15,8 +15,10 @@ namespace Equipment_rent.View
         {
             InitializeComponent(); // Второй раз пошли получать данные
             AllOrders = OrdersDataGrid;
-
+            if(NavigationVM.AuthUser.Role.Role != "Эксперт")
+            {
+                dgColumn_delete.Visibility = Visibility.Collapsed;
+            }
         }
- 
     }
 }
