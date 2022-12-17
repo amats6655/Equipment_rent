@@ -45,7 +45,7 @@ namespace Equipment_rent.ViewModel
             if(confirmWindow.ShowDialog() == true)
             {
                 if (thisSelectedOrder.OrdersUser.UserOrders.Count <= 1) DataWorker.EditUser(thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersUser.Name, thisSelectedOrder.OrdersUser.Phone, false);
-                DataWorker.EditOrder(thisSelectedOrder, thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersEquipment, thisSelectedOrder.Amount, thisSelectedOrder.DateIssue, DateTime.Now, true);
+                DataWorker.EditOrder(thisSelectedOrder, thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersEquipment, thisSelectedOrder.Amount, thisSelectedOrder.DateIssue, DateTime.Now, true, NavigationVM.AuthUser.Id);
                 DataWorker.EditEquipment(thisSelectedOrder.OrdersEquipment, thisSelectedOrder.OrdersEquipment.EquipType, thisSelectedOrder.OrdersEquipment.Model, thisSelectedOrder.OrdersEquipment.Amount, thisSelectedOrder.OrdersEquipment.Balance + thisSelectedOrder.Amount);
                 UpdateAllOrdersView();
             }

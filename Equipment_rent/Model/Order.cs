@@ -15,7 +15,13 @@ namespace Equipment_rent.Model
         public DateTime DateIssue { get; set; }
         public DateTime DateReturn { get; set; }
         public bool IsReturned { get; set; }
-        
+
+        public Guid WhoGive { get; set; }
+        public Guid WhoTake { get; set; }
+
+        [NotMapped] public Auth_user Give {get { return DataWorker.GetAuthUserById(WhoGive); } }
+        [NotMapped] public Auth_user Take { get { return DataWorker.GetAuthUserById(WhoTake); } }
+
 
         [NotMapped]public string? BgColor { get; set; }
         [NotMapped]public User OrdersUser

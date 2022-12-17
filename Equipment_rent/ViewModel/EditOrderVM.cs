@@ -41,6 +41,7 @@ namespace Equipment_rent.ViewModel
         public string UserPhone { get; set; }
         public User newUser { get; set; }
         public static Order SelectedOrder { get; set; }
+        
 
         public bool newIsReturned { get; set; }
         #endregion
@@ -58,7 +59,7 @@ namespace Equipment_rent.ViewModel
                     {
                         if(IsReturned == newIsReturned)
                         {
-                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned);
+                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned, SelectedOrder.WhoTake);
                             DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance);
                             UpdateAllOrdersView();
                             window.Close();
@@ -69,14 +70,14 @@ namespace Equipment_rent.ViewModel
                             {
                                 DataWorker.EditUser(User, User.Name, User.Phone, false);
                             }
-                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned);
+                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned, NavigationVM.AuthUser.Id);
                             DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance + Amount);
                             UpdateAllOrdersView();
                             window.Close();
                         }
                         else if(IsReturned != newIsReturned && newIsReturned == false)
                         {
-                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned);
+                            DataWorker.EditOrder(SelectedOrder, User, Equipment, Amount, DateIssue, DateReturn, newIsReturned, Guid.Empty);
                             DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
                             DataWorker.EditUser(User, User.Name, User.Phone, true);
                             UpdateAllOrdersView();
@@ -86,10 +87,32 @@ namespace Equipment_rent.ViewModel
                     }
                     else if(IsNewUser == true)
                     {
-                        DataWorker.EditOrder(SelectedOrder, DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, DateIssue, DateReturn, newIsReturned);
-                        DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
-                        UpdateAllOrdersView();
-                        window.Close();
+                        if (IsReturned == newIsReturned)
+                        {
+                            DataWorker.EditOrder(SelectedOrder, DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, DateIssue, DateReturn, newIsReturned, SelectedOrder.WhoTake);
+                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance);
+                            UpdateAllOrdersView();
+                            window.Close();
+                        }
+                        else if (IsReturned != newIsReturned && newIsReturned == true)
+                        {
+                            if (User.UserOrders.Count == 1)
+                            {
+                                DataWorker.EditUser(User, User.Name, User.Phone, false);
+                            }
+                            DataWorker.EditOrder(SelectedOrder, DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, DateIssue, DateReturn, newIsReturned, NavigationVM.AuthUser.Id);
+                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance + Amount);
+                            UpdateAllOrdersView();
+                            window.Close();
+                        }
+                        else if (IsReturned != newIsReturned && newIsReturned == false)
+                        {
+                            DataWorker.EditOrder(SelectedOrder, DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, DateIssue, DateReturn, newIsReturned, Guid.Empty);
+                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
+                            DataWorker.EditUser(User, User.Name, User.Phone, true);
+                            UpdateAllOrdersView();
+                            window.Close();
+                        }
                     }
                 });
             }

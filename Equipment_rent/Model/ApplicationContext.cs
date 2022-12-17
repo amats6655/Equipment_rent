@@ -19,8 +19,6 @@ namespace Equipment_rent.Model
 
         public ApplicationContext()
         {
-
-            
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

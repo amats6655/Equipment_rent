@@ -30,9 +30,13 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
 
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -44,12 +48,22 @@
                         <TextBlock Grid.Row="0" Grid.Column="2" Margin="40 0 0 0" Text="Пользователь: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="1" Grid.Column="2" Margin="40 0 0 0" Text="Телефон: " FontWeight="SemiBold" FontSize="13" />
                         <TextBlock Grid.Row="2" Grid.Column="2" Margin="40 0 0 0" Text="Дата возврата: " FontWeight="SemiBold" FontSize="13" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="13" Text="{Binding OrdersEquipment.Model}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Margin="40 0 0 0" FontSize="13" Text="{Binding OrdersEquipment.Model}" HorizontalAlignment="Right" />
                         <TextBlock Grid.Row="1" Grid.Column="1" FontSize="13" Text="{Binding FormattedDateIssue}" HorizontalAlignment="Right" />
                         <TextBlock Grid.Row="2" Grid.Column="1" FontSize="13" FontWeight="SemiBold" Text="{Binding Amount}" HorizontalAlignment="Right" />
                         <TextBlock Grid.Row="0" Grid.Column="3" FontSize="13" Text="{Binding OrdersUser.Name}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="SemiBold" Foreground="red" Text="{Binding OrdersUser.Phone}" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="13" Text="{Binding FormattedDateReturn}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="SemiBold" Foreground="Gold" Text="{Binding OrdersUser.Phone}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="2" Grid.Column="3" Margin="40 0 0 0" FontSize="13" Text="{Binding FormattedDateReturn}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="0" Grid.Column="4" Margin="40 0 0 0" Text="Выдал:" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Grid.Row="1" Grid.Column="4" Margin="40 0 0 0" Text="Принял:" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Grid.Row="0" Grid.Column="5" Margin="40 0 0 0" FontSize="13" HorizontalAlignment="Right">
+                            <Run Text="{Binding Give.FirstName}"/>
+                            <Run Text="{Binding Give.LastName}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="5" Margin="40 0 0 0" FontSize="13" HorizontalAlignment="Right">
+                            <Run Text="{Binding Take.FirstName}"/>
+                            <Run Text="{Binding Take.LastName}"/>
+                        </TextBlock>
                     </Grid>
                 </StackPanel>
             </DataTemplate>

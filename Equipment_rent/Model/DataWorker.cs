@@ -35,7 +35,7 @@ namespace Equipment_rent.Model
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = db.Orders.ToList();
+                var result = db.Orders.OrderBy(o => o.IsReturned).ToList();
 
                 return result;
             }
@@ -97,7 +97,7 @@ namespace Equipment_rent.Model
         }
 
         // Add Order
-        public static string CreateOrder(User user, Equipment equipment, int amount, DateTime dateIssue, DateTime dateReturn)
+        public static string CreateOrder(User user, Equipment equipment, int amount, DateTime dateIssue, DateTime dateReturn, Guid WhoGive)
         {
             string result = "Сделано!";
             using (ApplicationContext db = new ApplicationContext())
@@ -109,7 +109,8 @@ namespace Equipment_rent.Model
                     Amount = amount,
                     DateIssue = dateIssue,
                     DateReturn = dateReturn,
-                    IsReturned = false
+                    IsReturned = false,
+                    WhoGive = WhoGive
                 };
                 db.Orders.Add(newOrder);
                 db.SaveChanges();
@@ -170,7 +171,7 @@ namespace Equipment_rent.Model
         }
 
         // Edit Order
-        public static string EditOrder(Order oldOrder, User newUser, Equipment newEquipment, int newAmount, DateTime newDateIssue, DateTime newDateReturn, bool newIsReturned)
+        public static string EditOrder(Order oldOrder, User newUser, Equipment newEquipment, int newAmount, DateTime newDateIssue, DateTime newDateReturn, bool newIsReturned, Guid WhoTake)
         {
             string result;
             using (ApplicationContext db = new ApplicationContext())
@@ -182,6 +183,11 @@ namespace Equipment_rent.Model
                 order.DateIssue = newDateIssue;
                 order.DateReturn = newDateReturn;
                 order.IsReturned = newIsReturned;
+                if(WhoTake != Guid.Empty)
+                {
+                    order.WhoTake = WhoTake;
+                }
+                
                 db.SaveChanges();
                 result = "Сделано!";
             }
@@ -568,7 +574,7 @@ namespace Equipment_rent.Model
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = db.Orders.Take(count).ToList();
+                var result = db.Orders.Take(count).OrderBy(o => o.IsReturned).ToList();
 
                 return result;
             }
