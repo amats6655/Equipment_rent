@@ -15,7 +15,6 @@ namespace Equipment_rent.View
             InitializeComponent();
             DataContext = new EditOrderVM();
             EditOrderVM.SelectedOrder = orderToEdit;
-            EditOrderVM.SelectedUser = orderToEdit.OrdersUser;
             EditOrderVM.Equipment = orderToEdit.OrdersEquipment;
             EditOrderVM.Amount = orderToEdit.Amount;
             cb_models.SelectedValue = orderToEdit.OrdersEquipment;

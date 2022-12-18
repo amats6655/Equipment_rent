@@ -16,7 +16,11 @@
     <UserControl.DataContext>
         <vm:ProfileVM/>
     </UserControl.DataContext>
-    
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -29,8 +33,39 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="2"
+                           Grid.Column="2"
+                           Margin="210 45 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Старый пароль" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
+        <TextBlock Grid.Row="2"
+                           Grid.Column="2"
+                           Margin="210 105 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Новый пароль" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
+        <TextBlock Grid.Row="2"
+                           Grid.Column="2"
+                           Margin="210 165 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Повтори пароль" 
+                           Foreground="LightSteelBlue"
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
         <TextBlock Style="{StaticResource titleText_Style}" 
-                   Text=" Профиль"/>
+                   Text=" Профиль"
+                   Foreground="LightGray"/>
         <Separator Grid.Row="1"
                    Grid.ColumnSpan="3"
                    Background="#dae2ea" 
@@ -76,78 +111,66 @@
             <PasswordBox x:Name="tb_LastPass" 
                                  ff:PasswordBoxAssistant.BindPassword="true" 
                                  ff:PasswordBoxAssistant.BoundPassword="{Binding Path=LastPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource passwordBox}"
                                  FontSize="13"
                                  FontWeight="Medium"
-                                 Foreground="White"
                                  CaretBrush="LightGray"
                                  BorderBrush="DarkGray"
                                  BorderThickness="0 0 0 2"
-                                 Height="28"
+                                 Height="40"
                                  VerticalAlignment="Center"
-                                 Margin="0 5 0 0"
-                                 Padding="30 5 0 0">
-                <PasswordBox.Background>
-                    <ImageBrush ImageSource="/Images/key.png"
-                                        Stretch="Uniform"
-                                        AlignmentX="Left"/>
-                </PasswordBox.Background>
+                                 Margin="0 10 0 10"
+                                 Padding="20 10 0 0">
             </PasswordBox>
-            
+
             <PasswordBox x:Name="tb_NewPass" 
                                  ff:PasswordBoxAssistant.BindPassword="true" 
                                  ff:PasswordBoxAssistant.BoundPassword="{Binding Path=NewPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource passwordBox}"
                                  FontSize="13"
                                  FontWeight="Medium"
-                                 Foreground="White"
                                  CaretBrush="LightGray"
                                  BorderBrush="DarkGray"
                                  BorderThickness="0 0 0 2"
-                                 Height="28"
+                                 Height="40"
                                  VerticalAlignment="Center"
-                                 Margin="0 5 0 0"
-                                 Padding="30 5 0 0">
-                <PasswordBox.Background>
-                    <ImageBrush ImageSource="/Images/key.png"
-                                        Stretch="Uniform"
-                                        AlignmentX="Left"/>
-                </PasswordBox.Background>
+                                 Margin="0 10 0 10"
+                                 Padding="20 10 0 0">
             </PasswordBox>
-            
-            
+
+
             <PasswordBox x:Name="tb_ConfPass" 
                                  ff:PasswordBoxAssistant.BindPassword="true" 
                                  ff:PasswordBoxAssistant.BoundPassword="{Binding Path=ConfurmPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource passwordBox}"
+                                 
                                  FontSize="13"
                                  FontWeight="Medium"
-                                 Foreground="White"
                                  CaretBrush="LightGray"
                                  BorderBrush="DarkGray"
                                  BorderThickness="0 0 0 2"
-                                 Height="28"
+                                 Height="40"
                                  VerticalAlignment="Center"
-                                 Margin="0 5 0 0"
-                                 Padding="30 5 0 0">
-                <PasswordBox.Background>
-                    <ImageBrush ImageSource="/Images/key.png"
-                                        Stretch="Uniform"
-                                        AlignmentX="Left"/>
-                </PasswordBox.Background>
+                                 Margin="0 10 0 10"
+                                 Padding="20 10 0 0">
             </PasswordBox>
-            <Button Style="{StaticResource addFormButton}"
-                    Command="{Binding ChangePassword}"
+            <Button Style="{StaticResource DefBtn}"
+                    Command="{Binding ChangePasswordCommand}"
                     Content="Изменить пароль"
-                    Margin="10"/>
+                    Margin="10 30 10 10"/>
+            <TextBlock Text="{Binding ErrorMessage}"
+                       Foreground="#D7598D"
+                       FontSize="12"
+                       TextWrapping="Wrap"/>
         </StackPanel>
-        
-        <StackPanel Grid.Row="3"
-                    Grid.Column="1"
-                    Margin="10 0"
-                    Orientation="Vertical">
-            
-            <Button Style="{StaticResource addFormButton}"
-                    Command="{Binding EditUser}"
-                    Content="Сохранить"
-                    Margin="10"/>
-        </StackPanel>
+
+        <Button Style="{StaticResource DefBtn}"
+                Command="{Binding EditUser}"
+                Content="Сохранить"
+                Margin="10 30 10 0"
+                VerticalAlignment="Center"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Width="250"/>
     </Grid>
 </UserControl>

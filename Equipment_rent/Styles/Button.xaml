@@ -5,7 +5,7 @@
 
     <Style x:Key="topButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#6e7783"/>
+        <Setter Property="Foreground" Value="LightGray"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>
@@ -211,5 +211,35 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+
+
+
+    <Style x:Key="DefBtn" TargetType="Button">
+        <Setter Property="Background" Value="#462ad8"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Template" >
+            <Setter.Value>
+            <ControlTemplate TargetType="Button">
+                <Border Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                </Border>
+            </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#28aeed"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 
 </ResourceDictionary>

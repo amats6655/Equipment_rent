@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#e3e9ef" />
-    <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#fff" />
+    <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#888" />
-    <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#eee" />
+    <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#888" />
 
     <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
@@ -15,7 +15,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.ColumnSpan="2" Name="Border"
               BorderBrush="{StaticResource ComboBoxNormalBorderBrush}" 
-              CornerRadius="20" BorderThickness="1, 1, 1, 1" 
+              CornerRadius="20" BorderThickness="0, 0, 0, 1" 
               Background="{StaticResource ComboBoxNormalBackgroundBrush}" />
             <Border Grid.Column="1" Margin="1, 1, 10, 1" BorderBrush="#444" Name="ButtonBorder"
               CornerRadius="10" BorderThickness="0" Height="20"
@@ -23,7 +23,7 @@
 
             <Path Name="Arrow" Grid.Column="1" 
             Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
-            HorizontalAlignment="Center" Fill="#444"
+            HorizontalAlignment="Center" Fill="LightGray"
             VerticalAlignment="Center" Margin="1 1 10 1"/>
         </Grid>
         <ControlTemplate.Triggers>
@@ -53,15 +53,15 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
-    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Background" Color="#7b5cd6"/>
-    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Border" Color="#7b5cd6"/>
-    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelected.Background" Color="#693ccc"/>
+
+
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Background" Color="#462ad8"/>
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Border" Color="#462ad8"/>
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelected.Background" Color="#462ad8"/>
     <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelected.Border" Color="Transparent"/>
-    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedHover.Background" Color="#47268e"/>
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedHover.Background" Color="#28aeed"/>
     <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedHover.Border" Color="blue"/>
-    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedNoFocus.Background" Color="#693ccc"/>
+    <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedNoFocus.Background" Color="#462ad8"/>
     <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedNoFocus.Border" Color="Transparent"/>
     <SolidColorBrush x:Key="ComboBoxItem.ItemsviewFocus.Border" Color="#7b5cd6"/>
     <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHoverFocus.Background" Color="#7b5cd6"/>
@@ -71,7 +71,7 @@
         <Setter Property="Padding" Value="4,1"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Background" Value="#01FFFFFF"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Margin" Value="0 5 0 0 "/>
         <Setter Property="Height" Value="30"/>
@@ -155,7 +155,7 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
-        <Setter Property="TextElement.Foreground" Value="black"/>
+        <Setter Property="TextElement.Foreground" Value="White"/>
         <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="Margin" Value="0 10"/>
@@ -193,7 +193,7 @@
                             <Grid Name="DropDown" SnapsToDevicePixels="True"
                     MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
                     MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
-                                <Border Name="DropDownBorder" Background="White" Margin="0, 1, 0, 0"
+                                <Border Name=" DropDownBorder" Background="#33FFFFFF" Margin="0, 1, 0, 0"
                         CornerRadius="20" BorderThickness="1,1,1,1" 
                         BorderBrush="{StaticResource ComboBoxNormalBorderBrush}"/>
                                 <ScrollViewer Margin="10" SnapsToDevicePixels="True">

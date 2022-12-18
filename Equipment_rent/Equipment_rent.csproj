@@ -5,9 +5,11 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <StartupObject>Equipment_rent.App</StartupObject>
     <ApplicationIcon>Images\icoracoo.ico</ApplicationIcon>
     <PackageIcon>enot.png</PackageIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>

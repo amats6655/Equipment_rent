@@ -5,8 +5,8 @@
         xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:menu="clr-namespace:Equipment_rent.Utilites"
         Title="MainWindow" 
-        Height="850" 
-        Width="1200" 
+        Height="855" 
+        Width="1210" 
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -20,54 +20,80 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
 
-    <Border Background="#eff2f7"
-            CornerRadius="20">
+
+    <Border CornerRadius="20">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/back.jpg"
+                        Stretch="Fill"/>
+        </Border.Background>
+        <Border     CornerRadius="20"
+                BorderThickness="2"
+                Opacity="1">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#311154" Offset="0"/>
+                    <GradientStop Color="#623ed0" Offset="0.75"/>
+                    <GradientStop Color="#7b5cd6" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#fe060531" Offset="0"/>
+                    <GradientStop Color="#ee623ed0" Offset="0.75"/>
+                    <GradientStop Color="#ee47187b" Offset="0.75"/>
+                    <GradientStop Color="#1b1448" Offset="1.2"/>
+                </LinearGradientBrush>
+            </Border.Background>
 
 
-        <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Name="GridMenu" 
+
+            <Grid>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Name="GridMenu" 
                                   Width="*"/>
-            </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
 
-            <!--LeftMenu-->
-            <Grid x:Name="grid" 
+                <!--LeftMenu-->
+                <Grid x:Name="grid" 
                   Margin="0,0,0,0" 
                   RenderTransformOrigin="0.5,0.5">
-                <Grid.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Grid.RenderTransform>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
 
-                <Button x:Name="button" 
+                    <Button x:Name="button" 
                         Margin="20, 28, 0, 35" 
                         Style="{StaticResource topButton}"
                         Click="HideMenu_Button_Click">
-                    <Icon:PackIconMaterial Kind="Menu" 
+                        <Icon:PackIconMaterial Kind="Menu" 
                                            Width="15" 
                                            Height="15"/>
-                </Button>
+                    </Button>
 
-                <Border x:Name="border_menu" 
+                    <Border x:Name="border_menu" 
                         Grid.Row="1" 
-                        Background="#623ed0" 
+                        Background="#00060531" 
                         CornerRadius="0 50 0 20" 
                         Margin="0,0,0,0" 
                         Padding="0,0,0,0"
-                        Visibility="Visible">
-                    <DockPanel>
-                        <Border x:Name="border1" 
+                        Visibility="Visible"
+                        BorderThickness="0"
+                        Opacity="1"
+                        BorderBrush="#7b5cd6">
+                        <DockPanel>
+                            <Border x:Name="border1" 
                                 Width="80" 
                                 Height="80"
                                 Padding="3"
@@ -76,18 +102,18 @@
                                 DockPanel.Dock="Top"
                                 HorizontalAlignment="Left"
                                 Margin="20 -30 0 0">
-                            <Ellipse>
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/enot.png"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                        </Border>
+                                <Ellipse>
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/Images/enot.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Border>
 
-                        <TextBlock x:Name="textBlock"
+                            <TextBlock x:Name="textBlock"
                                    Text="Аренда оборудования" 
                                    Style="{StaticResource Text_Style}"
                                    DockPanel.Dock="Top"/>
-                        <TextBlock x:Name="textBlock1"
+                            <TextBlock x:Name="textBlock1"
                                    Text="Кампус" 
                                    Style="{StaticResource Text_Style}"
                                    DockPanel.Dock="Top"
@@ -95,141 +121,141 @@
                                    FontSize="14"
                                    Margin="0 0 0 0"/>
 
-                        <Separator Margin="25" 
+                            <Separator Margin="25" 
                                    DockPanel.Dock="Top" 
                                    Height="0.8"
                                    Background="#7e5fdc"/>
 
-                        <StackPanel DockPanel.Dock="Top">
-                            <menu:Btn Style="{StaticResource menuButton}"
+                            <StackPanel DockPanel.Dock="Top">
+                                <menu:Btn Style="{StaticResource menuButton}"
                                     HorizontalAlignment="Stretch"
                                     Command="{Binding HomeCommand}"
                                     IsChecked ="True">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial" Kind="Home" 
+                                    <StackPanel Orientation="Horizontal">
+                                        <Icon:PackIconMaterial x:Name="packIconMaterial" Kind="Home" 
                                                            Style="{StaticResource menuButtonIcon}" 
                                                            Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock2" 
+                                        <TextBlock x:Name="textBlock2" 
                                                Text="Домашняя"/>
-                                </StackPanel>
-                            </menu:Btn>
+                                    </StackPanel>
+                                </menu:Btn>
 
-                            <menu:Btn Style="{StaticResource menuButton}"
+                                <menu:Btn Style="{StaticResource menuButton}"
                                     HorizontalAlignment="Stretch"
                                     Command="{Binding UsersCommand}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial1"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Icon:PackIconMaterial x:Name="packIconMaterial1"
                                                            Kind="HumanFemaleDance" 
                                                            Style="{StaticResource menuButtonIcon}" 
                                                            Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock3"
+                                        <TextBlock x:Name="textBlock3"
                                                Text="Пользователи"/>
-                                </StackPanel>
-                            </menu:Btn>
+                                    </StackPanel>
+                                </menu:Btn>
 
-                            <menu:Btn Style="{StaticResource menuButton}" 
+                                <menu:Btn Style="{StaticResource menuButton}" 
                                       HorizontalAlignment="Stretch"
                                       Command="{Binding EquipmentsCommand}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial2"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Icon:PackIconMaterial x:Name="packIconMaterial2"
                                                            Kind="Ethernet"
                                                            Style="{StaticResource menuButtonIcon}"
                                                            Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock4" 
+                                        <TextBlock x:Name="textBlock4" 
                                                Text="Оборудование"/>
-                                </StackPanel>
-                            </menu:Btn>
+                                    </StackPanel>
+                                </menu:Btn>
 
-                            <menu:Btn Style="{StaticResource menuButton}"
+                                <menu:Btn Style="{StaticResource menuButton}"
                                       HorizontalAlignment="Stretch"
                                       Command="{Binding OrdersCommand}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial3"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Icon:PackIconMaterial x:Name="packIconMaterial3"
                                                            Kind="FileDocumentEdit"
                                                            Style="{StaticResource menuButtonIcon}" 
                                                            Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock5"
+                                        <TextBlock x:Name="textBlock5"
                                                Text="Заказы"/>
-                                </StackPanel>
-                            </menu:Btn>
-                            <menu:Btn Style="{StaticResource menuButton}"
+                                    </StackPanel>
+                                </menu:Btn>
+                                <menu:Btn Style="{StaticResource menuButton}"
                                       HorizontalAlignment="Stretch"
                                       Command="{Binding StaffCommand}"
                                       x:Name="btn_staff"
                                       Visibility="Collapsed">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial8"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Icon:PackIconMaterial x:Name="packIconMaterial8"
                                                            Kind="PacMan"
                                                            Style="{StaticResource menuButtonIcon}" 
                                                            Margin="20,2,20,0"/>
-                                    <TextBlock x:Name="textBlock8"
+                                        <TextBlock x:Name="textBlock8"
                                                Text="Сотрудники"/>
-                                </StackPanel>
-                            </menu:Btn>
-                        </StackPanel>
+                                    </StackPanel>
+                                </menu:Btn>
+                            </StackPanel>
 
 
-                        <menu:Btn Style="{StaticResource menuButton}"
+                            <menu:Btn Style="{StaticResource menuButton}"
                                 DockPanel.Dock="Bottom" 
                                 Margin="15 0 15 20" 
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Bottom"
                                 Click="Exit_Button_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial x:Name="packIconMaterial4"
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial4"
                                                        Kind="ExitToApp" 
                                                        Style="{StaticResource menuButtonIcon}"
                                                        Margin="20,2,20,0"/>
-                                <TextBlock x:Name="textBlock6" 
+                                    <TextBlock x:Name="textBlock6" 
                                            Text="Выход"/>
-                            </StackPanel>
-                        </menu:Btn>
-                        
-                        <menu:Btn Style="{StaticResource menuButton}"
+                                </StackPanel>
+                            </menu:Btn>
+
+                            <menu:Btn Style="{StaticResource menuButton}"
                                 Margin="15 0 15 20" 
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Bottom"
                                 Command="{Binding ProfileCommand}">
-                            <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial x:Name="packIconMaterial5"
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial5"
                                                        Kind="FaceAgent" 
                                                        Style="{StaticResource menuButtonIcon}"
                                                        Margin="20,2,20,0"/>
-                                <TextBlock x:Name="textBlock7" 
+                                    <TextBlock x:Name="textBlock7" 
                                            Text="Профиль"/>
-                            </StackPanel>
-                        </menu:Btn>
+                                </StackPanel>
+                            </menu:Btn>
 
-                    </DockPanel>
-                </Border>
-            </Grid>
+                        </DockPanel>
+                    </Border>
+                </Grid>
 
-            <Grid Grid.Column="1" 
+                <Grid Grid.Column="1" 
                   Margin="30 0 20 20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="100*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
-                </Grid.ColumnDefinitions>
-                <Border Grid.ColumnSpan="3"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
                         MouseDown="Border_MouseDown"
                         BorderBrush="Transparent"
                         BorderThickness="20"/>
-                
-                
-                
-                <Button x:Name="btnMinimize"
+
+
+
+                    <Button x:Name="btnMinimize"
                         Grid.Column="1"
                         BorderThickness="0"
                         Content="-"
@@ -238,30 +264,30 @@
                         Cursor="Hand" 
                         Click="btnMinimize_Click"
                         Foreground="White">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#28aeed"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#278bef"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="18"
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28aeed"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278bef"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18"
                                     Height="18"
                                     CornerRadius="9"
                                     Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center"
+                                    <ContentPresenter VerticalAlignment="Center"
                                                   HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
-                <Button x:Name="btnExit"
+                    <Button x:Name="btnExit"
                         Grid.Column="2"
                         BorderThickness="0"
                         Content="x"
@@ -270,35 +296,35 @@
                         Cursor="Hand" 
                         Click="btnExit_Click"
                         Foreground="White">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#da34"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#da30"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="18"
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#da34"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#da30"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18"
                                     Height="18"
                                     CornerRadius="9"
                                     Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Top"
+                                    <ContentPresenter VerticalAlignment="Top"
                                                   HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Separator Grid.Row="1"
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Separator Grid.Row="1"
                            VerticalAlignment="Top"
                            Opacity="0.3"/>
-                <Grid Width="300" 
+                    <Grid Width="300" 
                       Grid.Row="1"
                       HorizontalAlignment="Left">
-                    <TextBlock Margin="20 0" 
+                        <TextBlock Margin="20 0" 
                                VerticalAlignment="Center" 
                                Foreground="#b0b9c6" 
                                IsHitTestVisible="False"
@@ -306,44 +332,47 @@
                                Text="Искать здеся..." 
                                Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty,  Converter={StaticResource BoolToVis}}"/>
 
-                    <TextBox x:Name="txtSearch" 
+                        <TextBox x:Name="txtSearch" 
                              Style="{StaticResource textBoxSearch}"/>
 
-                    <Icon:PackIconMaterial Kind="Magnify" 
+                        <Icon:PackIconMaterial Kind="Magnify" 
                                            Width="15" 
                                            Height="15" 
                                            VerticalAlignment="Center"
                                            Margin="0 0 15 0" 
                                            Foreground="#b0b9c6" 
                                            HorizontalAlignment="Right"/>
-                </Grid>
+                    </Grid>
 
-                <!--Top Buttons-->
-                <Button Style="{StaticResource topButton}"
+                    <!--Top Buttons-->
+                    <Button Style="{StaticResource topButton}"
                         Grid.Row="1"
                         Grid.ColumnSpan="3"
                         Margin="0 0 20 0"
                         Background="#dcdcdc"
-                        HorizontalAlignment="Right">
-                    <Icon:PackIconMaterial Kind="Cog"/>
-                </Button>
+                        HorizontalAlignment="Right"
+                            Visibility="Hidden">
+                        <Icon:PackIconMaterial Kind="Cog"/>
+                    </Button>
 
-                <Button Style="{StaticResource topButton}"
+                    <Button Style="{StaticResource topButton}"
                         Grid.Row="1"
                         Grid.ColumnSpan="3"
                         Margin="0 0 55 0"
-                        HorizontalAlignment="Right">
-                    <Icon:PackIconMaterial Kind="Bell"/>
-                </Button>
+                        HorizontalAlignment="Right"
+                            Visibility="Hidden">
+                        <Icon:PackIconMaterial Kind="Bell"/>
+                    </Button>
 
-                <!--PageTitle-->
+                    <!--PageTitle-->
 
-                <ContentControl Grid.Row="2"
+                    <ContentControl Grid.Row="2"
                                 Grid.ColumnSpan="3"
                                 x:Name="Pages"
                                 Content="{Binding CurrentView}"/>
 
+                </Grid>
             </Grid>
-        </Grid>
+        </Border>
     </Border>
 </Window>

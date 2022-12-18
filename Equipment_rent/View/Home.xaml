@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="615" d:DesignWidth="830"
              Background="Transparent"
-             x:Name="DebtOrders">
+             x:Name="DebtOrders" ScrollViewer.VerticalScrollBarVisibility="Hidden">
 
     <UserControl.DataContext>
         <vm:HomeVM/>
@@ -23,7 +23,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource titleText_Style}" 
-                   Text=" Задолженности"/>
+                   Text="Задолженности"
+                   Foreground="LightGray"/>
         <Separator Grid.Row="1"
                    Background="#dae2ea" 
                    Margin="0 -1 0 10"/>
@@ -50,26 +51,36 @@
                             OpacityMask="#FF939393" 
                             CornerRadius="20" 
                             BorderThickness="0,0,0,1"
-                            x:Name="Card_Border">
+                            x:Name="Card_Border" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                         <StackPanel Background="{x:Null}">
                             <TextBlock TextAlignment="left" 
-                                   TextWrapping="Wrap" 
-                                   Text="{Binding OrdersUser.Name}"
-                                   FontSize="16"
-                                   Margin="15 15 0 0"/>
+                                       TextWrapping="Wrap" 
+                                       Text="{Binding OrdersUser.Name}"
+                                       Foreground="LightGray"
+                                       FontFamily="Motserrat"
+                                       FontSize="16"
+                                       Margin="15 15 0 0"/>
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="left" 
                                         Margin="15, 5">
                                 <TextBlock TextAlignment="left"
                                            Text="{Binding OrdersEquipment.Model}"
+                                           Foreground="LightGray"
+                                            FontFamily="Motserrat"
                                            FontSize="16"/>
                                 <TextBlock TextAlignment="left"
+                                           Foreground="LightGray"
+                                            FontFamily="Motserrat"
                                            Text=" – "
                                            FontSize="16"/>
                                 <TextBlock TextAlignment="Left"
+                                           Foreground="LightGray"
+                                       FontFamily="Motserrat"
                                            Text="{Binding Amount}"
                                            FontSize="16"/>
                                 <TextBlock TextAlignment="Left" 
+                                           Foreground="LightGray"
+                                       FontFamily="Motserrat"
                                            Text=" шт."
                                            FontSize="16"/>
                             </StackPanel>
@@ -78,20 +89,26 @@
                                         HorizontalAlignment="left" 
                                         Margin="10, 0">
                                 <TextBlock TextAlignment="Left" 
+                                           Foreground="LightGray"
+                                       FontFamily="Motserrat"
                                            Text="Дата выдачи:"
                                            FontSize="16" 
                                            Margin="5,0"/>
                                 <TextBlock TextAlignment="Left"
+                                           Foreground="LightGray"
+                                       FontFamily="Motserrat"
                                            Text="{Binding FormattedDateIssue}" 
                                            FontSize="16"/>
                             </StackPanel>
 
                             <TextBlock TextAlignment="left" 
+                                       Foreground="LightGray"
+                                       FontFamily="Motserrat"
                                    Text="{Binding OrdersUser.Phone}" 
                                    FontSize="16"
                                    Margin="15,10" 
                                    FontWeight="SemiBold"/>
-                            <Button Style="{StaticResource addFormButton}"
+                            <Button Style="{StaticResource DefBtn}"
                                     VerticalAlignment="Bottom"
                                     Margin="40 10"
                                     Content="Вернуть"

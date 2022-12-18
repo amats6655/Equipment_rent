@@ -162,17 +162,7 @@
                                Margin="0 35 0 0"/>
                     <TextBox x:Name="tb_username"
                              Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             FontSize="13"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0 0 0 2"
-                             Height="28"
-                             VerticalAlignment="Center"
-                             Margin="0 5 0 0 "
-                             Padding="30 5 0 0">
+                             Style="{StaticResource DefTextB}">
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user.png"
                                         Stretch="Uniform"
@@ -217,28 +207,9 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Margin="0 30 0 0" 
-                            IsDefault="True">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#462ad8"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28aeed"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="150" Height="40"
-                                        CornerRadius="20"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                            IsDefault="True"
+                            Style="{StaticResource DefBtn}"
+                            Width="150"/>
 
                 </StackPanel>
             </Grid>

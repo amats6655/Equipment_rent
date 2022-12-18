@@ -26,7 +26,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FF707070"/>
     <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
     <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#FFF3F9FF"/>
@@ -101,7 +101,7 @@
     
     
     <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="#ddFFFFFF"/>
         <Setter Property="Margin" Value="0 4 0 0"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
@@ -284,7 +284,7 @@
     <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#69717d"/>
+        <Setter Property="Foreground" Value="LightGray"/>
         <Setter Property="Margin" Value="15 0 15 10"/>
         <Setter Property="Template">
             <Setter.Value>

@@ -36,6 +36,8 @@ namespace Equipment_rent.View
                 tb_firstname.Visibility = Visibility.Visible;
                 tb_lastname.Visibility = Visibility.Visible;
                 tb_phone.Visibility = Visibility.Visible;
+                text_firstname.Visibility = Visibility.Visible;
+                text_lastname.Visibility = Visibility.Visible;
             }
             else
             {
@@ -43,6 +45,8 @@ namespace Equipment_rent.View
                 tb_firstname.Visibility = Visibility.Collapsed;
                 tb_lastname.Visibility = Visibility.Collapsed;
                 tb_phone.Visibility = Visibility.Collapsed;
+                text_lastname.Visibility= Visibility.Collapsed;
+                text_firstname.Visibility = Visibility.Collapsed;
             }
         }
 

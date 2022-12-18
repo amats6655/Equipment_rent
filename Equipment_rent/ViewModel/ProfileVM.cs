@@ -3,6 +3,8 @@ using Equipment_rent.Utilites;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Equipment_rent.ViewModel
 {
@@ -114,26 +116,85 @@ namespace Equipment_rent.ViewModel
         }
         #endregion
 
-        #region Change Password
-        private RelayCommand _chagePassword;
-        public RelayCommand ChangePassword
+        //#region Change Password
+        //private RelayCommand _chagePassword;
+        //public RelayCommand ChangePassword
+        //{
+        //    get
+        //    {
+        //        return _chagePassword ?? new RelayCommand(obj =>
+        //        {
+        //            Change_Password_Click(User.Username, LastPass, NewPass, ConfurmPass);
+        //        });
+        //    }
+        //}
+        //private void Change_Password_Click(string username, string pass, string new_pass, string confurm_pass)
+        //{
+        //    if (pass != null)
+        //    {
+        //        if (new_pass.Equals(confurm_pass))
+        //        {
+        //            AuthClient.ChangePassword(username, pass, new_pass);
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Пароли не совпадают");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Введи старый пароль");
+        //    }
+
+        //}
+        //#endregion
+
+        private string _errorMessage;
+        public static string Message = "";
+        public string ErrorMessage
         {
             get
             {
-                return _chagePassword ?? new RelayCommand(obj =>
-                {
-                    Change_Password_Click(User.Username, LastPass, NewPass, ConfurmPass);
-                });
+                return _errorMessage;
             }
-        }
-        private void Change_Password_Click(string username, string pass, string new_pass, string confurm_pass)
-        {
-            if (new_pass.Equals(confurm_pass))
+            set
             {
-                AuthClient.ChangePassword(username, pass, new_pass);
+                _errorMessage = value;
+                NotifyPropertyChaged(nameof(ErrorMessage));
             }
         }
-        #endregion
+        public ICommand ChangePasswordCommand { get; }
+        public ProfileVM()
+        {
+            ChangePasswordCommand = new ViewModelCommand(ExecutedLoginCommand, CanExecuteLoginCommand);
+        }
+
+
+        private bool CanExecuteLoginCommand(object obj)
+        {
+            bool validData;
+            if (string.IsNullOrEmpty(LastPass) || LastPass.Length < 3 || string.IsNullOrEmpty(NewPass) ||
+                NewPass.Length < 3 || string.IsNullOrEmpty(ConfurmPass) || ConfurmPass.Length < 3)
+                validData = false;
+            else
+                validData = true;
+            return validData;
+        }
+
+        private async void ExecutedLoginCommand(object obj)
+        {
+            if (NewPass == ConfurmPass)
+            {
+                AuthClient.ChangePassword(User.Username, LastPass, NewPass);
+                ErrorMessage = Message;
+            }
+            else
+            {
+                ErrorMessage = "Пароли не совпадают";
+            }
+
+        }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
