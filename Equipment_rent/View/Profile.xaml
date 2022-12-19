@@ -99,6 +99,7 @@
                       ItemsSource="{Binding AllRoles}"
                       SelectedItem="{Binding User.Role}"
                       DisplayMemberPath="Role"
+                      Foreground="White"
                       IsEditable="True"
                       IsReadOnly="True"
                       Focusable="False"/>

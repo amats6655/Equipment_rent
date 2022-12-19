@@ -45,7 +45,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Background" Value="#7b5cd6"/>
+                            <Setter Property="Background" Value="#462ad8"/>
                             <Setter Property="Foreground" Value="White"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -54,7 +54,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#7b5cd6"/>
+                <Setter Property="Background" Value="#28aeed"/>
                 <Setter Property="Foreground" Value="White"/>
             </Trigger>
         </Style.Triggers>
