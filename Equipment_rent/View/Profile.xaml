@@ -42,7 +42,7 @@
                            Panel.ZIndex="1"
                            Text="Старый пароль" 
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
+                           Visibility="{Binding Password.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
         <TextBlock Grid.Row="2"
                            Grid.Column="2"
                            Margin="210 105 0 0"
@@ -52,7 +52,7 @@
                            Panel.ZIndex="1"
                            Text="Новый пароль" 
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
+                           Visibility="{Binding Password.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
         <TextBlock Grid.Row="2"
                            Grid.Column="2"
                            Margin="210 165 0 0"
@@ -62,7 +62,7 @@
                            Panel.ZIndex="1"
                            Text="Повтори пароль" 
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
+                           Visibility="{Binding Password.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_LastPass}"/>
         <TextBlock Style="{StaticResource titleText_Style}" 
                    Text=" Профиль"
                    Foreground="LightGray"/>
@@ -98,11 +98,7 @@
                       ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                       ItemsSource="{Binding AllRoles}"
                       SelectedItem="{Binding User.Role}"
-                      DisplayMemberPath="Role"
-                      Foreground="White"
-                      IsEditable="True"
-                      IsReadOnly="True"
-                      Focusable="False"/>
+                      DisplayMemberPath="Role"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2"
