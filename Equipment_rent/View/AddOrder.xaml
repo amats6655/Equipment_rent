@@ -34,10 +34,16 @@
     </Window.DataContext>
 
     <Grid>
-        <Border Background="#eff2f7"
-                CornerRadius="10"
+        <Border CornerRadius="10"
                 BorderBrush="Gray"
                 BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#fe060531" Offset="0"/>
+                    <GradientStop Color="#ee623ed0" Offset="0.75"/>
+                    <GradientStop Color="#1b1448" Offset="1.2"/>
+                </LinearGradientBrush>
+            </Border.Background>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -78,6 +84,7 @@
 <!--#region TODO: Организовать маску по количеств оборудования
                     #endregion-->
                     <TextBlock Text="Тип оборудования:"
+                               Foreground="DarkGray"
                                Margin="10 0 0 0"/>
                     <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
                               Style="{StaticResource ComboBoxFlatStyle}"
@@ -86,6 +93,7 @@
                               SelectedItem="{Binding Types}"
                               x:Name="cb_types"/>
                     <TextBlock Text="Модель оборудования:"
+                               Foreground="DarkGray"
                                Margin="10 0 0 0"/>
                     <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
@@ -94,6 +102,7 @@
                               x:Name="cb_models"
                               IsEnabled="False"/>
                     <TextBlock Text="Количество:"
+                               Foreground="DarkGray"
                                Margin="10 0 0 0"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
                              Margin="0 10 0 10"
@@ -109,7 +118,9 @@
                             </TextBox.Text>
                         </TextBox>
 
+
                     <TextBlock Text="Дата выдачи:"
+                               Foreground="DarkGray"
                                Margin="10 0 0 0"/>
                     <!--Количество-->
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
@@ -131,6 +142,7 @@
                               SelectedItem="{Binding User}"
                               x:Name="cb_users"/>
                     <TextBlock Text="Фамилия:"
+                               Foreground="DarkGray"
                                Margin="10 0 0 0"
                                x:Name="text_lastname"
                                Visibility="Collapsed"/>
@@ -139,6 +151,7 @@
                              Visibility="Collapsed"
                              x:Name="tb_lastname"/>
                     <TextBlock Text="Имя:"
+                               Foreground="DarkGray"
                                Margin="10 0 0 0"
                                x:Name="text_firstname"
                                Visibility="Collapsed"/>
@@ -153,6 +166,7 @@
                              x:Name="tb_phone"/>
 
                     <TextBlock Text="Дата возврата:"
+                               Foreground="DarkGray"
                                Margin="10 0 0 0"/>
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
                                 Style="{DynamicResource DatePickerStyle1}"
@@ -160,9 +174,9 @@
                                 x:Name="dp_returnDate" 
                                 FirstDayOfWeek="Monday"
                                 />
-                    <Button Style="{StaticResource addFormButton}"
+                    <Button Style="{StaticResource DefBtn}"
                             Command="{Binding AddNewOrder}"
-                            
+                            Content="Добавить"
                             CommandParameter="{Binding ElementName=AddNewOrderWindow}" 
                             IsDefault="True" />
                     <Button IsCancel="True"

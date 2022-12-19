@@ -8,9 +8,8 @@
     
     
     <Style x:Key="CalendarStyle1" TargetType="{x:Type Calendar}">
-        <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="Background" Value="#eff2f7"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -32,7 +31,7 @@
                 <ControlTemplate TargetType="{x:Type CalendarItem}">
                     <ControlTemplate.Resources>
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
-                            <TextBlock Foreground="#000000" FontFamily="Trebuchet MS" FontWeight="ExtraBold" FontSize="10" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
+                            <TextBlock Foreground="White" FontFamily="Montserrat" FontWeight="ExtraBold" FontSize="13" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </ControlTemplate.Resources>
                     <Grid x:Name="PART_Root">
@@ -49,19 +48,19 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border Background="{TemplateBinding Background}" BorderBrush="Gray" BorderThickness="1" CornerRadius="20">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Gray" BorderThickness="0 0 0 1" CornerRadius="20">
                             <Grid>
                                 <Grid.Resources>
                                     <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
                                         <Border Cursor="Hand"
                                                     CornerRadius="20"
-                                                    Background="#6741d9">
+                                                    Background="#4f35da">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualState x:Name="Normal"/>
                                                     <VisualState x:Name="MouseOver">
                                                         <Storyboard>
-                                                            <ColorAnimation Duration="0" Storyboard.TargetName="path" To="#FF73A9D8" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"/>
+                                                            <ColorAnimation Duration="0" Storyboard.TargetName="path" To="#fff" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"/>
                                                         </Storyboard>
                                                     </VisualState>
                                                     <VisualState x:Name="Disabled">
@@ -72,20 +71,20 @@
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
                                             <Grid>
-                                                <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="#FFFFFF" HorizontalAlignment="Center" Height="8" Stretch="Uniform" VerticalAlignment="Center"/>
+                                                <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="#28aeed" HorizontalAlignment="Center" Height="8" Stretch="Uniform" VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
                                     </ControlTemplate>
                                     <ControlTemplate x:Key="NextButtonTemplate" TargetType="{x:Type Button}">
                                         <Border Cursor="Hand"
                                                     CornerRadius="20"
-                                                    Background="#6741d9">
+                                                    Background="#4f35da">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
                                                     <VisualState x:Name="Normal"/>
                                                     <VisualState x:Name="MouseOver">
                                                         <Storyboard>
-                                                            <ColorAnimation Duration="0" Storyboard.TargetName="path" To="#FF73A9D8" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"/>
+                                                            <ColorAnimation Duration="0" Storyboard.TargetName="path" To="#fff" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"/>
                                                         </Storyboard>
                                                     </VisualState>
                                                     <VisualState x:Name="Disabled">
@@ -96,7 +95,7 @@
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
                                             <Grid>
-                                                <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="white" HorizontalAlignment="Center" Height="8" Stretch="Uniform" VerticalAlignment="Center"/>
+                                                <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="#28aeed" HorizontalAlignment="Center" Height="8" Stretch="Uniform" VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
                                     </ControlTemplate>
@@ -107,7 +106,7 @@
                                                     <VisualState x:Name="Normal"/>
                                                     <VisualState x:Name="MouseOver">
                                                         <Storyboard>
-                                                            <ColorAnimation Duration="0" Storyboard.TargetName="buttonContent" To="#606467" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                                            <ColorAnimation Duration="0" Storyboard.TargetName="buttonContent" To="LightGray" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
                                                         </Storyboard>
                                                     </VisualState>
                                                     <VisualState x:Name="Disabled">
@@ -120,7 +119,7 @@
                                             <ContentPresenter x:Name="buttonContent" 
                                                               ContentTemplate="{TemplateBinding ContentTemplate}" 
                                                               Content="{TemplateBinding Content}" 
-                                                              TextElement.Foreground="Black" 
+                                                              TextElement.Foreground="White" 
                                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                               Margin="15,4,1,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                               TextBlock.TextAlignment="{TemplateBinding HorizontalContentAlignment}"/>
@@ -129,7 +128,7 @@
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"
-                                                      MinWidth="79"/>
+                                                      MinWidth="220"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
@@ -219,7 +218,7 @@
     <Style x:Key="CalendarCalendarDayButtonStyle1" TargetType="{x:Type CalendarDayButton}">
         <Setter Property="Width" Value="25"/>
         <Setter Property="Height" Value="25"/>
-        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -331,11 +330,11 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Rectangle x:Name="TodayBackground" Fill="#cc6741d9" Opacity="0" RadiusX="20" RadiusY="20"/>
-                        <Rectangle x:Name="SelectedBackground" Fill="#FF6741d9" Opacity="0" RadiusX="20" RadiusY="20"/>
+                        <Rectangle x:Name="SelectedBackground" Fill="#28aeed" Opacity="0" RadiusX="20" RadiusY="20"/>
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
-                        <Rectangle x:Name="HighlightBackground" Stroke="#6741d9" StrokeThickness="1" Opacity="0" RadiusX="20" RadiusY="20"/>
-                        <ContentPresenter x:Name="NormalText" TextElement.Foreground="Black" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
+                        <Rectangle x:Name="HighlightBackground" Stroke="#28aeed" StrokeThickness="2" Opacity="0" RadiusX="20" RadiusY="20"/>
+                        <ContentPresenter x:Name="NormalText" TextElement.Foreground="White" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#fff" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
                         <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="20" RadiusY="20" Stroke="Transparent" Visibility="Collapsed"/>
                     </Grid>
                 </ControlTemplate>
@@ -347,7 +346,7 @@
         <Setter Property="Background" Value="#6741d9"/>
         <Setter Property="MinWidth" Value="40"/>
         <Setter Property="MinHeight" Value="42"/>
-        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -389,7 +388,7 @@
                                 <VisualState x:Name="Active"/>
                                 <VisualState x:Name="Inactive">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="#FF777777" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                        <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="#FFf" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -423,7 +422,7 @@
                         </VisualStateManager.VisualStateGroups>
                         <Rectangle x:Name="SelectedBackground" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="6" RadiusY="6"/>
                         <Rectangle x:Name="Background" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="6" RadiusY="6"/>
-                        <ContentPresenter x:Name="NormalText" TextElement.Foreground="Black" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,0,1,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <ContentPresenter x:Name="NormalText" TextElement.Foreground="LightGray" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,0,1,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         <Rectangle x:Name="CalendarButtonFocusVisual" IsHitTestVisible="false" RadiusX="6" RadiusY="6" Visibility="Collapsed"/>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -449,6 +448,7 @@
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Padding" Value="5 0 0 0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
@@ -482,10 +482,10 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1" Opacity="1" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="White" BorderThickness="0 0 0 1" CornerRadius="10" Opacity="1" Padding="{TemplateBinding Padding}">
                             <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Border x:Name="ContentElement" BorderBrush="#FFFFFFFF" BorderThickness="1"/>
-                                <Border x:Name="watermark_decorator" BorderBrush="#FFFFFFFF" BorderThickness="1">
+                                <Border x:Name="ContentElement" BorderBrush="#FFFFFFFF" BorderThickness="0"/>
+                                <Border x:Name="watermark_decorator" BorderBrush="#FFFFFFFF" BorderThickness="0">
                                     <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
                                 </Border>
                                 <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -501,14 +501,16 @@
     
     
     <Style x:Key="DatePickerStyle1" TargetType="{x:Type DatePicker}">
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="LightGray"/>
         <Setter Property="Margin" Value="0 10"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="Padding" Value="15 10"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Long"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="1"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="1 1 0 0"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -675,10 +677,10 @@
 
 
     <Style x:Key="DatePickerCalendarStyle1" TargetType="{x:Type Calendar}">
-        <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="Background" Value="#eff2f7"/>
+        <Setter Property="Foreground" Value="#fff"/>
+        <Setter Property="Background" Value="#ef2c1d73"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">

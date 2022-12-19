@@ -5,13 +5,13 @@
            TargetType="TextBlock">
 
         <Setter Property="FontFamily"
-                Value="/Fonts/#LabGrotesque-Medium"/>
+                Value="Montserrat"/>
         <Setter Property="HorizontalAlignment"
                 Value="Center"/>
         <Setter Property="FontWeight"
                 Value="SemiBold"/>
         <Setter Property="Foreground"
-                Value="White"/>
+                Value="LightGray"/>
         <Setter Property="FontSize"
                 Value="17"/>
         <Setter Property="Margin"
@@ -26,7 +26,7 @@
         <Setter Property="FontFamily" Value="Fonts/#LabGrotesque-Medium"/>
         <Setter Property="Margin" Value="0 20 0 0"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Foreground" Value="#121518" />
+        <Setter Property="Foreground" Value="LightGray" />
     </Style>
 
 </ResourceDictionary>

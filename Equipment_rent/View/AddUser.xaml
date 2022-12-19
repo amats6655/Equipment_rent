@@ -22,10 +22,16 @@
     </Window.Resources>
 
     <Grid>
-        <Border Background="#eff2f7"
-                CornerRadius="10"
+        <Border CornerRadius="10"
                 BorderBrush="Gray"
                 BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#fe060531" Offset="0"/>
+                    <GradientStop Color="#ee623ed0" Offset="0.75"/>
+                    <GradientStop Color="#1b1448" Offset="1.2"/>
+                </LinearGradientBrush>
+            </Border.Background>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -110,8 +116,9 @@
                              x:Name="tb_phone"
                              Mask="+7(000)000-00-00"/>
 <!--#endregion-->
-                    <Button Style="{StaticResource addFormButton}"
+                    <Button Style="{StaticResource DefBtn}"
                             Command="{Binding AddNewUser}"
+                            Content="Добавить"
                             CommandParameter="{Binding ElementName=AddNewUserWindow}"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>

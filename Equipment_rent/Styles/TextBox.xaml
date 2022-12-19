@@ -7,7 +7,7 @@
         <Setter Property="Background" Value="#ccFFFFFF"/>
         <Setter Property="Foreground" Value="#b0b9c6"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="13"/>
         <Setter Property="Padding" Value="15 10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0 10"/>
@@ -75,12 +75,13 @@
     
     <Style x:Key="textBoxAdd" TargetType="TextBox">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="LightGray"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Padding" Value="15 10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0 10"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBoxBase">
@@ -122,7 +123,7 @@
 
 
     <Style x:Key="DefTextB" TargetType="TextBox">
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontFamily" Value="Montserrat"/>
@@ -140,9 +141,9 @@
 
     <Style x:Key="MasktextBoxAdd" TargetType="mask:MaskedTextBox">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="LightGray"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Padding" Value="15 10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0 10"/>
@@ -180,9 +181,9 @@
 
     <Style x:Key="passwordBox" TargetType="PasswordBox">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="LightGray"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="Padding" Value="15 10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0 10"/>
