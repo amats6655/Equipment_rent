@@ -104,61 +104,41 @@
                                  ff:PasswordBoxAssistant.BindPassword="true" 
                                  ff:PasswordBoxAssistant.BoundPassword="{Binding Path=LastPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  FontSize="13"
+                         Style="{StaticResource passwordBox}"
                                  FontWeight="Medium"
                                  Foreground="White"
                                  CaretBrush="LightGray"
                                  BorderBrush="DarkGray"
                                  BorderThickness="0 0 0 2"
-                                 Height="28"
-                                 VerticalAlignment="Center"
-                                 Margin="0 5 0 0"
-                                 Padding="30 5 0 0">
-                <PasswordBox.Background>
-                    <ImageBrush ImageSource="/Images/key.png"
-                                        Stretch="Uniform"
-                                        AlignmentX="Left"/>
-                </PasswordBox.Background>
+                                 VerticalAlignment="Center">
             </PasswordBox>
-            
+
             <PasswordBox x:Name="tb_NewPass" 
                                  ff:PasswordBoxAssistant.BindPassword="true" 
                                  ff:PasswordBoxAssistant.BoundPassword="{Binding Path=NewPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  FontSize="13"
+                         
+                         Style="{StaticResource passwordBox}"
                                  FontWeight="Medium"
                                  Foreground="White"
                                  CaretBrush="LightGray"
                                  BorderBrush="DarkGray"
                                  BorderThickness="0 0 0 2"
-                                 Height="28"
-                                 VerticalAlignment="Center"
-                                 Margin="0 5 0 0"
-                                 Padding="30 5 0 0">
-                <PasswordBox.Background>
-                    <ImageBrush ImageSource="/Images/key.png"
-                                        Stretch="Uniform"
-                                        AlignmentX="Left"/>
-                </PasswordBox.Background>
+                                 VerticalAlignment="Center">
             </PasswordBox>
-            
-            
+
+
             <PasswordBox x:Name="tb_ConfPass" 
                                  ff:PasswordBoxAssistant.BindPassword="true" 
                                  ff:PasswordBoxAssistant.BoundPassword="{Binding Path=ConfurmPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  FontSize="13"
+                         Style="{StaticResource passwordBox}"
                                  FontWeight="Medium"
                                  Foreground="White"
                                  CaretBrush="LightGray"
                                  BorderBrush="DarkGray"
                                  BorderThickness="0 0 0 2"
-                                 Height="28"
-                                 VerticalAlignment="Center"
-                                 Margin="0 5 0 0"
-                                 Padding="30 5 0 0">
-                <PasswordBox.Background>
-                    <ImageBrush ImageSource="/Images/key.png"
-                                        Stretch="Uniform"
-                                        AlignmentX="Left"/>
-                </PasswordBox.Background>
+                                 VerticalAlignment="Center">
             </PasswordBox>
             <Button Style="{StaticResource addFormButton}"
                     Command="{Binding ChangePassword}"

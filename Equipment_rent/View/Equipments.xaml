@@ -59,42 +59,6 @@
                    Background="#dae2ea" 
                    Margin="0 -1 0 10"/>
 
-        <TextBlock Text="Фильтр" 
-                   Grid.Row="2"
-                   Grid.Column="2"
-                   FontSize="13" 
-                   FontWeight="SemiBold"
-                   Margin="0 0 215 0"
-                   FontFamily="Style/LabGrotesque-Medium.ttf"
-                   Foreground="#121518"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Center"/>
-
-        <!--Filter textbox-->
-        <Grid Width="200" 
-              HorizontalAlignment="Right"
-              Grid.Row="2"
-              Grid.Column="2">
-            <!--TODO: ОСТАЕТСЯ СТАРЫЙ ТЕКСТ ИСПРАВИТЬ-->
-            <TextBlock Margin="15 0" 
-                               VerticalAlignment="Center" 
-                               Foreground="#b0b9c6" 
-                               IsHitTestVisible="False"
-                               Panel.ZIndex="1" 
-                               Text="Искать здеся..." />
-
-
-            <TextBox x:Name="txtFilter" 
-                             Style="{StaticResource textBoxFilter}"/>
-
-            <Icon:PackIconMaterial Kind="Magnify" 
-                                           Width="15" 
-                                           Height="15" 
-                                           VerticalAlignment="Center"
-                                           Margin="0 0 15 0" 
-                                           Foreground="#b0b9c6" 
-                                           HorizontalAlignment="Right"/>
-        </Grid>
 
         <!--USERS DATAGRID-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" 
