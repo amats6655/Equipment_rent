@@ -19,9 +19,6 @@ namespace Equipment_rent.View
             ProfileVM.Lastname = User.LastName;
             ProfileVM.Email = User.Email;
             ProfileVM.Role = User.Role;
-            cb_role.Text = User.Role.Role;
-            cb_role.SelectedValue = User.Role;
-            cb_role.SelectedValuePath = User.Role.Role;
 
 
         }

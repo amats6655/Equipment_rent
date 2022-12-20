@@ -72,28 +72,22 @@
                      IsEnabled="False"/>
             <TextBox x:Name="tb_Firstname"
                      Style="{StaticResource textBoxAdd}"
+                     IsEnabled="False"
                      Text="{Binding User.FirstName}"/>
             <TextBox x:Name="tb_Lastname"
                      Style="{StaticResource textBoxAdd}"
+                     IsEnabled="False"
                      Text="{Binding User.LastName}"/>
-        </StackPanel>
 
-        <StackPanel Grid.Row="2"
-                    Grid.Column="1"
-                    Margin="10 25"
-                    Orientation="Vertical">
+
             <TextBox x:Name="tb_Email"
                      Style="{StaticResource textBoxAdd}"
+                     IsEnabled="False"
                      Text="{Binding User.Email}"/>
-            <ComboBox x:Name="cb_role"
-                      Style="{StaticResource ComboBoxFlatStyle}"
-                      ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
-                      ItemsSource="{Binding AllRoles}"
-                      SelectedItem="{Binding User.Role}"
-                      DisplayMemberPath="Role"
-                      IsEditable="True"
-                      IsReadOnly="True"
-                      Focusable="False"/>
+            <TextBox x:Name="tb_role"
+                     Style="{StaticResource textBoxAdd}"
+                     IsEnabled="False"
+                     Text="{Binding User.Role.Role}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2"
@@ -134,21 +128,17 @@
                                  BorderThickness="0 0 0 2"
                                  VerticalAlignment="Center">
             </PasswordBox>
+            <TextBlock Text="{Binding ErrorMessage}"
+                       Foreground="#D7598D"
+                       FontSize="12"
+                       TextWrapping="Wrap"/>
             <Button Style="{StaticResource addFormButton}"
-                    Command="{Binding ChangePassword}"
+                    Command="{Binding ChangePasswordCommand}"
                     Content="Изменить пароль"
                     Margin="10"/>
+            
         </StackPanel>
         
-        <StackPanel Grid.Row="3"
-                    Grid.Column="1"
-                    Margin="10 0"
-                    Orientation="Vertical">
-            
-            <Button Style="{StaticResource addFormButton}"
-                    Command="{Binding EditUser}"
-                    Content="Сохранить"
-                    Margin="10"/>
-        </StackPanel>
+
     </Grid>
 </UserControl>
