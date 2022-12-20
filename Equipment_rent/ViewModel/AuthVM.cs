@@ -1,7 +1,9 @@
 ﻿using Equipment_rent.Utilites;
 using System;
+using System.IO;
+using System.Text;
 using System.Windows.Input;
-
+using Xceed.Wpf.Toolkit;
 
 namespace Equipment_rent.ViewModel
 {
@@ -93,6 +95,21 @@ namespace Equipment_rent.ViewModel
         {
 
             AuthClient.AuthClient_Send(Username, Password);
+            // считываем данные авторизации из файла
+            string path = "./Settings/auth.dat";   // путь к файлу
+
+            // запись в файл
+            using (FileStream fstream = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                // преобразуем строку в байты
+                var strWithoutSpaces = Username.Replace(" ", "");
+                byte[] buffer = Encoding.UTF8.GetBytes(strWithoutSpaces);
+                // запись массива байтов в файл
+                await fstream.WriteAsync(buffer, 0, buffer.Length);
+                fstream.Close();
+            }
+
+
             ErrorMessage = Message;
 
         }

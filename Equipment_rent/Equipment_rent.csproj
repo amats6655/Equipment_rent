@@ -64,6 +64,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Update="Settings\Auth.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

@@ -3,6 +3,7 @@ using Equipment_rent.View;
 using Equipment_rent.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
@@ -48,6 +49,7 @@ namespace Equipment_rent.Utilites
                     response.Clear();
                 }
             }
+
             UserId = Encoding.UTF8.GetString(response.ToArray());
 
             if (Status == 2 && UserId != null)
@@ -62,6 +64,7 @@ namespace Equipment_rent.Utilites
             }
             response.Clear();
             AuthVM.Message = ErrorMessages[Status];
+
         }
 
         public static async void ChangePassword(string username, string lastpassword, string password)
