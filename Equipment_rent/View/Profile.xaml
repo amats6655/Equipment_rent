@@ -29,6 +29,33 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="2"
+                           Grid.Column="2"
+                           Margin="210 45 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Старый пароль" 
+                           Foreground="LightSteelBlue"/>
+        <TextBlock Grid.Row="2"
+                           Grid.Column="2"
+                           Margin="210 105 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Новый пароль" 
+                           Foreground="LightSteelBlue"/>
+        <TextBlock Grid.Row="2"
+                           Grid.Column="2"
+                           Margin="210 165 0 0"
+                           IsHitTestVisible="False"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Panel.ZIndex="1"
+                           Text="Повтори пароль" 
+                           Foreground="LightSteelBlue"/>
         <TextBlock Style="{StaticResource titleText_Style}" 
                    Text=" Профиль"/>
         <Separator Grid.Row="1"
