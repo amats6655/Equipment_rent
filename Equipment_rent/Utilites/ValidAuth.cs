@@ -52,14 +52,13 @@ namespace Equipment_rent.Utilites
 
             if (Status == 2 && UserId != null)
             {
-                MessageBox.Show($"Авторизация {username} прошла успешно");
                 NavigationVM.AuthUser = DataWorker.GetAuthUserById(Guid.Parse(UserId));
                 var w = Application.Current.Windows[0];
                 w.Hide();
                 Window window = new MainWindow();
 
                 window.ShowDialog();
-                w.Show();
+                w.Close();
             }
             response.Clear();
             AuthVM.Message = ErrorMessages[Status];
@@ -67,6 +66,7 @@ namespace Equipment_rent.Utilites
 
         public static async void ChangePassword(string username, string lastpassword, string password)
         {
+            List<string> ErrorMessages = new List<string>() { "Неверный старый пароль", "Пароль успешно изменен", "Кажется что-то пошло не так" };
             int mode = 1;
             int numberOfIteration = 99;
             var hashFunc = new Crypt();
@@ -75,7 +75,7 @@ namespace Equipment_rent.Utilites
             var hashedLastPass = hashFunc.HashDataWithRounds(Encoding.UTF8.GetBytes(lastpassword), salt_srv, numberOfIteration);
             var hashedNewPass = hashFunc.HashDataWithRounds(Encoding.UTF8.GetBytes(password), salt_srv, numberOfIteration);
             using TcpClient tcpClient = new TcpClient();
-            await tcpClient.ConnectAsync("85.175.4.135", 8888);
+            tcpClient.Connect("85.175.4.135", 8888);
 
             var stream = tcpClient.GetStream();
 
@@ -97,23 +97,8 @@ namespace Equipment_rent.Utilites
                 }
             }
             UserId = Encoding.UTF8.GetString(response.ToArray());
-            if (Status == 0)
-            {
-                MessageBox.Show("Похоже тебя забанили");
-            }
-            if (Status == 1)
-            {
-                MessageBox.Show("Не верный старый пароль");
-            }
-            if (Status == 2)
-            {
-                MessageBox.Show("Пароль изменен");
-            }
-            else
-            {
-                MessageBox.Show("Кажется что-то пошло не так");
-            }
             response.Clear();
+            ProfileVM.Message = ErrorMessages[Status];
         }
 
         public static async void CreateNewUser(string username, string password)
