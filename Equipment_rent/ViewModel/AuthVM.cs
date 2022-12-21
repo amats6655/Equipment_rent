@@ -17,6 +17,17 @@ namespace Equipment_rent.ViewModel
         private bool _isViewVisible = true;
 
         public static string Message = "";
+
+        public string Auth_username
+        {
+            get => Properties.Settings.Default.auth_username;
+            set
+            {
+                Properties.Settings.Default.auth_username = value;
+                Properties.Settings.Default.Save();
+                OnPropertyChanged(nameof(Auth_username));
+            }
+        }
         public string Username
         {
             get
@@ -85,7 +96,7 @@ namespace Equipment_rent.ViewModel
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
-            if (string.IsNullOrEmpty(Username) || Username.Length < 3 || Password == null || Password.Length < 3)
+            if (string.IsNullOrEmpty(Auth_username) || Auth_username.Length < 3 || Password == null || Password.Length < 3)
                 validData = false;
             else
                 validData = true;
@@ -94,21 +105,7 @@ namespace Equipment_rent.ViewModel
         private async void ExecuteLoginCommand(object obj)
         {
 
-            AuthClient.AuthClient_Send(Username, Password);
-            // считываем данные авторизации из файла
-            string path = "./Settings/auth.dat";   // путь к файлу
-
-            // запись в файл
-            using (FileStream fstream = new FileStream(path, FileMode.OpenOrCreate))
-            {
-                // преобразуем строку в байты
-                var strWithoutSpaces = Username.Replace(" ", "");
-                byte[] buffer = Encoding.UTF8.GetBytes(strWithoutSpaces);
-                // запись массива байтов в файл
-                await fstream.WriteAsync(buffer, 0, buffer.Length);
-                fstream.Close();
-            }
-
+            AuthClient.AuthClient_Send(Auth_username, Password);
 
             ErrorMessage = Message;
 
