@@ -4,7 +4,7 @@ using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-
+using System.Windows;
 
 namespace Equipment_rent.ViewModel
 {
@@ -40,15 +40,23 @@ namespace Equipment_rent.ViewModel
         }
         private void Return_Button_Click()
         {
-            Order thisSelectedOrder = SelectedOrder;
-            ConfirmWindow confirmWindow = new ConfirmWindow();
-            if (confirmWindow.ShowDialog() == true)
+            if (NavigationVM.AuthUser.Role.Role.Equals("test"))
             {
-                if (thisSelectedOrder.OrdersUser.UserOrders.Count <= 1) DataWorker.EditUser(thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersUser.Name, thisSelectedOrder.OrdersUser.Phone, false);
-                DataWorker.EditOrder(thisSelectedOrder, thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersEquipment, thisSelectedOrder.Amount, thisSelectedOrder.DateIssue, DateTime.Now, true, NavigationVM.AuthUser.Id);
-                DataWorker.EditEquipment(thisSelectedOrder.OrdersEquipment, thisSelectedOrder.OrdersEquipment.EquipType, thisSelectedOrder.OrdersEquipment.Model, thisSelectedOrder.OrdersEquipment.Amount, thisSelectedOrder.OrdersEquipment.Balance + thisSelectedOrder.Amount);
-                UpdateAllOrdersView();
+                MessageBox.Show("Недостаточно прав =(");
             }
+            else
+            {
+                Order thisSelectedOrder = SelectedOrder;
+                ConfirmWindow confirmWindow = new ConfirmWindow();
+                if (confirmWindow.ShowDialog() == true)
+                {
+                    if (thisSelectedOrder.OrdersUser.UserOrders.Count <= 1) DataWorker.EditUser(thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersUser.Name, thisSelectedOrder.OrdersUser.Phone, false);
+                    DataWorker.EditOrder(thisSelectedOrder, thisSelectedOrder.OrdersUser, thisSelectedOrder.OrdersEquipment, thisSelectedOrder.Amount, thisSelectedOrder.DateIssue, DateTime.Now, true, NavigationVM.AuthUser.Id);
+                    DataWorker.EditEquipment(thisSelectedOrder.OrdersEquipment, thisSelectedOrder.OrdersEquipment.EquipType, thisSelectedOrder.OrdersEquipment.Model, thisSelectedOrder.OrdersEquipment.Amount, thisSelectedOrder.OrdersEquipment.Balance + thisSelectedOrder.Amount);
+                    UpdateAllOrdersView();
+                }
+            }
+
         }
         #endregion
 
