@@ -8,8 +8,6 @@ namespace Equipment_rent.ViewModel
 
     public class AuthVM : ViewModelBase
     {
-
-        private string _username;
         private string _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
@@ -17,13 +15,11 @@ namespace Equipment_rent.ViewModel
         public static string Message = "";
         public string Username
         {
-            get
-            {
-                return _username;
-            }
+            get => Properties.Settings.Default.auth_username;
             set
             {
-                _username = value;
+                Properties.Settings.Default.auth_username = value;
+                Properties.Settings.Default.Save();
                 OnPropertyChanged(nameof(Username));
             }
         }

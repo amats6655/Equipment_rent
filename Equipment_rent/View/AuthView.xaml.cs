@@ -11,6 +11,7 @@ namespace Equipment_rent.View
         public AuthView()
         {
             InitializeComponent();
+            tb_username.Text = Properties.Settings.Default.auth_username;
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
