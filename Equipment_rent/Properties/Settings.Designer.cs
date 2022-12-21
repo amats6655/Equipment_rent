@@ -34,5 +34,16 @@ namespace Equipment_rent.Properties {
                 this["auth_username"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=85.175.4.135,49172;Initial Catalog=ER;User ID=mrkotik;Password=ciscO1" +
+            "5=!;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationInt" +
+            "ent=ReadWrite;MultiSubnetFailover=False")]
+        public string ConnectString {
+            get {
+                return ((string)(this["ConnectString"]));
+            }
+        }
     }
 }
