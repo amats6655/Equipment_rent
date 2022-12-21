@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using System.Windows.Documents;
 
 namespace Equipment_rent.Model
 {
@@ -18,11 +20,16 @@ namespace Equipment_rent.Model
         public Guid WhoGive { get; set; }
         public Guid WhoTake { get; set; }
 
-        [NotMapped] public Auth_user Give { get { return DataWorker.GetAuthUserById(WhoGive); } }
-        [NotMapped] public Auth_user Take { get { return DataWorker.GetAuthUserById(WhoTake); } }
+        public List<Equipment> Equipments { get; set; } = new();
+
+        [NotMapped]
+        public Auth_user Give { get { return DataWorker.GetAuthUserById(WhoGive); } }
+        [NotMapped]
+        public Auth_user Take { get { return DataWorker.GetAuthUserById(WhoTake); } }
 
 
-        [NotMapped] public string? BgColor { get; set; }
+        [NotMapped]
+        public string? BgColor { get; set; }
         [NotMapped]
         public User OrdersUser
         {
