@@ -17,6 +17,10 @@ namespace Equipment_rent.View
             if (NavigationVM.AuthUser.Role.Role != "Эксперт")
             {
                 dgColumn_delete.Visibility = Visibility.Collapsed;
+                if (NavigationVM.AuthUser.Role.Role.Equals("test"))
+                {
+                    dgColumn_edit.Visibility = Visibility.Collapsed;
+                }
             }
         }
     }

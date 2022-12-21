@@ -38,7 +38,8 @@
         <Button Grid.Column="2" 
                 Grid.Row="0" 
                 Style="{StaticResource addButton}" 
-                Command="{Binding AddEquipment}">
+                Command="{Binding AddEquipment}"
+                x:Name="btn_add_Equip">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" 
                                        VerticalAlignment="Center" 

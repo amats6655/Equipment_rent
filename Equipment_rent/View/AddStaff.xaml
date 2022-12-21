@@ -144,7 +144,8 @@
                     <!--#endregion-->
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding AddNewStaff}"
-                            CommandParameter="{Binding ElementName=AddNewStaffWindow}"/>
+                            CommandParameter="{Binding ElementName=AddNewStaffWindow}"
+                            x:Name="btn_add"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>
                 </StackPanel>

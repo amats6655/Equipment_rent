@@ -112,7 +112,8 @@
 <!--#endregion-->
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding AddNewUser}"
-                            CommandParameter="{Binding ElementName=AddNewUserWindow}"/>
+                            CommandParameter="{Binding ElementName=AddNewUserWindow}"
+                            x:Name="btn_add"/>
                     <Button IsCancel="True"
                             Style="{StaticResource cancelFormButton}"/>
                 </StackPanel>

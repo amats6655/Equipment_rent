@@ -19,7 +19,10 @@ namespace Equipment_rent.View
             ProfileVM.Lastname = User.LastName;
             ProfileVM.Email = User.Email;
             ProfileVM.Role = User.Role;
-
+            if (NavigationVM.AuthUser.Role.Role.Equals("test"))
+            {
+                btn_changePass.IsEnabled = false;
+            }
 
         }
     }

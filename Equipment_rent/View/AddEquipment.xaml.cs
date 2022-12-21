@@ -12,6 +12,10 @@ namespace Equipment_rent.View
         {
             InitializeComponent();
             DataContext = new AddEquipmentVM();
+            if (NavigationVM.AuthUser.Role.Role.Equals("test"))
+            {
+                btn_add.IsEnabled = false;
+            }
         }
 
 

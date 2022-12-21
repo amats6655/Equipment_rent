@@ -17,6 +17,10 @@ namespace Equipment_rent.View
             cb_models.SelectedIndex = 0;
             cb_users.SelectedIndex = 0;
             Models = cb_models;
+            if (NavigationVM.AuthUser.Role.Role.Equals("test"))
+            {
+                btn_add.IsEnabled = false;
+            }
         }
 
 
