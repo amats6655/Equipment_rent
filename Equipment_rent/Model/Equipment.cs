@@ -13,7 +13,6 @@ namespace Equipment_rent.Model
         public int Balance { get; set; }
         public List<Order> Orders { get; set; } = new(); 
 
-        [NotMapped]
         public Type EquipType
         {
             get

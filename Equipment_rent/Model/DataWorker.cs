@@ -12,7 +12,7 @@ namespace Equipment_rent.Model
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = db.Users.ToList();
+                var result = db.Users.OrderBy(o => o.Name).ToList();
 
                 return result;
             }
@@ -23,7 +23,7 @@ namespace Equipment_rent.Model
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                var result = db.Equipments.ToList();
+                var result = db.Equipments.OrderBy(o => o.TypeId).ToList();
 
                 return result;
             }
@@ -51,6 +51,27 @@ namespace Equipment_rent.Model
             }
         }
 
+
+        // Get All Auth_users
+        public static List<Auth_user> GetAllAuthUsers()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Auth_user.OrderBy(o => o.Username).ToList();
+                return result;
+            }
+        }
+
+        // Get All Roles
+        public static List<Auth_role> GetAllAuthRoles()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var result = db.Auth_role.ToList();
+                return result;
+            }
+        }
+
         // Add User
         public static User CreateUser(string name, string phone, bool debt)
         {
@@ -69,6 +90,7 @@ namespace Equipment_rent.Model
                 return user;
             }
         }
+
 
         // Add Equipment
         public static string CreateEquip(Type type, string model, int amount)
@@ -342,118 +364,103 @@ namespace Equipment_rent.Model
         // Get Preview Users
         public static List<User> GetPreviousPageUsers(int pageIndex, int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (pageIndex > 1)
             {
-                if (pageIndex > 1)
+                pageIndex -= 1;
+                UsersVM.pageIndex = pageIndex;
+                if (pageIndex == 1)
                 {
-                    pageIndex -= 1;
-                    UsersVM.pageIndex = pageIndex;
-                    if (pageIndex == 1)
-                    {
-                        var result = db.Users.Take(count).ToList();
-                        UsersVM.count = result.Count();
-                        return result;
-                    }
-                    else
-                    {
-                        var result = db.Users.Skip((pageIndex * count) - count).Take(count).ToList();
-                        UsersVM.count = Math.Min(pageIndex * count, GetAllUsers().Count);
-                        return result;
-                    }
-
+                    var result = GetAllUsers().Take(count).ToList();
+                    UsersVM.count = result.Count();
+                    return result;
                 }
                 else
                 {
-                    return db.Users.Take(count).ToList();
+                    var result = GetAllUsers().Skip((pageIndex * count) - count).Take(count).ToList();
+                    UsersVM.count = Math.Min(pageIndex * count, GetAllUsers().Count);
+                    return result;
                 }
 
+            }
+            else
+            {
+                return GetAllUsers().Take(count).ToList();
             }
         }
         // Get Preview Equipments
         public static List<Equipment> GetPreviousPageEquipments(int pageIndex, int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (pageIndex > 1)
             {
-                if (pageIndex > 1)
+                pageIndex -= 1;
+                EquipmentsVM.pageIndex = pageIndex;
+                if (pageIndex == 1)
                 {
-                    pageIndex -= 1;
-                    EquipmentsVM.pageIndex = pageIndex;
-                    if (pageIndex == 1)
-                    {
-                        var result = db.Equipments.Take(count).ToList();
-                        EquipmentsVM.count = result.Count();
-                        return result;
-                    }
-                    else
-                    {
-                        var result = db.Equipments.Skip((pageIndex * count) - count).Take(count).ToList();
-                        EquipmentsVM.count = Math.Min(pageIndex * count, GetAllUsers().Count);
-                        return result;
-                    }
+                    var result = GetAllEquipments().Take(count).ToList();
+                    EquipmentsVM.count = result.Count();
+                    return result;
                 }
                 else
                 {
-                    return db.Equipments.Take(count).ToList();
+                    var result = GetAllEquipments().Skip((pageIndex * count) - count).Take(count).ToList();
+                    EquipmentsVM.count = Math.Min(pageIndex * count, GetAllUsers().Count);
+                    return result;
                 }
+            }
+            else
+            {
+                return GetAllEquipments().Take(count).ToList();
             }
         }
         // Get Preview Orders
         public static List<Order> GetPreviousPageOrders(int pageIndex, int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (pageIndex > 1)
             {
-                if (pageIndex > 1)
+                pageIndex -= 1;
+                OrdersVM.pageIndex = pageIndex;
+                if (pageIndex == 1)
                 {
-                    pageIndex -= 1;
-                    OrdersVM.pageIndex = pageIndex;
-                    if (pageIndex == 1)
-                    {
-                        var result = db.Orders.Take(count).ToList();
-                        OrdersVM.count = result.Count();
-                        return result;
-                    }
-                    else
-                    {
-                        var result = db.Orders.Skip((pageIndex * count) - count).Take(count).ToList();
-                        OrdersVM.count = Math.Min(pageIndex * count, GetAllOrders().Count);
-                        return result;
-                    }
+                    var result = GetAllOrders().Take(count).ToList();
+                    OrdersVM.count = result.Count();
+                    return result;
                 }
                 else
                 {
-                    return db.Orders.Take(count).ToList();
+                    var result = GetAllOrders().Skip((pageIndex * count) - count).Take(count).ToList();
+                    OrdersVM.count = Math.Min(pageIndex * count, GetAllOrders().Count);
+                    return result;
                 }
-
+            }
+            else
+            {
+                return GetAllOrders().Take(count).ToList();
             }
         }
         // Get Preview Staff
         public static List<Auth_user> GetPreviousPageStaff(int pageIndex, int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (pageIndex > 1)
             {
-                if (pageIndex > 1)
+                pageIndex -= 1;
+                StaffVM.pageIndex = pageIndex;
+                if (pageIndex == 1)
                 {
-                    pageIndex -= 1;
-                    StaffVM.pageIndex = pageIndex;
-                    if (pageIndex == 1)
-                    {
-                        var result = db.Auth_user.Take(count).ToList();
-                        StaffVM.count = result.Count();
-                        return result;
-                    }
-                    else
-                    {
-                        var result = db.Auth_user.Skip((pageIndex * count) - count).Take(count).ToList();
-                        StaffVM.count = Math.Min(pageIndex * count, GetAllAuthUsers().Count);
-                        return result;
-                    }
-
+                    var result = GetAllAuthUsers().Take(count).ToList();
+                    StaffVM.count = result.Count();
+                    return result;
                 }
                 else
                 {
-                    return db.Auth_user.Take(count).ToList();
+                    var result = GetAllAuthUsers().Skip((pageIndex * count) - count).Take(count).ToList();
+                    StaffVM.count = Math.Min(pageIndex * count, GetAllAuthUsers().Count);
+                    return result;
                 }
 
+            }
+            else
+            {
+                return GetAllAuthUsers().Take(count).ToList();
             }
         }
 
@@ -462,88 +469,69 @@ namespace Equipment_rent.Model
         // Get Next Users
         public static List<User> GetNextPageUsers(int pageIndex, int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (GetAllUsers().Skip(pageIndex * count).Take(count).Count() == 0)
             {
-
-                if (db.Users.Skip(pageIndex * count).Take(count).Count() == 0)
-                {
-                    var result = db.Users.Skip((pageIndex * count) - count).Take(count).ToList();
-                    UsersVM.count = (pageIndex * count) + db.Users.Skip(pageIndex * count).Take(count).Count();
-                    return result;
-                }
-                else
-                {
-                    var result = db.Users.Skip(pageIndex * count).Take(count).ToList();
-                    UsersVM.count = (pageIndex * count) + db.Users.Skip(pageIndex * count).Take(count).Count();
-                    UsersVM.pageIndex = pageIndex + 1;
-                    return result;
-                }
-
+                var result = GetAllUsers().Skip((pageIndex * count) - count).Take(count).ToList();
+                UsersVM.count = (pageIndex * count) + GetAllUsers().Skip(pageIndex * count).Take(count).Count();
+                return result;
+            }
+            else
+            {
+                var result = GetAllUsers().Skip(pageIndex * count).Take(count).ToList();
+                UsersVM.count = (pageIndex * count) + GetAllUsers().Skip(pageIndex * count).Take(count).Count();
+                UsersVM.pageIndex = pageIndex + 1;
+                return result;
             }
         }
         // Get Next Equipments
         public static List<Equipment> GetNextPageEquipments(int pageIndex, int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (GetAllEquipments().Skip(pageIndex * count).Take(count).Count() == 0)
             {
-
-                if (db.Equipments.Skip(pageIndex * count).Take(count).Count() == 0)
-                {
-                    var result = db.Equipments.Skip((pageIndex * count) - count).Take(count).ToList();
-                    EquipmentsVM.count = (pageIndex * count) + db.Equipments.Skip(pageIndex * count).Take(count).Count();
-                    return result;
-                }
-                else
-                {
-                    var result = db.Equipments.Skip(pageIndex * count).Take(count).ToList();
-                    EquipmentsVM.count = (pageIndex * count) + db.Equipments.Skip(pageIndex * count).Take(count).Count();
-                    EquipmentsVM.pageIndex = pageIndex + 1;
-                    return result;
-                }
-
+                var result = GetAllEquipments().Skip((pageIndex * count) - count).Take(count).ToList();
+                EquipmentsVM.count = (pageIndex * count) + GetAllEquipments().Skip(pageIndex * count).Take(count).Count();
+                return result;
+            }
+            else
+            {
+                var result = GetAllEquipments().Skip(pageIndex * count).Take(count).ToList();
+                EquipmentsVM.count = (pageIndex * count) + GetAllEquipments().Skip(pageIndex * count).Take(count).Count();
+                EquipmentsVM.pageIndex = pageIndex + 1;
+                return result;
             }
         }
         // Get next Orders
         public static List<Order> GetNextPageOrders(int pageIndex, int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (GetAllOrders().Skip(pageIndex * count).Take(count).Count() == 0)
             {
-                if (db.Orders.Skip(pageIndex * count).Take(count).Count() == 0)
-                {
-                    var result = db.Orders.Skip((pageIndex * count) - count).Take(count).ToList();
-                    OrdersVM.count = (pageIndex * count) + db.Orders.Skip(pageIndex * count).Take(count).Count();
-                    return result;
-                }
-                else
-                {
-                    var result = db.Orders.Skip(pageIndex * count).Take(count).ToList();
-                    OrdersVM.count = (pageIndex * count) + db.Orders.Skip(pageIndex * count).Take(count).Count();
-                    OrdersVM.pageIndex = pageIndex + 1;
-                    return result;
-                }
-
+                var result = GetAllOrders().Skip((pageIndex * count) - count).Take(count).ToList();
+                OrdersVM.count = (pageIndex * count) + GetAllOrders().Skip(pageIndex * count).Take(count).Count();
+                return result;
+            }
+            else
+            {
+                var result = GetAllOrders().Skip(pageIndex * count).Take(count).ToList();
+                OrdersVM.count = (pageIndex * count) + GetAllOrders().Skip(pageIndex * count).Take(count).Count();
+                OrdersVM.pageIndex = pageIndex + 1;
+                return result;
             }
         }
         // Get Next Staff
         public static List<Auth_user> GetNextPageStaff(int pageIndex, int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (GetAllAuthUsers().Skip(pageIndex * count).Take(count).Count() == 0)
             {
-
-                if (db.Users.Skip(pageIndex * count).Take(count).Count() == 0)
-                {
-                    var result = db.Auth_user.Skip((pageIndex * count) - count).Take(count).ToList();
-                    StaffVM.count = (pageIndex * count) + db.Auth_user.Skip(pageIndex * count).Take(count).Count();
-                    return result;
-                }
-                else
-                {
-                    var result = db.Auth_user.Skip(pageIndex * count).Take(count).ToList();
-                    StaffVM.count = (pageIndex * count) + db.Auth_user.Skip(pageIndex * count).Take(count).Count();
-                    StaffVM.pageIndex = pageIndex + 1;
-                    return result;
-                }
-
+                var result = GetAllAuthUsers().Skip((pageIndex * count) - count).Take(count).ToList();
+                StaffVM.count = (pageIndex * count) + GetAllAuthUsers().Skip(pageIndex * count).Take(count).Count();
+                return result;
+            }
+            else
+            {
+                var result = GetAllAuthUsers().Skip(pageIndex * count).Take(count).ToList();
+                StaffVM.count = (pageIndex * count) + GetAllAuthUsers().Skip(pageIndex * count).Take(count).Count();
+                StaffVM.pageIndex = pageIndex + 1;
+                return result;
             }
         }
 
@@ -551,65 +539,34 @@ namespace Equipment_rent.Model
         //Get First Users
         public static List<User> GetFirstUsers(int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = db.Users.Take(count).ToList();
-                return result;
-            }
+            var result = GetAllUsers().Take(count).ToList();
+            return result;
         }
 
         //Get First Equipments
         public static List<Equipment> GetFirstEquipments(int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = db.Equipments.Take(count).ToList();
-                return result;
-            }
+            var result = GetAllEquipments().Take(count).ToList();
+            return result;
         }
 
         //Get First Orders
         public static List<Order> GetFirstOrders(int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = db.Orders.Take(count).OrderBy(o => o.IsReturned).ToList();
-
-                return result;
-            }
+            var result = GetAllOrders().Take(count).ToList();
+            return result;
         }
 
         //Get First Staff
         public static List<Auth_user> GetFirstStaff(int count)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = db.Auth_user.Take(count).ToList();
-                return result;
-            }
+            var result = GetAllAuthUsers().Take(count).ToList();
+            return result;
         }
 
 
 
-        // Get All Auth_users
-        public static List<Auth_user> GetAllAuthUsers()
-        {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = db.Auth_user.ToList();
-                return result;
-            }
-        }
 
-        // Get All Roles
-        public static List<Auth_role> GetAllAuthRoles()
-        {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var result = db.Auth_role.ToList();
-                return result;
-            }
-        }
 
         // Get User By Id
         public static Auth_user GetAuthUserById(Guid id)

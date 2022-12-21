@@ -102,8 +102,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>       
-                    
-                    <!--Количество-->
+
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
                                 Style="{DynamicResource DatePickerStyle1}" 
                                 SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"                  
@@ -141,9 +140,7 @@
                                 x:Name="dp_returnDate" 
                                 FirstDayOfWeek="Monday"
                                 />
-                    <!--<Calendar CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" Style="{DynamicResource CalendarStyle1}" VerticalAlignment="Stretch"
-                              HorizontalAlignment="Stretch" FontFamily="Trebuchet MS"
-                              />-->
+
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding AddNewOrder}"
                             
