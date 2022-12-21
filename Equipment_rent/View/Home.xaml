@@ -23,7 +23,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource titleText_Style}" 
-                   Text=" Задолженности"/>
+                   Text="Задолженности"/>
         <Separator Grid.Row="1"
                    Background="#dae2ea" 
                    Margin="0 -1 0 10"/>

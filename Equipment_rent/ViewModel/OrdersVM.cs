@@ -60,14 +60,6 @@ namespace Equipment_rent.ViewModel
         }
 
 
-        //public static Visibility DeleteVis()
-        //{
-        //    if (NavigationVM.Role == 1) return Visibility.Collapsed;
-        //    else return Visibility.Visible;
-
-        //}
-
-
 
         public void Navigate(int mode)
         {

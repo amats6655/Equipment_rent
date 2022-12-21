@@ -11,6 +11,7 @@ namespace Equipment_rent.Model
         public string Model { get; set; }
         public int Amount { get; set; }
         public int Balance { get; set; }
+        public List<Order> Orders { get; set; } = new(); 
 
         [NotMapped]
         public Type EquipType

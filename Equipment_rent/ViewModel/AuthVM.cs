@@ -11,7 +11,6 @@ namespace Equipment_rent.ViewModel
     public class AuthVM : ViewModelBase
     {
 
-        private string _username;
         private string _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
@@ -28,18 +27,7 @@ namespace Equipment_rent.ViewModel
                 OnPropertyChanged(nameof(Auth_username));
             }
         }
-        public string Username
-        {
-            get
-            {
-                return _username;
-            }
-            set
-            {
-                _username = value;
-                OnPropertyChanged(nameof(Username));
-            }
-        }
+
         public string Password
         {
             get

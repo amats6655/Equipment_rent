@@ -146,7 +146,7 @@
                             FocusManager.FocusedElement="{Binding ElementName=tb_username}">
                     <Image Source="{StaticResource logo}"
                            Height="200"/>
-                    <TextBlock Text="Выдача и возврат оборудования может быть очень важен для нас. Пользуйтесь возможностью пока есть время!"
+                    <TextBlock Text="Gave out •  Took  •  Wrot down"
                                FontFamily="Motserrat"
                                FontSize="12"
                                FontWeight="Medium"
