@@ -8,6 +8,7 @@
     <StartupObject>Equipment_rent.App</StartupObject>
     <ApplicationIcon>Images\icoracoo.ico</ApplicationIcon>
     <PackageIcon>enot.png</PackageIcon>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
   <ItemGroup>
