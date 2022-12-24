@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Equipment_rent.ViewModel
 {
@@ -20,6 +21,17 @@ namespace Equipment_rent.ViewModel
                 NotifyPropertyChaged(nameof(AllUsers));
             }
         }
+
+        private List<Equipment> _allEquipments = DataWorker.GetAllEquipments();
+        public List<Equipment> AllEquipments
+        {
+            get => _allEquipments;
+            set
+            {
+                _allEquipments = value;
+            }
+        }
+
         private List<Model.Type> allTypes = DataWorker.GetAllTypes();
         public List<Model.Type> AllTypes
         {
@@ -100,16 +112,35 @@ namespace Equipment_rent.ViewModel
 
         #endregion
 
+        public ICommand AddNewOrder { get; }
+        public AddOrderVM()
+        {
+            AddNewOrder = new ViewModelCommand(ExecuteAddCommand, CanExecuteAddCommand);
+        }
 
+        private bool CanExecuteAddCommand(object obj)
+        {
+            bool validData;
+            if (Amount <= 0 || User == null || Equipment == null)
+                validData = false;
+            else
+                validData = true;
+            return validData;
+        }
+        private void ExecuteAddCommand(object obj)
+        {
+            OrderAdd.Execute(obj);
+        }
+    
 
 
         #region Добавление заказа и пользователя
-        private RelayCommand addNewOrder;
-        public RelayCommand AddNewOrder
+        private RelayCommand orderAdd;
+        public RelayCommand OrderAdd
         {
             get
             {
-                return addNewOrder ?? new RelayCommand(obj =>
+                return orderAdd ?? new RelayCommand(obj =>
                 {
                     Window window = obj as Window;
                     if (DateIssue == null) DateIssue = DateTime.Now;

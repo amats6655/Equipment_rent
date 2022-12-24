@@ -1,14 +1,39 @@
 ﻿using Equipment_rent.Model;
 using Equipment_rent.Utilites;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Equipment_rent.ViewModel
 {
     internal class AddUserVM : UsersVM
     {
-        public string UserFirstName { get; set; }
-        public string UserLastName { get; set; }
-        public string UserPhone { get; set; }
+        private string _userFirstName = "";
+        private string _userLastName = "";
+        private string _userPhone;
+        public string UserFirstName { get => _userFirstName; set { _userFirstName = value; } }
+        public string UserLastName { get => _userLastName; set { _userLastName = value; } }
+        public string UserPhone { get => _userPhone; set { _userPhone = value; } }
+
+
+        public ICommand newUserCommand { get; }
+        public AddUserVM()
+        {
+            newUserCommand = new ViewModelCommand(ExecuteAddCommand, CanExecuteAddCommand);
+        }
+
+        private bool CanExecuteAddCommand(object obj)
+        {
+            bool validData;
+            if (string.IsNullOrEmpty(UserFirstName.Replace(" ", "")) || string.IsNullOrEmpty(UserLastName.Replace(" ", "")) || string.IsNullOrEmpty(UserPhone))
+                validData = false;
+            else
+                validData = true;
+            return validData;
+        }
+        private void ExecuteAddCommand(object obj)
+        {
+            AddNewUser.Execute(obj);
+        }
 
         #region Commands to add
         private RelayCommand addNewUser;

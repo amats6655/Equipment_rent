@@ -3,6 +3,7 @@ using Equipment_rent.Utilites;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Equipment_rent.ViewModel
 {
@@ -27,6 +28,26 @@ namespace Equipment_rent.ViewModel
         public string EquipModel { get; set; }
         public int EquipAmount { get; set; }
         #endregion
+
+        public ICommand newEquipmentCommand { get; }
+        public AddEquipmentVM()
+        {
+            newEquipmentCommand = new ViewModelCommand(ExecuteAddCommand, CanExecuteAddCommand);
+        }
+
+        private bool CanExecuteAddCommand(object obj)
+        {
+            bool validData;
+            if (EquipAmount <= 0 || string.IsNullOrEmpty(EquipModel.Replace(" ", "")) || EquipType == null)
+                validData = false;
+            else
+                validData = true;
+            return validData;
+        }
+        private void ExecuteAddCommand(object obj)
+        {
+            AddNewEquip.Execute(obj);
+        }
 
 
         #region Commands to add

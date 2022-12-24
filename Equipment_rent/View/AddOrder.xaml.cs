@@ -15,7 +15,6 @@ namespace Equipment_rent.View
             InitializeComponent();
             DataContext = new AddOrderVM();
             cb_models.SelectedIndex = 0;
-            cb_users.SelectedIndex = 0;
             Models = cb_models;
             if (NavigationVM.AuthUser.Role.Role.Equals("test"))
             {
@@ -48,6 +47,11 @@ namespace Equipment_rent.View
                 tb_lastname.Visibility = Visibility.Collapsed;
                 tb_phone.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void btn_addEquip_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         //public void cb_models_source(List<Model.Equipment> sender, RoutedEventArgs e)

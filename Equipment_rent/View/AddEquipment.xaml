@@ -96,17 +96,17 @@
                     <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
                               Style="{StaticResource ComboBoxFlatStyle}"
                               x:Name="cb_type"
-                              ItemsSource="{Binding AllTypes}"
+                              ItemsSource="{Binding AllTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding EquipType}"/>
+                              SelectedItem="{Binding EquipType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding EquipModel}"
+                             Text="{Binding EquipModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              x:Name="tb_model"/>
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding EquipAmount}"
+                             Text="{Binding EquipAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              x:Name="tb_amount"/>
                     <Button Style="{StaticResource addFormButton}"
-                            Command="{Binding AddNewEquip}"
+                            Command="{Binding newEquipmentCommand}"
                             CommandParameter="{Binding ElementName=AddNewEquipmentWindow}"
                             x:Name="btn_add"/>
                     <Button IsCancel="True"

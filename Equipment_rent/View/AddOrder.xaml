@@ -6,6 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system = "clr-namespace:System;assembly=mscorlib"
+        xmlns:sdl="http://schemas.sdl.com/xaml"
         xmlns:mask="http://schemas.xceed.com/wpf/xaml/toolkit"        
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:AddOrderVM}"
@@ -19,6 +20,9 @@
         Name="AddNewOrderWindow">
 
     <Window.Resources>
+
+
+        
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
         <ControlTemplate x:Key="validationFailed">
             <StackPanel Orientation="Horizontal">
@@ -72,6 +76,7 @@
                            HorizontalAlignment="Center"
                            Style="{StaticResource titleText_Style}"/>
                 <StackPanel Grid.Column="1"
+                            x:Name="content"
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
@@ -81,28 +86,38 @@
                               Style="{StaticResource ComboBoxFlatStyle}"
                               ItemsSource="{Binding AllTypes}"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding Types}"
-                              x:Name="cb_types"/> 
+                              SelectedItem="{Binding Types, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              x:Name="cb_types"/>
                     <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               DisplayMemberPath="Model"
                               SelectedItem="{Binding Equipment}"
                               x:Name="cb_models"
                               IsEnabled="False"/>
+                    <!--<ListBox Height="auto"
+                             SelectedItem="{Binding Equipment}"
+                             DisplayMemberPath="Model"
+                             IsEnabled="False"
+                             x:Name="lb_models" SelectionMode="Multiple"/>-->
                     <TextBox Style="{StaticResource textBoxAdd}"    
                              Margin="0 10 0 0"
                              Name="tb_orderAmount"
                              Validation.ErrorTemplate="{StaticResource validationFailed}">
-                            
-                            <TextBox.Text>
-                                <Binding Path="Amount" ValidatesOnExceptions="True">
+                        <TextBox.Text>
+                                <Binding Path="Amount" ValidatesOnExceptions="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <DataErrorValidationRule />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
-                        </TextBox>       
-
+                        </TextBox>
+                
+                    <!--<Button x:Name="btn_addEquip"
+                            Content="Добавить ещё оборудование"
+                            Click="btn_addEquip_Click"/>
+                    <sdl:MultiSelectComboBox ItemsSource="{Binding AllEquipments}"
+                                             SelectedItems="{Binding Equipment}"
+                                             SelectedItem="{Binding Equipment}"/>-->
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
                                 Style="{DynamicResource DatePickerStyle1}" 
                                 SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"                  
@@ -119,18 +134,18 @@
                               Style="{StaticResource ComboBoxFlatStyle}"
                               ItemsSource="{Binding AllUsers}"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding User}"
+                              SelectedItem="{Binding User, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               x:Name="cb_users"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
-                             Text="{Binding UserLastName}"
+                             Text="{Binding UserLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Visibility="Collapsed"
                              x:Name="tb_lastname"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
-                             Text="{Binding UserFirstName}"
+                             Text="{Binding UserFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Visibility="Collapsed"
                              x:Name="tb_firstname"/>
                     <mask:MaskedTextBox Style="{StaticResource MasktextBoxAdd}"    
-                             Text="{Binding UserPhone}"
+                             Text="{Binding UserPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Visibility="Collapsed"
                              Mask="+7(000)000-00-00"
                              x:Name="tb_phone"/>

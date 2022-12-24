@@ -98,20 +98,20 @@
                             VerticalAlignment="Center">
 <!--#region TextBoxes--> 
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding UserLastName}"
+                             Text="{Binding UserLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              x:Name="tb_lastname"
                              />
                     <TextBox Style="{StaticResource textBoxAdd}"
-                             Text="{Binding UserFirstName}"
+                             Text="{Binding UserFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              x:Name="tb_firstname"
                              />
                     <mask:MaskedTextBox Style="{StaticResource MasktextBoxAdd}"
-                             Text="{Binding UserPhone}"
+                             Text="{Binding UserPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              x:Name="tb_phone"
                              Mask="+7(000)000-00-00"/>
 <!--#endregion-->
                     <Button Style="{StaticResource addFormButton}"
-                            Command="{Binding AddNewUser}"
+                            Command="{Binding newUserCommand}"
                             CommandParameter="{Binding ElementName=AddNewUserWindow}"
                             x:Name="btn_add"/>
                     <Button IsCancel="True"
