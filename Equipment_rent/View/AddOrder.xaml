@@ -118,6 +118,8 @@
                     <sdl:MultiSelectComboBox ItemsSource="{Binding AllEquipments}"
                                              SelectedItems="{Binding Equipment}"
                                              SelectedItem="{Binding Equipment}"/>-->
+                    <TextBlock Text="Дата выдачи:"
+                               Margin="10 10 0 0"/>
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
                                 Style="{DynamicResource DatePickerStyle1}" 
                                 SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"                  
@@ -136,10 +138,18 @@
                               DisplayMemberPath="Name"
                               SelectedItem="{Binding User, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               x:Name="cb_users"/>
+                    <TextBlock Text="Фамилия:"
+                               Margin="10 10 0 0"
+                               x:Name="text_lastname"
+                               Visibility="Collapsed"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
                              Text="{Binding UserLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Visibility="Collapsed"
                              x:Name="tb_lastname"/>
+                    <TextBlock Text="Имя:"
+                               Margin="10 10 0 0"
+                               x:Name="text_firstname"
+                               Visibility="Collapsed"/>
                     <TextBox Style="{StaticResource textBoxAdd}"    
                              Text="{Binding UserFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Visibility="Collapsed"
@@ -149,6 +159,8 @@
                              Visibility="Collapsed"
                              Mask="+7(000)000-00-00"
                              x:Name="tb_phone"/>
+                    <TextBlock Text="Дата возврата:"
+                               Margin="10 10 0 0"/>
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
                                 Style="{DynamicResource DatePickerStyle1}"
                                 SelectedDate="{Binding DateReturn, TargetNullValue={x:Static system:DateTime.Now}}"

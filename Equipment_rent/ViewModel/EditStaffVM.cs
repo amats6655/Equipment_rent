@@ -50,8 +50,8 @@ namespace Equipment_rent.ViewModel
                     }
                     else if (Password != null)
                     {
+                        AuthClient.AdminChangePassword(SelectedStaff.Username, Password);
                         DataWorker.EditStaff(SelectedStaff, StaffFirstname, StaffLastname, StaffEmail, StaffRole.Id);
-                        MessageBox.Show("Функция смены пароля здесь пока не доступна");
                         UpdateAllStaffView();
                         window.Close();
                     }

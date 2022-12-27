@@ -121,7 +121,7 @@ namespace Equipment_rent.ViewModel
         private bool CanExecuteAddCommand(object obj)
         {
             bool validData;
-            if (Amount <= 0 || User == null || Equipment == null)
+            if (Amount <= 0 || (User == null && string.IsNullOrEmpty(UserFirstName)) || Equipment == null)
                 validData = false;
             else
                 validData = true;

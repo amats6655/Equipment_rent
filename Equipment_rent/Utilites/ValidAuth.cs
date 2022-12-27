@@ -144,5 +144,43 @@ namespace Equipment_rent.Utilites
             }
             //statuses
         }
+
+
+        public static async void AdminChangePassword(string username, string password)
+        {
+            List<string> ErrorMessages = new List<string>() { "Неверный старый пароль", "Пароль успешно изменен", "Кажется что-то пошло не так" };
+            int mode = 3;
+            int numberOfIteration = 99;
+            var hashFunc = new Crypt();
+            byte[] salt_srv = Encoding.UTF8.GetBytes(sal);
+
+            
+            var hashedNewPass = hashFunc.HashDataWithRounds(Encoding.UTF8.GetBytes(password), salt_srv, numberOfIteration);
+            using TcpClient tcpClient = new TcpClient();
+            tcpClient.Connect("85.175.4.135", 8888);
+
+            var stream = tcpClient.GetStream();
+
+            var response = new List<byte>();
+            int bytesRead = 10;
+
+            byte[] data_change = Encoding.UTF8.GetBytes(mode.ToString() + '\r' + username + '\r' + hashedNewPass + '\r' + "" + '\n');
+            await stream.WriteAsync(data_change);
+
+            int Status = 10;
+            string UserId;
+            while ((bytesRead = stream.ReadByte()) != '\n')
+            {
+                response.Add((byte)bytesRead);
+                if (bytesRead == '\r')
+                {
+                    Status = int.Parse(Encoding.UTF8.GetString(response.ToArray()));
+                    response.Clear();
+                }
+            }
+            UserId = Encoding.UTF8.GetString(response.ToArray());
+            response.Clear();
+            ProfileVM.Message = ErrorMessages[Status];
+        }
     }
 }
