@@ -318,6 +318,16 @@ namespace Equipment_rent.Model
             }
         }
 
+        // Get User By Name
+        public static User GetUserByName(string name)
+        {
+            using(ApplicationContext db = new ApplicationContext())
+            {
+                User user = db.Users.FirstOrDefault(p => p.Name == name);
+                return user;
+            }
+        }
+
 
         // Get All Equipments by Id Type
         public static List<Equipment> GetAllEquipmentsByIdType(int id)

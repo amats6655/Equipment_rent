@@ -165,10 +165,21 @@ namespace Equipment_rent.ViewModel
                         }
                         else
                         {
-                            DataWorker.CreateOrder(DataWorker.CreateUser(UserFirstName + " " + UserLastName, UserPhone, true), Equipment, Amount, (DateTime)DateIssue, (DateTime)DateReturn, NavigationVM.AuthUser.Id);
-                            DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
-                            UpdateAllOrdersView();
-                            window.Close();
+                            User OldUser = DataWorker.GetUserByName(UserLastName + " " + UserFirstName);
+                            if (OldUser == null)
+                            {
+                                DataWorker.CreateOrder(DataWorker.CreateUser(UserLastName + " " + UserFirstName, UserPhone, true), Equipment, Amount, (DateTime)DateIssue, (DateTime)DateReturn, NavigationVM.AuthUser.Id);
+                                DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
+                                UpdateAllOrdersView();
+                                window.Close();
+                            }
+                            else
+                            {
+                                DataWorker.CreateOrder(OldUser, Equipment, Amount, (DateTime)DateIssue, (DateTime)DateReturn, NavigationVM.AuthUser.Id);
+                                DataWorker.EditEquipment(Equipment, DataWorker.GetTypeById(Equipment.TypeId), Equipment.Model, Equipment.Amount, Equipment.Balance - Amount);
+                                UpdateAllOrdersView();
+                                window.Close();
+                            }
                         }
                     }
                 });
