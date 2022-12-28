@@ -30,9 +30,30 @@ namespace Equipment_rent.ViewModel
         }
 
         private static List<User> allUsers = DataWorker.GetAllUsers();
+
+        public static List<User> AllUsers
+        {
+            get
+            {
+                List<User> users = new List<User>();
+                foreach (User user in allUsers)
+                {
+                    char Character = user.Name[0];
+                    Brush BgColor = GetBrush.getBrush(Character);
+                    user.BgColor = BgColor.ToString();
+                    user.Character = Character;
+                    users.Add(user);
+                }
+                return users;
+            }
+            set
+            {
+                allUsers = value;
+            }
+        }
         #region Add Brush and Character for user
-        private List<User> firstUsers = DataWorker.GetFirstUsers(numberOfRecPerPage);
-        public List<User> FirstUsers
+        private static List<User> firstUsers = DataWorker.GetFirstUsers(numberOfRecPerPage);
+        public static List<User> FirstUsers
         {
             get
             {
@@ -50,7 +71,6 @@ namespace Equipment_rent.ViewModel
             set
             {
                 allUsers = value;
-                NotifyPropertyChaged("AllUsers");
             }
         }
         #endregion

@@ -1,6 +1,7 @@
 ﻿using Equipment_rent.ViewModel;
 using System.Windows.Controls;
 using System.Windows;
+using System.Linq;
 
 namespace Equipment_rent.View
 {
@@ -23,6 +24,16 @@ namespace Equipment_rent.View
             }
 
             AllUsers = UsersDataGrid;
+        }
+
+        private void search(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (txtSearch.Text != "" && txtSearch.Text != " ")
+            {
+                var filtred = UsersVM.AllUsers.Where(u => u.Name.ToLower().Contains(txtSearch.Text.ToLower()) || u.Phone.Contains(txtSearch.Text));
+                UsersDataGrid.ItemsSource = filtred;
+            }
+            else UsersDataGrid.ItemsSource = UsersVM.FirstUsers;
         }
     }
 }

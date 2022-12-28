@@ -1,6 +1,7 @@
 ﻿using Equipment_rent.ViewModel;
 using System.Windows.Controls;
 using System.Windows;
+using System.Linq;
 
 namespace Equipment_rent.View
 {
@@ -22,6 +23,15 @@ namespace Equipment_rent.View
                     dgColumn_edit.Visibility = Visibility.Collapsed;
                 }
             }
+        }
+        private void search(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (txtSearch.Text != "" && txtSearch.Text != " ")
+            {
+                var filtred = EquipmentsVM.AllEquipments.Where(u => u.Model.ToLower().Contains(txtSearch.Text.ToLower()) || u.EquipType.Name.ToLower().Contains(txtSearch.Text.ToLower()));
+                EquipmentsDataGrid.ItemsSource = filtred;
+            }
+            else EquipmentsDataGrid.ItemsSource = EquipmentsVM.FirstEquipments;
         }
     }
 }

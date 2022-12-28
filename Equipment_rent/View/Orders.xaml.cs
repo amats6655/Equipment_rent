@@ -1,4 +1,5 @@
 ﻿using Equipment_rent.ViewModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,6 +23,15 @@ namespace Equipment_rent.View
                     dgColumn_edit.Visibility = Visibility.Collapsed;
                 }
             }
+        }
+        private void search(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (txtSearch.Text != "" && txtSearch.Text != " ")
+            {
+                var filtred = OrdersVM.AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(txtSearch.Text.ToLower()) || u.OrdersUser.Phone.Contains(txtSearch.Text) || u.OrdersEquipment.Model.ToLower().Contains(txtSearch.Text.ToLower()) || u.OrdersEquipment.EquipType.Name.ToLower().Contains(txtSearch.Text.ToLower()));
+                OrdersDataGrid.ItemsSource = filtred;
+            }
+            else OrdersDataGrid.ItemsSource = OrdersVM.FirstOrders;
         }
     }
 }

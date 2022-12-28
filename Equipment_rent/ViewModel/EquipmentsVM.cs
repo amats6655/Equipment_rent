@@ -29,15 +29,19 @@ namespace Equipment_rent.ViewModel
         }
 
         private static List<Equipment> allEquipments = DataWorker.GetAllEquipments();
+        public static List<Equipment> AllEquipments
+        {
+            get => allEquipments;
+            set => allEquipments = value;
+        }
 
-        private List<Equipment> firstEquipments = DataWorker.GetFirstEquipments(numberOfRecPerPage);
-        public List<Equipment> FirstEquipments
+        private static List<Equipment> firstEquipments = DataWorker.GetFirstEquipments(numberOfRecPerPage);
+        public static List<Equipment> FirstEquipments
         {
             get { return firstEquipments; }
             set
             {
                 allEquipments = value;
-                NotifyPropertyChaged("AllEquipments");
             }
         }
 

@@ -31,11 +31,33 @@ namespace Equipment_rent.ViewModel
             }
         }
         private static List<Order> allOrders = DataWorker.GetAllOrders();
+        public static List<Order> AllOrders
+        {
+            get
+            {
+                List<Order> orders = new List<Order>();
+                foreach (Order order in allOrders)
+                {
+                    char Character;
+                    if (order.IsReturned == true) Character = 'R';
+                    else Character = 'D';
+
+                    Brush BgColor = GetBrush.getBrush(Character);
+                    order.BgColor = BgColor.ToString();
+                    orders.Add(order);
+                }
+                return orders;
+            }
+            set
+            {
+                allOrders = value;
+            }
+        }
 
 
-        private List<Order> firstOrders = DataWorker.GetFirstOrders(numberOfRecPerPage);
+        private static List<Order> firstOrders = DataWorker.GetFirstOrders(numberOfRecPerPage);
 
-        public List<Order> FirstOrders
+        public static List<Order> FirstOrders
         {
             get
             {
@@ -55,7 +77,6 @@ namespace Equipment_rent.ViewModel
             set
             {
                 firstOrders = value;
-                NotifyPropertyChaged("AllOrders");
             }
         }
 
