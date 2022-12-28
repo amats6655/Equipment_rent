@@ -25,15 +25,11 @@ namespace Equipment_rent.View
                 }
             }
         }
-        private void search(object sender, System.Windows.Input.KeyEventArgs e)
+
+        private void txtSearch_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (txtSearch.Text != "" && txtSearch.Text != " ")
-            {
-                var text = txtSearch.Text.ToLower();
-                var filtred = OrdersVM.AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(text) || u.OrdersUser.Phone.Contains(text) || u.OrdersEquipment.Model.ToLower().Contains(text) || u.OrdersEquipment.EquipType.Name.ToLower().Contains(text));
-                OrdersDataGrid.ItemsSource = filtred;
-            }
-            else OrdersDataGrid.ItemsSource = OrdersVM.FirstOrders;
+            OrdersVM.Filter = txtSearch.Text;
+            OrdersVM.search(sender, e);
         }
     }
 }

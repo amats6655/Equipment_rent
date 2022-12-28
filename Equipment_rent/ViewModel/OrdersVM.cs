@@ -4,6 +4,8 @@ using Equipment_rent.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Equipment_rent.ViewModel
@@ -53,7 +55,37 @@ namespace Equipment_rent.ViewModel
                 allOrders = value;
             }
         }
+        private static string _filter;
+        public static string Filter
+        {
+            get => _filter;
+            set
+            {
+                _filter = value;
+            }
+        }
 
+        public static void search(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (Filter != "" && Filter != " ")
+            {
+
+                var filtred = AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(Filter) || u.OrdersUser.Phone.Contains(Filter) ||
+                u.OrdersEquipment.Model.ToLower().Contains(Filter) || u.OrdersEquipment.EquipType.Name.ToLower().Contains(Filter));
+
+                Orders.AllOrders.ItemsSource = null;
+                Orders.AllOrders.Items.Clear();
+                Orders.AllOrders.ItemsSource = filtred;
+                Orders.AllOrders.Items.Refresh();
+            }
+            else
+            {
+                Orders.AllOrders.ItemsSource = null;
+                Orders.AllOrders.Items.Clear();
+                Orders.AllOrders.ItemsSource = FirstOrders;
+                Orders.AllOrders.Items.Refresh();
+            }
+        }
 
         private static List<Order> firstOrders = DataWorker.GetFirstOrders(numberOfRecPerPage);
 
