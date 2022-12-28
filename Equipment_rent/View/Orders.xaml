@@ -164,7 +164,7 @@
                                     IsReadOnly="True"
                                     Width="*"
                                     Binding="{Binding OrdersEquipment.Model}"/>
-                
+
                 <DataGridTextColumn Header="Дата выдачи"
                                     IsReadOnly="True"
                                     Width="*"
