@@ -28,7 +28,8 @@ namespace Equipment_rent.View
         {
             if (txtSearch.Text != "" && txtSearch.Text != " ")
             {
-                var filtred = EquipmentsVM.AllEquipments.Where(u => u.Model.ToLower().Contains(txtSearch.Text.ToLower()) || u.EquipType.Name.ToLower().Contains(txtSearch.Text.ToLower()));
+                var text = txtSearch.Text.ToLower();
+                var filtred = EquipmentsVM.AllEquipments.Where(u => u.Model.ToLower().Contains(text) || u.EquipType.Name.ToLower().Contains(text));
                 EquipmentsDataGrid.ItemsSource = filtred;
             }
             else EquipmentsDataGrid.ItemsSource = EquipmentsVM.FirstEquipments;

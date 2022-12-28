@@ -46,7 +46,7 @@ namespace Equipment_rent.ViewModel
                     order.BgColor = BgColor.ToString();
                     orders.Add(order);
                 }
-                return orders;
+                return allOrders;
             }
             set
             {

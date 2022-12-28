@@ -30,7 +30,9 @@ namespace Equipment_rent.View
         {
             if (txtSearch.Text != "" && txtSearch.Text != " ")
             {
-                var filtred = UsersVM.AllUsers.Where(u => u.Name.ToLower().Contains(txtSearch.Text.ToLower()) || u.Phone.Contains(txtSearch.Text));
+                
+                var text = txtSearch.Text.ToLower();
+                var filtred = UsersVM.AllUsers.Where(u => u.Name.ToLower().Contains(text) || u.Phone.Contains(text));
                 UsersDataGrid.ItemsSource = filtred;
             }
             else UsersDataGrid.ItemsSource = UsersVM.FirstUsers;

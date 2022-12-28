@@ -15,6 +15,7 @@ namespace Equipment_rent.View
         {
             InitializeComponent(); // Второй раз пошли получать данные
             AllOrders = OrdersDataGrid;
+
             if (NavigationVM.AuthUser.Role.Role != "Эксперт")
             {
                 dgColumn_delete.Visibility = Visibility.Collapsed;
@@ -28,7 +29,8 @@ namespace Equipment_rent.View
         {
             if (txtSearch.Text != "" && txtSearch.Text != " ")
             {
-                var filtred = OrdersVM.AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(txtSearch.Text.ToLower()) || u.OrdersUser.Phone.Contains(txtSearch.Text) || u.OrdersEquipment.Model.ToLower().Contains(txtSearch.Text.ToLower()) || u.OrdersEquipment.EquipType.Name.ToLower().Contains(txtSearch.Text.ToLower()));
+                var text = txtSearch.Text.ToLower();
+                var filtred = OrdersVM.AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(text) || u.OrdersUser.Phone.Contains(text) || u.OrdersEquipment.Model.ToLower().Contains(text) || u.OrdersEquipment.EquipType.Name.ToLower().Contains(text));
                 OrdersDataGrid.ItemsSource = filtred;
             }
             else OrdersDataGrid.ItemsSource = OrdersVM.FirstOrders;
