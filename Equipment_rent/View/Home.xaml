@@ -8,7 +8,7 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="615" d:DesignWidth="830"
+             d:DesignHeight="615" d:DesignWidth="835"
              Background="Transparent"
              x:Name="DebtOrders">
 
@@ -23,7 +23,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource titleText_Style}" 
-                   Text="Задолженности"/>
+                   Text="Задолженности"
+                   HorizontalAlignment="Center"/>
         <Separator Grid.Row="1"
                    Background="#dae2ea" 
                    Margin="0 -1 0 10"/>

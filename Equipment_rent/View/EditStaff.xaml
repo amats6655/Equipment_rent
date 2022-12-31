@@ -42,7 +42,7 @@
                            Grid.Row="1"
                            Text="Редактировать&#x0a;сотрудника"
                            Style="{StaticResource titleText_Style}"
-                           HorizontalAlignment="Center" FontFamily="Lab Grotesque Black"/>
+                           HorizontalAlignment="Center" FontFamily="Montserrat" FontWeight="Bold"/>
                 <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
                         MouseDown="Border_MouseDown"

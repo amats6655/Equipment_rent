@@ -48,7 +48,8 @@
                 Style="{StaticResource addButton}" 
                 Command="{Binding AddEquipment}"
                 x:Name="btn_add_Equip"
-                Margin="0">
+                Margin="0"
+                Width="170">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" 
                                        VerticalAlignment="Center" 
@@ -58,7 +59,7 @@
                 <TextBlock Text="Новое оборудование"
                            HorizontalAlignment="Right"
                            FontSize="12"
-                           FontFamily="Style/#LabGrotesque-Medium"/>
+                           FontFamily="Lato"/>
             </StackPanel>
         </Button>
 

@@ -110,7 +110,7 @@
                                        Margin="5 0 8 1"/>
                 <TextBlock Text="Новый заказ"
                            FontSize="12"
-                           FontFamily="Fonts/#LabGrotesque-Medium"/>
+                           FontFamily="Lato"/>
             </StackPanel>
         </Button>
 

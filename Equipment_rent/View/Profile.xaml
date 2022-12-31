@@ -57,6 +57,8 @@
                            Text="Повтори пароль" 
                            Foreground="LightSteelBlue"/>
         <TextBlock Style="{StaticResource titleText_Style}" 
+                   HorizontalAlignment="Center"
+                   Grid.ColumnSpan="3"
                    Text=" Профиль"/>
         <Separator Grid.Row="1"
                    Grid.ColumnSpan="3"

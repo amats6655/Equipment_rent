@@ -6,7 +6,7 @@
         xmlns:menu="clr-namespace:Equipment_rent.Utilites"
         Title="MainWindow" 
         Height="850" 
-        Width="1200" 
+        Width="1210" 
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -26,7 +26,7 @@
 
         <Grid>
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="190"/>
                 <ColumnDefinition Name="GridMenu" 
                                   Width="*"/>
             </Grid.ColumnDefinitions>
@@ -108,7 +108,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial x:Name="packIconMaterial" Kind="Home" 
                                                            Style="{StaticResource menuButtonIcon}" 
-                                                           Margin="20,2,20,0"/>
+                                                           Margin="10,2,20,0"/>
                                     <TextBlock x:Name="textBlock2" 
                                                Text="Домашняя"/>
                                 </StackPanel>
@@ -121,7 +121,7 @@
                                     <Icon:PackIconMaterial x:Name="packIconMaterial1"
                                                            Kind="HumanFemaleDance" 
                                                            Style="{StaticResource menuButtonIcon}" 
-                                                           Margin="20,2,20,0"/>
+                                                           Margin="10,2,20,0"/>
                                     <TextBlock x:Name="textBlock3"
                                                Text="Пользователи"/>
                                 </StackPanel>
@@ -134,7 +134,7 @@
                                     <Icon:PackIconMaterial x:Name="packIconMaterial2"
                                                            Kind="Ethernet"
                                                            Style="{StaticResource menuButtonIcon}"
-                                                           Margin="20,2,20,0"/>
+                                                           Margin="10,2,20,0"/>
                                     <TextBlock x:Name="textBlock4" 
                                                Text="Оборудование"/>
                                 </StackPanel>
@@ -147,7 +147,7 @@
                                     <Icon:PackIconMaterial x:Name="packIconMaterial3"
                                                            Kind="FileDocumentEdit"
                                                            Style="{StaticResource menuButtonIcon}" 
-                                                           Margin="20,2,20,0"/>
+                                                           Margin="10,2,20,0"/>
                                     <TextBlock x:Name="textBlock5"
                                                Text="Заказы"/>
                                 </StackPanel>
@@ -161,7 +161,7 @@
                                     <Icon:PackIconMaterial x:Name="packIconMaterial8"
                                                            Kind="PacMan"
                                                            Style="{StaticResource menuButtonIcon}" 
-                                                           Margin="20,2,20,0"/>
+                                                           Margin="10,2,20,0"/>
                                     <TextBlock x:Name="textBlock8"
                                                Text="Сотрудники"/>
                                 </StackPanel>
@@ -179,7 +179,7 @@
                                 <Icon:PackIconMaterial x:Name="packIconMaterial4"
                                                        Kind="ExitToApp" 
                                                        Style="{StaticResource menuButtonIcon}"
-                                                       Margin="20,2,20,0"/>
+                                                       Margin="10,2,20,0"/>
                                 <TextBlock x:Name="textBlock6" 
                                            Text="Выход"/>
                             </StackPanel>
@@ -194,7 +194,7 @@
                                 <Icon:PackIconMaterial x:Name="packIconMaterial5"
                                                        Kind="FaceAgent" 
                                                        Style="{StaticResource menuButtonIcon}"
-                                                       Margin="20,2,20,0"/>
+                                                       Margin="10,2,20,0"/>
                                 <TextBlock x:Name="textBlock7" 
                                            Text="Профиль"/>
                             </StackPanel>
@@ -295,14 +295,12 @@
                 <Separator Grid.Row="1"
                            VerticalAlignment="Top"
                            Opacity="0.3"/>
-                <Grid Width="300" 
-                      Grid.Row="1"
-                      HorizontalAlignment="Left"/>
 
                 <!--PageTitle-->
 
                 <ContentControl Grid.Row="2"
                                 Grid.ColumnSpan="3"
+                                Margin="0 30 0 0"
                                 x:Name="Pages"
                                 Content="{Binding CurrentView}"/>
 

@@ -7,6 +7,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#6e7783"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FontFamily" Value="Lato"/>
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="HorizontalAlignment" Value="left"/>
@@ -32,6 +33,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#d0c0ff"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Margin" Value="15 3"/>
         <Setter Property="FontSize" Value="13"/>
@@ -64,6 +66,7 @@
         <Setter Property="Background" Value="#6741d9"/>
         <Setter Property="Foreground" Value="white"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="Width" Value="150"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Margin" Value="5 20 0 5"/>
@@ -95,6 +98,7 @@
         <Setter Property="Background" Value="#6741d9"/>
         <Setter Property="Foreground" Value="white"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Margin" Value="5 30 0 5"/>
         <Setter Property="FontSize" Value="14"/>
@@ -124,6 +128,7 @@
     <Style x:Key="cancelFormButton" TargetType="Button">
         <Setter Property="Background" Value="#e0e0e2"/>
         <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Margin" Value="5 10 0 5"/>
@@ -155,6 +160,7 @@
         <Setter Property="Background" Value="#d81e00"/>
         <Setter Property="Foreground" Value="white"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Margin" Value="5 10 0 5"/>
         <Setter Property="FontSize" Value="14"/>
