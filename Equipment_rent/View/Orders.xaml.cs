@@ -29,7 +29,7 @@ namespace Equipment_rent.View
         private void txtSearch_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             OrdersVM.Filter = txtSearch.Text;
-            OrdersVM.search(sender, e);
+            OrdersVM.Search(sender, e);
         }
     }
 }

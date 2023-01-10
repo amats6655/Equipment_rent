@@ -1,259 +1,230 @@
-﻿using Equipment_rent.Model;
-using Equipment_rent.Utilites;
-using Equipment_rent.View;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Media;
+using System.Windows.Input;
+using Equipment_rent.Model;
+using Equipment_rent.Utilites;
+using Equipment_rent.View;
 
-namespace Equipment_rent.ViewModel
+namespace Equipment_rent.ViewModel;
+
+internal class OrdersVM : INotifyPropertyChanged
 {
-    internal class OrdersVM : INotifyPropertyChanged
+    public enum PagingMode
     {
-        public static int pageIndex = 1;
-        private static int numberOfRecPerPage = 10;
-        public enum PagingMode
-        { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5 }
+        Next = 2,
+        Previous = 3,
+    }
 
-        public static int count;
+    public static int PageIndex = 1;
+    private const int NumberOfRecPerPage = 10;
 
-        private string pageInformation = numberOfRecPerPage + " из " + allOrders.Count;
-        public string PageInformation
+    public static int Count;
+    private static List<Order> allOrders = DataWorker.GetAllOrders();
+
+    private static List<Order> firstOrders = DataWorker.GetFirstOrders(NumberOfRecPerPage);
+    private RelayCommand nextPage;
+
+    private string pageInformation = NumberOfRecPerPage + " из " + allOrders.Count;
+    private RelayCommand previewPage;
+
+    public string PageInformation
+    {
+        get => pageInformation;
+        set
         {
-            get
-            {
-                return pageInformation;
-            }
-            set
-            {
-                pageInformation = value;
-                NotifyPropertyChaged(nameof(PageInformation));
-            }
+            pageInformation = value;
+            NotifyPropertyChaged(nameof(PageInformation));
         }
-        private static List<Order> allOrders = DataWorker.GetAllOrders();
-        public static List<Order> AllOrders
+    }
+
+    public static List<Order> AllOrders
+    {
+        get
         {
-            get
+            foreach (var order in allOrders)
             {
-                List<Order> orders = new List<Order>();
-                foreach (Order order in allOrders)
-                {
-                    char Character;
-                    if (order.IsReturned == true) Character = 'R';
-                    else Character = 'D';
+                var character = order.IsReturned ? 'R' : 'D';
 
-                    Brush BgColor = GetBrush.getBrush(Character);
-                    order.BgColor = BgColor.ToString();
-                    orders.Add(order);
-                }
-                return allOrders;
+                var bgColor = GetBrush.getBrush(character);
+                order.BgColor = bgColor.ToString();
             }
-            set
+
+            return allOrders;
+        }
+        set => allOrders = value;
+    }
+
+    public static string? Filter { get; set; }
+
+    public static List<Order> FirstOrders
+    {
+        get
+        {
+            var orders = new List<Order>();
+            foreach (var order in firstOrders)
             {
-                allOrders = value;
+                char Character;
+                if (order.IsReturned) Character = 'R';
+                else Character = 'D';
+
+                var BgColor = GetBrush.getBrush(Character);
+                order.BgColor = BgColor.ToString();
+                orders.Add(order);
             }
+
+            return orders;
         }
-        private static string _filter;
-        public static string Filter
+        set => firstOrders = value;
+    }
+
+    public RelayCommand NextPage
+    {
+        get { return nextPage ?? new RelayCommand(obj => { BtnNext_Click(); }); }
+    }
+
+    public RelayCommand PreviewPage
+    {
+        get { return previewPage ?? new RelayCommand(obj => { BtnPreview_Click(); }); }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public static void Search(object sender, KeyEventArgs e)
+    {
+        if (Filter != "" && Filter != " ")
         {
-            get => _filter;
-            set
-            {
-                _filter = value;
-            }
+            var filtered = AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(Filter) ||
+                                               u.OrdersUser.Phone.Contains(Filter) ||
+                                               u.OrdersEquipment.Model.ToLower().Contains(Filter) ||
+                                               u.OrdersEquipment.EquipType.Name.ToLower().Contains(Filter));
+
+            Orders.AllOrders.ItemsSource = null;
+            Orders.AllOrders.Items.Clear();
+            Orders.AllOrders.ItemsSource = filtered;
+            Orders.AllOrders.Items.Refresh();
         }
-
-        public static void search(object sender, System.Windows.Input.KeyEventArgs e)
+        else
         {
-            if (Filter != "" && Filter != " ")
-            {
-
-                var filtred = AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(Filter) || u.OrdersUser.Phone.Contains(Filter) ||
-                u.OrdersEquipment.Model.ToLower().Contains(Filter) || u.OrdersEquipment.EquipType.Name.ToLower().Contains(Filter));
-
-                Orders.AllOrders.ItemsSource = null;
-                Orders.AllOrders.Items.Clear();
-                Orders.AllOrders.ItemsSource = filtred;
-                Orders.AllOrders.Items.Refresh();
-            }
-            else
-            {
-                Orders.AllOrders.ItemsSource = null;
-                Orders.AllOrders.Items.Clear();
-                Orders.AllOrders.ItemsSource = FirstOrders;
-                Orders.AllOrders.Items.Refresh();
-            }
-        }
-
-        private static List<Order> firstOrders = DataWorker.GetFirstOrders(numberOfRecPerPage);
-
-        public static List<Order> FirstOrders
-        {
-            get
-            {
-                List<Order> orders = new List<Order>();
-                foreach (Order order in firstOrders)
-                {
-                    char Character;
-                    if (order.IsReturned == true) Character = 'R';
-                    else Character = 'D';
-
-                    Brush BgColor = GetBrush.getBrush(Character);
-                    order.BgColor = BgColor.ToString();
-                    orders.Add(order);
-                }
-                return orders;
-            }
-            set
-            {
-                firstOrders = value;
-            }
-        }
-
-
-
-        public void Navigate(int mode)
-        {
-            count = 0;
-            switch (mode)
-            {
-                case (int)PagingMode.Previous:
-                    firstOrders = DataWorker.GetPreviousPageOrders(pageIndex, numberOfRecPerPage);
-                    Orders.AllOrders.ItemsSource = null;
-                    Orders.AllOrders.Items.Clear();
-                    Orders.AllOrders.ItemsSource = FirstOrders;
-                    Orders.AllOrders.Items.Refresh();
-                    PageInformation = count + " из " + allOrders.Count;
-                    break;
-
-                case (int)PagingMode.Next:
-                    firstOrders = DataWorker.GetNextPageOrders(pageIndex, numberOfRecPerPage);
-                    Orders.AllOrders.ItemsSource = null;
-                    Orders.AllOrders.Items.Clear();
-                    Orders.AllOrders.ItemsSource = FirstOrders;
-                    Orders.AllOrders.Items.Refresh();
-                    PageInformation = count + " из " + allOrders.Count;
-                    break;
-            }
-        }
-        private RelayCommand nextPage;
-        public RelayCommand NextPage
-        {
-            get
-            {
-                return nextPage ?? new RelayCommand(obj =>
-                {
-                    BtnNext_Click();
-                });
-            }
-        }
-        private void BtnNext_Click()
-        {
-            Navigate((int)PagingMode.Next);
-        }
-        private RelayCommand previewPage;
-        public RelayCommand PreviewPage
-        {
-            get
-            {
-                return previewPage ?? new RelayCommand(obj =>
-                {
-                    BtnPreview_Click();
-                });
-            }
-        }
-        private void BtnPreview_Click()
-        {
-            Navigate((int)PagingMode.Previous);
-        }
-
-
-        #region Open Window Add New Order
-        private RelayCommand addOrder;
-        public RelayCommand AddOrder
-        {
-            get
-            {
-                return addOrder ?? new RelayCommand(obj =>
-                {
-                    Add_Button_Click();
-                }
-                    );
-            }
-        }
-
-        private void Add_Button_Click()
-        {
-            AddOrder addOrder = new AddOrder();
-            addOrder.ShowDialog();
-        }
-        #endregion
-
-        #region Delete order
-        private RelayCommand removeOrder;
-        public RelayCommand RemoveOrder
-        {
-            get
-            {
-                return removeOrder ?? new RelayCommand(obj =>
-                {
-                    Del_Button_Click();
-                });
-            }
-        }
-
-
-        private void Del_Button_Click()
-        {
-            DeleteWindow deleteWindow = new DeleteWindow();
-            if (deleteWindow.ShowDialog() == true)
-            {
-                DataWorker.DeleteOrder((Order)Orders.AllOrders.SelectedItem);
-                UpdateAllOrdersView();
-            }
-        }
-        #endregion
-
-        #region Open Edit order window
-        private RelayCommand openEditOrder;
-        public RelayCommand OpenEditOrder
-        {
-            get
-            {
-                return openEditOrder ?? new RelayCommand(obj =>
-                {
-                    Edit_Button_Click((Order)Orders.AllOrders.SelectedItem);
-                }
-                    );
-            }
-        }
-
-        private void Edit_Button_Click(Order order)
-        {
-            EditOrder editOrder = new EditOrder(order);
-            editOrder.ShowDialog();
-        }
-        #endregion
-
-        public void UpdateAllOrdersView()
-        {
-            firstOrders = DataWorker.GetFirstOrders(numberOfRecPerPage);
             Orders.AllOrders.ItemsSource = null;
             Orders.AllOrders.Items.Clear();
             Orders.AllOrders.ItemsSource = FirstOrders;
             Orders.AllOrders.Items.Refresh();
         }
+    }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChaged(String propertyName)
+    public void Navigate(int mode)
+    {
+        Count = 0;
+        switch (mode)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            case (int)PagingMode.Previous:
+                firstOrders = DataWorker.GetPreviousPageOrders(PageIndex, NumberOfRecPerPage);
+                Orders.AllOrders.ItemsSource = null;
+                Orders.AllOrders.Items.Clear();
+                Orders.AllOrders.ItemsSource = FirstOrders;
+                Orders.AllOrders.Items.Refresh();
+                PageInformation = Count + " из " + allOrders.Count;
+                break;
+
+            case (int)PagingMode.Next:
+                firstOrders = DataWorker.GetNextPageOrders(PageIndex, NumberOfRecPerPage);
+                Orders.AllOrders.ItemsSource = null;
+                Orders.AllOrders.Items.Clear();
+                Orders.AllOrders.ItemsSource = FirstOrders;
+                Orders.AllOrders.Items.Refresh();
+                PageInformation = Count + " из " + allOrders.Count;
+                break;
         }
     }
+
+    private void BtnNext_Click()
+    {
+        Navigate((int)PagingMode.Next);
+    }
+
+    private void BtnPreview_Click()
+    {
+        Navigate((int)PagingMode.Previous);
+    }
+
+    public void UpdateAllOrdersView()
+    {
+        firstOrders = DataWorker.GetFirstOrders(NumberOfRecPerPage);
+        Orders.AllOrders.ItemsSource = null;
+        Orders.AllOrders.Items.Clear();
+        Orders.AllOrders.ItemsSource = FirstOrders;
+        Orders.AllOrders.Items.Refresh();
+    }
+
+    private void NotifyPropertyChaged(string propertyName)
+    {
+        if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+
+    #region Open Window Add New Order
+
+    private RelayCommand addOrder;
+
+    public RelayCommand AddOrder
+    {
+        get
+        {
+            return addOrder ?? new RelayCommand(obj => { Add_Button_Click(); }
+            );
+        }
+    }
+
+    private void Add_Button_Click()
+    {
+        var addOrder = new AddOrder();
+        addOrder.ShowDialog();
+    }
+
+    #endregion
+
+    #region Delete order
+
+    private RelayCommand removeOrder;
+
+    public RelayCommand RemoveOrder
+    {
+        get { return removeOrder ?? new RelayCommand(obj => { Del_Button_Click(); }); }
+    }
+
+
+    private void Del_Button_Click()
+    {
+        var deleteWindow = new DeleteWindow();
+        if (deleteWindow.ShowDialog() == true)
+        {
+            DataWorker.DeleteOrder((Order)Orders.AllOrders.SelectedItem);
+            UpdateAllOrdersView();
+        }
+    }
+
+    #endregion
+
+    #region Open Edit order window
+
+    private RelayCommand openEditOrder;
+
+    public RelayCommand OpenEditOrder
+    {
+        get
+        {
+            return openEditOrder ?? new RelayCommand(obj => { Edit_Button_Click((Order)Orders.AllOrders.SelectedItem); }
+            );
+        }
+    }
+
+    private void Edit_Button_Click(Order order)
+    {
+        var editOrder = new EditOrder(order);
+        editOrder.ShowDialog();
+    }
+
+    #endregion
 }

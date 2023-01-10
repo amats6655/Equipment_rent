@@ -3,10 +3,10 @@
                     xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
     <Style x:Key="menuButtonIcon" TargetType="Icon:PackIconMaterial">
-        <Setter Property="Width" Value="15"/>
-        <Setter Property="Height" Value="15"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="20 2 20 0"/>
+        <Setter Property="Width" Value="15" />
+        <Setter Property="Height" Value="15" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="20 2 20 0" />
     </Style>
-    
+
 </ResourceDictionary>

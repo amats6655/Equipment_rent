@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         mc:Ignorable="d"
         Title="ConfirmWindow"
@@ -16,7 +15,7 @@
         Name="ComfirmWindowDialog">
 
     <Window.DataContext>
-        <vm:HomeVM/>
+        <vm:HomeVM />
     </Window.DataContext>
 
     <Grid>
@@ -27,18 +26,18 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Вернуть"
                            HorizontalAlignment="Center"
                            Style="{StaticResource titleText_Style}"
-                           FontSize="14"/>
+                           FontSize="14" />
                 <TextBlock Grid.Row="1"
                            Text="Вернуть?"
                            HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center" />
                 <StackPanel Grid.Row="2"
                             Orientation="Horizontal"
                             HorizontalAlignment="Center"
@@ -46,10 +45,10 @@
                     <Button Content=" Вернуть "
                             Style="{StaticResource ConfirmButton}"
                             Background="Green"
-                            Click="Confirm_Click"/>
-                    <Button Content=" Оставить " 
+                            Click="Confirm_Click" />
+                    <Button Content=" Оставить "
                             IsCancel="True"
-                            Style="{StaticResource cancelFormButton}"/>
+                            Style="{StaticResource cancelFormButton}" />
                 </StackPanel>
             </Grid>
         </Border>

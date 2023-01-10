@@ -2,15 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mask="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:AddUserVM}"
-        Title="AddUser" 
-        Height="800" 
-        Width="400" 
+        Title="AddUser"
+        Height="800"
+        Width="400"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -18,7 +18,7 @@
         Name="AddNewUserWindow">
 
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
     <Grid>
@@ -29,37 +29,36 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.ColumnSpan="3"
                            Grid.Row="1"
                            Text="Новый пользователь"
                            Style="{StaticResource titleText_Style}"
-                           HorizontalAlignment="Center" FontFamily="Montserrat" FontWeight="Bold"/>
+                           HorizontalAlignment="Center" FontWeight="Bold" />
                 <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
                         MouseDown="Border_MouseDown"
                         BorderBrush="Transparent"
-                        BorderThickness="20"/>
+                        BorderThickness="20" />
                 <Button Grid.Column="3"
                         IsCancel="True"
                         Style="{StaticResource CloseWindowButton}">
                     <Icon:PackIconMaterial Kind="Close"
-                                           Width="10"/>
+                                           Width="10" />
                 </Button>
                 <Separator Grid.Column="1"
                            Grid.Row="1"
                            VerticalAlignment="Top"
-                           Opacity="0.3"
-                           />
+                           Opacity="0.3" />
                 <!--#region Исчезающий текст-->
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
@@ -68,9 +67,9 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
                            Panel.ZIndex="1"
-                           Text="Фамилия" 
+                           Text="Фамилия"
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_lastname}"/>
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_lastname}" />
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 80 0 0"
@@ -78,9 +77,9 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
                            Panel.ZIndex="1"
-                           Text="Имя" 
+                           Text="Имя"
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_firstname}"/>
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_firstname}" />
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 140 0 0"
@@ -88,34 +87,32 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
                            Panel.ZIndex="1"
-                           Text="Телефон" 
+                           Text="Телефон"
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_phone}"/>
-<!--#endregion-->
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_phone}" />
+                <!--#endregion-->
                 <StackPanel Grid.Column="1"
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
-<!--#region TextBoxes--> 
+                    <!--#region TextBoxes-->
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding UserLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             x:Name="tb_lastname"
-                             />
+                             x:Name="tb_lastname" />
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding UserFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             x:Name="tb_firstname"
-                             />
+                             x:Name="tb_firstname" />
                     <mask:MaskedTextBox Style="{StaticResource MasktextBoxAdd}"
-                             Text="{Binding UserPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             x:Name="tb_phone"
-                             Mask="+7(000)000-00-00"/>
-<!--#endregion-->
+                                        Text="{Binding UserPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        x:Name="tb_phone"
+                                        Mask="+7(000)000-00-00" />
+                    <!--#endregion-->
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding newUserCommand}"
                             CommandParameter="{Binding ElementName=AddNewUserWindow}"
-                            x:Name="btn_add"/>
+                            x:Name="btn_add" />
                     <Button IsCancel="True"
-                            Style="{StaticResource cancelFormButton}"/>
+                            Style="{StaticResource cancelFormButton}" />
                 </StackPanel>
             </Grid>
         </Border>

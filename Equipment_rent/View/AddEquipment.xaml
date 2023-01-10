@@ -2,14 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:AddEquipmentVM}"
-        Title="AddUser" 
-        Height="800" 
-        Width="400" 
+        Title="AddUser"
+        Height="800"
+        Width="400"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -17,7 +17,7 @@
         Name="AddNewEquipmentWindow">
 
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
     <Grid>
@@ -28,36 +28,36 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
                         MouseDown="Border_MouseDown"
                         BorderBrush="Transparent"
-                        BorderThickness="20"/>
+                        BorderThickness="20" />
                 <Button Grid.Column="3"
                         IsCancel="True"
                         Style="{StaticResource CloseWindowButton}">
                     <Icon:PackIconMaterial Kind="Close"
-                                           Width="10"/>
+                                           Width="10" />
                 </Button>
                 <Separator Grid.Column="1"
                            Grid.Row="1"
                            VerticalAlignment="Top"
-                           Opacity="0.3"/>
+                           Opacity="0.3" />
                 <TextBlock Grid.ColumnSpan="3"
                            Grid.Row="1"
                            Text="Новое оборудование"
                            HorizontalAlignment="Center"
-                           Style="{StaticResource titleText_Style}"/>
+                           Style="{StaticResource titleText_Style}" />
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 20 0 0"
@@ -65,9 +65,9 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
                            Panel.ZIndex="1"
-                           Text="Тип" 
+                           Text="Тип"
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=cb_type}"/>
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=cb_type}" />
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 80 0 0"
@@ -75,9 +75,9 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
                            Panel.ZIndex="1"
-                           Text="Модель" 
+                           Text="Модель"
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_model}"/>
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_model}" />
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 140 0 0"
@@ -85,32 +85,32 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
                            Panel.ZIndex="1"
-                           Text="Количество" 
+                           Text="Количество"
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_amount}"/>
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=tb_amount}" />
                 <StackPanel Grid.Column="1"
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 
-                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               x:Name="cb_type"
                               ItemsSource="{Binding AllTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding EquipType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              SelectedItem="{Binding EquipType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding EquipModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             x:Name="tb_model"/>
+                             x:Name="tb_model" />
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding EquipAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             x:Name="tb_amount"/>
+                             x:Name="tb_amount" />
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding newEquipmentCommand}"
                             CommandParameter="{Binding ElementName=AddNewEquipmentWindow}"
-                            x:Name="btn_add"/>
+                            x:Name="btn_add" />
                     <Button IsCancel="True"
-                            Style="{StaticResource cancelFormButton}"/>
+                            Style="{StaticResource cancelFormButton}" />
                 </StackPanel>
             </Grid>
 

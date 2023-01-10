@@ -1,69 +1,66 @@
 ﻿<UserControl x:Class="Equipment_rent.View.Profile"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Equipment_rent.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
-             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
              xmlns:ff="clr-namespace:FunctionalFun.UI"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="615" d:DesignWidth="830"
              Background="Transparent"
              x:Name="ProfileUser">
 
     <UserControl.DataContext>
-        <vm:ProfileVM/>
+        <vm:ProfileVM />
     </UserControl.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="80*" />
+            <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="2"
-                           Grid.Column="2"
-                           Margin="210 45 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Старый пароль" 
-                           Foreground="LightSteelBlue"/>
+                   Grid.Column="2"
+                   Margin="210 45 0 0"
+                   IsHitTestVisible="False"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Panel.ZIndex="1"
+                   Text="Старый пароль"
+                   Foreground="LightSteelBlue" />
         <TextBlock Grid.Row="2"
-                           Grid.Column="2"
-                           Margin="210 105 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Новый пароль" 
-                           Foreground="LightSteelBlue"/>
+                   Grid.Column="2"
+                   Margin="210 105 0 0"
+                   IsHitTestVisible="False"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Panel.ZIndex="1"
+                   Text="Новый пароль"
+                   Foreground="LightSteelBlue" />
         <TextBlock Grid.Row="2"
-                           Grid.Column="2"
-                           Margin="210 165 0 0"
-                           IsHitTestVisible="False"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Left"
-                           Panel.ZIndex="1"
-                           Text="Повтори пароль" 
-                           Foreground="LightSteelBlue"/>
-        <TextBlock Style="{StaticResource titleText_Style}" 
+                   Grid.Column="2"
+                   Margin="210 165 0 0"
+                   IsHitTestVisible="False"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Panel.ZIndex="1"
+                   Text="Повтори пароль"
+                   Foreground="LightSteelBlue" />
+        <TextBlock Style="{StaticResource titleText_Style}"
                    HorizontalAlignment="Center"
                    Grid.ColumnSpan="3"
-                   Text=" Профиль"/>
+                   Text=" Профиль" />
         <Separator Grid.Row="1"
                    Grid.ColumnSpan="3"
-                   Background="#dae2ea" 
-                   Margin="0 -1 0 10"/>
+                   Background="#dae2ea"
+                   Margin="0 -1 0 10" />
         <StackPanel Grid.Row="2"
                     Grid.Column="0"
                     Margin="10 25"
@@ -71,77 +68,71 @@
             <TextBox x:Name="tb_Username"
                      Style="{StaticResource textBoxAdd}"
                      Text="{Binding User.Username }"
-                     IsEnabled="False"/>
+                     IsEnabled="False" />
             <TextBox x:Name="tb_Firstname"
                      Style="{StaticResource textBoxAdd}"
                      IsEnabled="False"
-                     Text="{Binding User.FirstName}"/>
+                     Text="{Binding User.FirstName}" />
             <TextBox x:Name="tb_Lastname"
                      Style="{StaticResource textBoxAdd}"
                      IsEnabled="False"
-                     Text="{Binding User.LastName}"/>
+                     Text="{Binding User.LastName}" />
 
 
             <TextBox x:Name="tb_Email"
                      Style="{StaticResource textBoxAdd}"
                      IsEnabled="False"
-                     Text="{Binding User.Email}"/>
+                     Text="{Binding User.Email}" />
             <TextBox x:Name="tb_role"
                      Style="{StaticResource textBoxAdd}"
                      IsEnabled="False"
-                     Text="{Binding User.Role.Role}"/>
+                     Text="{Binding User.Role.Role}" />
         </StackPanel>
 
         <StackPanel Grid.Row="2"
                     Grid.Column="2"
                     Margin="10 25"
                     Orientation="Vertical">
-            <PasswordBox x:Name="tb_LastPass" 
-                                 ff:PasswordBoxAssistant.BindPassword="true" 
-                                 ff:PasswordBoxAssistant.BoundPassword="{Binding Path=LastPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <PasswordBox x:Name="tb_LastPass"
+                         ff:PasswordBoxAssistant.BindPassword="true"
+                         ff:PasswordBoxAssistant.BoundPassword="{Binding Path=LastPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource passwordBox}"
-                                 FontWeight="Medium"
-                                 CaretBrush="LightGray"
-                                 BorderBrush="DarkGray"
-                                 BorderThickness="0 0 0 2"
-                                 VerticalAlignment="Center">
-            </PasswordBox>
+                         FontWeight="Medium"
+                         CaretBrush="LightGray"
+                         BorderBrush="DarkGray"
+                         BorderThickness="0 0 0 2" />
 
-            <PasswordBox x:Name="tb_NewPass" 
-                                 ff:PasswordBoxAssistant.BindPassword="true" 
-                                 ff:PasswordBoxAssistant.BoundPassword="{Binding Path=NewPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         
+            <PasswordBox x:Name="tb_NewPass"
+                         ff:PasswordBoxAssistant.BindPassword="true"
+                         ff:PasswordBoxAssistant.BoundPassword="{Binding Path=NewPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+
                          Style="{StaticResource passwordBox}"
-                                 FontWeight="Medium"
-                                 CaretBrush="LightGray"
-                                 BorderBrush="DarkGray"
-                                 BorderThickness="0 0 0 2"
-                                 VerticalAlignment="Center">
-            </PasswordBox>
+                         FontWeight="Medium"
+                         CaretBrush="LightGray"
+                         BorderBrush="DarkGray"
+                         BorderThickness="0 0 0 2" />
 
 
-            <PasswordBox x:Name="tb_ConfPass" 
-                                 ff:PasswordBoxAssistant.BindPassword="true" 
-                                 ff:PasswordBoxAssistant.BoundPassword="{Binding Path=ConfurmPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <PasswordBox x:Name="tb_ConfPass"
+                         ff:PasswordBoxAssistant.BindPassword="true"
+                         ff:PasswordBoxAssistant.BoundPassword="{Binding Path=ConfurmPass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource passwordBox}"
-                                 FontWeight="Medium"
-                                 CaretBrush="LightGray"
-                                 BorderBrush="DarkGray"
-                                 BorderThickness="0 0 0 2"
-                                 VerticalAlignment="Center">
-            </PasswordBox>
+                         FontWeight="Medium"
+                         CaretBrush="LightGray"
+                         BorderBrush="DarkGray"
+                         BorderThickness="0 0 0 2" />
             <TextBlock Text="{Binding ErrorMessage}"
                        Foreground="#D7598D"
                        FontSize="12"
-                       TextWrapping="Wrap"/>
+                       TextWrapping="Wrap" />
             <Button Style="{StaticResource addFormButton}"
                     Command="{Binding ChangePasswordCommand}"
                     Content="Изменить пароль"
                     Margin="10"
-                    x:Name="btn_changePass"/>
-            
+                    x:Name="btn_changePass" />
+
         </StackPanel>
-        
+
 
     </Grid>
 </UserControl>

@@ -1,108 +1,92 @@
-﻿using Equipment_rent.Utilites;
-using System;
-using System.IO;
-using System.Text;
+﻿using System;
 using System.Windows.Input;
-using Xceed.Wpf.Toolkit;
+using Equipment_rent.Properties;
+using Equipment_rent.Utilites;
 
-namespace Equipment_rent.ViewModel
+namespace Equipment_rent.ViewModel;
+
+public class AuthVM : ViewModelBase
 {
+    public static string Message = "";
+    private string _errorMessage;
+    private bool _isViewVisible = true;
 
-    public class AuthVM : ViewModelBase
+    private string _password;
+
+
+    public AuthVM()
     {
+        LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+        RecoverPasswodCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
+    }
 
-        private string _password;
-        private string _errorMessage;
-        private bool _isViewVisible = true;
-
-        public static string Message = "";
-
-        public string Auth_username
+    public string Auth_username
+    {
+        get => Settings.Default.auth_username;
+        set
         {
-            get => Properties.Settings.Default.auth_username;
-            set
-            {
-                Properties.Settings.Default.auth_username = value;
-                Properties.Settings.Default.Save();
-                OnPropertyChanged(nameof(Auth_username));
-            }
+            Settings.Default.auth_username = value;
+            Settings.Default.Save();
+            OnPropertyChanged(nameof(Auth_username));
         }
+    }
 
-        public string Password
+    public string Password
+    {
+        get => _password;
+        set
         {
-            get
-            {
-                return _password;
-            }
-            set
-            {
-                _password = value;
-                OnPropertyChanged(nameof(_password));
-            }
+            _password = value;
+            OnPropertyChanged(nameof(_password));
         }
-        public string ErrorMessage
+    }
+
+    public string ErrorMessage
+    {
+        get => _errorMessage;
+        set
         {
-            get
-            {
-                return _errorMessage;
-            }
-            set
-            {
-                _errorMessage = value;
-                OnPropertyChanged(nameof(ErrorMessage));
-            }
+            _errorMessage = value;
+            OnPropertyChanged(nameof(ErrorMessage));
         }
-        public bool IsViewVisible
+    }
+
+    public bool IsViewVisible
+    {
+        get => _isViewVisible;
+        set
         {
-            get
-            {
-                return _isViewVisible;
-            }
-            set
-            {
-                _isViewVisible = value;
-                OnPropertyChanged(nameof(IsViewVisible));
-            }
+            _isViewVisible = value;
+            OnPropertyChanged(nameof(IsViewVisible));
         }
+    }
 
 
-        public ICommand LoginCommand { get; }
-        public ICommand RecoverPasswodCommand { get; }
-        public ICommand ShowPasswordCommand { get; }
-        public ICommand RememberPasswordCommand { get; }
+    public ICommand LoginCommand { get; }
+    public ICommand RecoverPasswodCommand { get; }
+    public ICommand ShowPasswordCommand { get; }
+    public ICommand RememberPasswordCommand { get; }
 
 
-        public AuthVM()
-        {
-            LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-            RecoverPasswodCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
-        }
+    private bool CanExecuteLoginCommand(object obj)
+    {
+        bool validData;
+        if (string.IsNullOrEmpty(Auth_username) || Auth_username.Length < 3 || Password == null || Password.Length < 3)
+            validData = false;
+        else
+            validData = true;
+        return validData;
+    }
 
+    private async void ExecuteLoginCommand(object obj)
+    {
+        AuthClient.AuthClient_Send(Auth_username, Password);
 
+        ErrorMessage = Message;
+    }
 
-
-        private bool CanExecuteLoginCommand(object obj)
-        {
-            bool validData;
-            if (string.IsNullOrEmpty(Auth_username) || Auth_username.Length < 3 || Password == null || Password.Length < 3)
-                validData = false;
-            else
-                validData = true;
-            return validData;
-        }
-        private async void ExecuteLoginCommand(object obj)
-        {
-
-            AuthClient.AuthClient_Send(Auth_username, Password);
-
-            ErrorMessage = Message;
-
-        }
-        private void ExecuteRecoverPassCommand(string username, string email)
-        {
-            throw new NotImplementedException();
-        }
-
+    private void ExecuteRecoverPassCommand(string username, string email)
+    {
+        throw new NotImplementedException();
     }
 }
-

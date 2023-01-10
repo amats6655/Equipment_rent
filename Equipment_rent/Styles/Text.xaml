@@ -5,27 +5,27 @@
            TargetType="TextBlock">
 
         <Setter Property="FontFamily"
-                Value="Lato"/>
+                Value="Lato" />
         <Setter Property="HorizontalAlignment"
-                Value="Center"/>
+                Value="Center" />
         <Setter Property="FontWeight"
-                Value="SemiBold"/>
+                Value="SemiBold" />
         <Setter Property="Foreground"
-                Value="White"/>
+                Value="White" />
         <Setter Property="FontSize"
-                Value="17"/>
+                Value="17" />
         <Setter Property="Margin"
-                Value="5,25,0,10"/>
+                Value="5,25,0,10" />
     </Style>
 
     <Style x:Key="titleText_Style"
            TargetType="TextBlock">
 
-        <Setter Property="FontSize" Value="32"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="FontFamily" Value="Montserrat"/>
-        <Setter Property="Margin" Value="0 20 0 0"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontFamily" Value="Montserrat" />
+        <Setter Property="Margin" Value="0 20 0 0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Foreground" Value="#121518" />
     </Style>
 

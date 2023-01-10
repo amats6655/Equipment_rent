@@ -2,14 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:EditEquipmentVM}"
-        Title="EditEquipment" 
-        Height="800" 
-        Width="400" 
+        Title="EditEquipment"
+        Height="800"
+        Width="400"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -18,7 +18,7 @@
 
 
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
     <Grid>
@@ -29,36 +29,36 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
                         MouseDown="Border_MouseDown"
                         BorderBrush="Transparent"
-                        BorderThickness="20"/>
+                        BorderThickness="20" />
                 <Button Grid.Column="3"
                         IsCancel="True"
                         Style="{StaticResource CloseWindowButton}">
                     <Icon:PackIconMaterial Kind="Close"
-                                           Width="10"/>
+                                           Width="10" />
                 </Button>
                 <Separator Grid.Column="1"
                            Grid.Row="1"
                            VerticalAlignment="Top"
-                           Opacity="0.3"/>
+                           Opacity="0.3" />
                 <TextBlock Grid.ColumnSpan="3"
                            Grid.Row="1"
                            Text="Редактировать&#x0a;оборудование"
                            HorizontalAlignment="Center"
-                           Style="{StaticResource titleText_Style}"/>
+                           Style="{StaticResource titleText_Style}" />
                 <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="20 20 0 0"
@@ -66,14 +66,14 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"
                            Panel.ZIndex="1"
-                           Text="Тип" 
+                           Text="Тип"
                            Foreground="LightSteelBlue"
-                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=cb_type}"/>
+                           Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=cb_type}" />
                 <StackPanel Grid.Column="1"
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
-                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               x:Name="cb_type"
                               ItemsSource="{Binding AllTypes}"
@@ -81,23 +81,23 @@
                               SelectedItem="{Binding EquipType}"
                               IsEditable="True"
                               IsReadOnly="True"
-                              Focusable="False"/>
+                              Focusable="False" />
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding EquipModel}"
-                             x:Name="tb_model"/>
-                    <Label Content="Количество"/>
+                             x:Name="tb_model" />
+                    <Label Content="Количество" />
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding EquipAmount}"
-                             x:Name="tb_amount"/>
-                    <Label Content="Остаток"/>
+                             x:Name="tb_amount" />
+                    <Label Content="Остаток" />
                     <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding EquipBalance}"
-                             x:Name="tb_balance"/>
+                             x:Name="tb_balance" />
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding EditEquip}"
-                            CommandParameter="{Binding ElementName=EditEquipmentWindow}"/>
+                            CommandParameter="{Binding ElementName=EditEquipmentWindow}" />
                     <Button IsCancel="True"
-                            Style="{StaticResource cancelFormButton}"/>
+                            Style="{StaticResource cancelFormButton}" />
                 </StackPanel>
             </Grid>
 

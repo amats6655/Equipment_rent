@@ -2,17 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:system = "clr-namespace:System;assembly=mscorlib"
-        xmlns:sdl="http://schemas.sdl.com/xaml"
-        xmlns:mask="http://schemas.xceed.com/wpf/xaml/toolkit"        
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:mask="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:AddOrderVM}"
-        Title="AddOrder" 
-        Height="800" 
-        Width="400" 
+        Title="AddOrder"
+        Height="800"
+        Width="400"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -22,8 +21,6 @@
     <Window.Resources>
 
 
-        
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
         <ControlTemplate x:Key="validationFailed">
             <StackPanel Orientation="Horizontal">
                 <Border BorderBrush="#d0094c" BorderThickness="2" CornerRadius="20">
@@ -34,7 +31,7 @@
     </Window.Resources>
 
     <Window.DataContext>
-        <vm:AddOrderVM/>
+        <vm:AddOrderVM />
     </Window.DataContext>
 
     <Grid>
@@ -45,73 +42,74 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
                         MouseDown="Border_MouseDown"
                         BorderBrush="Transparent"
-                        BorderThickness="20"/>
+                        BorderThickness="20" />
                 <Button Grid.Column="3"
                         IsCancel="True"
                         Style="{StaticResource CloseWindowButton}">
                     <Icon:PackIconMaterial Kind="Close"
-                                           Width="10"/>
+                                           Width="10" />
                 </Button>
                 <Separator Grid.Column="1"
                            Grid.Row="1"
                            VerticalAlignment="Top"
-                           Opacity="0.3"/>
+                           Opacity="0.3" />
                 <TextBlock Grid.ColumnSpan="3"
                            Grid.Row="1"
                            Text="Новый заказ"
                            HorizontalAlignment="Center"
-                           Style="{StaticResource titleText_Style}"/>
+                           Style="{StaticResource titleText_Style}" />
                 <StackPanel Grid.Column="1"
                             x:Name="content"
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
-<!--#region TODO: Организовать маску по количеств оборудования
-                    #endregion--> 
-                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                    <!--#region TODO: Организовать маску по количеств оборудования
+                    #endregion-->
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               ItemsSource="{Binding AllTypes}"
                               DisplayMemberPath="Name"
                               SelectedItem="{Binding Types, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              x:Name="cb_types"/>
+                              x:Name="cb_types" />
                     <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               DisplayMemberPath="Model"
                               SelectedItem="{Binding Equipment}"
                               x:Name="cb_models"
-                              IsEnabled="False"/>
+                              IsEnabled="False" />
                     <!--<ListBox Height="auto"
                              SelectedItem="{Binding Equipment}"
                              DisplayMemberPath="Model"
                              IsEnabled="False"
                              x:Name="lb_models" SelectionMode="Multiple"/>-->
-                    <TextBox Style="{StaticResource textBoxAdd}"    
+                    <TextBox Style="{StaticResource textBoxAdd}"
                              Margin="0 10 0 0"
                              Name="tb_orderAmount"
                              Validation.ErrorTemplate="{StaticResource validationFailed}">
                         <TextBox.Text>
-                                <Binding Path="Amount" ValidatesOnExceptions="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule />
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                
+                            <Binding Path="Amount" ValidatesOnExceptions="True" Mode="TwoWay"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
                     <!--<Button x:Name="btn_addEquip"
                             Content="Добавить ещё оборудование"
                             Click="btn_addEquip_Click"/>
@@ -119,62 +117,61 @@
                                              SelectedItems="{Binding Equipment}"
                                              SelectedItem="{Binding Equipment}"/>-->
                     <TextBlock Text="Дата выдачи:"
-                               Margin="10 10 0 0"/>
-                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
-                                Style="{DynamicResource DatePickerStyle1}" 
-                                SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"                  
+                               Margin="10 10 0 0" />
+                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
+                                Style="{DynamicResource DatePickerStyle1}"
+                                SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"
                                 x:Name="dp_issueDate"
-                                FirstDayOfWeek="Monday"/>
+                                FirstDayOfWeek="Monday" />
                     <CheckBox Content="Новый сотрундник?"
                               Height="40"
                               VerticalContentAlignment="Center"
                               x:Name="cb_newUser"
-                              IsChecked="{Binding IsNewUser}" 
+                              IsChecked="{Binding IsNewUser}"
                               Click="cb_newUser_click"
-                              Style="{DynamicResource CheckBoxStyle1}"/>
-                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                              Style="{DynamicResource CheckBoxStyle1}" />
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               ItemsSource="{Binding AllUsers}"
                               DisplayMemberPath="Name"
                               SelectedItem="{Binding User, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              x:Name="cb_users"/>
+                              x:Name="cb_users" />
                     <TextBlock Text="Фамилия:"
                                Margin="10 10 0 0"
                                x:Name="text_lastname"
-                               Visibility="Collapsed"/>
-                    <TextBox Style="{StaticResource textBoxAdd}"    
+                               Visibility="Collapsed" />
+                    <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding UserLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Visibility="Collapsed"
-                             x:Name="tb_lastname"/>
+                             x:Name="tb_lastname" />
                     <TextBlock Text="Имя:"
                                Margin="10 10 0 0"
                                x:Name="text_firstname"
-                               Visibility="Collapsed"/>
-                    <TextBox Style="{StaticResource textBoxAdd}"    
+                               Visibility="Collapsed" />
+                    <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding UserFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Visibility="Collapsed"
-                             x:Name="tb_firstname"/>
-                    <mask:MaskedTextBox Style="{StaticResource MasktextBoxAdd}"    
-                             Text="{Binding UserPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Visibility="Collapsed"
-                             Mask="+7(000)000-00-00"
-                             x:Name="tb_phone"/>
+                             x:Name="tb_firstname" />
+                    <mask:MaskedTextBox Style="{StaticResource MasktextBoxAdd}"
+                                        Text="{Binding UserPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Visibility="Collapsed"
+                                        Mask="+7(000)000-00-00"
+                                        x:Name="tb_phone" />
                     <TextBlock Text="Дата возврата:"
-                               Margin="10 10 0 0"/>
+                               Margin="10 10 0 0" />
                     <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
                                 Style="{DynamicResource DatePickerStyle1}"
                                 SelectedDate="{Binding DateReturn, TargetNullValue={x:Static system:DateTime.Now}}"
-                                x:Name="dp_returnDate" 
-                                FirstDayOfWeek="Monday"
-                                />
+                                x:Name="dp_returnDate"
+                                FirstDayOfWeek="Monday" />
 
                     <Button Style="{StaticResource addFormButton}"
                             Command="{Binding AddNewOrder}"
                             x:Name="btn_add"
-                            CommandParameter="{Binding ElementName=AddNewOrderWindow}" 
+                            CommandParameter="{Binding ElementName=AddNewOrderWindow}"
                             IsDefault="True" />
                     <Button IsCancel="True"
-                            Style="{StaticResource cancelFormButton}"/>
+                            Style="{StaticResource cancelFormButton}" />
                 </StackPanel>
             </Grid>
 

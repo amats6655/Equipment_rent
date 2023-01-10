@@ -1,13 +1,12 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Equipment_rent.Utilites
+namespace Equipment_rent.Utilites;
+
+public class Btn : RadioButton
 {
-    public class Btn : RadioButton
+    static Btn()
     {
-        static Btn()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Btn), new FrameworkPropertyMetadata(typeof(Btn)));
-        }
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(Btn), new FrameworkPropertyMetadata(typeof(Btn)));
     }
 }

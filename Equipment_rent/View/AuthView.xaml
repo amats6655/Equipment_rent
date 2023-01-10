@@ -3,10 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:local="clr-namespace:Equipment_rent.View"
-        xmlns:viewModel="clr-namespace:Equipment_rent.ViewModel" 
-        xmlns:customcontrols="clr-namespace:Equipment_rent.CustomControls"
+        xmlns:viewModel="clr-namespace:Equipment_rent.ViewModel"
         xmlns:ff="clr-namespace:FunctionalFun.UI"
         mc:Ignorable="d"
         Title="AuthView" Height="550" Width="800"
@@ -17,23 +14,23 @@
         AllowsTransparency="True">
 
     <Window.DataContext>
-        <viewModel:AuthVM/>
+        <viewModel:AuthVM />
     </Window.DataContext>
 
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
     </Window.Resources>
-    
+
     <Window.Visibility>
-        <Binding Path="IsViewVisible" 
-                 Mode="TwoWay" 
-                 Converter="{StaticResource BooleanToVisibility}"/>
+        <Binding Path="IsViewVisible"
+                 Mode="TwoWay"
+                 Converter="{StaticResource BooleanToVisibility}" />
     </Window.Visibility>
-    
+
     <Border CornerRadius="20">
         <Border.Background>
             <ImageBrush ImageSource="/Images/back.jpg"
-                        Stretch="Fill"/>
+                        Stretch="Fill" />
         </Border.Background>
 
 
@@ -42,28 +39,28 @@
                 Opacity="0.95">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#311154" Offset="0"/>
-                    <GradientStop Color="#623ed0" Offset="0.75"/>
-                    <GradientStop Color="#7b5cd6" Offset="1"/>
+                    <GradientStop Color="#311154" Offset="0" />
+                    <GradientStop Color="#623ed0" Offset="0.75" />
+                    <GradientStop Color="#7b5cd6" Offset="1" />
                 </LinearGradientBrush>
             </Border.BorderBrush>
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="#060531" Offset="0"/>
-                    <GradientStop Color="#1b1448" Offset="0.75"/>
+                    <GradientStop Color="#060531" Offset="0" />
+                    <GradientStop Color="#1b1448" Offset="0.75" />
                 </LinearGradientBrush>
             </Border.Background>
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="5" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="LOG IN"
@@ -72,22 +69,22 @@
                            FontFamily="Montserrat"
                            Grid.Column="0"
                            VerticalAlignment="Center"
-                           Margin="10 0 0 0"/>
+                           Margin="10 0 0 0" />
                 <Button x:Name="btnMinimize"
                         Grid.Column="1"
                         BorderThickness="0"
                         Content="-"
                         FontSize="16"
                         FontFamily="Montserrat"
-                        Cursor="Hand" 
+                        Cursor="Hand"
                         Click="btnMinimize_Click"
                         Foreground="White">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#28aeed"/>
+                            <Setter Property="Background" Value="#28aeed" />
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#278bef"/>
+                                    <Setter Property="Background" Value="#278bef" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -99,7 +96,7 @@
                                     CornerRadius="9"
                                     Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
+                                                  HorizontalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -111,15 +108,15 @@
                         Content="x"
                         FontSize="16"
                         FontFamily="Motserrat"
-                        Cursor="Hand" 
+                        Cursor="Hand"
                         Click="btnExit_Click"
                         Foreground="White">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#da34"/>
+                            <Setter Property="Background" Value="#da34" />
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#da30"/>
+                                    <Setter Property="Background" Value="#da30" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -131,7 +128,7 @@
                                     CornerRadius="9"
                                     Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Top"
-                                                  HorizontalAlignment="Center"/>
+                                                  HorizontalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -145,7 +142,7 @@
                             Width="250"
                             FocusManager.FocusedElement="{Binding ElementName=tb_username}">
                     <Image Source="{StaticResource logo}"
-                           Height="200"/>
+                           Height="200" />
                     <TextBlock Text="Gave out •  Took  •  Wrot down"
                                FontFamily="Motserrat"
                                FontSize="12"
@@ -153,13 +150,13 @@
                                TextWrapping="Wrap"
                                TextAlignment="Center"
                                Margin="0 5 0 0"
-                               Foreground="LightGray"/>
+                               Foreground="LightGray" />
 
                     <TextBlock Text="Имя пользователя"
-                                Foreground="DarkGray"
-                                FontSize="12"
-                                FontFamily="Lato"
-                               Margin="0 35 0 0"/>
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontFamily="Lato"
+                               Margin="0 35 0 0" />
                     <TextBox x:Name="tb_username"
                              Text="{Binding Auth_username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
@@ -176,16 +173,16 @@
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user.png"
                                         Stretch="Uniform"
-                                        AlignmentX="Left"/>
+                                        AlignmentX="Left" />
                         </TextBox.Background>
                     </TextBox>
                     <TextBlock Text="Пароль"
-                                Foreground="DarkGray"
-                                FontSize="12"
-                                FontFamily="Lato"
-                               Margin="0 15 0 0"/>
-                    <PasswordBox x:Name="tb_password" 
-                                 ff:PasswordBoxAssistant.BindPassword="true" 
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontFamily="Lato"
+                               Margin="0 15 0 0" />
+                    <PasswordBox x:Name="tb_password"
+                                 ff:PasswordBoxAssistant.BindPassword="true"
                                  ff:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  FontSize="13"
                                  FontWeight="Medium"
@@ -200,14 +197,14 @@
                         <PasswordBox.Background>
                             <ImageBrush ImageSource="/Images/key.png"
                                         Stretch="Uniform"
-                                        AlignmentX="Left"/>
+                                        AlignmentX="Left" />
                         </PasswordBox.Background>
                     </PasswordBox>
                     <TextBlock Text="{Binding ErrorMessage}"
-                                Foreground="#D7596D"
-                                FontSize="12"
-                                FontFamily="Lato"
-                               TextWrapping="Wrap"/>
+                               Foreground="#D7596D"
+                               FontSize="12"
+                               FontFamily="Lato"
+                               TextWrapping="Wrap" />
                     <Button x:Name="btnLogin"
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"
@@ -216,14 +213,14 @@
                             FontSize="12"
                             FontFamily="Lato"
                             Cursor="Hand"
-                            Margin="0 30 0 0" 
+                            Margin="0 30 0 0"
                             IsDefault="True">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#462ad8"/>
+                                <Setter Property="Background" Value="#462ad8" />
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28aeed"/>
+                                        <Setter Property="Background" Value="#28aeed" />
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -234,7 +231,7 @@
                                         CornerRadius="20"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
+                                                      HorizontalAlignment="Center" />
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>

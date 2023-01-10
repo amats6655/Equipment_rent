@@ -1,8 +1,7 @@
-﻿namespace Equipment_rent.Utilites
+﻿namespace Equipment_rent.Utilites;
+
+public interface IDataErrorInfo
 {
-    public interface IDataErrorInfo
-    {
-        string Error { get; }
-        string this[string columnName] { get; }
-    }
+    string Error { get; }
+    string this[string columnName] { get; }
 }

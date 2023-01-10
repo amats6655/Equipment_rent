@@ -1,37 +1,36 @@
 ﻿<UserControl x:Class="Equipment_rent.View.Equipments"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Equipment_rent.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="615" d:DesignWidth="830"
              x:Name="DataEquipments">
-    
+
     <UserControl.DataContext>
-        <vm:EquipmentsVM/>
+        <vm:EquipmentsVM />
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
 
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <!--PageTitle-->
 
@@ -39,48 +38,46 @@
                    HorizontalAlignment="Center"
                    Text="Оборудование"
                    Margin="0"
-                   Style="{StaticResource titleText_Style}"/>
+                   Style="{StaticResource titleText_Style}" />
 
         <!--Add Button-->
 
-        <Button Grid.Column="2" 
-                Grid.Row="1" 
-                Style="{StaticResource addButton}" 
+        <Button Grid.Column="2"
+                Style="{StaticResource addButton}"
                 Command="{Binding AddEquipment}"
                 x:Name="btn_add_Equip"
                 Margin="0"
                 Width="170">
             <StackPanel Orientation="Horizontal">
-                <Icon:PackIconMaterial Kind="Plus" 
-                                       VerticalAlignment="Center" 
-                                       Width="11" 
+                <Icon:PackIconMaterial Kind="Plus"
+                                       VerticalAlignment="Center"
+                                       Width="11"
                                        Height="11"
-                                       Margin="5 0 8 1"/>
+                                       Margin="5 0 8 1" />
                 <TextBlock Text="Новое оборудование"
                            HorizontalAlignment="Right"
                            FontSize="12"
-                           FontFamily="Lato"/>
+                           FontFamily="Lato" />
             </StackPanel>
         </Button>
 
         <!--Separator-->
-        <Separator Height="1" 
+        <Separator Height="1"
                    Grid.Row="2"
-                   Grid.ColumnSpan="3" 
-                   Background="#dae2ea" 
-                   Margin="0 -1 0 10"/>
+                   Grid.ColumnSpan="3"
+                   Background="#dae2ea"
+                   Margin="0 -1 0 10" />
 
 
         <!--USERS DATAGRID-->
-        <DataGrid Style="{DynamicResource DataGridStyle1}" 
-                  CellStyle="{DynamicResource DataGridCellStyle1}" 
-                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                  RowStyle="{DynamicResource DataGridRowStyle1}" 
-                  Grid.ColumnSpan="3" 
+        <DataGrid Style="{DynamicResource DataGridStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                  Grid.ColumnSpan="3"
                   Grid.Row="3"
                   ItemsSource="{Binding FirstEquipments}"
                   x:Name="EquipmentsDataGrid"
-                  AutoGenerateColumns="False"
                   VerticalScrollBarVisibility="Hidden">
 
             <DataGrid.Columns>
@@ -88,28 +85,28 @@
                 <DataGridTextColumn Header="Тип"
                                     IsReadOnly="True"
                                     Width="*"
-                                    Binding="{Binding EquipType.Name}"/>
+                                    Binding="{Binding EquipType.Name}" />
 
 
                 <DataGridTextColumn Header="Модель"
                                     IsReadOnly="True"
                                     Width="*"
-                                    Binding="{Binding Model}"/>
+                                    Binding="{Binding Model}" />
 
                 <DataGridTextColumn Header="Количество"
                                     IsReadOnly="True"
                                     Width="auto"
-                                    Binding="{Binding Amount}"/>
+                                    Binding="{Binding Amount}" />
 
                 <DataGridTextColumn Header="Остаток"
                                     IsReadOnly="True"
                                     Width="auto"
-                                    Binding="{Binding Balance}"/>
+                                    Binding="{Binding Balance}" />
                 <DataGridTextColumn Header="Активные заказы"
                                     IsReadOnly="True"
                                     Width="auto"
                                     FontWeight="SemiBold"
-                                    Binding="{Binding EquipmentOrders.Count}"/>
+                                    Binding="{Binding EquipmentOrders.Count}" />
 
 
                 <DataGridTemplateColumn Header="Edit"
@@ -119,15 +116,15 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource gridEditButton}"
-                                        Command="{Binding ElementName=DataEquipments, Path=DataContext.OpenEditEquipment}">
-                                    <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
-                                                           Kind="PencilOutline"/>
-                                </Button>
+                                    Command="{Binding ElementName=DataEquipments, Path=DataContext.OpenEditEquipment}">
+                                <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
+                                                       Kind="PencilOutline" />
+                            </Button>
 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn Header="Del"
                                         IsReadOnly="True"
                                         Width="55"
@@ -135,10 +132,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Style="{StaticResource gridRemoveButton}"
-                                        Command="{Binding ElementName=DataEquipments, Path=DataContext.RemoveEquipment}">
-                                    <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
-                                                           Kind="DeleteOutline"/>
-                                </Button>
+                                    Command="{Binding ElementName=DataEquipments, Path=DataContext.RemoveEquipment}">
+                                <Icon:PackIconMaterial Style="{StaticResource gridButtonIcon}"
+                                                       Kind="DeleteOutline" />
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -147,53 +144,50 @@
         </DataGrid>
         <!--Pagination Section-->
         <Border Grid.Row="4"
-                Grid.ColumnSpan="3"
-                HorizontalAlignment="Right" 
                 Style="{StaticResource paginationBorder}">
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource pagingButton}"
                         Width="50"
                         Command="{Binding PrevPage}">
                     <Icon:PackIconMaterial Kind="ChevronLeft"
-                                       Style="{StaticResource pagingButtonIcon}"/>
+                                           Style="{StaticResource pagingButtonIcon}" />
                 </Button>
-                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7" />
                 <Label Width="70"
                        Content="{Binding PageInformation}"
                        Foreground="Black"
-                       FontSize="13"/>
-                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+                       FontSize="13" />
+                <Rectangle Width="1" Fill="#dee4ec" Margin="3 7" />
                 <Button Style="{StaticResource pagingButton}"
                         Width="50"
                         Command="{Binding NextPage}">
                     <Icon:PackIconMaterial Kind="ChevronRight"
-                                       Style="{StaticResource pagingButtonIcon}"/>
+                                           Style="{StaticResource pagingButtonIcon}" />
                 </Button>
             </StackPanel>
         </Border>
-        <Grid Width="300" 
-                      Grid.Row="1"
-                      HorizontalAlignment="Left">
-            <TextBlock Margin="20 0" 
-                               VerticalAlignment="Center" 
-                               Foreground="#b0b9c6" 
-                               IsHitTestVisible="False"
-                               Panel.ZIndex="1" 
-                               Text="Искать здесь..." 
-                       
-                               Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty,  Converter={StaticResource BoolToVis}}"/>
+        <Grid Width="300"
+              Grid.Row="1"
+              HorizontalAlignment="Left">
+            <TextBlock Margin="20 0"
+                       VerticalAlignment="Center"
+                       Foreground="#b0b9c6"
+                       IsHitTestVisible="False"
+                       Panel.ZIndex="1"
+                       Text="Искать здесь..."
 
-            <TextBox x:Name="txtSearch" 
-                                            KeyUp="search"
-                             Style="{StaticResource textBoxSearch}"/>
+                       Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty,  Converter={StaticResource BoolToVis}}" />
 
-            <Icon:PackIconMaterial Kind="Magnify" 
-                                           Width="15" 
-                                           Height="15" 
-                                           VerticalAlignment="Center"
-                                           Margin="275,0,0,0" 
-                                           Foreground="#b0b9c6" 
-                        />
+            <TextBox x:Name="txtSearch"
+                     KeyUp="search"
+                     Style="{StaticResource textBoxSearch}" />
+
+            <Icon:PackIconMaterial Kind="Magnify"
+                                   Width="15"
+                                   Height="15"
+                                   VerticalAlignment="Center"
+                                   Margin="275,0,0,0"
+                                   Foreground="#b0b9c6" />
         </Grid>
     </Grid>
 </UserControl>

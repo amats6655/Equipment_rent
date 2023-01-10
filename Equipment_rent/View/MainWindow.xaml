@@ -4,20 +4,19 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:menu="clr-namespace:Equipment_rent.Utilites"
-        Title="MainWindow" 
-        Height="850" 
-        Width="1210" 
+        Title="MainWindow"
+        Height="850"
+        Width="1210"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
 
     <Window.DataContext>
-        <vm:NavigationVM/>
+        <vm:NavigationVM />
     </Window.DataContext>
 
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>
 
     <Border Background="#eff2f7"
@@ -25,50 +24,50 @@
 
 
         <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="190"/>
-                <ColumnDefinition Name="GridMenu" 
-                                  Width="*"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190" />
+                <ColumnDefinition Name="GridMenu"
+                                  Width="*" />
             </Grid.ColumnDefinitions>
 
 
             <!--LeftMenu-->
-            <Grid x:Name="grid" 
-                  Margin="0,0,0,0" 
+            <Grid x:Name="grid"
+                  Margin="0,0,0,0"
                   RenderTransformOrigin="0.5,0.5">
                 <Grid.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
                     </TransformGroup>
                 </Grid.RenderTransform>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
 
-                <Button x:Name="button" 
-                        Margin="20, 28, 0, 35" 
+                <Button x:Name="button"
+                        Margin="20, 28, 0, 35"
                         Style="{StaticResource topButton}"
                         Click="HideMenu_Button_Click">
-                    <Icon:PackIconMaterial Kind="Menu" 
-                                           Width="15" 
-                                           Height="15"/>
+                    <Icon:PackIconMaterial Kind="Menu"
+                                           Width="15"
+                                           Height="15" />
                 </Button>
 
-                <Border x:Name="border_menu" 
-                        Grid.Row="1" 
-                        Background="#623ed0" 
-                        CornerRadius="0 50 0 20" 
-                        Margin="0,0,0,0" 
+                <Border x:Name="border_menu"
+                        Grid.Row="1"
+                        Background="#623ed0"
+                        CornerRadius="0 50 0 20"
+                        Margin="0,0,0,0"
                         Padding="0,0,0,0"
                         Visibility="Visible">
                     <DockPanel>
-                        <Border x:Name="border1" 
-                                Width="80" 
+                        <Border x:Name="border1"
+                                Width="80"
                                 Height="80"
                                 Padding="3"
                                 Background="White"
@@ -78,65 +77,65 @@
                                 Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/enot.png"/>
+                                    <ImageBrush ImageSource="/Images/enot.png" />
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
 
                         <TextBlock x:Name="textBlock"
-                                   Text="Аренда оборудования" 
+                                   Text="Аренда оборудования"
                                    Style="{StaticResource Text_Style}"
-                                   DockPanel.Dock="Top"/>
+                                   DockPanel.Dock="Top" />
                         <TextBlock x:Name="textBlock1"
-                                   Text="Кампус" 
+                                   Text="Кампус"
                                    Style="{StaticResource Text_Style}"
                                    DockPanel.Dock="Top"
                                    Foreground="#d0bfff"
                                    FontSize="14"
-                                   Margin="0 0 0 0"/>
+                                   Margin="0 0 0 0" />
 
-                        <Separator Margin="25" 
-                                   DockPanel.Dock="Top" 
+                        <Separator Margin="25"
+                                   DockPanel.Dock="Top"
                                    Height="0.8"
-                                   Background="#7e5fdc"/>
+                                   Background="#7e5fdc" />
 
                         <StackPanel DockPanel.Dock="Top">
                             <menu:Btn Style="{StaticResource menuButton}"
-                                    HorizontalAlignment="Stretch"
-                                    Command="{Binding HomeCommand}"
-                                    IsChecked ="True">
+                                      HorizontalAlignment="Stretch"
+                                      Command="{Binding HomeCommand}"
+                                      IsChecked="True">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial x:Name="packIconMaterial" Kind="Home" 
-                                                           Style="{StaticResource menuButtonIcon}" 
-                                                           Margin="10,2,20,0"/>
-                                    <TextBlock x:Name="textBlock2" 
-                                               Text="Домашняя"/>
+                                    <Icon:PackIconMaterial x:Name="packIconMaterial" Kind="Home"
+                                                           Style="{StaticResource menuButtonIcon}"
+                                                           Margin="10,2,20,0" />
+                                    <TextBlock x:Name="textBlock2"
+                                               Text="Домашняя" />
                                 </StackPanel>
                             </menu:Btn>
 
                             <menu:Btn Style="{StaticResource menuButton}"
-                                    HorizontalAlignment="Stretch"
-                                    Command="{Binding UsersCommand}">
+                                      HorizontalAlignment="Stretch"
+                                      Command="{Binding UsersCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial x:Name="packIconMaterial1"
-                                                           Kind="HumanFemaleDance" 
-                                                           Style="{StaticResource menuButtonIcon}" 
-                                                           Margin="10,2,20,0"/>
+                                                           Kind="HumanFemaleDance"
+                                                           Style="{StaticResource menuButtonIcon}"
+                                                           Margin="10,2,20,0" />
                                     <TextBlock x:Name="textBlock3"
-                                               Text="Пользователи"/>
+                                               Text="Пользователи" />
                                 </StackPanel>
                             </menu:Btn>
 
-                            <menu:Btn Style="{StaticResource menuButton}" 
+                            <menu:Btn Style="{StaticResource menuButton}"
                                       HorizontalAlignment="Stretch"
                                       Command="{Binding EquipmentsCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial x:Name="packIconMaterial2"
                                                            Kind="Ethernet"
                                                            Style="{StaticResource menuButtonIcon}"
-                                                           Margin="10,2,20,0"/>
-                                    <TextBlock x:Name="textBlock4" 
-                                               Text="Оборудование"/>
+                                                           Margin="10,2,20,0" />
+                                    <TextBlock x:Name="textBlock4"
+                                               Text="Оборудование" />
                                 </StackPanel>
                             </menu:Btn>
 
@@ -146,10 +145,10 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial x:Name="packIconMaterial3"
                                                            Kind="FileDocumentEdit"
-                                                           Style="{StaticResource menuButtonIcon}" 
-                                                           Margin="10,2,20,0"/>
+                                                           Style="{StaticResource menuButtonIcon}"
+                                                           Margin="10,2,20,0" />
                                     <TextBlock x:Name="textBlock5"
-                                               Text="Заказы"/>
+                                               Text="Заказы" />
                                 </StackPanel>
                             </menu:Btn>
                             <menu:Btn Style="{StaticResource menuButton}"
@@ -160,43 +159,43 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial x:Name="packIconMaterial8"
                                                            Kind="PacMan"
-                                                           Style="{StaticResource menuButtonIcon}" 
-                                                           Margin="10,2,20,0"/>
+                                                           Style="{StaticResource menuButtonIcon}"
+                                                           Margin="10,2,20,0" />
                                     <TextBlock x:Name="textBlock8"
-                                               Text="Сотрудники"/>
+                                               Text="Сотрудники" />
                                 </StackPanel>
                             </menu:Btn>
                         </StackPanel>
 
 
                         <menu:Btn Style="{StaticResource menuButton}"
-                                DockPanel.Dock="Bottom" 
-                                Margin="15 0 15 20" 
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Bottom"
-                                Click="Exit_Button_Click">
+                                  DockPanel.Dock="Bottom"
+                                  Margin="15 0 15 20"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Bottom"
+                                  Click="Exit_Button_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial x:Name="packIconMaterial4"
-                                                       Kind="ExitToApp" 
+                                                       Kind="ExitToApp"
                                                        Style="{StaticResource menuButtonIcon}"
-                                                       Margin="10,2,20,0"/>
-                                <TextBlock x:Name="textBlock6" 
-                                           Text="Выход"/>
+                                                       Margin="10,2,20,0" />
+                                <TextBlock x:Name="textBlock6"
+                                           Text="Выход" />
                             </StackPanel>
                         </menu:Btn>
-                        
+
                         <menu:Btn Style="{StaticResource menuButton}"
-                                Margin="15 0 15 20" 
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Bottom"
-                                Command="{Binding ProfileCommand}">
+                                  Margin="15 0 15 20"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Bottom"
+                                  Command="{Binding ProfileCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial x:Name="packIconMaterial5"
-                                                       Kind="FaceAgent" 
+                                                       Kind="FaceAgent"
                                                        Style="{StaticResource menuButtonIcon}"
-                                                       Margin="10,2,20,0"/>
-                                <TextBlock x:Name="textBlock7" 
-                                           Text="Профиль"/>
+                                                       Margin="10,2,20,0" />
+                                <TextBlock x:Name="textBlock7"
+                                           Text="Профиль" />
                             </StackPanel>
                         </menu:Btn>
 
@@ -204,46 +203,45 @@
                 </Border>
             </Grid>
 
-            <Grid Grid.Column="1" 
+            <Grid Grid.Column="1"
                   Margin="30 0 20 20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="100*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="100*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="25" />
                 </Grid.ColumnDefinitions>
                 <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
                         MouseDown="Border_MouseDown"
                         BorderBrush="Transparent"
-                        BorderThickness="20"/>
-                
-                
-                
+                        BorderThickness="20" />
+
+
                 <Button x:Name="btnMinimize"
                         Grid.Column="1"
                         BorderThickness="0"
                         Content="-"
                         FontSize="16"
                         FontFamily="Montserrat"
-                        Cursor="Hand" 
+                        Cursor="Hand"
                         Click="btnMinimize_Click"
                         Foreground="White">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#28aeed"/>
+                            <Setter Property="Background" Value="#28aeed" />
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#278bef"/>
+                                    <Setter Property="Background" Value="#278bef" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -255,7 +253,7 @@
                                     CornerRadius="9"
                                     Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
+                                                  HorizontalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -267,15 +265,15 @@
                         Content="x"
                         FontSize="16"
                         FontFamily="Motserrat"
-                        Cursor="Hand" 
+                        Cursor="Hand"
                         Click="btnExit_Click"
                         Foreground="White">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#da34"/>
+                            <Setter Property="Background" Value="#da34" />
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#da30"/>
+                                    <Setter Property="Background" Value="#da30" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -287,14 +285,14 @@
                                     CornerRadius="9"
                                     Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Top"
-                                                  HorizontalAlignment="Center"/>
+                                                  HorizontalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
                 <Separator Grid.Row="1"
                            VerticalAlignment="Top"
-                           Opacity="0.3"/>
+                           Opacity="0.3" />
 
                 <!--PageTitle-->
 
@@ -302,7 +300,7 @@
                                 Grid.ColumnSpan="3"
                                 Margin="0 30 0 0"
                                 x:Name="Pages"
-                                Content="{Binding CurrentView}"/>
+                                Content="{Binding CurrentView}" />
 
             </Grid>
         </Grid>

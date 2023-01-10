@@ -4,37 +4,37 @@
                     xmlns:view="clr-namespace:Equipment_rent.View">
 
     <DataTemplate DataType="{x:Type vm:HomeVM}">
-        <view:Home/>
+        <view:Home />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:EquipmentsVM}">
-        <view:Equipments/>
+        <view:Equipments />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:OrdersVM}">
-        <view:Orders/>
+        <view:Orders />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:StaffVM}">
-        <view:Staff/>
+        <view:Staff />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:AddStaffVM}">
-        <view:AddStaff/>
+        <view:AddStaff />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:EditStaffVM}">
-        <view:EditStaff/>
+        <view:EditStaff />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:UsersVM}">
-        <view:Users/>
+        <view:Users />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:ProfileVM}">
-        <view:Profile/>
+        <view:Profile />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:AddUserVM}">
-        <view:AddUser/>
+        <view:AddUser />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:AddOrderVM}">
-        <view:AddOrder/>
+        <view:AddOrder />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:AddEquipmentVM}">
-        <view:AddEquipment/>
+        <view:AddEquipment />
     </DataTemplate>
 
 </ResourceDictionary>

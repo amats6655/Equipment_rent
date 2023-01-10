@@ -2,16 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:vm="clr-namespace:Equipment_rent.ViewModel" 
+        xmlns:vm="clr-namespace:Equipment_rent.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:system = "clr-namespace:System;assembly=mscorlib"
-        xmlns:mask="http://schemas.xceed.com/wpf/xaml/toolkit"        
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:mask="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:EditOrderVM}"
-        Title="EditOrder" 
-        Height="800" 
-        Width="400" 
+        Title="EditOrder"
+        Height="800"
+        Width="400"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -26,42 +26,42 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="3"
                         Grid.Row="0"
                         MouseDown="Border_MouseDown"
                         BorderBrush="Transparent"
-                        BorderThickness="20"/>
+                        BorderThickness="20" />
                 <Button Grid.Column="3"
                         IsCancel="True"
-                        Style="{StaticResource CloseWindowButton}">                    
+                        Style="{StaticResource CloseWindowButton}">
                     <Icon:PackIconMaterial Kind="Close"
-                                           Width="10"/>
+                                           Width="10" />
                 </Button>
                 <Separator Grid.Column="1"
                            Grid.Row="1"
                            VerticalAlignment="Top"
-                           Opacity="0.3"/>
-                <TextBlock Grid.ColumnSpan="3" 
+                           Opacity="0.3" />
+                <TextBlock Grid.ColumnSpan="3"
                            Grid.Row="1"
                            Text="Редактировать заказ"
                            HorizontalAlignment="Center"
-                           Style="{StaticResource titleText_Style}"/>
+                           Style="{StaticResource titleText_Style}" />
                 <StackPanel Grid.Column="1"
                             Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center">
 
-                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               ItemsSource="{Binding AllEquipments}"
                               SelectedItem="{Binding Equipment}"
@@ -69,28 +69,28 @@
                               x:Name="cb_models"
                               IsEditable="True"
                               IsReadOnly="True"
-                              Focusable="False"/>
-                    <TextBox Style="{StaticResource textBoxAdd}"    
-                             Text="{Binding Amount}"/>
+                              Focusable="False" />
+                    <TextBox Style="{StaticResource textBoxAdd}"
+                             Text="{Binding Amount}" />
                     <CheckBox Style="{DynamicResource CheckBoxStyle1}"
                               Height="40"
                               VerticalContentAlignment="Center"
                               Content="Вернули оборудование"
                               x:Name="cb_returned"
-                              IsChecked="{Binding newIsReturned}"/>
-                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
+                              IsChecked="{Binding newIsReturned}" />
+                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
                                 Style="{DynamicResource DatePickerStyle1}"
                                 SelectedDate="{Binding DateIssue, TargetNullValue={x:Static system:DateTime.Now}}"
                                 x:Name="dp_issueDate"
-                                FirstDayOfWeek="Monday"/>
+                                FirstDayOfWeek="Monday" />
                     <CheckBox Style="{DynamicResource CheckBoxStyle1}"
                               Height="40"
                               VerticalContentAlignment="Center"
                               Content="Новый сотрундник?"
                               x:Name="cb_newUser"
                               IsChecked="{Binding IsNewUser}"
-                              Click="cb_newUser_click"/>
-                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}" 
+                              Click="cb_newUser_click" />
+                    <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle1}"
                               Style="{StaticResource ComboBoxFlatStyle}"
                               ItemsSource="{Binding AllUsers}"
                               SelectedItem="{Binding User}"
@@ -98,31 +98,31 @@
                               x:Name="cb_users"
                               IsEditable="True"
                               IsReadOnly="True"
-                              Focusable="False"/>
-                    <TextBox Style="{StaticResource textBoxAdd}"    
+                              Focusable="False" />
+                    <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding UserLastName}"
                              Visibility="Collapsed"
-                             x:Name="tb_lastname"/>
-                    <TextBox Style="{StaticResource textBoxAdd}"    
+                             x:Name="tb_lastname" />
+                    <TextBox Style="{StaticResource textBoxAdd}"
                              Text="{Binding UserFirstName}"
                              Visibility="Collapsed"
-                             x:Name="tb_firstname"/>
-                    <mask:MaskedTextBox Style="{StaticResource MasktextBoxAdd}"    
-                             Text="{Binding UserPhone}"
-                             Visibility="Collapsed"
-                             x:Name="tb_phone"
-                             Mask="+7(000)000-00-00"/>
-                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}" 
-                                Style="{DynamicResource DatePickerStyle1}" 
+                             x:Name="tb_firstname" />
+                    <mask:MaskedTextBox Style="{StaticResource MasktextBoxAdd}"
+                                        Text="{Binding UserPhone}"
+                                        Visibility="Collapsed"
+                                        x:Name="tb_phone"
+                                        Mask="+7(000)000-00-00" />
+                    <DatePicker CalendarStyle="{DynamicResource DatePickerCalendarStyle1}"
+                                Style="{DynamicResource DatePickerStyle1}"
                                 SelectedDate="{Binding DateReturn, TargetNullValue={x:Static system:DateTime.Now}}"
-                                x:Name="dp_returnDate" 
-                                FirstDayOfWeek="Monday"/>
+                                x:Name="dp_returnDate"
+                                FirstDayOfWeek="Monday" />
                     <Button Style="{StaticResource addFormButton}"
                             Content="Сохранить"
                             Command="{Binding EditOrder}"
-                            CommandParameter="{Binding ElementName=EditOrderWindow}"/>
+                            CommandParameter="{Binding ElementName=EditOrderWindow}" />
                     <Button IsCancel="True"
-                            Style="{StaticResource cancelFormButton}"/>
+                            Style="{StaticResource cancelFormButton}" />
                 </StackPanel>
             </Grid>
 
