@@ -24,7 +24,7 @@ namespace Equipment_rent.View
                 }
             }
         }
-        private void search(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Search(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtSearch.Text))
             {
