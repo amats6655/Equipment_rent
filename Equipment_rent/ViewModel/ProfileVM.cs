@@ -126,21 +126,4 @@ internal class ProfileVM : INotifyPropertyChanged
     {
         if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
     }
-
-
-    #region Edit user
-
-    private RelayCommand _editUser;
-
-    public RelayCommand EditUser
-    {
-        get { return _editUser ?? new RelayCommand(obj => { Edit_Button_Click(); }); }
-    }
-
-    private void Edit_Button_Click()
-    {
-        DataWorker.EditAuthUser(User, User.Id, User.FirstName, User.LastName, User.Email, User.Role.Id);
-    }
-
-    #endregion
 }

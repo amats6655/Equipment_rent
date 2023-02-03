@@ -16,10 +16,10 @@ internal class OrdersVM : INotifyPropertyChanged
         Previous = 3,
     }
 
-    public static int PageIndex = 1;
+    public static int pageIndex = 1;
     private const int NumberOfRecPerPage = 10;
 
-    public static int Count;
+    public static int count;
     private static List<Order> allOrders = DataWorker.GetAllOrders();
 
     private static List<Order> firstOrders = DataWorker.GetFirstOrders(NumberOfRecPerPage);
@@ -92,49 +92,45 @@ internal class OrdersVM : INotifyPropertyChanged
 
     public static void Search(object sender, KeyEventArgs e)
     {
-        if (Filter != "" && Filter != " ")
-        {
-            var filtered = AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(Filter) ||
-                                               u.OrdersUser.Phone.Contains(Filter) ||
-                                               u.OrdersEquipment.Model.ToLower().Contains(Filter) ||
-                                               u.OrdersEquipment.EquipType.Name.ToLower().Contains(Filter));
+        var filter = Filter.Trim().ToLower();
 
-            Orders.AllOrders.ItemsSource = null;
-            Orders.AllOrders.Items.Clear();
+        if (!string.IsNullOrEmpty(filter))
+        {
+            var filtered = AllOrders.Where(u => u.OrdersUser.Name.ToLower().Contains(filter) ||
+                                                u.OrdersUser.Phone.Contains(filter) ||
+                                                u.OrdersEquipment.Model.ToLower().Contains(filter) ||
+                                                u.OrdersEquipment.EquipType.Name.ToLower().Contains(filter));
+
             Orders.AllOrders.ItemsSource = filtered;
-            Orders.AllOrders.Items.Refresh();
         }
         else
         {
-            Orders.AllOrders.ItemsSource = null;
-            Orders.AllOrders.Items.Clear();
             Orders.AllOrders.ItemsSource = FirstOrders;
-            Orders.AllOrders.Items.Refresh();
         }
     }
 
 
     public void Navigate(int mode)
     {
-        Count = 0;
+        count = 0;
         switch (mode)
         {
             case (int)PagingMode.Previous:
-                firstOrders = DataWorker.GetPreviousPageOrders(PageIndex, NumberOfRecPerPage);
+                firstOrders = DataWorker.GetPreviousPageOrders(pageIndex, NumberOfRecPerPage);
                 Orders.AllOrders.ItemsSource = null;
                 Orders.AllOrders.Items.Clear();
                 Orders.AllOrders.ItemsSource = FirstOrders;
                 Orders.AllOrders.Items.Refresh();
-                PageInformation = Count + " из " + allOrders.Count;
+                PageInformation = count + " из " + allOrders.Count;
                 break;
 
             case (int)PagingMode.Next:
-                firstOrders = DataWorker.GetNextPageOrders(PageIndex, NumberOfRecPerPage);
+                firstOrders = DataWorker.GetNextPageOrders(pageIndex, NumberOfRecPerPage);
                 Orders.AllOrders.ItemsSource = null;
                 Orders.AllOrders.Items.Clear();
                 Orders.AllOrders.ItemsSource = FirstOrders;
                 Orders.AllOrders.Items.Refresh();
-                PageInformation = Count + " из " + allOrders.Count;
+                PageInformation = count + " из " + allOrders.Count;
                 break;
         }
     }

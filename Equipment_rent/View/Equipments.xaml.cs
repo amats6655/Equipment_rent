@@ -26,13 +26,16 @@ namespace Equipment_rent.View
         }
         private void search(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (txtSearch.Text != "" && txtSearch.Text != " ")
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 var text = txtSearch.Text.ToLower();
-                var filtred = EquipmentsVM.AllEquipments.Where(u => u.Model.ToLower().Contains(text) || u.EquipType.Name.ToLower().Contains(text));
-                EquipmentsDataGrid.ItemsSource = filtred;
+                var filtered = EquipmentsVM.AllEquipments.Where(u => u.Model.ToLower().Contains(text) || u.EquipType.Name.ToLower().Contains(text));
+                EquipmentsDataGrid.ItemsSource = filtered;
             }
-            else EquipmentsDataGrid.ItemsSource = EquipmentsVM.FirstEquipments;
+            else
+            {
+                EquipmentsDataGrid.ItemsSource = EquipmentsVM.FirstEquipments;
+            }
         }
     }
 }

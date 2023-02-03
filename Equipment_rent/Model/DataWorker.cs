@@ -11,89 +11,71 @@ namespace Equipment_rent.Model
         public static List<User> GetAllUsers()
         {
             using var db = new ApplicationContext();
-            var result = db.Users.OrderBy(o => o.Name).ToList();
-
-            return result;
+            return db.Users.OrderBy(o => o.Name).ToList();
         }
 
         // Get All Equipments
         public static List<Equipment> GetAllEquipments()
         {
             using var db = new ApplicationContext();
-            var result = db.Equipments.OrderBy(o => o.TypeId).ToList();
-
-            return result;
+            return db.Equipments.OrderBy(o => o.TypeId).ToList();
         }
 
         //Get All Orders
         public static List<Order> GetAllOrders()
         {
             using var db = new ApplicationContext();
-            var result = db.Orders.OrderBy(o => o.IsReturned).ToList();
-
-            return result;
+            return db.Orders.OrderBy(o => o.IsReturned).ToList();
         }
 
         //Get All Types
         public static List<Type> GetAllTypes()
         {
             using var db = new ApplicationContext();
-            var result = db.Types.ToList();
-
-            return result;
+            return db.Types.ToList();
         }
-
 
         // Get All Auth_users
         public static List<Auth_user> GetAllAuthUsers()
         {
             using var db = new ApplicationContext();
-            var result = db.Auth_user.OrderBy(o => o.Username).ToList();
-
-            return result;
+            return db.Auth_user.OrderBy(o => o.Username).ToList();
         }
 
         // Get All Roles
         public static List<Auth_role> GetAllAuthRoles()
         {
             using var db = new ApplicationContext();
-            var result = db.Auth_role.ToList();
-
-            return result;
+            return db.Auth_role.ToList();
         }
 
         // Add User
         public static User CreateUser(string name, string phone, bool debt)
         {
-            var user = new User();
             using var db = new ApplicationContext();
-            var checkIsExist = db.Users.Any(el => el.Phone == phone && el.Name == name);
-            if (!checkIsExist)
+            if (!db.Users.Any(el => el.Phone == phone && el.Name == name))
             {
                 var newUser = new User { Name = name, Phone = phone, Debt = debt };
                 db.Users.Add(newUser);
                 db.SaveChanges();
-                user = newUser;
+                return newUser;
             }
-            return user;
+            return null;
         }
-
 
         // Add Equipment
         public static void CreateEquip(Type type, string model, int amount)
         {
             using var db = new ApplicationContext();
-            var checkIsExist = db.Equipments.Any(el => el.Model == model);
-            if (!checkIsExist)
+            if (!db.Equipments.Any(el => el.Model == model))
             {
-                Equipment newEquipment = new Equipment
+                db.Equipments.Add(new Equipment
                 {
                     TypeId = type.TypeId,
                     Model = model,
                     Amount = amount,
                     Balance = amount
-                };
-                db.Equipments.Add(newEquipment);
+                });
                 db.SaveChanges();
             }
         }
@@ -102,7 +84,7 @@ namespace Equipment_rent.Model
         public static void CreateOrder(User user, Equipment equipment, int amount, DateTime dateIssue, DateTime dateReturn, Guid whoGive)
         {
             using var db = new ApplicationContext();
-            var newOrder = new Order
+            db.Orders.Add(new Order
             {
                 UserId = user.UserId,
                 EquipmentId = equipment.EquipmentId,
@@ -111,24 +93,29 @@ namespace Equipment_rent.Model
                 DateReturn = dateReturn,
                 IsReturned = false,
                 WhoGive = whoGive
-            };
-            db.Orders.Add(newOrder);
+            });
             db.SaveChanges();
         }
+
         // Add Staff
-        public static Auth_user CreateStaff(Guid userId, string username, string firstname, string lastname, string email, Guid roleId)
+        public static void CreateStaff(Guid userId, string username, string firstname, string lastname, string email,
+            Guid roleId)
         {
-            var staff = new Auth_user();
             using var db = new ApplicationContext();
-            var checkIsExist = db.Auth_user.Any(el => el.Username == username && el.Email == email);
-            if (!checkIsExist)
+            if (!db.Auth_user.Any(el => el.Username == username && el.Email == email))
             {
-                Auth_user newStaff = new Auth_user { Id = userId, Username = username, FirstName = firstname, LastName = lastname, Email = email, Role_Id = roleId, Auth_roleId = roleId };
-                db.Auth_user.Add(newStaff);
+                db.Auth_user.Add(new Auth_user
+                {
+                    Id = userId,
+                    Username = username,
+                    FirstName = firstname,
+                    LastName = lastname,
+                    Email = email,
+                    Role_Id = roleId,
+                    Auth_roleId = roleId
+                });
                 db.SaveChanges();
-                staff = newStaff;
             }
-            return staff;
         }
 
         // Edit User
@@ -141,9 +128,8 @@ namespace Equipment_rent.Model
                 user.Name = newName;
                 user.Phone = newPhone;
                 user.Debt = isDebt;
+                db.SaveChanges();
             }
-
-            db.SaveChanges();
         }
 
         // Edit Equipment
@@ -157,9 +143,8 @@ namespace Equipment_rent.Model
                 equipment.Model = newModel;
                 equipment.Amount = newAmount;
                 equipment.Balance = newBalance;
+                db.SaveChanges();
             }
-
-            db.SaveChanges();
         }
 
         // Edit Order
@@ -179,14 +164,9 @@ namespace Equipment_rent.Model
                 {
                     order.WhoTake = whoTake;
                 }
+                db.SaveChanges();
             }
-
-            db.SaveChanges();
         }
-
-
-
-
 
         // Edit Staff
         public static void EditStaff(Auth_user oldStaff, string firstname, string lastname, string email, Guid roleId)
@@ -200,10 +180,10 @@ namespace Equipment_rent.Model
                 staff.Email = email;
                 staff.Role_Id = roleId;
                 staff.Auth_roleId = roleId;
+                db.SaveChanges();
             }
-
-            db.SaveChanges();
         }
+
 
         // Delete User
         public static void DeleteUser(User user)
@@ -228,6 +208,7 @@ namespace Equipment_rent.Model
             db.Orders.Remove(order);
             db.SaveChanges();
         }
+
         // Delete Staff
         public static void DeleteStaff(Auth_user staff)
         {
@@ -240,309 +221,188 @@ namespace Equipment_rent.Model
         public static Type GetTypeById(int id)
         {
             using var db = new ApplicationContext();
-            var type = db.Types.FirstOrDefault(p => p.TypeId == id);
-            return type ?? throw new InvalidOperationException();
+            return db.Types.FirstOrDefault(p => p.TypeId == id) ??
+                   throw new InvalidOperationException("Type not found");
         }
 
         // Get Equipment by Id
         public static Equipment GetEquipmentById(int id)
         {
             using var db = new ApplicationContext();
-            var equip = db.Equipments.FirstOrDefault(p => p.EquipmentId == id);
-            return equip ?? throw new InvalidOperationException();
+            return db.Equipments.FirstOrDefault(p => p.EquipmentId == id) ??
+                   throw new InvalidOperationException("Equipment ID not found");
         }
 
         // Get User by Id
         public static User GetUserById(int id)
         {
             using var db = new ApplicationContext();
-            var user = db.Users.FirstOrDefault(p => p.UserId == id);
-            return user ?? throw new InvalidOperationException();
+            return db.Users.FirstOrDefault(p => p.UserId == id) ??
+                   throw new InvalidOperationException("User ID not found");
         }
 
         // Get User By Name
         public static User GetUserByName(string name)
         {
             using var db = new ApplicationContext();
-            var user = db.Users.FirstOrDefault(p => p.Name == name);
-            return user ?? throw new InvalidOperationException();
+            return db.Users.FirstOrDefault(p => p.Name == name) ??
+                   throw new InvalidOperationException("User Name not found");
         }
-
 
         // Get All Equipments by Id Type
         public static List<Equipment> GetAllEquipmentsByIdType(int id)
         {
-            var equipments = (from equipment in GetAllEquipments() where equipment.TypeId == id select equipment).ToList();
-            return equipments;
+            return GetAllEquipments().Where(equipment => equipment.TypeId == id).ToList();
         }
 
         // Get All Orders by Id User
         public static List<Order> GetAllOrdersByUserId(int id)
         {
-            var orders = (from order in GetAllOrders() where order.UserId == id && order.IsReturned == false select order).ToList();
-            return orders;
+            return GetAllOrders().Where(order => order.UserId == id && order.IsReturned == false).ToList();
         }
 
         // Get All Orders by Id Equipment
         public static List<Order> GetAllOrdersByEquipmentId(int id)
         {
-            var orders = (from order in GetAllOrders() where order.EquipmentId == id && order.IsReturned == false select order).ToList();
-            return orders;
+            return GetAllOrders().Where(order => order.EquipmentId == id && order.IsReturned == false).ToList();
         }
 
         // Get all orders by status
         public static List<Order> GetAllOrdersByStatus()
         {
-            List<Order> orders = (from order in GetAllOrders() where order.IsReturned == false select order).ToList();
-            return orders;
+            return GetAllOrders().Where(order => order.IsReturned == false).ToList();
         }
 
-
-
-        // Get Preview Users
-        public static List<User> GetPreviousPageUsers(int pageIndex, int count)
-        {
-            if (pageIndex > 1)
-            {
-                pageIndex -= 1;
-                UsersVM.pageIndex = pageIndex;
-                if (pageIndex == 1)
-                {
-                    var result = GetAllUsers().Take(count).ToList();
-                    UsersVM.count = result.Count;
-                    return result;
-                }
-                else
-                {
-                    var result = GetAllUsers().Skip((pageIndex * count) - count).Take(count).ToList();
-                    UsersVM.count = Math.Min(pageIndex * count, GetAllUsers().Count);
-                    return result;
-                }
-
-            }
-            else
-            {
-                return GetAllUsers().Take(count).ToList();
-            }
-        }
-        // Get Preview Equipments
-        public static List<Equipment> GetPreviousPageEquipments(int pageIndex, int count)
-        {
-            if (pageIndex > 1)
-            {
-                pageIndex -= 1;
-                EquipmentsVM.pageIndex = pageIndex;
-                if (pageIndex == 1)
-                {
-                    var result = GetAllEquipments().Take(count).ToList();
-                    EquipmentsVM.count = result.Count;
-                    return result;
-                }
-                else
-                {
-                    var result = GetAllEquipments().Skip((pageIndex * count) - count).Take(count).ToList();
-                    EquipmentsVM.count = Math.Min(pageIndex * count, GetAllUsers().Count);
-                    return result;
-                }
-            }
-            else
-            {
-                return GetAllEquipments().Take(count).ToList();
-            }
-        }
-        // Get Preview Orders
-        public static List<Order> GetPreviousPageOrders(int pageIndex, int count)
-        {
-            if (pageIndex > 1)
-            {
-                pageIndex -= 1;
-                OrdersVM.PageIndex = pageIndex;
-                if (pageIndex == 1)
-                {
-                    var result = GetAllOrders().Take(count).ToList();
-                    OrdersVM.Count = result.Count;
-                    return result;
-                }
-                else
-                {
-                    var result = GetAllOrders().Skip((pageIndex * count) - count).Take(count).ToList();
-                    OrdersVM.Count = Math.Min(pageIndex * count, GetAllOrders().Count);
-                    return result;
-                }
-            }
-            else
-            {
-                return GetAllOrders().Take(count).ToList();
-            }
-        }
-        // Get Preview Staff
-        public static List<Auth_user> GetPreviousPageStaff(int pageIndex, int count)
-        {
-            if (pageIndex > 1)
-            {
-                pageIndex -= 1;
-                StaffVM.pageIndex = pageIndex;
-                if (pageIndex == 1)
-                {
-                    var result = GetAllAuthUsers().Take(count).ToList();
-                    StaffVM.count = result.Count;
-                    return result;
-                }
-                else
-                {
-                    var result = GetAllAuthUsers().Skip((pageIndex * count) - count).Take(count).ToList();
-                    StaffVM.count = Math.Min(pageIndex * count, GetAllAuthUsers().Count);
-                    return result;
-                }
-
-            }
-            else
-            {
-                return GetAllAuthUsers().Take(count).ToList();
-            }
-        }
-
-
-
-        // Get Next Users
-        public static List<User> GetNextPageUsers(int pageIndex, int count)
-        {
-            if (!GetAllUsers().Skip(pageIndex * count).Take(count).Any())
-            {
-                var result = GetAllUsers().Skip((pageIndex * count) - count).Take(count).ToList();
-                UsersVM.count = (pageIndex * count) + GetAllUsers().Skip(pageIndex * count).Take(count).Count();
-                return result;
-            }
-            else
-            {
-                var result = GetAllUsers().Skip(pageIndex * count).Take(count).ToList();
-                UsersVM.count = (pageIndex * count) + GetAllUsers().Skip(pageIndex * count).Take(count).Count();
-                UsersVM.pageIndex = pageIndex + 1;
-                return result;
-            }
-        }
-        // Get Next Equipments
-        public static List<Equipment> GetNextPageEquipments(int pageIndex, int count)
-        {
-            if (!GetAllEquipments().Skip(pageIndex * count).Take(count).Any())
-            {
-                var result = GetAllEquipments().Skip((pageIndex * count) - count).Take(count).ToList();
-                EquipmentsVM.count = (pageIndex * count) + GetAllEquipments().Skip(pageIndex * count).Take(count).Count();
-                return result;
-            }
-            else
-            {
-                var result = GetAllEquipments().Skip(pageIndex * count).Take(count).ToList();
-                EquipmentsVM.count = (pageIndex * count) + GetAllEquipments().Skip(pageIndex * count).Take(count).Count();
-                EquipmentsVM.pageIndex = pageIndex + 1;
-                return result;
-            }
-        }
-        // Get next Orders
-        public static List<Order> GetNextPageOrders(int pageIndex, int count)
-        {
-            if (!GetAllOrders().Skip(pageIndex * count).Take(count).Any())
-            {
-                var result = GetAllOrders().Skip((pageIndex * count) - count).Take(count).ToList();
-                OrdersVM.Count = (pageIndex * count) + GetAllOrders().Skip(pageIndex * count).Take(count).Count();
-                return result;
-            }
-            else
-            {
-                var result = GetAllOrders().Skip(pageIndex * count).Take(count).ToList();
-                OrdersVM.Count = (pageIndex * count) + GetAllOrders().Skip(pageIndex * count).Take(count).Count();
-                OrdersVM.PageIndex = pageIndex + 1;
-                return result;
-            }
-        }
-        // Get Next Staff
-        public static List<Auth_user> GetNextPageStaff(int pageIndex, int count)
-        {
-            if (!GetAllAuthUsers().Skip(pageIndex * count).Take(count).Any())
-            {
-                var result = GetAllAuthUsers().Skip((pageIndex * count) - count).Take(count).ToList();
-                StaffVM.count = (pageIndex * count) + GetAllAuthUsers().Skip(pageIndex * count).Take(count).Count();
-                return result;
-            }
-            else
-            {
-                var result = GetAllAuthUsers().Skip(pageIndex * count).Take(count).ToList();
-                StaffVM.count = (pageIndex * count) + GetAllAuthUsers().Skip(pageIndex * count).Take(count).Count();
-                StaffVM.pageIndex = pageIndex + 1;
-                return result;
-            }
-        }
-
-
-        //Get First Users
-        public static List<User> GetFirstUsers(int count)
-        {
-            var result = GetAllUsers().Take(count).ToList();
-            return result;
-        }
-
-        //Get First Equipments
-        public static List<Equipment> GetFirstEquipments(int count)
-        {
-            var result = GetAllEquipments().Take(count).ToList();
-            return result;
-        }
-
-        //Get First Orders
-        public static List<Order> GetFirstOrders(int count)
-        {
-            var result = GetAllOrders().Take(count).ToList();
-            return result;
-        }
-
-        //Get First Staff
-        public static List<Auth_user> GetFirstStaff(int count)
-        {
-            var result = GetAllAuthUsers().Take(count).ToList();
-            return result;
-        }
-
-
-
-
-
-        // Get User By Id
+        // Get AuthUser By Id
         public static Auth_user GetAuthUserById(Guid id)
         {
             using var db = new ApplicationContext();
-            var result = db.Auth_user.FirstOrDefault(p => p.Id.Equals(id));
-            return result ?? throw new InvalidOperationException();
+            return db.Auth_user.FirstOrDefault(p => p.Id.Equals(id)) ?? 
+                   throw new InvalidOperationException("Staff ID not found");
         }
 
         // Get Role By Id
         public static Auth_role GetRoleById(Guid roleId)
         {
             using var db = new ApplicationContext();
-            var result = db.Auth_role.FirstOrDefault(p => p.Id.Equals(roleId));
-            return result ?? throw new InvalidOperationException();
+            return db.Auth_role.FirstOrDefault(p => p.Id.Equals(roleId)) ?? 
+                   throw new InvalidOperationException("Auth Role ID not found");
         }
 
-        // Edit Auth_User
-        public static void EditAuthUser(
-                Auth_user oldUser,
-                Guid id,
-                string firstName,
-                string lastName,
-                string email,
-                Guid newRole)
+        // Get Preview Users
+        public static List<User> GetPreviousPageUsers(int pageIndex, int count)
         {
-            using var db = new ApplicationContext();
-            var user = db.Auth_user.FirstOrDefault(u => u.Id == oldUser.Id);
-            if (user != null)
-            {
-                user.Id = id;
-                user.FirstName = firstName;
-                user.LastName = lastName;
-                user.Email = email;
-                user.Role_Id = newRole;
-            }
+            pageIndex = Math.Max(pageIndex - 1, 1);
+            UsersVM.pageIndex = pageIndex;
 
-            db.SaveChanges();
+            var skip = (pageIndex - 1) * count;
+            var users = GetAllUsers();
+            UsersVM.count = Math.Min(skip + count, users.Count);
+
+            return users.Skip(skip).Take(count).ToList();
+        }
+
+        // Get Preview Equipments
+        public static List<Equipment> GetPreviousPageEquipments(int pageIndex, int count)
+        {
+            pageIndex = Math.Max(pageIndex - 1, 1);
+            EquipmentsVM.pageIndex = pageIndex;
+
+            var skip = (pageIndex - 1) * count;
+            var equipments = GetAllEquipments();
+            EquipmentsVM.count = Math.Min(skip + count, equipments.Count);
+
+            return equipments.Skip(skip).Take(count).ToList();
+        }
+
+        // Get Preview Orders
+        public static List<Order> GetPreviousPageOrders(int pageIndex, int count)
+        {
+            pageIndex = Math.Max(pageIndex - 1, 1);
+            OrdersVM.pageIndex = pageIndex;
+
+            var skip = (pageIndex - 1) * count;
+            var orders = GetAllOrders();
+            OrdersVM.count = Math.Min(skip + count, orders.Count);
+
+            return orders.Skip(skip).Take(count).ToList();
+        }
+
+        // Get Preview Staff
+        public static List<Auth_user> GetPreviousPageStaff(int pageIndex, int count)
+        {
+            pageIndex = Math.Max(pageIndex - 1, 1);
+            StaffVM.pageIndex = pageIndex;
+
+            var skip = (pageIndex - 1) * count;
+            var staff = GetAllAuthUsers();
+            StaffVM.count = Math.Min(skip + count, staff.Count);
+
+            return staff.Skip(skip).Take(count).ToList();
+        }
+
+        // Get Next Users
+        public static List<User> GetNextPageUsers(int pageIndex, int count)
+        {
+            pageIndex = Math.Max(pageIndex + 1, 1);
+            UsersVM.pageIndex = pageIndex;
+            var result = GetAllUsers().Skip((pageIndex - 1) * count).Take(count).ToList();
+            UsersVM.count = Math.Min(pageIndex * count, GetAllUsers().Count);
+            return result;
+        }
+
+        // Get Next Equipments
+        public static List<Equipment> GetNextPageEquipments(int pageIndex, int count)
+        {
+            pageIndex = Math.Max(pageIndex + 1, 1);
+            EquipmentsVM.pageIndex = pageIndex;
+            var result = GetAllEquipments().Skip((pageIndex - 1) * count).Take(count).ToList();
+            EquipmentsVM.count = Math.Min(pageIndex * count, GetAllEquipments().Count);
+            return result;
+        }
+
+        // Get next Orders
+        public static List<Order> GetNextPageOrders(int pageIndex, int count)
+        {
+            pageIndex = Math.Max(pageIndex + 1, 1);
+            OrdersVM.pageIndex = pageIndex;
+            var result = GetAllOrders().Skip((pageIndex - 1) * count).Take(count).ToList();
+            OrdersVM.count = Math.Min(pageIndex * count, GetAllOrders().Count);
+            return result;
+        }
+
+        // Get Next Staff
+        public static List<Auth_user> GetNextPageStaff(int pageIndex, int count)
+        {
+            pageIndex = Math.Max(pageIndex + 1, 1);
+            StaffVM.pageIndex = pageIndex;
+            var result = GetAllAuthUsers().Skip((pageIndex - 1) * count).Take(count).ToList();
+            StaffVM.count = Math.Min(pageIndex * count, GetAllAuthUsers().Count);
+            return result;
+        }
+
+        //Get First Users
+        public static List<User> GetFirstUsers(int count)
+        {
+            return GetAllUsers().Take(count).ToList();
+        }
+
+        //Get First Equipments
+        public static List<Equipment> GetFirstEquipments(int count)
+        {
+            return GetAllEquipments().Take(count).ToList();
+        }
+
+        //Get First Orders
+        public static List<Order> GetFirstOrders(int count)
+        {
+            return GetAllOrders().Take(count).ToList();
+        }
+
+        //Get First Staff
+        public static List<Auth_user> GetFirstStaff(int count)
+        {
+            return GetAllAuthUsers().Take(count).ToList();
         }
     }
 }

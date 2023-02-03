@@ -179,7 +179,7 @@
                        Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty,  Converter={StaticResource BoolToVis}}" />
 
             <TextBox x:Name="txtSearch"
-                     KeyUp="search"
+                     KeyUp="Search"
                      Style="{StaticResource textBoxSearch}" />
 
             <Icon:PackIconMaterial Kind="Magnify"
