@@ -14,5 +14,5 @@ public class User
     [NotMapped] public string? BgColor { get; set; }
     [NotMapped] public char? Character { get; set; }
 
-    [NotMapped] public List<Order> UserOrders => DataWorker.GetAllOrdersByUserId(UserId);
+    [NotMapped] public List<Order> UserOrders { get; set; }
 }

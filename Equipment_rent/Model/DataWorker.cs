@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Equipment_rent.Model
 {
@@ -11,7 +12,8 @@ namespace Equipment_rent.Model
         public static List<User> GetAllUsers()
         {
             using var db = new ApplicationContext();
-            var result = db.Users.OrderBy(o => o.Name).ToList();
+            var result = db.Users.AsNoTracking()
+                .OrderBy(o => o.Name).ToList();
 
             return result;
         }
@@ -20,7 +22,7 @@ namespace Equipment_rent.Model
         public static List<Equipment> GetAllEquipments()
         {
             using var db = new ApplicationContext();
-            var result = db.Equipments.OrderBy(o => o.TypeId).ToList();
+            var result = db.Equipments.AsNoTracking().OrderBy(o => o.TypeId).ToList();
 
             return result;
         }
@@ -29,7 +31,7 @@ namespace Equipment_rent.Model
         public static List<Order> GetAllOrders()
         {
             using var db = new ApplicationContext();
-            var result = db.Orders.OrderBy(o => o.IsReturned).ToList();
+            var result = db.Orders.AsNoTracking().OrderBy(o => o.IsReturned).ToList();
 
             return result;
         }
@@ -38,7 +40,7 @@ namespace Equipment_rent.Model
         public static List<Type> GetAllTypes()
         {
             using var db = new ApplicationContext();
-            var result = db.Types.ToList();
+            var result = db.Types.AsNoTracking().ToList();
 
             return result;
         }
@@ -48,7 +50,7 @@ namespace Equipment_rent.Model
         public static List<Auth_user> GetAllAuthUsers()
         {
             using var db = new ApplicationContext();
-            var result = db.Auth_user.OrderBy(o => o.Username).ToList();
+            var result = db.Auth_user.AsNoTracking().OrderBy(o => o.Username).ToList();
 
             return result;
         }
@@ -57,7 +59,7 @@ namespace Equipment_rent.Model
         public static List<Auth_role> GetAllAuthRoles()
         {
             using var db = new ApplicationContext();
-            var result = db.Auth_role.ToList();
+            var result = db.Auth_role.AsNoTracking().ToList();
 
             return result;
         }
@@ -240,7 +242,7 @@ namespace Equipment_rent.Model
         public static Type GetTypeById(int id)
         {
             using var db = new ApplicationContext();
-            var type = db.Types.FirstOrDefault(p => p.TypeId == id);
+            var type = db.Types.AsNoTracking().FirstOrDefault(p => p.TypeId == id);
             return type ?? throw new InvalidOperationException();
         }
 
@@ -248,7 +250,7 @@ namespace Equipment_rent.Model
         public static Equipment GetEquipmentById(int id)
         {
             using var db = new ApplicationContext();
-            var equip = db.Equipments.FirstOrDefault(p => p.EquipmentId == id);
+            var equip = db.Equipments.AsNoTracking().FirstOrDefault(p => p.EquipmentId == id);
             return equip ?? throw new InvalidOperationException();
         }
 
@@ -256,7 +258,7 @@ namespace Equipment_rent.Model
         public static User GetUserById(int id)
         {
             using var db = new ApplicationContext();
-            var user = db.Users.FirstOrDefault(p => p.UserId == id);
+            var user = db.Users.AsNoTracking().FirstOrDefault(p => p.UserId == id);
             return user ?? throw new InvalidOperationException();
         }
 
@@ -264,7 +266,7 @@ namespace Equipment_rent.Model
         public static User GetUserByName(string name)
         {
             using var db = new ApplicationContext();
-            var user = db.Users.FirstOrDefault(p => p.Name == name);
+            var user = db.Users.AsNoTracking().FirstOrDefault(p => p.Name == name);
             return user ?? throw new InvalidOperationException();
         }
 
@@ -510,7 +512,7 @@ namespace Equipment_rent.Model
         public static Auth_user GetAuthUserById(Guid id)
         {
             using var db = new ApplicationContext();
-            var result = db.Auth_user.FirstOrDefault(p => p.Id.Equals(id));
+            var result = db.Auth_user.AsNoTracking().FirstOrDefault(p => p.Id.Equals(id));
             return result ?? throw new InvalidOperationException();
         }
 
@@ -518,7 +520,7 @@ namespace Equipment_rent.Model
         public static Auth_role GetRoleById(Guid roleId)
         {
             using var db = new ApplicationContext();
-            var result = db.Auth_role.FirstOrDefault(p => p.Id.Equals(roleId));
+            var result = db.Auth_role.AsNoTracking().FirstOrDefault(p => p.Id.Equals(roleId));
             return result ?? throw new InvalidOperationException();
         }
 
