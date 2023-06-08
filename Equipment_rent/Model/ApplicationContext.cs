@@ -17,7 +17,7 @@ namespace Equipment_rent.Model
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=85.175.4.135,49172;Initial Catalog=ER;User ID=mrkotik;Password=ciscO15=!;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer("Data Source=!***!;Initial Catalog=ER;User ID=!***!;Password=!***!;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
     }
 
